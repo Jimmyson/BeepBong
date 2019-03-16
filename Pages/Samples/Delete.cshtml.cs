@@ -54,7 +54,7 @@ namespace BeepBong.Pages.Samples
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("../Tracks/Details", new {id = Sample.TrackId});
         }
     }
 }

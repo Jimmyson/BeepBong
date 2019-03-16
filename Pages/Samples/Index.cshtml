@@ -59,7 +59,8 @@
                 @Html.DisplayFor(modelItem => item.Checksum)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Track.TrackId)
+                @Html.DisplayFor(modelItem => item.Track.Name)
+				@(!String.IsNullOrEmpty(item.Track.Subtitle) ? "(" + item.Track.Subtitle + ")" : String.Empty)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.SampleId">Edit</a> |

@@ -23,7 +23,9 @@ namespace BeepBong.Pages.Programmes
 
         public async Task OnGetAsync()
         {
-            Programme = await _context.Programmes.ToListAsync();
+            Programme = await _context.Programmes
+				.Include(p => p.Tracks)
+				.ToListAsync();
         }
     }
 }

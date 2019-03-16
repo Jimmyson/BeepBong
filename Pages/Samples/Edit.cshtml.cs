@@ -37,7 +37,12 @@ namespace BeepBong.Pages.Samples
             {
                 return NotFound();
             }
-           ViewData["TrackId"] = new SelectList(_context.Tracks, "TrackId", "TrackId");
+            ViewData["TrackId"] = new SelectList(_context.Tracks
+		   											.Select(t => new {
+														   TrackId = t.TrackId,
+														   Name = t.Name + ((!String.IsNullOrEmpty(t.Subtitle)) ? " [" + t.Subtitle + "]" : "") + " (" + t.Programme.Name + ")"
+													   }),
+													"TrackId", "Name");
             return Page();
         }
 
@@ -66,7 +71,7 @@ namespace BeepBong.Pages.Samples
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("../Tracks/Details", new {id = Sample.TrackId});
         }
 
         private bool SampleExists(int id)

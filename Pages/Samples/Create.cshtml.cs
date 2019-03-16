@@ -21,7 +21,12 @@ namespace BeepBong.Pages.Samples
 
         public IActionResult OnGet()
         {
-        ViewData["TrackId"] = new SelectList(_context.Tracks, "TrackId", "TrackId");
+        ViewData["TrackId"] = new SelectList(_context.Tracks
+		   											.Select(t => new {
+														   TrackId = t.TrackId,
+														   Name = t.Name + ((!String.IsNullOrEmpty(t.Subtitle)) ? " [" + t.Subtitle + "]" : "") + " (" + t.Programme.Name + ")"
+													   }),
+													"TrackId", "Name");
             return Page();
         }
 
@@ -38,7 +43,7 @@ namespace BeepBong.Pages.Samples
             _context.Samples.Add(Sample);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("../Tracks/Details", new {id = Sample.TrackId});
         }
     }
 }

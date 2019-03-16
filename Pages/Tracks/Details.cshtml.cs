@@ -29,7 +29,9 @@ namespace BeepBong.Pages.Tracks
             }
 
             Track = await _context.Tracks
-                .Include(t => t.Programme).FirstOrDefaultAsync(m => m.TrackId == id);
+                .Include(t => t.Programme)
+				.Include(t => t.Samples)
+				.FirstOrDefaultAsync(m => m.TrackId == id);
 
             if (Track == null)
             {

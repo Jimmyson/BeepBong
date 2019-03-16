@@ -21,7 +21,12 @@ namespace BeepBong.Pages.Tracks
 
         public IActionResult OnGet()
         {
-        ViewData["ProgrammeId"] = new SelectList(_context.Programmes, "ProgrammeId", "ProgrammeId");
+			ViewData["ProgrammeId"] = new SelectList(_context.Programmes
+														.Select(p => new {
+															ProgrammeId = p.ProgrammeId,
+															Name = p.Name + " (" + p.Year + ")"
+														}),
+													"ProgrammeId", "Name");
             return Page();
         }
 
@@ -38,7 +43,7 @@ namespace BeepBong.Pages.Tracks
             _context.Tracks.Add(Track);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("../Programmes/Details", new {id = Track.ProgrammeId});
         }
     }
 }

@@ -54,7 +54,7 @@ namespace BeepBong.Pages.Tracks
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("../Programmes/Details", new {id = Track.ProgrammeId});
         }
     }
 }
