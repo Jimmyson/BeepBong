@@ -63,9 +63,9 @@
 				@(!String.IsNullOrEmpty(item.Track.Subtitle) ? "(" + item.Track.Subtitle + ")" : String.Empty)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.SampleId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.SampleId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.SampleId">Delete</a>
+                <!-- <a asp-page="./Edit" asp-route-id="@item.SampleId">Edit</a> | -->
+                <a asp-page="./Details" asp-route-id="@item.SampleId">Details</a> <!-- |
+                <a asp-page="./Delete" asp-route-id="@item.SampleId">Delete</a> -->
             </td>
         </tr>
 }

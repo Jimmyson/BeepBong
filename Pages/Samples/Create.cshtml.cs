@@ -21,12 +21,13 @@ namespace BeepBong.Pages.Samples
 
         public IActionResult OnGet()
         {
-        ViewData["TrackId"] = new SelectList(_context.Tracks
+        	ViewData["TrackId"] = new SelectList(_context.Tracks
 		   											.Select(t => new {
 														   TrackId = t.TrackId,
 														   Name = t.Name + ((!String.IsNullOrEmpty(t.Subtitle)) ? " [" + t.Subtitle + "]" : "") + " (" + t.Programme.Name + ")"
 													   }),
 													"TrackId", "Name");
+			ViewData["Compression"] = new SelectList(Enum.GetValues(typeof(CompressionEnum)).Cast<CompressionEnum>(), String.Empty);
             return Page();
         }
 
