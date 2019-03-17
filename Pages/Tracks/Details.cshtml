@@ -47,16 +47,28 @@
 					@Html.DisplayNameFor(model => model.Track.Samples.First().SampleRate)
 				</th>
 				<th>
+					@Html.DisplayNameFor(model => model.Track.Samples.First().SampleCount)
+				</th>
+				<th>
 					@Html.DisplayNameFor(model => model.Track.Samples.First().Channels)
 				</th>
 				<th>
 					@Html.DisplayNameFor(model => model.Track.Samples.First().BitRate)
 				</th>
 				<th>
+					@Html.DisplayNameFor(model => model.Track.Samples.First().BitRateMode)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Track.Samples.First().Codec)
+				</th>
+				<th>
 					@Html.DisplayNameFor(model => model.Track.Samples.First().Compression)
 				</th>
 				<th>
 					@Html.DisplayNameFor(model => model.Track.Samples.First().Checksum)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Track.Samples.First().Notes)
 				</th>
 				<!-- <th>
 					@Html.DisplayNameFor(model => model.Track.Samples.First().Track)
@@ -74,16 +86,28 @@
 					@Html.DisplayFor(modelItem => item.SampleRate)
 				</td>
 				<td>
+					@Html.DisplayFor(modelItem => item.SampleCount)
+				</td>
+				<td>
 					@Html.DisplayFor(modelItem => item.Channels)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.BitRate)
 				</td>
 				<td>
+					@Html.DisplayFor(modelItem => item.BitRateMode)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Codec)
+				</td>
+				<td>
 					@Html.DisplayFor(modelItem => item.Compression)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.Checksum)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Notes)
 				</td>
 				<!-- <td>
 					@Html.DisplayFor(modelItem => item.Track.TrackId)

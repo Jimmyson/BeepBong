@@ -47,12 +47,15 @@ namespace BeepBong.Migrations
                 columns: table => new
                 {
                     SampleId = table.Column<Guid>(nullable: false),
-                    Duration = table.Column<string>(nullable: true),
-                    SampleRate = table.Column<string>(nullable: true),
+                    SampleRate = table.Column<int>(nullable: false),
+                    SampleCount = table.Column<int>(nullable: false),
                     Channels = table.Column<int>(nullable: false),
                     BitRate = table.Column<int>(nullable: false),
-                    Compression = table.Column<int>(nullable: true),
+                    BitRateMode = table.Column<string>(nullable: true),
+                    Codec = table.Column<string>(nullable: true),
+                    Compression = table.Column<string>(nullable: true),
                     Checksum = table.Column<string>(nullable: true),
+                    Notes = table.Column<string>(nullable: true),
                     TrackId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>

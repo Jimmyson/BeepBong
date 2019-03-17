@@ -41,15 +41,21 @@ namespace BeepBong.Migrations
 
                     b.Property<int>("BitRate");
 
+                    b.Property<string>("BitRateMode");
+
                     b.Property<int>("Channels");
 
                     b.Property<string>("Checksum");
 
-                    b.Property<int?>("Compression");
+                    b.Property<string>("Codec");
 
-                    b.Property<string>("Duration");
+                    b.Property<string>("Compression");
 
-                    b.Property<string>("SampleRate");
+                    b.Property<string>("Notes");
+
+                    b.Property<int>("SampleCount");
+
+                    b.Property<int>("SampleRate");
 
                     b.Property<Guid>("TrackId");
 

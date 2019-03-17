@@ -20,16 +20,28 @@
                 @Html.DisplayNameFor(model => model.Sample[0].SampleRate)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Sample[0].SampleCount)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Sample[0].Channels)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Sample[0].BitRate)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Sample[0].BitRateMode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sample[0].Codec)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Sample[0].Compression)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Sample[0].Checksum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sample[0].Notes)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Sample[0].Track)
@@ -47,16 +59,28 @@
                 @Html.DisplayFor(modelItem => item.SampleRate)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.SampleCount)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Channels)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BitRate)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.BitRateMode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codec)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Compression)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Checksum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Track.Name)

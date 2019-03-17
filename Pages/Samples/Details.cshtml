@@ -24,6 +24,12 @@
             @Html.DisplayFor(model => model.Sample.SampleRate)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sample.SampleCount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Sample.SampleCount)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Sample.Channels)
         </dt>
         <dd class="col-sm-10">
@@ -36,6 +42,18 @@
             @Html.DisplayFor(model => model.Sample.BitRate)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sample.BitRateMode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Sample.BitRateMode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sample.Codec)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Sample.Codec)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Sample.Compression)
         </dt>
         <dd class="col-sm-10">
@@ -46,6 +64,12 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Sample.Checksum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sample.Notes)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Sample.Notes)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Sample.Track)

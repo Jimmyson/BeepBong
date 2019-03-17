@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeepBong.Migrations
 {
     [DbContext(typeof(BeepBongContext))]
-    [Migration("20190316233819_InitialCreate")]
+    [Migration("20190317114630_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,15 +43,21 @@ namespace BeepBong.Migrations
 
                     b.Property<int>("BitRate");
 
+                    b.Property<string>("BitRateMode");
+
                     b.Property<int>("Channels");
 
                     b.Property<string>("Checksum");
 
-                    b.Property<int?>("Compression");
+                    b.Property<string>("Codec");
 
-                    b.Property<string>("Duration");
+                    b.Property<string>("Compression");
 
-                    b.Property<string>("SampleRate");
+                    b.Property<string>("Notes");
+
+                    b.Property<int>("SampleCount");
+
+                    b.Property<int>("SampleRate");
 
                     b.Property<Guid>("TrackId");
 
