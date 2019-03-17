@@ -23,7 +23,7 @@ namespace BeepBong.Pages.Programmes
         [BindProperty]
         public Programme Programme { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null)
             {
@@ -67,7 +67,7 @@ namespace BeepBong.Pages.Programmes
             return RedirectToPage("./Index");
         }
 
-        private bool ProgrammeExists(int id)
+        private bool ProgrammeExists(Guid id)
         {
             return _context.Programmes.Any(e => e.ProgrammeId == id);
         }

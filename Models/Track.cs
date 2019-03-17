@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace BeepBong.Models
@@ -10,14 +11,14 @@ namespace BeepBong.Models
 			Samples = new List<Sample>();
 		}
 
-		public int TrackId { get; set; }
+		public Guid TrackId { get; set; }
 		public string Name { get; set; }
 		public string Subtitle { get; set; }
 
 		//public ICollection<Tag> Tags { get; set; }
 		public ICollection<Sample> Samples { get; set; }
 
-		public int ProgrammeId { get; set; }
+		public Guid ProgrammeId { get; set; }
 		public Programme Programme { get; set; }
 	}
 }

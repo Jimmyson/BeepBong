@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace BeepBong.Models
@@ -9,7 +10,7 @@ namespace BeepBong.Models
 			Tracks = new List<Track>();
 		}
 
-		public int ProgrammeId { get; set; }
+		public Guid ProgrammeId { get; set; }
 		public string Name { get; set; }
 		public string Year { get; set; }
 		public string Channel { get; set; }

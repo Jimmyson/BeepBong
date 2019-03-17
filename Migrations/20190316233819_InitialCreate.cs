@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BeepBong.Migrations
 {
@@ -10,8 +11,7 @@ namespace BeepBong.Migrations
                 name: "Programmes",
                 columns: table => new
                 {
-                    ProgrammeId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    ProgrammeId = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Year = table.Column<string>(nullable: true),
                     Channel = table.Column<string>(nullable: true),
@@ -26,11 +26,10 @@ namespace BeepBong.Migrations
                 name: "Tracks",
                 columns: table => new
                 {
-                    TrackId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    TrackId = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Subtitle = table.Column<string>(nullable: true),
-                    ProgrammeId = table.Column<int>(nullable: false)
+                    ProgrammeId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,15 +46,14 @@ namespace BeepBong.Migrations
                 name: "Samples",
                 columns: table => new
                 {
-                    SampleId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    SampleId = table.Column<Guid>(nullable: false),
                     Duration = table.Column<string>(nullable: true),
                     SampleRate = table.Column<string>(nullable: true),
                     Channels = table.Column<int>(nullable: false),
                     BitRate = table.Column<int>(nullable: false),
                     Compression = table.Column<int>(nullable: true),
                     Checksum = table.Column<string>(nullable: true),
-                    TrackId = table.Column<int>(nullable: false)
+                    TrackId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {

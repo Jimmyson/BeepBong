@@ -23,7 +23,7 @@ namespace BeepBong.Pages.Samples
         [BindProperty]
         public Sample Sample { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null)
             {
@@ -75,7 +75,7 @@ namespace BeepBong.Pages.Samples
             return RedirectToPage("../Tracks/Details", new {id = Sample.TrackId});
         }
 
-        private bool SampleExists(int id)
+        private bool SampleExists(Guid id)
         {
             return _context.Samples.Any(e => e.SampleId == id);
         }

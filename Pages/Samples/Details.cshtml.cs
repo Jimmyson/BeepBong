@@ -21,7 +21,7 @@ namespace BeepBong.Pages.Samples
 
         public Sample Sample { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null)
             {

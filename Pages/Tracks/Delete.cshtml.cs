@@ -22,7 +22,7 @@ namespace BeepBong.Pages.Tracks
         [BindProperty]
         public Track Track { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null)
             {
@@ -39,7 +39,7 @@ namespace BeepBong.Pages.Tracks
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(Guid? id)
         {
             if (id == null)
             {

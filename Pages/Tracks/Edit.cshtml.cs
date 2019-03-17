@@ -23,7 +23,7 @@ namespace BeepBong.Pages.Tracks
         [BindProperty]
         public Track Track { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null)
             {
@@ -74,7 +74,7 @@ namespace BeepBong.Pages.Tracks
             return RedirectToPage("../Programmes/Details", new {id = Track.ProgrammeId});
         }
 
-        private bool TrackExists(int id)
+        private bool TrackExists(Guid id)
         {
             return _context.Tracks.Any(e => e.TrackId == id);
         }
