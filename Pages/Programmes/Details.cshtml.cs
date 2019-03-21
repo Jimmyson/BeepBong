@@ -43,7 +43,9 @@ namespace BeepBong.Pages.Programmes
 									Name = t.Name,
 									Subtitle = t.Subtitle,
 									SampleCount = t.Samples.Count
-								}).ToList()
+								})
+								.OrderBy(tvm => tvm.Name)
+								.ToList()
 				})
 				.FirstOrDefaultAsync(m => m.ProgrammeId == id);
 

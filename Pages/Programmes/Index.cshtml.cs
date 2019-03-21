@@ -25,6 +25,8 @@ namespace BeepBong.Pages.Programmes
         {
             Programme = await _context.Programmes
 				.Include(p => p.Tracks)
+				.OrderBy(p => p.Name)
+				.ThenBy(p => p.Year)
 				.ToListAsync();
         }
     }

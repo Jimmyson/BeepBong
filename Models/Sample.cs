@@ -17,9 +17,9 @@ namespace BeepBong.Models
 		public int SampleCount { get; set; }
 		public int Channels { get; set; }
 		public int BitRate { get; set; }
-		public BitRateModeEnum? BitRateMode { get; set; }
+		public BitRateModeEnum BitRateMode { get; set; }
 		public string Codec { get; set; }
-		public CompressionEnum? Compression { get; set; }
+		public CompressionEnum Compression { get; set; }
 		public string Checksum { get; set; }
 		public string Notes { get; set; }
 
@@ -29,6 +29,7 @@ namespace BeepBong.Models
 
 	public enum CompressionEnum
 	{
+		None,
 		Lossless,
 		Lossy
 	}
