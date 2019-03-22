@@ -38,13 +38,13 @@ namespace BeepBong.Pages.Programmes
 					Channel = p.Channel,
 					AudioComposer = p.AudioComposer,
 					Tracks = p.Tracks.Where(t => t.ProgrammeId == p.ProgrammeId)
+								.OrderBy(t => t.Name)
 								.Select(t => new TrackViewModel {
 									TrackId = t.TrackId,
 									Name = t.Name,
 									Subtitle = t.Subtitle,
 									SampleCount = t.Samples.Count
 								})
-								.OrderBy(tvm => tvm.Name)
 								.ToList()
 				})
 				.FirstOrDefaultAsync(m => m.ProgrammeId == id);
