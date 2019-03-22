@@ -5,13 +5,7 @@ namespace BeepBong.Models
 	public class Sample
 	{
 		public Guid SampleId { get; set; }
-		public TimeSpan Duration
-		{
-			get
-			{
-				return TimeSpan.FromSeconds(SampleCount / SampleRate);
-			} 
-		}
+		public string Duration { get; set; }
 
 		public int SampleRate { get; set; }
 		public int SampleCount { get; set; }
@@ -20,7 +14,7 @@ namespace BeepBong.Models
 		public BitRateModeEnum BitRateMode { get; set; }
 		public string Codec { get; set; }
 		public CompressionEnum Compression { get; set; }
-		public string Checksum { get; set; }
+		//public string Checksum { get; set; }
 		public string Notes { get; set; }
 
 		public Guid TrackId { get; set; }

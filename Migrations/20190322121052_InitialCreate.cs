@@ -8,18 +8,58 @@ namespace BeepBong.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Library",
+                columns: table => new
+                {
+                    LibraryId = table.Column<Guid>(nullable: false),
+                    AlbumName = table.Column<string>(nullable: true),
+                    Label = table.Column<string>(nullable: true),
+                    Catalog = table.Column<string>(nullable: true),
+                    MBID = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Library", x => x.LibraryId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Programmes",
                 columns: table => new
                 {
                     ProgrammeId = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    Year = table.Column<string>(nullable: true),
+                    Year = table.Column<string>(maxLength: 4, nullable: true),
                     Channel = table.Column<string>(nullable: true),
-                    AudioComposer = table.Column<string>(nullable: true)
+                    AudioComposer = table.Column<string>(nullable: true),
+                    IsLibraryMusic = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Programmes", x => x.ProgrammeId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LibraryProgrammes",
+                columns: table => new
+                {
+                    ProgrammeId = table.Column<Guid>(nullable: false),
+                    LibraryId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LibraryProgrammes", x => new { x.ProgrammeId, x.LibraryId });
+                    table.ForeignKey(
+                        name: "FK_LibraryProgrammes_Library_LibraryId",
+                        column: x => x.LibraryId,
+                        principalTable: "Library",
+                        principalColumn: "LibraryId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_LibraryProgrammes_Programmes_ProgrammeId",
+                        column: x => x.ProgrammeId,
+                        principalTable: "Programmes",
+                        principalColumn: "ProgrammeId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -47,14 +87,14 @@ namespace BeepBong.Migrations
                 columns: table => new
                 {
                     SampleId = table.Column<Guid>(nullable: false),
+                    Duration = table.Column<string>(nullable: true),
                     SampleRate = table.Column<int>(nullable: false),
                     SampleCount = table.Column<int>(nullable: false),
                     Channels = table.Column<int>(nullable: false),
                     BitRate = table.Column<int>(nullable: false),
-                    BitRateMode = table.Column<string>(nullable: true),
+                    BitRateMode = table.Column<string>(nullable: false),
                     Codec = table.Column<string>(nullable: true),
-                    Compression = table.Column<string>(nullable: true),
-                    Checksum = table.Column<string>(nullable: true),
+                    Compression = table.Column<string>(nullable: false),
                     Notes = table.Column<string>(nullable: true),
                     TrackId = table.Column<Guid>(nullable: false)
                 },
@@ -70,6 +110,11 @@ namespace BeepBong.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_LibraryProgrammes_LibraryId",
+                table: "LibraryProgrammes",
+                column: "LibraryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Samples_TrackId",
                 table: "Samples",
                 column: "TrackId");
@@ -83,7 +128,13 @@ namespace BeepBong.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "LibraryProgrammes");
+
+            migrationBuilder.DropTable(
                 name: "Samples");
+
+            migrationBuilder.DropTable(
+                name: "Library");
 
             migrationBuilder.DropTable(
                 name: "Tracks");

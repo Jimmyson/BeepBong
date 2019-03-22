@@ -37,6 +37,7 @@ namespace BeepBong.Pages.Programmes
 					Year = p.Year,
 					Channel = p.Channel,
 					AudioComposer = p.AudioComposer,
+					IsLibraryMusic = p.IsLibraryMusic,
 					Tracks = p.Tracks.Where(t => t.ProgrammeId == p.ProgrammeId)
 								.OrderBy(t => t.Name)
 								.Select(t => new TrackViewModel {

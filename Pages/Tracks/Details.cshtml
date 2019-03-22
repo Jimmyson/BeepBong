@@ -31,6 +31,8 @@
         </dd>
     </dl>
 </div>
+@if(Model.Track.Programme.IsLibraryMusic == false)
+{
 <div>
     <h4>Samples</h4>
     <hr />
@@ -63,9 +65,6 @@
 				</th>
 				<th>
 					@Html.DisplayNameFor(model => model.Track.Samples.First().Compression)
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.Track.Samples.First().Checksum)
 				</th>
 				<th>
 					@Html.DisplayNameFor(model => model.Track.Samples.First().Notes)
@@ -104,9 +103,6 @@
 					@Html.DisplayFor(modelItem => item.Compression)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.Checksum)
-				</td>
-				<td>
 					@Html.DisplayFor(modelItem => item.Notes)
 				</td>
 				<!-- <td>
@@ -122,6 +118,7 @@
 		</tbody>
 	</table>
 </div>
+}
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Track.TrackId">Edit</a> |
     <a asp-page="../Programmes/Details" asp-route-id="@Model.Track.ProgrammeId">Back to List</a>

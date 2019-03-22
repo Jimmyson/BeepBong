@@ -35,10 +35,16 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Programme.AudioComposer)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Programme.IsLibraryMusic)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Programme.IsLibraryMusic)
+        </dd>
     </dl>
 </div>
 <div>
-    <h4>Tracks</h4>
+	<h4>Tracks</h4>
     <hr />
 	<p>
 		<a asp-page="../Tracks/Create" asp-route-ProgrammeId="@Model.Programme.ProgrammeId">Create New</a>
@@ -52,9 +58,11 @@
 				<th>
 					@Html.DisplayNameFor(model => model.Programme.Tracks.First().Subtitle)
 				</th>
+				@if(Model.Programme.IsLibraryMusic == false) {
 				<th>
 					Samples
 				</th>
+				}
 				<!-- <th>
 					@* @Html.DisplayNameFor(model => model.Programme.Tracks.First().Programme) *@
 				</th> -->
@@ -70,9 +78,11 @@
 				<td>
 					@Html.DisplayFor(modelItem => item.Subtitle)
 				</td>
+				@if(Model.Programme.IsLibraryMusic == false) {
 				<td>
 					@Html.DisplayFor(modelItem => item.SampleCount)
 				</td>
+				}
 				<!-- <td>
 					@* @Html.DisplayFor(modelItem => item.Programme.ProgrammeId) *@
 				</td> -->
@@ -86,7 +96,16 @@
 		</tbody>
 	</table>
 </div>
+@if(Model.Programme.IsLibraryMusic == true) {
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Programme.ProgrammeId">Edit</a> |
+	<h4>Library References</h4>
+    <hr />
+	<p>
+		<!-- <a asp-page="../Tracks/Create" asp-route-ProgrammeId="@Model.Programme.ProgrammeId">Create New</a> -->
+	</p>
+</div>
+}
+<div>
+	<a asp-page="./Edit" asp-route-id="@Model.Programme.ProgrammeId">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>

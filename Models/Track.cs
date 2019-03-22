@@ -7,7 +7,6 @@ namespace BeepBong.Models
 	{
 		public Track()
 		{
-			//Tags = new HashSet<Tag>();
 			Samples = new List<Sample>();
 		}
 
@@ -15,7 +14,6 @@ namespace BeepBong.Models
 		public string Name { get; set; }
 		public string Subtitle { get; set; }
 
-		//public ICollection<Tag> Tags { get; set; }
 		public ICollection<Sample> Samples { get; set; }
 
 		public Guid ProgrammeId { get; set; }

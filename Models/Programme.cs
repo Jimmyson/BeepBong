@@ -8,6 +8,7 @@ namespace BeepBong.Models
 		public Programme()
 		{
 			Tracks = new List<Track>();
+			LibraryProgrammes = new List<LibraryProgramme>();
 		}
 
 		public Guid ProgrammeId { get; set; }
@@ -15,7 +16,11 @@ namespace BeepBong.Models
 		public string Year { get; set; }
 		public string Channel { get; set; }
 		public string AudioComposer { get; set; }
+		
+		//public IFormFile Logo { get; set; }
+		public bool IsLibraryMusic { get; set; }
 
 		public ICollection<Track> Tracks { get; set; }
+		public ICollection<LibraryProgramme> LibraryProgrammes { get; set; }
 	}
 }

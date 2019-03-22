@@ -22,6 +22,7 @@ namespace BeepBong.Pages.Samples
         public IActionResult OnGet()
         {
         	ViewData["TrackId"] = new SelectList(_context.Tracks
+													.Where(t => t.Programme.IsLibraryMusic == false)
 		   											.Select(t => new {
 														   TrackId = t.TrackId,
 														   Name = t.Name + ((!String.IsNullOrEmpty(t.Subtitle)) ? " [" + t.Subtitle + "]" : "") + " (" + t.Programme.Name + ")"
@@ -41,6 +42,18 @@ namespace BeepBong.Pages.Samples
             {
                 return Page();
             }
+
+			// Check Track Library Reference
+			var Programme = _context.Programmes
+									.Where(p => p.ProgrammeId == p.Tracks
+																	.Where(t => t.TrackId == Sample.TrackId)
+																	.First()
+																	.ProgrammeId)
+									.FirstOrDefault();
+			if(Programme.IsLibraryMusic)
+			{
+				return Page();
+			}
 
             _context.Samples.Add(Sample);
             await _context.SaveChangesAsync();

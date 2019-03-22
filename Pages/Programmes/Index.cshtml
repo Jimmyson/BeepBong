@@ -26,6 +26,9 @@
                 @Html.DisplayNameFor(model => model.Programme[0].AudioComposer)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Programme[0].IsLibraryMusic)
+            </th>
+            <th>
                 Tracks
             </th>
             <th></th>
@@ -45,6 +48,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AudioComposer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsLibraryMusic)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tracks.Count)

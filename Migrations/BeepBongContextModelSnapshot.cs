@@ -16,6 +16,37 @@ namespace BeepBong.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.3-servicing-35854");
 
+            modelBuilder.Entity("BeepBong.Models.Library", b =>
+                {
+                    b.Property<Guid>("LibraryId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AlbumName");
+
+                    b.Property<string>("Catalog");
+
+                    b.Property<string>("Label");
+
+                    b.Property<string>("MBID");
+
+                    b.HasKey("LibraryId");
+
+                    b.ToTable("Library");
+                });
+
+            modelBuilder.Entity("BeepBong.Models.LibraryProgramme", b =>
+                {
+                    b.Property<Guid>("ProgrammeId");
+
+                    b.Property<Guid>("LibraryId");
+
+                    b.HasKey("ProgrammeId", "LibraryId");
+
+                    b.HasIndex("LibraryId");
+
+                    b.ToTable("LibraryProgrammes");
+                });
+
             modelBuilder.Entity("BeepBong.Models.Programme", b =>
                 {
                     b.Property<Guid>("ProgrammeId")
@@ -25,9 +56,12 @@ namespace BeepBong.Migrations
 
                     b.Property<string>("Channel");
 
+                    b.Property<bool>("IsLibraryMusic");
+
                     b.Property<string>("Name");
 
-                    b.Property<string>("Year");
+                    b.Property<string>("Year")
+                        .HasMaxLength(4);
 
                     b.HasKey("ProgrammeId");
 
@@ -41,15 +75,17 @@ namespace BeepBong.Migrations
 
                     b.Property<int>("BitRate");
 
-                    b.Property<string>("BitRateMode");
+                    b.Property<string>("BitRateMode")
+                        .IsRequired();
 
                     b.Property<int>("Channels");
 
-                    b.Property<string>("Checksum");
-
                     b.Property<string>("Codec");
 
-                    b.Property<string>("Compression");
+                    b.Property<string>("Compression")
+                        .IsRequired();
+
+                    b.Property<string>("Duration");
 
                     b.Property<string>("Notes");
 
@@ -82,6 +118,19 @@ namespace BeepBong.Migrations
                     b.HasIndex("ProgrammeId");
 
                     b.ToTable("Tracks");
+                });
+
+            modelBuilder.Entity("BeepBong.Models.LibraryProgramme", b =>
+                {
+                    b.HasOne("BeepBong.Models.Library", "Library")
+                        .WithMany("LibraryProgrammes")
+                        .HasForeignKey("LibraryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("BeepBong.Models.Programme", "Programme")
+                        .WithMany("LibraryProgrammes")
+                        .HasForeignKey("ProgrammeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("BeepBong.Models.Sample", b =>
