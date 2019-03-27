@@ -29,7 +29,7 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<string>("Label");
 
-                    b.Property<DateTime>("LastModified");
+                    b.Property<DateTime?>("LastModified");
 
                     b.Property<string>("MBID");
 
@@ -46,7 +46,7 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<DateTime>("Created");
 
-                    b.Property<DateTime>("LastModified");
+                    b.Property<DateTime?>("LastModified");
 
                     b.HasKey("ProgrammeId", "LibraryId");
 
@@ -68,7 +68,7 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<bool>("IsLibraryMusic");
 
-                    b.Property<DateTime>("LastModified");
+                    b.Property<DateTime?>("LastModified");
 
                     b.Property<string>("Name");
 
@@ -101,7 +101,7 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<string>("Duration");
 
-                    b.Property<DateTime>("LastModified");
+                    b.Property<DateTime?>("LastModified");
 
                     b.Property<string>("Notes");
 
@@ -125,7 +125,7 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<DateTime>("Created");
 
-                    b.Property<DateTime>("LastModified");
+                    b.Property<DateTime?>("LastModified");
 
                     b.Property<string>("Name");
 

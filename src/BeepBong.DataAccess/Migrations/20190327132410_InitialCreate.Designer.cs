@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeepBong.DataAccess.Migrations
 {
     [DbContext(typeof(BeepBongContext))]
-    [Migration("20190327120701_InitialCreate")]
+    [Migration("20190327132410_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,7 +31,7 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<string>("Label");
 
-                    b.Property<DateTime>("LastModified");
+                    b.Property<DateTime?>("LastModified");
 
                     b.Property<string>("MBID");
 
@@ -48,7 +48,7 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<DateTime>("Created");
 
-                    b.Property<DateTime>("LastModified");
+                    b.Property<DateTime?>("LastModified");
 
                     b.HasKey("ProgrammeId", "LibraryId");
 
@@ -70,7 +70,7 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<bool>("IsLibraryMusic");
 
-                    b.Property<DateTime>("LastModified");
+                    b.Property<DateTime?>("LastModified");
 
                     b.Property<string>("Name");
 
@@ -103,7 +103,7 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<string>("Duration");
 
-                    b.Property<DateTime>("LastModified");
+                    b.Property<DateTime?>("LastModified");
 
                     b.Property<string>("Notes");
 
@@ -127,7 +127,7 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<DateTime>("Created");
 
-                    b.Property<DateTime>("LastModified");
+                    b.Property<DateTime?>("LastModified");
 
                     b.Property<string>("Name");
 

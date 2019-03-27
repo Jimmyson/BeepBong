@@ -17,7 +17,7 @@ namespace BeepBong.DataAccess.Migrations
                     Catalog = table.Column<string>(nullable: true),
                     MBID = table.Column<string>(nullable: true),
                     Created = table.Column<DateTime>(nullable: false),
-                    LastModified = table.Column<DateTime>(nullable: false)
+                    LastModified = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -35,7 +35,7 @@ namespace BeepBong.DataAccess.Migrations
                     AudioComposer = table.Column<string>(nullable: true),
                     IsLibraryMusic = table.Column<bool>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
-                    LastModified = table.Column<DateTime>(nullable: false)
+                    LastModified = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -49,7 +49,7 @@ namespace BeepBong.DataAccess.Migrations
                     ProgrammeId = table.Column<Guid>(nullable: false),
                     LibraryId = table.Column<Guid>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
-                    LastModified = table.Column<DateTime>(nullable: false)
+                    LastModified = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -77,7 +77,7 @@ namespace BeepBong.DataAccess.Migrations
                     Subtitle = table.Column<string>(nullable: true),
                     ProgrammeId = table.Column<Guid>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
-                    LastModified = table.Column<DateTime>(nullable: false)
+                    LastModified = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -106,7 +106,7 @@ namespace BeepBong.DataAccess.Migrations
                     Notes = table.Column<string>(nullable: true),
                     TrackId = table.Column<Guid>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
-                    LastModified = table.Column<DateTime>(nullable: false)
+                    LastModified = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {

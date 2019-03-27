@@ -23,7 +23,7 @@ namespace BeepBong.DataAccess
 
 			foreach (var entityType in modelBuilder.Model.GetEntityTypes()) {
 				modelBuilder.Entity(entityType.Name).Property<DateTime>("Created");
-				modelBuilder.Entity(entityType.Name).Property<DateTime>("LastModified");
+				modelBuilder.Entity(entityType.Name).Property<DateTime?>("LastModified");
 			}
 		}
 
