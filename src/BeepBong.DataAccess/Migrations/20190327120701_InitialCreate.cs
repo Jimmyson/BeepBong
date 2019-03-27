@@ -15,7 +15,9 @@ namespace BeepBong.DataAccess.Migrations
                     AlbumName = table.Column<string>(nullable: true),
                     Label = table.Column<string>(nullable: true),
                     Catalog = table.Column<string>(nullable: true),
-                    MBID = table.Column<string>(nullable: true)
+                    MBID = table.Column<string>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false),
+                    LastModified = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,7 +33,9 @@ namespace BeepBong.DataAccess.Migrations
                     Year = table.Column<string>(maxLength: 4, nullable: true),
                     Channel = table.Column<string>(nullable: true),
                     AudioComposer = table.Column<string>(nullable: true),
-                    IsLibraryMusic = table.Column<bool>(nullable: false)
+                    IsLibraryMusic = table.Column<bool>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
+                    LastModified = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,7 +47,9 @@ namespace BeepBong.DataAccess.Migrations
                 columns: table => new
                 {
                     ProgrammeId = table.Column<Guid>(nullable: false),
-                    LibraryId = table.Column<Guid>(nullable: false)
+                    LibraryId = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
+                    LastModified = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -69,7 +75,9 @@ namespace BeepBong.DataAccess.Migrations
                     TrackId = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Subtitle = table.Column<string>(nullable: true),
-                    ProgrammeId = table.Column<Guid>(nullable: false)
+                    ProgrammeId = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
+                    LastModified = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -96,7 +104,9 @@ namespace BeepBong.DataAccess.Migrations
                     Codec = table.Column<string>(nullable: true),
                     Compression = table.Column<string>(nullable: false),
                     Notes = table.Column<string>(nullable: true),
-                    TrackId = table.Column<Guid>(nullable: false)
+                    TrackId = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false),
+                    LastModified = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

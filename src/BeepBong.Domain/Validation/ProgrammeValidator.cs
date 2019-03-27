@@ -9,7 +9,7 @@ namespace BeepBong.Domain.Validation
 		{
 			RuleFor(p => p.Name).NotNull().NotEmpty().NoURLInString();
 			RuleFor(p => p.Year).NotNull().Length(4);
-			RuleFor(p => p.IsLibraryMusic).NotNull().NotEmpty();
+			//RuleFor(p => p.IsLibraryMusic).NotNull().NotEmpty();
 		}
 	}
 }
