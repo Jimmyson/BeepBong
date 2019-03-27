@@ -1,0 +1,85 @@
+@page
+@model BeepBong.Web.Pages.Samples.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+	var TrackId = Request.Query["TrackId"];
+}
+
+<h1>Create</h1>
+
+<h4>Sample</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <!-- <div class="form-group">
+                <label asp-for="Sample.Duration" class="control-label"></label>
+                <input asp-for="Sample.Duration" class="form-control" />
+                <span asp-validation-for="Sample.Duration" class="text-danger"></span>
+            </div> -->
+            <div class="form-group">
+                <label asp-for="Sample.SampleRate" class="control-label"></label>
+                <input asp-for="Sample.SampleRate" class="form-control" />
+                <span asp-validation-for="Sample.SampleRate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sample.SampleCount" class="control-label"></label>
+                <input asp-for="Sample.SampleCount" class="form-control" />
+                <span asp-validation-for="Sample.SampleCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sample.Channels" class="control-label"></label>
+                <input asp-for="Sample.Channels" class="form-control" />
+                <span asp-validation-for="Sample.Channels" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sample.BitRate" class="control-label"></label>
+                <input asp-for="Sample.BitRate" class="form-control" />
+                <span asp-validation-for="Sample.BitRate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sample.BitRateMode" class="control-label"></label>
+                <!-- <input asp-for="Sample.BitRateMode" class="form-control" /> -->
+				<select asp-for="Sample.BitRateMode" class="form-control" asp-items="ViewBag.BitRateMode"></select>
+                <span asp-validation-for="Sample.BitRateMode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sample.Codec" class="control-label"></label>
+                <input asp-for="Sample.Codec" class="form-control" />
+                <span asp-validation-for="Sample.Codec" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sample.Compression" class="control-label"></label>
+                <!-- <input asp-for="Sample.Compression" class="form-control" /> -->
+				<select asp-for="Sample.Compression" class="form-control" asp-items="ViewBag.Compression"></select>
+                <span asp-validation-for="Sample.Compression" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sample.Notes" class="control-label"></label>
+                <input asp-for="Sample.Notes" class="form-control" />
+                <span asp-validation-for="Sample.Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sample.TrackId" class="control-label"></label>
+				@if(String.IsNullOrEmpty(TrackId)) {
+                	<select asp-for="Sample.TrackId" class ="form-control" asp-items="ViewBag.TrackId"></select>
+				} else {
+					<input type="hidden" asp-for="Sample.TrackId" value="@TrackId" />
+				}
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
