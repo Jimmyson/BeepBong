@@ -1,13 +1,22 @@
 using BeepBong.Domain.Models;
 using FluentValidation;
+using FluentValidation.Validators;
 
 namespace BeepBong.Domain.Validation
 {
-	public static class NoURLValidator
+	public class NoURLValidator : PropertyValidator
 	{
-		public static IRuleBuilderOptions<T, string> NoURLInString<T>(this IRuleBuilder<T, string> ruleBuilder)
+		public NoURLValidator() : base("The value contains a URL")
 		{
-			return ruleBuilder.Must(s => !s.Contains("http:")).WithMessage("The value contains a URL");
+			
+		}
+
+		protected override bool IsValid(PropertyValidatorContext context)
+		{
+			if (context.PropertyValue == null) return false;
+			string value = context.PropertyValue as string;
+
+			return !value.Contains("http");
 		}
 	}
 }
