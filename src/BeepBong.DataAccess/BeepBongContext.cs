@@ -16,7 +16,12 @@ namespace BeepBong.DataAccess
 		{
 			modelBuilder.ApplyConfiguration(new ProgrammeConfiguration());
 			modelBuilder.ApplyConfiguration(new LibraryProgrammeConfiguration());
-			modelBuilder.ApplyConfiguration(new SampleConfiguration());			
+			modelBuilder.ApplyConfiguration(new SampleConfiguration());
+
+			foreach (var entityType in modelBuilder.Model.GetEntityTypes()) {
+				modelBuilder.Entity(entityType.Name).Property<DateTime>("Created");
+				modelBuilder.Entity(entityType.Name).Property<DateTime>("LastModified");
+			}
 		}
 
 		public DbSet<Programme> Programmes { get; set; }
