@@ -11,6 +11,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using BeepBong.Domain.Models;
+using BeepBong.Domain.Validation;
 
 namespace BeepBong.Web
 {
@@ -36,7 +40,16 @@ namespace BeepBong.Web
 			services.AddDbContext<BeepBongContext>(options =>
 				options.UseSqlite(Configuration.GetConnectionString("BeepBongContext")));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+				.AddFluentValidation()
+				.SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+			// Add Validators
+			services.AddTransient<IValidator<Programme>, ProgrammeValidator>();
+			services.AddTransient<IValidator<Track>, TrackValidator>();
+			services.AddTransient<IValidator<Sample>, SampleValidator>();
+			services.AddTransient<IValidator<Library>, LibraryValidator>();
+			services.AddTransient<IValidator<Channel>, ChannelValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
