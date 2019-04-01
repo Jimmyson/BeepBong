@@ -13,7 +13,7 @@ namespace BeepBong.Domain.Validation
 
 		protected override bool IsValid(PropertyValidatorContext context)
 		{
-			if (context.PropertyValue == null) return false;
+			if (context.PropertyValue == null) return true;
 			string value = context.PropertyValue as string;
 
 			return !value.Contains("http");
