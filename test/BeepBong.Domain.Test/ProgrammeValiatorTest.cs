@@ -81,5 +81,15 @@ namespace BeepBong.Domain.Test
 
             validator.ShouldHaveValidationErrorFor(programme => programme.Year, p);
         }
+		
+        [Fact]
+        public void MixedCharYearError()
+        {
+            Programme p = new Programme() {
+                Name = "y33t"
+            };
+
+            validator.ShouldHaveValidationErrorFor(programme => programme.Year, p);
+        }
     }
 }
