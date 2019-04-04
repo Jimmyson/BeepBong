@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
+using BeepBong.Web.ViewModels;
 
 namespace BeepBong.Web.Pages.Programmes
 {
@@ -19,12 +20,21 @@ namespace BeepBong.Web.Pages.Programmes
             _context = context;
         }
 
-        public IList<Programme> Programme { get;set; }
+        public IList<ProgrammeTrackCountViewModel> Programme { get;set; }
 
         public async Task OnGetAsync()
         {
             Programme = await _context.Programmes
 				.Include(p => p.Tracks)
+                .Select(p => new ProgrammeTrackCountViewModel() {
+                    ProgrammeId = p.ProgrammeId,
+                    Name = p.Name,
+                    Year = p.Year,
+                    Channel = p.Channel,
+                    AudioComposer = p.AudioComposer,
+                    IsLibraryMusic = p.IsLibraryMusic,
+                    TrackCount = p.Tracks.Count
+                })
 				.OrderBy(p => p.Name)
 				.ThenBy(p => p.Year)
 				.ToListAsync();
