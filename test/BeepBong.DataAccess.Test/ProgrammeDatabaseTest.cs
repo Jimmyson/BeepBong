@@ -9,6 +9,30 @@ namespace BeepBong.DataAccess.Test
 {
     public class ProgrammeDatabaseTest
     {
+        // Issue testing with InMemory tester
+        // [Fact]
+        // public void ProgrammeYearFiveCharFail()
+        // {
+        //     Programme p = new Programme() {
+        //         Year = "20183"
+        //     };
+
+        //     var options = InMemoryContext.ContextGenerator("ProgrammeYearFiveCharFail");
+
+        //     using (var context = new BeepBongContext(options))
+        //     {
+        //         context.Programmes.Add(p);
+        //         context.SaveChanges();
+        //     }
+
+        //     using (var context = new BeepBongContext(options)) {
+        //         Assert.Single(context.Programmes);
+                
+        //         Programme item = context.Programmes.First();
+        //         Assert.Equal("2018", item.Year);
+        //     }
+        // }
+
         [Fact]
         public void ProgrammeTrackSampleCascadeDelete()
         {
@@ -35,9 +59,9 @@ namespace BeepBong.DataAccess.Test
 
             using (var context = new BeepBongContext(options))
             {
-                Assert.Equal<int>(1, context.Programmes.Count());
-                Assert.Equal<int>(1, context.Tracks.Count());
-                Assert.Equal<int>(1, context.Samples.Count());
+                Assert.Single(context.Programmes);
+                Assert.Single(context.Tracks);
+                Assert.Single(context.Samples);
 
                 var programme = context.Programmes
                                 .Include(pr => pr.Tracks)
@@ -52,6 +76,60 @@ namespace BeepBong.DataAccess.Test
                 Assert.Empty(context.Programmes);
                 Assert.Empty(context.Tracks);
                 Assert.Empty(context.Samples);
+            }
+        }
+
+        [Fact]
+        public void ProgrammeRelationshipsRemove()
+        {
+            Track t = new Track() {
+                Name = "Track"
+            };
+            Programme p = new Programme() {
+                Name = "Test"
+            };
+            Library l = new Library() {
+                AlbumName = "Record"
+            };
+
+            LibraryProgramme lp = new LibraryProgramme();
+
+            p.Tracks.Add(t);
+            p.LibraryProgrammes.Add(lp);
+            l.LibraryProgrammes.Add(lp);
+
+            var options = InMemoryContext.ContextGenerator("ProgrammeRelationshipsRemove");
+            
+            using (var context = new BeepBongContext(options))
+            {
+                context.Programmes.Add(p);
+                context.Library.Add(l);
+                context.SaveChanges();
+            }
+
+            using (var context = new BeepBongContext(options))
+            {
+                Assert.Single(context.Programmes);
+                Assert.Single(context.Tracks);
+                Assert.Single(context.LibraryProgrammes);
+                
+                Assert.Single(context.Library);
+
+                var programme = context.Programmes
+                                .Include(pr => pr.Tracks)
+                                .Include(pr => pr.LibraryProgrammes).First();
+
+                context.Programmes.Remove(programme);
+                context.SaveChanges();
+            }
+
+            using (var context = new BeepBongContext(options))
+            {
+                Assert.Empty(context.Programmes);
+                Assert.Empty(context.Tracks);
+                Assert.Empty(context.LibraryProgrammes);
+
+                Assert.Single(context.Library);
             }
         }
     }

@@ -25,6 +25,8 @@ namespace BeepBong.DataAccess
 				modelBuilder.Entity(entityType.Name).Property<DateTime>("Created");
 				modelBuilder.Entity(entityType.Name).Property<DateTime?>("LastModified");
 			}
+
+			base.OnModelCreating(modelBuilder);
 		}
 
 		public DbSet<Programme> Programmes { get; set; }
