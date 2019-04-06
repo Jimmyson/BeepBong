@@ -9,7 +9,7 @@ namespace BeepBong.DataAccess.Test
 {
     public class ProgrammeDatabaseTest
     {
-        // Issue testing with InMemory tester
+        // Issue testing with InMemory and SQLite tester
         // [Fact]
         // public void ProgrammeYearFiveCharFail()
         // {

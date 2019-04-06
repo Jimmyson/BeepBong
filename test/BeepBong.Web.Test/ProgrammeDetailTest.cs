@@ -11,12 +11,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BeepBong.Web.Test
 {
-    public class ProgrammeIndexTest
+    public class ProgrammeDetailTest
     {
-        private IndexModel model;
+        public DetailsModel model;
 
         [Fact]
-        public async Task ListProgrammeWithTrackCountAsync()
+        public async Task ListProgrammeAndTrackAsync()
         {
             var connection = new SqliteConnection("DataSource=:memory:");
             connection.Open();
@@ -45,13 +45,16 @@ namespace BeepBong.Web.Test
 
                 using (var context = new BeepBongContext(options))
                 {
-                    model = new IndexModel(context);
+                    Guid id = context.Programmes.FirstOrDefault().ProgrammeId;
 
-                    await model.OnGetAsync();
+                    model = new DetailsModel(context);
 
-                    Assert.NotEmpty(model.Programme);
-                    Assert.IsType<ProgrammeTrackCountViewModel>(model.Programme.FirstOrDefault());
-                    Assert.NotNull(model.Programme.FirstOrDefault().TrackCount);
+                    await model.OnGetAsync(id);
+
+                    Assert.NotNull(model.Programme);
+                    Assert.IsType<ProgrammeViewModel>(model.Programme);
+                    Assert.NotEmpty(model.Programme.Tracks);
+                    Assert.IsType<TrackViewModel>(model.Programme.Tracks.FirstOrDefault());
                 }
             }
             finally {
