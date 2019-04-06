@@ -14,8 +14,8 @@ namespace BeepBong.Domain.Validation
 			RuleFor(s => s.Channels).NotNull().NotEmpty().GreaterThan(0);
 			RuleFor(s => s.BitRate).NotNull().NotEmpty().GreaterThan(0);
 
-			RuleFor(s => s.BitRateMode).NotNull().NotEmpty().IsInEnum();
-			RuleFor(s => s.Compression).NotNull().NotEmpty().IsInEnum();
+			RuleFor(s => s.BitRateMode).NotNull().IsInEnum();
+			RuleFor(s => s.Compression).NotNull().IsInEnum();
 
 			RuleFor(s => s.Codec).NotNull().NotEmpty().NoURLInString();
 			RuleFor(s => s.Notes).NoURLInString();
