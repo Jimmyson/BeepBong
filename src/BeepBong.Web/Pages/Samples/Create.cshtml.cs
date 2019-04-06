@@ -36,7 +36,6 @@ namespace BeepBong.Web.Pages.Samples
         [BindProperty]
         public Sample Sample { get; set; }
 
-        //@TODO: Unit Test this change
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
