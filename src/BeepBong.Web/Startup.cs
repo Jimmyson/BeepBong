@@ -66,6 +66,13 @@ namespace BeepBong.Web
                 app.UseHsts();
             }
 
+            // Construct and Migrate Database
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<BeepBongContext>();
+                context.Database.Migrate();
+            }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
