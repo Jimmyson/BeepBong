@@ -51,7 +51,7 @@ namespace BeepBong.Web.Test
 
                     Assert.NotEmpty(model.Programme);
                     Assert.IsType<ProgrammeTrackCountViewModel>(model.Programme.FirstOrDefault());
-                    Assert.NotNull(model.Programme.FirstOrDefault().TrackCount);
+                    Assert.Equal(1, model.Programme.FirstOrDefault().TrackCount);
                 }
             }
             finally {

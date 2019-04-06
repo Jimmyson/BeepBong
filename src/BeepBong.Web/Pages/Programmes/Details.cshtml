@@ -70,7 +70,7 @@
 			</tr>
 		</thead>
 		<tbody>
-	@foreach (var item in Model.Programme.Tracks) {
+		@foreach (var item in Model.Programme.Tracks) {
 			<tr>
 				<td>
 					@Html.DisplayFor(modelItem => item.Name)
@@ -92,7 +92,7 @@
 					<a asp-page="../Tracks/Delete" asp-route-id="@item.TrackId">Delete</a>
 				</td>
 			</tr>
-	}
+		}
 		</tbody>
 	</table>
 </div>

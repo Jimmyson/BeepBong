@@ -40,11 +40,12 @@ namespace BeepBong.Web.Pages.Programmes
 					IsLibraryMusic = p.IsLibraryMusic,
 					Tracks = p.Tracks.Where(t => t.ProgrammeId == p.ProgrammeId)
 								.OrderBy(t => t.Name)
+                                .ThenBy(t => t.Subtitle)
 								.Select(t => new TrackViewModel {
 									TrackId = t.TrackId,
 									Name = t.Name,
 									Subtitle = t.Subtitle,
-									SampleCount = t.Samples.Count
+									SampleCount = (p.IsLibraryMusic) ? 0 : t.Samples.Count
 								})
 								.ToList()
 				})

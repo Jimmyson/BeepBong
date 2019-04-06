@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
+using BeepBong.Web.ViewModels;
 
 namespace BeepBong.Web.Pages.Tracks
 {
@@ -19,7 +20,7 @@ namespace BeepBong.Web.Pages.Tracks
             _context = context;
         }
 
-        public Track Track { get; set; }
+        public TrackSampleListViewModel Track { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -29,9 +30,16 @@ namespace BeepBong.Web.Pages.Tracks
             }
 
             Track = await _context.Tracks
-                .Include(t => t.Programme)
-				.Include(t => t.Samples)
-				.FirstOrDefaultAsync(m => m.TrackId == id);
+                .Select(t => new TrackSampleListViewModel() {
+                    TrackId = t.TrackId,
+                    Name = t.Name,
+                    Subtitle = t.Subtitle,
+                    ProgrammeId = t.ProgrammeId,
+                    ProgrammeName = t.Programme.Name,
+                    IsLibraryMusic = t.Programme.IsLibraryMusic,
+                    Samples = (t.Programme.IsLibraryMusic) ? new List<Sample>() : t.Samples
+                })
+				.FirstOrDefaultAsync(t => t.TrackId == id);
 
             if (Track == null)
             {
