@@ -36,6 +36,7 @@ namespace BeepBong.Web.Pages.Samples
         [BindProperty]
         public Sample Sample { get; set; }
 
+        //@TODO: Unit Test this change
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -44,13 +45,10 @@ namespace BeepBong.Web.Pages.Samples
             }
 
 			// Check Track Library Reference
-			var Programme = _context.Programmes
-									.Where(p => p.ProgrammeId == p.Tracks
-																	.Where(t => t.TrackId == Sample.TrackId)
-																	.First()
-																	.ProgrammeId)
-									.FirstOrDefault();
-			if(Programme.IsLibraryMusic)
+            var programmeId = _context.Tracks.Where(t => t.TrackId == Sample.TrackId).FirstOrDefault().ProgrammeId;
+			var Programme = _context.Programmes.Where(p => p.ProgrammeId == programmeId).FirstOrDefault();
+
+			if (Programme.IsLibraryMusic)
 			{
 				return Page();
 			}
