@@ -41,7 +41,7 @@
                 @Html.DisplayNameFor(model => model.Sample[0].Notes)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Sample[0].Track)
+                @Html.DisplayNameFor(model => model.Sample[0].TrackName)
             </th>
             <th></th>
         </tr>
@@ -77,8 +77,7 @@
                 @Html.DisplayFor(modelItem => item.Notes)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Track.Name)
-				@(!String.IsNullOrEmpty(item.Track.Subtitle) ? "(" + item.Track.Subtitle + ")" : String.Empty)
+                @Html.DisplayFor(modelItem => item.TrackName)
             </td>
             <td>
                 <!-- <a asp-page="./Edit" asp-route-id="@item.SampleId">Edit</a> | -->

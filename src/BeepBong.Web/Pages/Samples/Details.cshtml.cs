@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
+using BeepBong.Web.ViewModels;
 
 namespace BeepBong.Web.Pages.Samples
 {
@@ -19,7 +20,7 @@ namespace BeepBong.Web.Pages.Samples
             _context = context;
         }
 
-        public Sample Sample { get; set; }
+        public SampleViewModel Sample { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -28,8 +29,20 @@ namespace BeepBong.Web.Pages.Samples
                 return NotFound();
             }
 
-            Sample = await _context.Samples
-                .Include(s => s.Track).FirstOrDefaultAsync(m => m.SampleId == id);
+            Sample = await _context.Samples.Select(s => new SampleViewModel() {
+                    SampleId = s.SampleId,
+                    Duration = s.Duration,
+                    SampleRate = s.SampleRate,
+                    SampleCount = s.SampleCount,
+                    Channels = s.Channels,
+                    BitRate = s.BitRate,
+                    BitRateMode = s.BitRateMode,
+                    Codec = s.Codec,
+                    Notes = s.Notes,
+                    TrackId = s.TrackId,
+                    TrackName = s.Track.Name + (!(String.IsNullOrWhiteSpace(s.Track.Subtitle)) ? " (" + s.Track.Subtitle + ")" : String.Empty)
+                })
+                .FirstOrDefaultAsync(m => m.SampleId == id);
 
             if (Sample == null)
             {
