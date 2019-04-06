@@ -50,7 +50,9 @@
                 @Html.DisplayFor(modelItem => item.AudioComposer)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsLibraryMusic)
+                @if (item.IsLibraryMusic) {
+                    <i class="fas">&#xf00c</i>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TrackCount)

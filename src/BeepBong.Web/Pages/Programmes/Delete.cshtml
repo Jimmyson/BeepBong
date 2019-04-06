@@ -40,7 +40,9 @@
             @Html.DisplayNameFor(model => model.Programme.IsLibraryMusic)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Programme.IsLibraryMusic)
+			@if (Model.Programme.IsLibraryMusic) {
+				<i class="fas">&#xf00c</i>
+			}
         </dd>
     </dl>
     

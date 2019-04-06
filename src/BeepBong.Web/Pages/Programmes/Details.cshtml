@@ -39,7 +39,9 @@
             @Html.DisplayNameFor(model => model.Programme.IsLibraryMusic)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Programme.IsLibraryMusic)
+			@if (Model.Programme.IsLibraryMusic) {
+				<i class="fas">&#xf00c</i>
+			}
         </dd>
     </dl>
 </div>
@@ -97,13 +99,13 @@
 	</table>
 </div>
 @if(Model.Programme.IsLibraryMusic == true) {
-<div>
+<!-- <div>
 	<h4>Library References</h4>
     <hr />
 	<p>
 		<!-- <a asp-page="../Tracks/Create" asp-route-ProgrammeId="@Model.Programme.ProgrammeId">Create New</a> -->
 	</p>
-</div>
+</div> -->
 }
 <div>
 	<a asp-page="./Edit" asp-route-id="@Model.Programme.ProgrammeId">Edit</a> |
