@@ -1,0 +1,46 @@
+@page
+@model BeepBong.Web.Pages.Reports.LibrarySampleModel
+
+@{
+    ViewData["Title"] = "Library with Samples Report";
+}
+
+<h1>Library with Samples Report</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LibrarySample.First().ProgrammeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LibrarySample.First().TrackName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LibrarySample.First().SampleId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.LibrarySample) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProgrammeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrackName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SampleId)
+            </td>
+            <td>
+                <!-- <a asp-page="./Edit" asp-route-id="@item.SampleId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.SampleId">Details</a>| -->
+                <a asp-page="./Delete" asp-route-id="@item.SampleId">Delete</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
