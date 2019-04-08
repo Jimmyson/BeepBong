@@ -35,10 +35,9 @@
                 @Html.DisplayFor(modelItem => item.SampleId)
             </td>
             <td>
-                <!-- <a asp-page="./Edit" asp-route-id="@item.SampleId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.SampleId">Details</a>| -->
-                <a asp-page="./Delete" asp-route-id="@item.SampleId">Delete</a>
-
+                <a asp-page="../Samples/Edit" asp-route-id="@item.SampleId">Edit</a> |
+                <!-- <a asp-page="./Details" asp-route-id="@item.SampleId">Details</a>| -->
+                <a asp-page="../Samples/Delete" asp-route-id="@item.SampleId">Delete</a>
             </td>
         </tr>
 }

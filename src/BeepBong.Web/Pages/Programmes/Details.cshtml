@@ -41,16 +41,18 @@
         <dd class="col-sm-10">
 			@if (Model.Programme.IsLibraryMusic) {
 				<i class="fas">&#xf00c</i>
+			} else {
+				<i class="fas">&#xf00d</i>
 			}
         </dd>
     </dl>
 </div>
 <div>
 	<h4>Tracks</h4>
-    <hr />
+    <!-- <hr />
 	<p>
 		<a asp-page="../Tracks/Create" asp-route-ProgrammeId="@Model.Programme.ProgrammeId">Create New</a>
-	</p>
+	</p> -->
 	<table class="table">
 		<thead>
 			<tr>
@@ -60,10 +62,10 @@
 				<th>
 					@Html.DisplayNameFor(model => model.Programme.Tracks.First().Subtitle)
 				</th>
-				@if(Model.Programme.IsLibraryMusic == false) {
-				<th>
-					Samples
-				</th>
+				@if (Model.Programme.IsLibraryMusic == false) {
+					<th>
+						Samples
+					</th>
 				}
 				<!-- <th>
 					@* @Html.DisplayNameFor(model => model.Programme.Tracks.First().Programme) *@
@@ -80,30 +82,44 @@
 				<td>
 					@Html.DisplayFor(modelItem => item.Subtitle)
 				</td>
-				@if(Model.Programme.IsLibraryMusic == false) {
-				<td>
-					@Html.DisplayFor(modelItem => item.SampleCount)
-				</td>
+				@if (Model.Programme.IsLibraryMusic == false) {
+					<td>
+						@Html.DisplayFor(modelItem => item.SampleCount)
+					</td>
 				}
 				<!-- <td>
 					@* @Html.DisplayFor(modelItem => item.Programme.ProgrammeId) *@
 				</td> -->
 				<td>
-					<a asp-page="../Tracks/Edit" asp-route-id="@item.TrackId">Edit</a> |
-					<a asp-page="../Tracks/Details" asp-route-id="@item.TrackId">Details</a> |
-					<a asp-page="../Tracks/Delete" asp-route-id="@item.TrackId">Delete</a>
+					<!-- <a asp-page="../Tracks/Edit" asp-route-id="@item.TrackId">Edit</a> |
+					<a asp-page="../Tracks/Details" asp-route-id="@item.TrackId">Details</a>
+					@if (Model.Programme.IsLibraryMusic == false) {
+						@string.Concat('|');
+						<a asp-page="../Upload" asp-route-id="@item.TrackId">Upload</a> //@string.Concat('|');
+					}
+					<a asp-page="../Tracks/Delete" asp-route-id="@item.TrackId">Delete</a> -->
+
+					<a asp-page="../Tracks/Details" asp-route-id="@item.TrackId">
+						<i class="fa">&#xf05a</i>
+					</a>
+					@if (Model.Programme.IsLibraryMusic == false) {
+						@string.Concat('|');
+						<a asp-page="../Upload" asp-route-id="@item.TrackId">
+							<i class="fa">&#xf093</i>
+						</a> //@string.Concat('|');
+					}
 				</td>
 			</tr>
 		}
 		</tbody>
 	</table>
 </div>
-@if(Model.Programme.IsLibraryMusic == true) {
+@if (Model.Programme.IsLibraryMusic == true) {
 <!-- <div>
 	<h4>Library References</h4>
     <hr />
 	<p>
-		<!-- <a asp-page="../Tracks/Create" asp-route-ProgrammeId="@Model.Programme.ProgrammeId">Create New</a> -->
+		<a asp-page="../Tracks/Create" asp-route-ProgrammeId="@Model.Programme.ProgrammeId">Create New</a>
 	</p>
 </div> -->
 }

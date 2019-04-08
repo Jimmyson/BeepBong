@@ -37,7 +37,11 @@
 	<h4>Samples</h4>
 	<hr />
 		<p>
-			<a asp-page="../Samples/Create" asp-route-TrackId="@Model.Track.TrackId">Create New</a>
+			<!-- <a asp-page="../Samples/Create" asp-route-TrackId="@Model.Track.TrackId">Create New</a> -->
+			<a asp-page="../Upload" asp-route-TrackId="@Model.Track.TrackId">
+				<i class="fa">&#xf093</i>
+				Upload
+			</a>
 		</p>
 	@if (Model.Track.Samples.Count > 0)
 	{

@@ -38,6 +38,7 @@ namespace BeepBong.Web.Pages.Samples
                 return NotFound();
             }
             ViewData["TrackId"] = new SelectList(_context.Tracks
+													.Where(t => t.Programme.IsLibraryMusic == false)
 		   											.Select(t => new {
 														   TrackId = t.TrackId,
 														   Name = t.Name + ((!String.IsNullOrEmpty(t.Subtitle)) ? " [" + t.Subtitle + "]" : "") + " (" + t.Programme.Name + ")"

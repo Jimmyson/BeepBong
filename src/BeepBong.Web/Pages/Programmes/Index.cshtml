@@ -58,9 +58,19 @@
                 @Html.DisplayFor(modelItem => item.TrackCount)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ProgrammeId">Edit</a> |
+                <!-- <a asp-page="./Edit" asp-route-id="@item.ProgrammeId">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ProgrammeId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ProgrammeId">Delete</a>
+                <a asp-page="./Delete" asp-route-id="@item.ProgrammeId">Delete</a> -->
+
+                <a asp-page="./Edit" asp-route-id="@item.ProgrammeId">
+                    <i class="fa">&#xf044</i>
+                </a> |
+                <a asp-page="./Details" asp-route-id="@item.ProgrammeId">
+                    <i class="fa">&#xf05a</i>
+                </a> |
+                <a asp-page="./Delete" asp-route-id="@item.ProgrammeId">
+                    <i class="fa text-danger">&#xf2ed</i>
+                </a>
             </td>
         </tr>
 }
