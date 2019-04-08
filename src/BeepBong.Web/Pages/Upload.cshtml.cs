@@ -22,13 +22,14 @@ namespace BeepBong.Web.Pages.Samples
         public IActionResult OnGet()
         {
         	ViewData["TrackId"] = new SelectList(_context.Tracks
+                                                    .Where(t => t.Programme.IsLibraryMusic == false)
 		   											.Select(t => new {
 														   TrackId = t.TrackId,
 														   Name = t.Name + ((!String.IsNullOrEmpty(t.Subtitle)) ? " [" + t.Subtitle + "]" : "") + " (" + t.Programme.Name + ")"
 													   }),
 													"TrackId", "Name");
-			ViewData["Compression"] = new SelectList(Enum.GetValues(typeof(CompressionEnum)).Cast<CompressionEnum>());
-			ViewData["BitRateMode"] = new SelectList(Enum.GetValues(typeof(BitRateModeEnum)).Cast<BitRateModeEnum>());
+			// ViewData["Compression"] = new SelectList(Enum.GetValues(typeof(CompressionEnum)).Cast<CompressionEnum>());
+			// ViewData["BitRateMode"] = new SelectList(Enum.GetValues(typeof(BitRateModeEnum)).Cast<BitRateModeEnum>());
             return Page();
         }
 
