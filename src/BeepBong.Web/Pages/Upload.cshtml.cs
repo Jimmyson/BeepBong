@@ -25,7 +25,7 @@ namespace BeepBong.Web.Pages.Samples
                                                     .Where(t => t.Programme.IsLibraryMusic == false)
 		   											.Select(t => new {
 														   TrackId = t.TrackId,
-														   Name = t.Name + ((!String.IsNullOrEmpty(t.Subtitle)) ? " [" + t.Subtitle + "]" : "") + " (" + t.Programme.Name + ")"
+														   Name = t.Name + ((!String.IsNullOrEmpty(t.Subtitle)) ? " [" + t.Subtitle + "]" : "") + " (" + t.Programme.Name + " " + t.Programme.Year + ")"
 													   }),
 													"TrackId", "Name");
 			// ViewData["Compression"] = new SelectList(Enum.GetValues(typeof(CompressionEnum)).Cast<CompressionEnum>());
