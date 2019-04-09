@@ -14,13 +14,13 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Track[0].Programme)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Track[0].Name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Track[0].Subtitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Track[0].Programme)
             </th>
             <th></th>
         </tr>
@@ -29,13 +29,14 @@
 @foreach (var item in Model.Track) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Programme.Name)
+                <i>(@Html.DisplayFor(modelItem => item.Programme.Year))</i>
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Subtitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Programme.Name)
             </td>
             <td>
                 <!-- <a asp-page="./Edit" asp-route-id="@item.TrackId">Edit</a> | -->

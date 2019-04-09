@@ -24,7 +24,10 @@ namespace BeepBong.Web.Pages.Tracks
         public async Task OnGetAsync()
         {
             Track = await _context.Tracks
-                .Include(t => t.Programme).ToListAsync();
+                .Include(t => t.Programme)
+                .OrderBy(t => t.Programme.Name)
+                .ThenBy(t => t.Programme.Year)
+                .ThenBy(t => t.Name).ToListAsync();
         }
     }
 }

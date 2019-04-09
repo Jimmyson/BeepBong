@@ -8,14 +8,17 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="../Upload">Upload a Sample</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Sample[0].Duration)
+                @Html.DisplayNameFor(model => model.Sample[0].TrackName)
             </th>
+            <!-- <th>
+                @Html.DisplayNameFor(model => model.Sample[0].Duration)
+            </th> -->
             <th>
                 @Html.DisplayNameFor(model => model.Sample[0].SampleRate)
             </th>
@@ -37,12 +40,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Sample[0].Compression)
             </th>
-            <th>
+            <!-- <th>
                 @Html.DisplayNameFor(model => model.Sample[0].Notes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sample[0].TrackName)
-            </th>
+            </th> -->
             <th></th>
         </tr>
     </thead>
@@ -50,8 +50,11 @@
 @foreach (var item in Model.Sample) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Duration)
+                @Html.DisplayFor(modelItem => item.TrackName)
             </td>
+            <!-- <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td> -->
             <td>
                 @Html.DisplayFor(modelItem => item.SampleRate)
             </td>
@@ -73,12 +76,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Compression)
             </td>
-            <td>
+            <!-- <td>
                 @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TrackName)
-            </td>
+            </td> -->
             <td>
                 <!-- <a asp-page="./Edit" asp-route-id="@item.SampleId">Edit</a> | -->
                 <a asp-page="./Details" asp-route-id="@item.SampleId">Details</a> <!-- |
