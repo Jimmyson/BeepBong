@@ -13,7 +13,7 @@ namespace BeepBong.Web.Test
 {
     public class SampleCreateTest
     {
-        public CreateModel model;
+        public UploadModel model;
 
         [Fact]
         public async Task ConcatTrackNameAndSubtitleAsync() {
@@ -56,7 +56,7 @@ namespace BeepBong.Web.Test
                 using (var context = new BeepBongContext(options))
                 {
                     Guid id = context.Tracks.FirstOrDefault().TrackId;
-                    model = new CreateModel(context);
+                    model = new UploadModel(context);
 
                     s.TrackId = id;
                     model.Sample = s;
