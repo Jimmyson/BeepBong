@@ -27,30 +27,66 @@ namespace BeepBong.App.XmlSeed
 			} else {
             	XDocument xml = XDocument.Load(args[0]);
 
-				foreach (var programme in xml.Elements().First().Elements()) {
-					Console.WriteLine(programme.Attribute("name").Value);
+				// Programmes and Tracks
+				foreach (var programme in xml.Element("Programmes").Elements()) {
+					//Console.WriteLine(programme.Attribute("name").Value);
 					
-					Programme p = new Programme() {
-						Name = programme.Attribute("name").Value,
-						Year = programme.Attribute("year").Value
-					};
+					Programme p = new Programme() ;
+
+					if (programme.HasAttributes) {
+						foreach (var attribute in programme.Attributes()) {
+							if (attribute.Name == "name")
+								p.Name = attribute.Value;
+							if (attribute.Name == "year")
+								p.Year = attribute.Value;
+							if (attribute.Name == "channel")
+								p.Channel = attribute.Value;
+							if (attribute.Name == "composer")
+								p.AudioComposer = attribute.Value;
+							if (attribute.Name == "library")
+								p.IsLibraryMusic = bool.Parse(attribute.Value);
+						};
+					}
 
 					foreach (var track in programme.Elements()) {
 						Track t = new Track() {
 							Name = track.Value
 						};
-						if (track.HasAttributes)
-							t.Subtitle = track.Attribute("subtitle").Value;
-
+						if (track.HasAttributes) {
+							foreach (var attribute in track.Attributes()) {
+							if (attribute.Name == "subtitle")
+								t.Subtitle = attribute.Value;
+							}
+						}
 						p.Tracks.Add(t);
 					}
 
-					Console.WriteLine("Tracks: " + p.Tracks.Count);
+					//Console.WriteLine("Tracks: " + p.Tracks.Count);
 
 					using (var context = new BeepBongContext(options)) {
 						context.Programmes.Add(p);
 						context.SaveChanges();
 					}
+				}
+
+				// Libraries
+				foreach (var library in xml.Element("Libraries").Elements())
+				{
+					var l = new Library();
+
+					if (library.HasAttributes) {
+						foreach (var attribute in library.Attributes()) {
+							if (attribute.Name == "name")
+								l.AlbumName = attribute.Value;
+							if (attribute.Name == "catalog")
+								l.Catalog = attribute.Value;
+						};
+					}
+
+					using (var context = new BeepBongContext(options)) {
+						context.Library.Add(l);
+						context.SaveChanges();
+					} 
 				}
 				
 				Console.ReadLine();
