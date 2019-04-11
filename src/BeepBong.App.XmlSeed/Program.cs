@@ -28,7 +28,7 @@ namespace BeepBong.App.XmlSeed
             	XDocument xml = XDocument.Load(args[0]);
 
 				// Programmes and Tracks
-				foreach (var programme in xml.Element("Programmes").Elements()) {
+				foreach (var programme in xml.Element("root").Element("Programmes").Elements()) {
 					//Console.WriteLine(programme.Attribute("name").Value);
 					
 					Programme p = new Programme() ;
@@ -70,7 +70,7 @@ namespace BeepBong.App.XmlSeed
 				}
 
 				// Libraries
-				foreach (var library in xml.Element("Libraries").Elements())
+				foreach (var library in xml.Element("root").Element("Libraries").Elements())
 				{
 					var l = new Library();
 
