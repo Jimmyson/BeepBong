@@ -103,7 +103,7 @@ namespace BeepBong.DataAccess.Test
             using (var context = new BeepBongContext(options))
             {
                 context.Programmes.Add(p);
-                context.Library.Add(l);
+                context.Libraries.Add(l);
                 context.SaveChanges();
             }
 
@@ -113,7 +113,7 @@ namespace BeepBong.DataAccess.Test
                 Assert.Single(context.Tracks);
                 Assert.Single(context.LibraryProgrammes);
                 
-                Assert.Single(context.Library);
+                Assert.Single(context.Libraries);
 
                 var programme = context.Programmes
                                 .Include(pr => pr.Tracks)
@@ -129,7 +129,7 @@ namespace BeepBong.DataAccess.Test
                 Assert.Empty(context.Tracks);
                 Assert.Empty(context.LibraryProgrammes);
 
-                Assert.Single(context.Library);
+                Assert.Single(context.Libraries);
             }
         }
     }
