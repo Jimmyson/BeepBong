@@ -23,7 +23,7 @@ namespace BeepBong.Web.Pages.Libraries
 
         public async Task OnGetAsync()
         {
-            Library = await _context.Library.ToListAsync();
+            Library = await _context.Libraries.ToListAsync();
         }
     }
 }

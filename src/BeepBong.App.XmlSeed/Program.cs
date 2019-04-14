@@ -84,7 +84,7 @@ namespace BeepBong.App.XmlSeed
 					}
 
 					using (var context = new BeepBongContext(options)) {
-						context.Library.Add(l);
+						context.Libraries.Add(l);
 						context.SaveChanges();
 					} 
 				}

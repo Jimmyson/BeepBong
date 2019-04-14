@@ -30,7 +30,7 @@ namespace BeepBong.DataAccess
 		}
 
 		public DbSet<Programme> Programmes { get; set; }
-		public DbSet<Library> Library { get; set; }
+		public DbSet<Library> Libraries { get; set; }
 		public DbSet<Track> Tracks { get; set; }
 		public DbSet<Sample> Samples { get; set; }
 		public DbSet<LibraryProgramme> LibraryProgrammes { get; set; }

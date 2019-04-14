@@ -30,7 +30,7 @@ namespace BeepBong.Web.Pages.Libraries
                 return NotFound();
             }
 
-            Library = await _context.Library.FirstOrDefaultAsync(m => m.LibraryId == id);
+            Library = await _context.Libraries.FirstOrDefaultAsync(m => m.LibraryId == id);
 
             if (Library == null)
             {
@@ -69,7 +69,7 @@ namespace BeepBong.Web.Pages.Libraries
 
         private bool LibraryExists(Guid id)
         {
-            return _context.Library.Any(e => e.LibraryId == id);
+            return _context.Libraries.Any(e => e.LibraryId == id);
         }
     }
 }

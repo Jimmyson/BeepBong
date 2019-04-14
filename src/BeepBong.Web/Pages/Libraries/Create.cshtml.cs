@@ -34,7 +34,7 @@ namespace BeepBong.Web.Pages.Libraries
                 return Page();
             }
 
-            _context.Library.Add(Library);
+            _context.Libraries.Add(Library);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
