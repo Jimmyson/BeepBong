@@ -51,7 +51,7 @@
             </td>
             <td>
                 @if (item.IsLibraryMusic) {
-                    <i class="fas">&#xf00c</i>
+					<svg class="i"><use xlink:href="#i-checkmark" /></svg>
                 }
             </td>
             <td>
@@ -63,13 +63,13 @@
                 <a asp-page="./Delete" asp-route-id="@item.ProgrammeId">Delete</a> -->
 
                 <a asp-page="./Edit" asp-route-id="@item.ProgrammeId">
-                    <i class="fa">&#xf044</i>
+                    <svg class="i"><use xlink:href="#i-edit" /></svg>
                 </a> |
                 <a asp-page="./Details" asp-route-id="@item.ProgrammeId">
-                    <i class="fa">&#xf05a</i>
+					<svg class="i"><use xlink:href="#i-info" /></svg>
                 </a> |
                 <a asp-page="./Delete" asp-route-id="@item.ProgrammeId">
-                    <i class="fa text-danger">&#xf2ed</i>
+					<svg class="i text-danger"><use xlink:href="#i-trash" /></svg>
                 </a>
             </td>
         </tr>

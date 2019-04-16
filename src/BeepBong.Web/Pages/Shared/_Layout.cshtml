@@ -18,6 +18,37 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+	<!-- Include the SVG -->
+	<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+		<symbol id="i-checkmark" viewBox="0 0 32 32">
+			<path d="M2 20 L12 28 30 4" />
+		</symbol>
+		<symbol id="i-close" viewBox="0 0 32 32">
+            <path d="M2 30 L30 2 M30 30 L2 2" />
+		</symbol>
+		<symbol id="i-info" viewBox="0 0 32 32">
+            <path d="M16 14 L16 23 M16 8 L16 10" />
+            <circle cx="16" cy="16" r="14" />
+		</symbol>
+		<symbol id="i-edit" viewBox="0 0 32 32">
+            <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z" />
+		</symbol>
+		<symbol id="i-trash" viewBox="0 0 32 32">
+            <path d="M28 6 L6 6 8 30 24 30 26 6 4 6 M16 12 L16 24 M21 12 L20 24 M11 12 L12 24 M12 6 L13 2 19 2 20 6" />
+		</symbol>
+		<symbol id="i-play" viewBox="0 0 32 32">
+            <path d="M10 2 L10 30 24 16 Z" />
+        </symbol>
+        <symbol id="i-pause" viewBox="0 0 32 32">
+            <path d="M23 2 L23 30 M9 2 L9 30" />
+		</symbol>
+		<symbol id="i-export" viewBox="0 0 32 32">
+            <path d="M28 22 L28 30 4 30 4 22 M16 4 L16 24 M8 12 L16 4 24 12" />
+		</symbol>
+		<symbol id="i-stop" viewBox="0 0 32 32"> <!-- Custom Stop Icon -->
+            <path d="M4 4 L28 4 L28 28 L4 28 L4 4" />
+		</symbol>
+	</svg>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -80,7 +111,6 @@
         </script>
     </environment>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script defer src="~/lib/font-awesome/js/all.js" crossorigin="anonymous"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

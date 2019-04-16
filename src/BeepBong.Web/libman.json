@@ -3,10 +3,6 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "font-awesome@5.8.1",
-      "destination": "wwwroot\\lib\\font-awesome"
-    },
-    {
       "library": "wavesurfer.js@2.2.1",
       "destination": "wwwroot\\lib\\wavesurfer.js"
     }

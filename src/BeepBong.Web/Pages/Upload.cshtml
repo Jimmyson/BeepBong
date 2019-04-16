@@ -23,8 +23,7 @@
 	<div class="input-group mb-3 col-md-12">
 		<div class="input-group-prepend">
     		<span class="input-group-text" id="inputGroupFileAddon01">
-				<i class="fa">&#xf093</i>
-				<!-- <span>Upload</span> -->
+				<svg class="i"><use xlink:href="#i-export" /></svg>
 			</span>
   		</div>
   		<div class="custom-file">
@@ -107,7 +106,7 @@
             </div>
             <div class="form-group">
 				<!-- <submit class="btn btn-primary">
-					<i class="fa">&#xf303</i>
+                    <svg class="i"><use xlink:href="#i-edit" /></svg>
 					<span>Create</span>
 				</submit> -->
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -119,13 +118,13 @@
 			<div class="input-group">
 				<div class="input-group-prepend">
 					<button class="btn" onclick="wavesurfer.playPause()">
-						<i class="fa" id="play">&#xf04b</i>
-						<i class="fa" id="pause" style="display:none">&#xf04c</i>
+						<svg class="i fill" id="play"><use xlink:href="#i-play" /></svg>
+						<svg class="i" id="pause" style="display:none"><use xlink:href="#i-pause" /></svg>
 					</button>
 				</div>
 				<div class="input-group-append">
 					<button class="btn" onclick="wavesurfer.stop()">
-						<i class="fa">&#xf04d</i>
+						<svg class="i fill"><use xlink:href="#i-stop" /></svg>
 					</button>
 				</div>
 			</div>
