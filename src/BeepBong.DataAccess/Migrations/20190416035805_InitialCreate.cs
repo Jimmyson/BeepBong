@@ -8,7 +8,7 @@ namespace BeepBong.DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Library",
+                name: "Libraries",
                 columns: table => new
                 {
                     LibraryId = table.Column<Guid>(nullable: false),
@@ -21,7 +21,7 @@ namespace BeepBong.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Library", x => x.LibraryId);
+                    table.PrimaryKey("PK_Libraries", x => x.LibraryId);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,9 +55,9 @@ namespace BeepBong.DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_LibraryProgrammes", x => new { x.ProgrammeId, x.LibraryId });
                     table.ForeignKey(
-                        name: "FK_LibraryProgrammes_Library_LibraryId",
+                        name: "FK_LibraryProgrammes_Libraries_LibraryId",
                         column: x => x.LibraryId,
-                        principalTable: "Library",
+                        principalTable: "Libraries",
                         principalColumn: "LibraryId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -75,6 +75,7 @@ namespace BeepBong.DataAccess.Migrations
                     TrackId = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Subtitle = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
                     ProgrammeId = table.Column<Guid>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
                     LastModified = table.Column<DateTime>(nullable: true)
@@ -144,7 +145,7 @@ namespace BeepBong.DataAccess.Migrations
                 name: "Samples");
 
             migrationBuilder.DropTable(
-                name: "Library");
+                name: "Libraries");
 
             migrationBuilder.DropTable(
                 name: "Tracks");

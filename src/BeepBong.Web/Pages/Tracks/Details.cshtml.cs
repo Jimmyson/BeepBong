@@ -34,6 +34,7 @@ namespace BeepBong.Web.Pages.Tracks
                     TrackId = t.TrackId,
                     Name = t.Name,
                     Subtitle = t.Subtitle,
+                    Description = t.Description,
                     ProgrammeId = t.ProgrammeId,
                     ProgrammeName = t.Programme.Name,
                     IsLibraryMusic = t.Programme.IsLibraryMusic,

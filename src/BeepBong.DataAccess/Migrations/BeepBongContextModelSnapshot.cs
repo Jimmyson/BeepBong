@@ -35,7 +35,7 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.HasKey("LibraryId");
 
-                    b.ToTable("Library");
+                    b.ToTable("Libraries");
                 });
 
             modelBuilder.Entity("BeepBong.Domain.Models.LibraryProgramme", b =>
@@ -124,6 +124,8 @@ namespace BeepBong.DataAccess.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("Created");
+
+                    b.Property<string>("Description");
 
                     b.Property<DateTime?>("LastModified");
 

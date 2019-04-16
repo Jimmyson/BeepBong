@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeepBong.DataAccess.Migrations
 {
     [DbContext(typeof(BeepBongContext))]
-    [Migration("20190327132410_InitialCreate")]
+    [Migration("20190416035805_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,7 +37,7 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.HasKey("LibraryId");
 
-                    b.ToTable("Library");
+                    b.ToTable("Libraries");
                 });
 
             modelBuilder.Entity("BeepBong.Domain.Models.LibraryProgramme", b =>
@@ -126,6 +126,8 @@ namespace BeepBong.DataAccess.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("Created");
+
+                    b.Property<string>("Description");
 
                     b.Property<DateTime?>("LastModified");
 

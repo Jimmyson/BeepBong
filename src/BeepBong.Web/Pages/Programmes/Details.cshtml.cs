@@ -45,6 +45,7 @@ namespace BeepBong.Web.Pages.Programmes
 									TrackId = t.TrackId,
 									Name = t.Name,
 									Subtitle = t.Subtitle,
+									Description = t.Description,
 									SampleCount = (p.IsLibraryMusic) ? 0 : t.Samples.Count
 								})
 								.ToList()

@@ -56,6 +56,8 @@ namespace BeepBong.App.XmlSeed
 							foreach (var attribute in track.Attributes()) {
 							if (attribute.Name == "subtitle")
 								t.Subtitle = attribute.Value;
+							if (attribute.Name == "description")
+								t.Description = attribute.Value;
 							}
 						}
 						p.Tracks.Add(t);
