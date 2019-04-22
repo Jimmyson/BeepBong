@@ -43,7 +43,7 @@ namespace BeepBong.Web.Test
                     context.SaveChanges();
                 }
 
-                Sample s = new Sample() {
+                SampleViewModel s = new SampleViewModel() {
                     SampleCount = 1721,
                     SampleRate = 271,
                     Channels = 2,
