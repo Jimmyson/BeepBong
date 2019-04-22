@@ -1,5 +1,6 @@
 using System;
 using BeepBong.Domain.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace BeepBong.Web.ViewModels
 {
@@ -17,6 +18,9 @@ namespace BeepBong.Web.ViewModels
 		public CompressionEnum Compression { get; set; }
 		//public string Checksum { get; set; }
 		public string Notes { get; set; }
+
+		public string WaveformImage { get; set; }
+		public string SpecImage { get; set; }
 
 		public Guid TrackId { get; set; }
         public string TrackName { get; set; }

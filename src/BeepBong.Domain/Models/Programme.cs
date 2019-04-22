@@ -17,7 +17,7 @@ namespace BeepBong.Domain.Models
 		public string Channel { get; set; }
 		public string AudioComposer { get; set; }
 		
-		//public IFormFile Logo { get; set; }
+		public string Logo { get; set; }
 		public bool IsLibraryMusic { get; set; }
 
 		public ICollection<Track> Tracks { get; set; }

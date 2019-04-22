@@ -33,6 +33,7 @@ namespace BeepBong.DataAccess.Migrations
                     Year = table.Column<string>(maxLength: 4, nullable: true),
                     Channel = table.Column<string>(nullable: true),
                     AudioComposer = table.Column<string>(nullable: true),
+                    Logo = table.Column<string>(nullable: true),
                     IsLibraryMusic = table.Column<bool>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
                     LastModified = table.Column<DateTime>(nullable: true)
@@ -105,6 +106,8 @@ namespace BeepBong.DataAccess.Migrations
                     Codec = table.Column<string>(nullable: true),
                     Compression = table.Column<string>(nullable: false),
                     Notes = table.Column<string>(nullable: true),
+                    Waveform = table.Column<string>(nullable: true),
+                    Spectrograph = table.Column<string>(nullable: true),
                     TrackId = table.Column<Guid>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
                     LastModified = table.Column<DateTime>(nullable: true)

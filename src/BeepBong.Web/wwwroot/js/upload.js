@@ -33,6 +33,13 @@ if ('WebAssembly' in window) {
 }
 document.body.appendChild(MediaInfoJs);
 
+function addImages() {
+	document.getElementById('Sample_WaveformImage').value = wavesurfer.exportImage();
+	var canvasCount = document.getElementsByTagName('canvas').length;
+	document.getElementById('Sample_SpecImage').value = document.getElementsByTagName('canvas')[canvasCount-1].toDataURL();
+	document.getElementsByTagName('form')[0].submit();
+}
+
 // Continue initialization
 MediaInfoJs.onload = function () {
     var MediaInfoModule, MI, processing = false, CHUNK_SIZE = 1024 * 1024;

@@ -25,6 +25,12 @@ namespace BeepBong.App.XmlSeed
 			if(!File.Exists(args[0])) {
 				throw new ApplicationException("File not found");
 			} else {
+				// Create Database
+				using (var context = new BeepBongContext(options)) {
+					context.Database.EnsureCreated();
+					context.SaveChanges();
+				} 
+
             	XDocument xml = XDocument.Load(args[0]);
 
 				// Programmes and Tracks
@@ -58,6 +64,10 @@ namespace BeepBong.App.XmlSeed
 								t.Subtitle = attribute.Value;
 							if (attribute.Name == "description")
 								t.Description = attribute.Value;
+
+							//Fall back name value
+							if (attribute.Name == "title" && string.IsNullOrEmpty(t.Name))
+								t.Name = attribute.Value;
 							}
 						}
 						p.Tracks.Add(t);

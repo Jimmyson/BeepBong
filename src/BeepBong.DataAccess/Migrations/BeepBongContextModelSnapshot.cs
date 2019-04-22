@@ -70,6 +70,8 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<DateTime?>("LastModified");
 
+                    b.Property<string>("Logo");
+
                     b.Property<string>("Name");
 
                     b.Property<string>("Year")
@@ -109,7 +111,11 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<int>("SampleRate");
 
+                    b.Property<string>("Spectrograph");
+
                     b.Property<Guid>("TrackId");
+
+                    b.Property<string>("Waveform");
 
                     b.HasKey("SampleId");
 

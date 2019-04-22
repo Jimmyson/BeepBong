@@ -17,6 +17,9 @@ namespace BeepBong.Domain.Models
 		//public string Checksum { get; set; }
 		public string Notes { get; set; }
 
+		public string Waveform { get; set; }
+		public string Spectrograph { get; set; }
+
 		public Guid TrackId { get; set; }
 		public Track Track { get; set; }
 	}

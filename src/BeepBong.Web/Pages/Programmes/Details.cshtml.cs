@@ -38,6 +38,7 @@ namespace BeepBong.Web.Pages.Programmes
 					Channel = p.Channel,
 					AudioComposer = p.AudioComposer,
 					IsLibraryMusic = p.IsLibraryMusic,
+					Logo = p.Logo,
 					Tracks = p.Tracks.Where(t => t.ProgrammeId == p.ProgrammeId)
 								.OrderBy(t => t.Name)
                                 .ThenBy(t => t.Subtitle)

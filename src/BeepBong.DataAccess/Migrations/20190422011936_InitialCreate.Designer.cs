@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeepBong.DataAccess.Migrations
 {
     [DbContext(typeof(BeepBongContext))]
-    [Migration("20190416035805_InitialCreate")]
+    [Migration("20190422011936_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,6 +72,8 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<DateTime?>("LastModified");
 
+                    b.Property<string>("Logo");
+
                     b.Property<string>("Name");
 
                     b.Property<string>("Year")
@@ -111,7 +113,11 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<int>("SampleRate");
 
+                    b.Property<string>("Spectrograph");
+
                     b.Property<Guid>("TrackId");
+
+                    b.Property<string>("Waveform");
 
                     b.HasKey("SampleId");
 

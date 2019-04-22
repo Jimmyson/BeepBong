@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
+using BeepBong.Web.ViewModels;
 
 namespace BeepBong.Web.Pages.Samples
 {
@@ -34,7 +36,7 @@ namespace BeepBong.Web.Pages.Samples
         }
 
         [BindProperty]
-        public Sample Sample { get; set; }
+        public SampleViewModel Sample { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -43,7 +45,30 @@ namespace BeepBong.Web.Pages.Samples
                 return Page();
             }
 
-            _context.Samples.Add(Sample);
+			Sample s = new Sample() {
+				SampleId = Sample.SampleId,
+				SampleRate = Sample.SampleRate,
+				SampleCount = Sample.SampleCount,
+				Channels = Sample.Channels,
+				BitRate = Sample.BitRate,
+				BitRateMode = Sample.BitRateMode,
+				Codec = Sample.Codec,
+				Compression = Sample.Compression,
+				Notes = Sample.Notes,
+				TrackId = Sample.TrackId
+			};
+
+			// Save Waveform to Model
+			if (Sample.WaveformImage != null && Sample.WaveformImage.Length > 0) {
+				s.Waveform = Sample.WaveformImage;
+			}
+
+			// Save Spectrograph to Model
+			if (Sample.SpecImage != null && Sample.SpecImage.Length > 0) {
+				s.Spectrograph = Sample.SpecImage;
+			}
+
+            _context.Samples.Add(s);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("/Tracks/Details", new {id = Sample.TrackId});
