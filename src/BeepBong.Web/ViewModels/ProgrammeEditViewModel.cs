@@ -11,7 +11,8 @@ namespace BeepBong.Web.ViewModels
 		public string Channel { get; set; }
 		public string AudioComposer { get; set; }
 		
-		public IFormFile Logo { get; set; }
+		public IFormFile LogoUpload { get; set; }
+		public string Logo { get; set; }
 		public bool IsLibraryMusic { get; set; }
     }
 }

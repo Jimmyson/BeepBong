@@ -45,12 +45,12 @@ namespace BeepBong.Web.Pages.Programmes
 				IsLibraryMusic = Programme.IsLibraryMusic
 			};
 
-			if (Programme.Logo != null && Programme.Logo.Length > 0) {
+			if (Programme.LogoUpload != null && Programme.LogoUpload.Length > 0) {
 				using (var ms = new MemoryStream()) {
-					await Programme.Logo.CopyToAsync(ms);
+					await Programme.LogoUpload.CopyToAsync(ms);
 					byte[] image = ms.ToArray();
 
-					p.Logo = "data:" + Programme.Logo.ContentType + ";base64," + Convert.ToBase64String(image);
+					p.Logo = "data:" + Programme.LogoUpload.ContentType + ";base64," + Convert.ToBase64String(image);
 				}
 			}
 

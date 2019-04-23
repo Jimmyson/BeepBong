@@ -18,11 +18,14 @@
 		<div class="card-body">
 			<h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
 			<p class="card-text">
-				@Html.DisplayFor(modelItem => item.Year)<br/>
+				<svg class="i"><use xlink:href="#i-clock" /></svg> 
+				@(!String.IsNullOrEmpty(item.Year) ? item.Year : "Unknown") <br />
 				@if(!String.IsNullOrEmpty(item.Channel)) {
-					@Html.DisplayFor(modelItem => item.Channel)<br/>
+					<svg class="i"><use xlink:href="#i-desktop" /></svg> @Html.DisplayFor(modelItem => item.Channel)<br/>
 				}
-				@Html.DisplayFor(modelItem => item.AudioComposer)
+				@if(!String.IsNullOrEmpty(item.AudioComposer)) {
+					<svg class="i"><use xlink:href="#i-user" /></svg> @Html.DisplayFor(modelItem => item.AudioComposer)
+				}
 			</p>
 				<span>@Html.DisplayFor(modelItem => item.TrackCount) @(item.TrackCount == 1 ? "Track" : "Tracks")</span>
 		</div>
