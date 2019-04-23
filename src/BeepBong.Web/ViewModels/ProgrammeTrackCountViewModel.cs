@@ -11,5 +11,6 @@ namespace BeepBong.Web.ViewModels
 		public string AudioComposer { get; set; }
 		public bool IsLibraryMusic { get; set; }
 		public int TrackCount { get; set; }
+		public string Logo { get; set; }
     }
 }

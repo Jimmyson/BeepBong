@@ -33,7 +33,8 @@ namespace BeepBong.Web.Pages.Programmes
                     Channel = p.Channel,
                     AudioComposer = p.AudioComposer,
                     IsLibraryMusic = p.IsLibraryMusic,
-                    TrackCount = p.Tracks.Count
+                    TrackCount = p.Tracks.Count,
+					Logo = p.Logo
                 })
 				.OrderBy(p => p.Name)
 				.ThenBy(p => p.Year)

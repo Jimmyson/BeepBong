@@ -10,45 +10,56 @@
 <div>
     <h4>Programme</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Programme.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Programme.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Programme.Year)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Programme.Year)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Programme.Channel)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Programme.Channel)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Programme.AudioComposer)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Programme.AudioComposer)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Programme.IsLibraryMusic)
-        </dt>
-        <dd class="col-sm-10">
-			@if (Model.Programme.IsLibraryMusic) {
-				<svg class="i"><use xlink:href="#i-checkmark" /></svg>
-			} else {
-				<svg class="i"><use xlink:href="#i-close" /></svg>
-			}
-        </dd>
-    </dl>
-</div>
-<div>
-	<img src="@Model.Programme.Logo" />
+	<div class="row">
+		<div class="col-sm-4">
+			<dl class="row">
+				<dt class="col-sm-6">
+					@Html.DisplayNameFor(model => model.Programme.Name)
+				</dt>
+				<dd class="col-sm-6">
+					@Html.DisplayFor(model => model.Programme.Name)
+				</dd>
+				<dt class="col-sm-6">
+					@Html.DisplayNameFor(model => model.Programme.Year)
+				</dt>
+				<dd class="col-sm-6">
+					@Html.DisplayFor(model => model.Programme.Year)
+				</dd>
+				<dt class="col-sm-6">
+					@Html.DisplayNameFor(model => model.Programme.Channel)
+				</dt>
+				<dd class="col-sm-6">
+					@Html.DisplayFor(model => model.Programme.Channel)
+				</dd>
+				<dt class="col-sm-6">
+					@Html.DisplayNameFor(model => model.Programme.AudioComposer)
+				</dt>
+				<dd class="col-sm-6">
+					@Html.DisplayFor(model => model.Programme.AudioComposer)
+				</dd>
+				<dt class="col-sm-6">
+					@Html.DisplayNameFor(model => model.Programme.IsLibraryMusic)
+				</dt>
+				<dd class="col-sm-6">
+					@if (Model.Programme.IsLibraryMusic) {
+						<svg class="i"><use xlink:href="#i-checkmark" /></svg>
+					} else {
+						<svg class="i"><use xlink:href="#i-close" /></svg>
+					}
+				</dd>
+			</dl>
+		</div>
+		<div class="col-sm-8">
+			<dl>
+				<dt class="col-sm-2">
+					@Html.DisplayNameFor(model => model.Programme.Logo)
+				</dt>
+				<dd class="col-sm-12">
+					<img src="@Model.Programme.Logo" width="auto" height="360px"/>
+				</dd>
+			</dl>
+		</div>
+	</div>
 </div>
 <div>
 	<h4>Tracks</h4>
