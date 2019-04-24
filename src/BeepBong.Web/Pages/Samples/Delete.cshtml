@@ -83,6 +83,6 @@
     <form method="post">
         <input type="hidden" asp-for="Sample.SampleId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <a asp-page="../Track/Details" asp-route-id="@Model.Sample.TrackId">Back to Track</a>
     </form>
 </div>

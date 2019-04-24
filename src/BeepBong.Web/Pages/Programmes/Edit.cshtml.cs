@@ -95,7 +95,7 @@ namespace BeepBong.Web.Pages.Programmes
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Details", new {id = Programme.ProgrammeId});
         }
 
         private bool ProgrammeExists(Guid id)
