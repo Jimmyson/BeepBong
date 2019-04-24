@@ -103,6 +103,7 @@ namespace BeepBong.DataAccess.Migrations
                     Channels = table.Column<int>(nullable: false),
                     BitRate = table.Column<int>(nullable: false),
                     BitRateMode = table.Column<string>(nullable: false),
+                    BitDepth = table.Column<int>(nullable: false),
                     Codec = table.Column<string>(nullable: true),
                     Compression = table.Column<string>(nullable: false),
                     Notes = table.Column<string>(nullable: true),

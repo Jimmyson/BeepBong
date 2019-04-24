@@ -70,6 +70,9 @@
 						@Html.DisplayNameFor(model => model.Track.Samples.First().BitRate)
 					</th>
 					<th>
+						@Html.DisplayNameFor(model => model.Track.Samples.First().BitDepth)
+					</th>
+					<th>
 						@Html.DisplayNameFor(model => model.Track.Samples.First().BitRateMode)
 					</th>
 					<th>
@@ -107,6 +110,9 @@
 					</td>
 					<td>
 						@Html.DisplayFor(modelItem => item.BitRateMode)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.BitDepth)
 					</td>
 					<td>
 						@Html.DisplayFor(modelItem => item.Codec)

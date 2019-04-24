@@ -14,6 +14,7 @@ namespace BeepBong.Web.ViewModels
 		public int Channels { get; set; }
 		public int BitRate { get; set; }
 		public BitRateModeEnum BitRateMode { get; set; }
+		public int BitDepth { get; set; }
 		public string Codec { get; set; }
 		public CompressionEnum Compression { get; set; }
 		//public string Checksum { get; set; }

@@ -80,6 +80,16 @@
                 <span asp-validation-for="Sample.BitRateMode" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Sample.BitDepth" class="control-label"></label>
+				<div class="input-group">
+                	<input asp-for="Sample.BitDepth" class="form-control" readonly/>
+					<div class="input-group-append">
+						<span class="input-group-text">bits</span>
+					</div>
+				</div>
+                <span asp-validation-for="Sample.BitDepth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Sample.Codec" class="control-label"></label>
                 <input asp-for="Sample.Codec" class="form-control" readonly/>
                 <span asp-validation-for="Sample.Codec" class="text-danger"></span>

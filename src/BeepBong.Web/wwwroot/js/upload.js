@@ -59,6 +59,7 @@ MediaInfoJs.onload = function () {
         document.getElementById('Sample_Channels').value = MI.Get(MediaInfoModule.Stream.Audio, 0, 'Channel(s)');
         document.getElementById('Sample_BitRate').value = MI.Get(MediaInfoModule.Stream.Audio, 0, 'BitRate');
         document.getElementById('Sample_BitRateMode').value = MI.Get(MediaInfoModule.Stream.Audio, 0, 'BitRate_Mode');
+        document.getElementById('Sample_BitDepth').value = MI.Get(MediaInfoModule.Stream.Audio, 0, 'BitDepth');
 
         document.getElementById('Sample_Codec').value = MI.Get(MediaInfoModule.Stream.General, 0, 'Format');
 

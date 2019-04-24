@@ -87,6 +87,8 @@ namespace BeepBong.DataAccess.Migrations
                     b.Property<Guid>("SampleId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("BitDepth");
+
                     b.Property<int>("BitRate");
 
                     b.Property<string>("BitRateMode")

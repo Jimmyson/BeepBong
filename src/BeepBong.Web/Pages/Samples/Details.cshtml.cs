@@ -37,6 +37,7 @@ namespace BeepBong.Web.Pages.Samples
                     Channels = s.Channels,
                     BitRate = s.BitRate,
                     BitRateMode = s.BitRateMode,
+                    BitDepth = s.BitDepth,
                     Codec = s.Codec,
                     Notes = s.Notes,
                     TrackId = s.TrackId,

@@ -27,9 +27,6 @@ namespace BeepBong.App.XmlSeed
 			if (!args[1].ToLower().EndsWith(".xml")) {
 				throw new ApplicationException("Not an XML file");
 			}
-			if(!File.Exists(args[1])) {
-				throw new ApplicationException("File not found");
-			}
 
 			switch (args[0]) {
 				case "import":
@@ -44,6 +41,10 @@ namespace BeepBong.App.XmlSeed
 
 			if (import) {
 				// Create Database
+				if(!File.Exists(args[1])) {
+					throw new ApplicationException("File not found");
+				}
+				
 				CreateDatabase();
 
             	ImportData(args[1]);
