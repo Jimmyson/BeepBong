@@ -70,7 +70,7 @@ namespace BeepBong.Web
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<BeepBongContext>();
-                context.Database.Migrate();
+                //context.Database.Migrate();
             }
 
             app.UseHttpsRedirection();

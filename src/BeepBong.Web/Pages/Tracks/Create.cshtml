@@ -45,7 +45,11 @@
 </div>
 
 <div>
-    <a asp-page="../Programmes/Details" asp-route-id="@Model.Track.ProgrammeId">Back to Programme</a>
+    @if (String.IsNullOrEmpty(ProgrammeId)) {
+        <a asp-page="../Programmes/Details" asp-route-id="@Model.Track.ProgrammeId">Back to Programme</a>
+    } else {
+        <a asp-page="../Programmes/Details" asp-route-id="@ProgrammeId">Back to Programme</a>
+    }
 </div>
 
 @section Scripts {

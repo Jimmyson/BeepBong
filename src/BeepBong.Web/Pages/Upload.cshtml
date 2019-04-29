@@ -151,9 +151,9 @@
 	</div>
 </div>
 
-@if (TrackId.Count > 0) {
+@if (!String.IsNullOrEmpty(TrackId)) {
 	<div>
-		<a asp-page="../Track/Details" asp-route-id="@TrackId">Return to Track Details</a>
+		<a asp-page="./Tracks/Details" asp-route-id="@TrackId">Return to Track Details</a>
 	</div>
 }
 
