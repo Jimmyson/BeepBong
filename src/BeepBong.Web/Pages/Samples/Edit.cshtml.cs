@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
+using BeepBong.Web.ViewModels;
 
 namespace BeepBong.Web.Pages.Samples
 {
@@ -20,8 +21,10 @@ namespace BeepBong.Web.Pages.Samples
             _context = context;
         }
 
-        [BindProperty]
         public Sample Sample { get; set; }
+
+        [BindProperty]
+        public SampleEditViewModel SampleEdit { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -32,6 +35,11 @@ namespace BeepBong.Web.Pages.Samples
 
             Sample = await _context.Samples
                 .Include(s => s.Track).FirstOrDefaultAsync(m => m.SampleId == id);
+
+            SampleEdit = new SampleEditViewModel() {
+                SampleId = Sample.SampleId,
+                Notes = Sample.Notes
+            };
 
             if (Sample == null)
             {
@@ -55,6 +63,10 @@ namespace BeepBong.Web.Pages.Samples
             {
                 return Page();
             }
+            
+            Sample = _context.Samples
+                .Include(s => s.Track).FirstOrDefault(m => m.SampleId == SampleEdit.SampleId);
+            Sample.Notes = SampleEdit.Notes;
 
             _context.Attach(Sample).State = EntityState.Modified;
 
