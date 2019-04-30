@@ -3,16 +3,16 @@
 
 @{
     ViewData["Title"] = "Upload";
-	var TrackId = Request.Query["TrackId"];
+    var TrackId = Request.Query["TrackId"];
 }
 
 <script src="~/lib/wavesurfer.js/wavesurfer.min.js"></script>
 <script src="~/lib/wavesurfer.js/plugin/wavesurfer.spectrogram.min.js" type="text/javascript"></script>
 <style>
-	.play {
-		padding: 0px;
-		margin: 0px;
-	}
+    .play {
+        padding: 0px;
+        margin: 0px;
+    }
 </style>
 
 <h1>Upload</h1>
@@ -20,17 +20,17 @@
 <h4>Sample</h4>
 <hr />
 <div class="row">
-	<div class="input-group mb-3 col-md-12">
-		<div class="input-group-prepend">
-    		<span class="input-group-text" id="inputGroupFileAddon01">
-				<svg class="i"><use xlink:href="#i-upload" /></svg>
-			</span>
-  		</div>
-  		<div class="custom-file">
-			<input type="file" class="custom-file-input" id="input" aria-describedby="inputGroupFileAddon01" />
-			<label class="custom-file-label" for="input" id="input-label">Choose file</label>
-  		</div>
-	</div>
+    <div class="input-group mb-3 col-md-12">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupFileAddon01">
+                <svg class="i"><use xlink:href="#i-upload" /></svg>
+            </span>
+        </div>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" accept="audio/*" id="input" aria-describedby="inputGroupFileAddon01" />
+            <label class="custom-file-label" for="input" id="input-label">Choose file</label>
+        </div>
+    </div>
 </div>
 <hr />
 <div class="row">
@@ -44,12 +44,12 @@
             </div> -->
             <div class="form-group">
                 <label asp-for="Sample.SampleRate" class="control-label"></label>
-				<div class="input-group">
-                	<input asp-for="Sample.SampleRate" class="form-control" readonly/>
-					<div class="input-group-append">
-						<span class="input-group-text">Hz</span>
-					</div>
-				</div>
+                <div class="input-group">
+                    <input asp-for="Sample.SampleRate" class="form-control" readonly/>
+                    <div class="input-group-append">
+                        <span class="input-group-text">Hz</span>
+                    </div>
+                </div>
                 <span asp-validation-for="Sample.SampleRate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -64,28 +64,28 @@
             </div>
             <div class="form-group">
                 <label asp-for="Sample.BitRate" class="control-label"></label>
-				<div class="input-group">
-                	<input asp-for="Sample.BitRate" class="form-control" readonly/>
-					<div class="input-group-append">
-						<span class="input-group-text">bps</span>
-					</div>
-				</div>
+                <div class="input-group">
+                    <input asp-for="Sample.BitRate" class="form-control" readonly/>
+                    <div class="input-group-append">
+                        <span class="input-group-text">bps</span>
+                    </div>
+                </div>
                 <span asp-validation-for="Sample.BitRate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Sample.BitRateMode" class="control-label"></label>
                 <input asp-for="Sample.BitRateMode" class="form-control" readonly/>
-				<!-- <select asp-for="Sample.BitRateMode" class="form-control" asp-items="ViewBag.BitRateMode" readonly></select> -->
+                <!-- <select asp-for="Sample.BitRateMode" class="form-control" asp-items="ViewBag.BitRateMode" readonly></select> -->
                 <span asp-validation-for="Sample.BitRateMode" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Sample.BitDepth" class="control-label"></label>
-				<div class="input-group">
-                	<input asp-for="Sample.BitDepth" class="form-control" readonly/>
-					<div class="input-group-append">
-						<span class="input-group-text">bits</span>
-					</div>
-				</div>
+                <div class="input-group">
+                    <input asp-for="Sample.BitDepth" class="form-control" readonly/>
+                    <div class="input-group-append">
+                        <span class="input-group-text">bits</span>
+                    </div>
+                </div>
                 <span asp-validation-for="Sample.BitDepth" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -96,7 +96,7 @@
             <div class="form-group">
                 <label asp-for="Sample.Compression" class="control-label"></label>
                 <input asp-for="Sample.Compression" class="form-control" readonly/>
-				<!-- <select asp-for="Sample.Compression" class="form-control" asp-items="ViewBag.Compression" readonly></select> -->
+                <!-- <select asp-for="Sample.Compression" class="form-control" asp-items="ViewBag.Compression" readonly></select> -->
                 <span asp-validation-for="Sample.Compression" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -106,55 +106,55 @@
                 <span asp-validation-for="Sample.Notes" class="text-danger"></span>
             </div>
             <div class="form-group">
-				@if (String.IsNullOrEmpty(TrackId)) {
-                	<label asp-for="Sample.TrackId" class="control-label"></label>
-                	<select asp-for="Sample.TrackId" class ="form-control" asp-items="ViewBag.TrackId" ></select>
-				} else {
-					<input type="hidden" asp-for="Sample.TrackId" value="@TrackId" />
-				}
+                @if (String.IsNullOrEmpty(TrackId)) {
+                    <label asp-for="Sample.TrackId" class="control-label"></label>
+                    <select asp-for="Sample.TrackId" class ="form-control" asp-items="ViewBag.TrackId" ></select>
+                } else {
+                    <input type="hidden" asp-for="Sample.TrackId" value="@TrackId" />
+                }
             </div>
-			<div>
-				<input type="hidden" asp-for="Sample.WaveformImage" class="form-control" readonly/>
-				<input type="hidden" asp-for="Sample.SpecImage" class="form-control" readonly/>
-			</div>
+            <div>
+                <input type="hidden" asp-for="Sample.WaveformImage" class="form-control" readonly/>
+                <input type="hidden" asp-for="Sample.SpecImage" class="form-control" readonly/>
+            </div>
             <div class="form-group">
-				<!-- <submit class="btn btn-primary">
+                <!-- <submit class="btn btn-primary">
                     <svg class="i"><use xlink:href="#i-edit" /></svg>
-					<span>Create</span>
-				</submit> -->
+                    <span>Create</span>
+                </submit> -->
                 <input type="button" value="Create" class="btn btn-primary" onclick="addImages()" />
                 <input type="reset" value="Reset" class="btn" />
             </div>
         </form>
     </div>
-	<div class="col-md-8">
-		<div class="row">
-			<div class="input-group">
-				<div class="input-group-prepend">
-					<button class="btn" onclick="wavesurfer.playPause()">
-						<svg class="i fill" id="play"><use xlink:href="#i-play" /></svg>
-						<svg class="i" id="pause" style="display:none"><use xlink:href="#i-pause" /></svg>
-					</button>
-				</div>
-				<div class="input-group-append">
-					<button class="btn" onclick="wavesurfer.stop()">
-						<svg class="i fill"><use xlink:href="#i-stop" /></svg>
-					</button>
-				</div>
-			</div>
-		</div>
-		<div class="row play">
-			<div class="col-md-12 play" id="waveform"></div>
-			<div class="col-md-12 play" id="waveform-spec"></div>
-		</div>
-		<div id="result"></div>
-	</div>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <button class="btn" onclick="wavesurfer.playPause()">
+                        <svg class="i fill" id="play"><use xlink:href="#i-play" /></svg>
+                        <svg class="i" id="pause" style="display:none"><use xlink:href="#i-pause" /></svg>
+                    </button>
+                </div>
+                <div class="input-group-append">
+                    <button class="btn" onclick="wavesurfer.stop()">
+                        <svg class="i fill"><use xlink:href="#i-stop" /></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row play">
+            <div class="col-md-12 play" id="waveform"></div>
+            <div class="col-md-12 play" id="waveform-spec"></div>
+        </div>
+        <div id="result"></div>
+    </div>
 </div>
 
 @if (!String.IsNullOrEmpty(TrackId)) {
-	<div>
-		<a asp-page="./Tracks/Details" asp-route-id="@TrackId">Return to Track Details</a>
-	</div>
+    <div>
+        <a asp-page="./Tracks/Details" asp-route-id="@TrackId">Return to Track Details</a>
+    </div>
 }
 
 <script src="~/js/upload.js"></script>

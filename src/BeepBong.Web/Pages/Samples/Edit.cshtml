@@ -42,7 +42,7 @@
             <div class="form-group">
                 <label asp-for="Sample.BitRateMode" class="control-label"></label>
                 <input asp-for="Sample.BitRateMode" class="form-control" readonly />
-				<!-- <select asp-for="Sample.BitRateMode" class="form-control" asp-items="ViewBag.BitRateMode" readonly ></select> -->
+                <!-- <select asp-for="Sample.BitRateMode" class="form-control" asp-items="ViewBag.BitRateMode" readonly ></select> -->
                 <span asp-validation-for="Sample.BitRateMode" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -58,7 +58,7 @@
             <div class="form-group">
                 <label asp-for="Sample.Compression" class="control-label"></label>
                 <input asp-for="Sample.Compression" class="form-control" readonly />
-				<!-- <select asp-for="Sample.Compression" class="form-control" asp-items="ViewBag.Compression" readonly ></select> -->
+                <!-- <select asp-for="Sample.Compression" class="form-control" asp-items="ViewBag.Compression" readonly ></select> -->
                 <span asp-validation-for="Sample.Compression" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -80,7 +80,7 @@
 </div>
 
 <div>
-	<a asp-page="../Tracks/Details" asp-route-id="@Model.Sample.TrackId">Return to Track Details</a>
+    <a asp-page="../Tracks/Details" asp-route-id="@Model.Sample.TrackId">Return to Track Details</a>
 </div>
 
 @section Scripts {

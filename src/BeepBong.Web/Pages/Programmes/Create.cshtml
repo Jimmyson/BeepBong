@@ -9,10 +9,10 @@
 
 <h4>Programme</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-md-4">
             <div class="form-group">
                 <label asp-for="Programme.Name" class="control-label"></label>
                 <input asp-for="Programme.Name" class="form-control" />
@@ -38,32 +38,41 @@
                     <input class="form-check-input" asp-for="Programme.IsLibraryMusic" /> @Html.DisplayNameFor(model => model.Programme.IsLibraryMusic)
                 </label>
             </div>
-			<div class="form-group">
-				<label asp-for="Programme.LogoUpload"></label>
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<span class="input-group-text" id="inputGroupFileAddon01">
-							<svg class="i"><use xlink:href="#i-photo" /></svg>
-						</span>
-					</div>
-					<div class="custom-file">
-						<input class="custom-file-input" asp-for="Programme.LogoUpload" accept="image/png, image/jpeg" aria-describedby="inputGroupFileAddon01" onchange="updateLabel()"/>
-						<label class="custom-file-label" id="Programme_LogoUpload_Label">Choose file...</label>
-					</div>
-				</div>
-			</div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
-        </form>
+        </div>
+        <div class="col-sm-8">
+            <div class="form-group">
+                <label asp-for="Programme.LogoUpload"></label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">
+                            <svg class="i"><use xlink:href="#i-photo" /></svg>
+                        </span>
+                    </div>
+                    <div class="custom-file">
+                        <input class="custom-file-input" asp-for="Programme.LogoUpload" accept="image/png, image/jpeg" aria-describedby="inputGroupFileAddon01" onchange="updateLabel()"/>
+                        <label class="custom-file-label" id="Programme_LogoUpload_Label">Choose file...</label>
+                    </div>
+                </div>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-danger" type="button" onclick="clearImage()">
+                        <span>
+                            <svg class="i"><use xlink:href="#i-trash" /></svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</form>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="./Index">Back to List</a>
 </div>
 
 @section Scripts {
-	<script src="~/js/programmeCreate.js"></script>
+    <script src="~/js/programmeCreate.js"></script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
