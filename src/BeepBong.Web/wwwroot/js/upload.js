@@ -112,6 +112,11 @@ MediaInfoJs.onload = function () {
                     wavesurfer.loadBlob(input.files[0]);
                 }
             }
+
+            document.getElementsByTagName("form")[0].onreset = function() {
+                document.getElementById('input-label').innerText = "Choose file"
+                input.value = "";
+            }
         }
     });
 };

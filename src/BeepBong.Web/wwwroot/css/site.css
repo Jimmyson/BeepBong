@@ -72,3 +72,13 @@ body {
 	fill: currentColor;
 	stroke: none;
 }
+
+span svg {
+  vertical-align: baseline;
+}
+
+.footer-icon {
+  width: 2em;
+  height: 2em;
+  margin-left: 0.5em;
+} 

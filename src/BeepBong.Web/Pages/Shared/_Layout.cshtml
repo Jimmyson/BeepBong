@@ -33,6 +33,9 @@
 		<symbol id="i-edit" viewBox="0 0 32 32">
             <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z" />
 		</symbol>
+        <symbol id="i-calendar" viewBox="0 0 32 32">
+            <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9" />
+        </symbol>
 		<symbol id="i-trash" viewBox="0 0 32 32">
             <path d="M28 6 L6 6 8 30 24 30 26 6 4 6 M16 12 L16 24 M21 12 L20 24 M11 12 L12 24 M12 6 L13 2 19 2 20 6" />
 		</symbol>
@@ -67,6 +70,9 @@
 		<symbol id="i-stop" viewBox="0 0 32 32"> <!-- Custom Stop Icon -->
             <path d="M4 4 L28 4 L28 28 L4 28 L4 4" />
 		</symbol>
+        <symbol id="i-github" viewBox="0 0 64 64">
+            <path stroke-width="0" fill="currentColor" d="M32 0 C14 0 0 14 0 32 0 53 19 62 22 62 24 62 24 61 24 60 L24 55 C17 57 14 53 13 50 13 50 13 49 11 47 10 46 6 44 10 44 13 44 15 48 15 48 18 52 22 51 24 50 24 48 26 46 26 46 18 45 12 42 12 31 12 27 13 24 15 22 15 22 13 18 15 13 15 13 20 13 24 17 27 15 37 15 40 17 44 13 49 13 49 13 51 20 49 22 49 22 51 24 52 27 52 31 52 42 45 45 38 46 39 47 40 49 40 52 L40 60 C40 61 40 62 42 62 45 62 64 53 64 32 64 14 50 0 32 0 Z" />
+        </symbol>
 	</svg>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -107,7 +113,14 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2019 - BeepBong - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <div class="row">
+                <div class="col text-left">
+                    &copy; 2019 - BeepBong - <a asp-area="" asp-page="/Privacy">Privacy</a>
+                </div>
+                <div class="col text-right">
+                    <a href="https://github.com/Jimmyson/BeepBong">GitHub</a><svg class="i footer-icon"><use xlink:href="#i-github" /></svg>
+                </div>
+            </div>
         </div>
     </footer>
 

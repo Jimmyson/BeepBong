@@ -17,16 +17,18 @@
 		@if (!String.IsNullOrEmpty(item.Logo)) { <img class="card-img-top" src="@item.Logo"/> }
 		<div class="card-body">
 			<h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
-			<p class="card-text">
-				<svg class="i"><use xlink:href="#i-clock" /></svg> 
-				@(!String.IsNullOrEmpty(item.Year) ? item.Year : "Unknown") <br />
-				@if(!String.IsNullOrEmpty(item.Channel)) {
-					<svg class="i"><use xlink:href="#i-desktop" /></svg> @Html.DisplayFor(modelItem => item.Channel)<br/>
-				}
-				@if(!String.IsNullOrEmpty(item.AudioComposer)) {
-					<svg class="i"><use xlink:href="#i-user" /></svg> @Html.DisplayFor(modelItem => item.AudioComposer)
-				}
-			</p>
+			<div class="card-text">
+				<p>
+					<span><svg class="i"><use xlink:href="#i-calendar" /></svg> 
+					@(!String.IsNullOrEmpty(item.Year) ? item.Year : "Unknown")</span><br />
+					@if(!String.IsNullOrEmpty(item.Channel)) {
+						<span><svg class="i"><use xlink:href="#i-desktop" /></svg> @Html.DisplayFor(modelItem => item.Channel)</span><br />
+					}
+					@if(!String.IsNullOrEmpty(item.AudioComposer)) {
+						<span><svg class="i"><use xlink:href="#i-user" /></svg> @Html.DisplayFor(modelItem => item.AudioComposer)</span>
+					}
+				</p>
+			</div>
 				<span>@Html.DisplayFor(modelItem => item.TrackCount) @(item.TrackCount == 1 ? "Track" : "Tracks")</span>
 		</div>
 		<div class="card-footer">

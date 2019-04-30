@@ -43,7 +43,6 @@
 	<h4>Samples</h4>
 	<hr />
 		<p>
-			<!-- <a asp-page="../Samples/Create" asp-route-TrackId="@Model.Track.TrackId">Create New</a> -->
 			<a asp-page="../Upload" asp-route-TrackId="@Model.Track.TrackId">
 				<svg class="i"><use xlink:href="#i-upload" /></svg>
 				Upload
@@ -84,9 +83,6 @@
 					<th>
 						@Html.DisplayNameFor(model => model.Track.Samples.First().Notes)
 					</th>
-					<!-- <th>
-						@Html.DisplayNameFor(model => model.Track.Samples.First().Track)
-					</th> -->
 					<th></th>
 				</tr>
 			</thead>
@@ -123,9 +119,6 @@
 					<td>
 						@Html.DisplayFor(modelItem => item.Notes)
 					</td>
-					<!-- <td>
-						@Html.DisplayFor(modelItem => item.Track.TrackId)
-					</td> -->
 					<td>
 						<a asp-page="../Samples/Edit" asp-route-id="@item.SampleId">Edit</a> |
 						<a asp-page="../Samples/Details" asp-route-id="@item.SampleId">Details</a> |
