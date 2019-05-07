@@ -36,23 +36,23 @@ namespace BeepBong.Web.Pages.Programmes
                 return Page();
             }
 
-			Programme p = new Programme() {
-				ProgrammeId = Programme.ProgrammeId,
-				Name = Programme.Name,
-				Year = Programme.Year,
-				Channel = Programme.Channel,
-				AudioComposer = Programme.AudioComposer,
-				IsLibraryMusic = Programme.IsLibraryMusic
-			};
+            Programme p = new Programme() {
+                ProgrammeId = Programme.ProgrammeId,
+                Name = Programme.Name,
+                Year = Programme.Year,
+                Channel = Programme.Channel,
+                AudioComposer = Programme.AudioComposer,
+                IsLibraryMusic = Programme.IsLibraryMusic
+            };
 
-			if (Programme.LogoUpload != null && Programme.LogoUpload.Length > 0) {
-				using (var ms = new MemoryStream()) {
-					await Programme.LogoUpload.CopyToAsync(ms);
-					byte[] image = ms.ToArray();
+            if (Programme.LogoUpload != null && Programme.LogoUpload.Length > 0) {
+                using (var ms = new MemoryStream()) {
+                    await Programme.LogoUpload.CopyToAsync(ms);
+                    byte[] image = ms.ToArray();
 
-					p.Logo = "data:" + Programme.LogoUpload.ContentType + ";base64," + Convert.ToBase64String(image);
-				}
-			}
+                    p.Logo = "data:" + Programme.LogoUpload.ContentType + ";base64," + Convert.ToBase64String(image);
+                }
+            }
 
             _context.Programmes.Add(p);
             await _context.SaveChangesAsync();

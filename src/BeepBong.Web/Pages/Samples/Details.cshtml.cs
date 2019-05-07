@@ -42,8 +42,8 @@ namespace BeepBong.Web.Pages.Samples
                     Notes = s.Notes,
                     TrackId = s.TrackId,
                     TrackName = s.Track.Name + (!(String.IsNullOrWhiteSpace(s.Track.Subtitle)) ? " (" + s.Track.Subtitle + ")" : String.Empty),
-					WaveformImage = s.Waveform,
-					SpecImage = s.Spectrograph
+                    WaveformImage = s.Waveform,
+                    SpecImage = s.Spectrograph
                 })
                 .FirstOrDefaultAsync(m => m.SampleId == id);
 

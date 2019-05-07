@@ -4,19 +4,19 @@ using FluentValidation.Validators;
 
 namespace BeepBong.Domain.Validation
 {
-	public class NoURLValidator : PropertyValidator
-	{
-		public NoURLValidator() : base("The value contains a URL")
-		{
-			
-		}
+    public class NoURLValidator : PropertyValidator
+    {
+        public NoURLValidator() : base("The value contains a URL")
+        {
+            
+        }
 
-		protected override bool IsValid(PropertyValidatorContext context)
-		{
-			if (context.PropertyValue == null) return true;
-			string value = context.PropertyValue as string;
+        protected override bool IsValid(PropertyValidatorContext context)
+        {
+            if (context.PropertyValue == null) return true;
+            string value = context.PropertyValue as string;
 
-			return !value.Contains("http");
-		}
-	}
+            return !value.Contains("http");
+        }
+    }
 }

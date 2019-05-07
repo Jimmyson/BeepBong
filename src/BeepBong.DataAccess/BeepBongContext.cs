@@ -8,52 +8,52 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BeepBong.DataAccess
 {
-	public class BeepBongContext : DbContext
-	{
-		public BeepBongContext(DbContextOptions<BeepBongContext> options) : base(options)
-		{
-			
-		}
+    public class BeepBongContext : DbContext
+    {
+        public BeepBongContext(DbContextOptions<BeepBongContext> options) : base(options)
+        {
+            
+        }
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
-		{
-			modelBuilder.ApplyConfiguration(new ProgrammeConfiguration());
-			modelBuilder.ApplyConfiguration(new LibraryProgrammeConfiguration());
-			modelBuilder.ApplyConfiguration(new SampleConfiguration());
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new ProgrammeConfiguration());
+            modelBuilder.ApplyConfiguration(new LibraryProgrammeConfiguration());
+            modelBuilder.ApplyConfiguration(new SampleConfiguration());
 
-			foreach (var entityType in modelBuilder.Model.GetEntityTypes()) {
-				modelBuilder.Entity(entityType.Name).Property<DateTime>("Created");
-				modelBuilder.Entity(entityType.Name).Property<DateTime?>("LastModified");
-			}
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes()) {
+                modelBuilder.Entity(entityType.Name).Property<DateTime>("Created");
+                modelBuilder.Entity(entityType.Name).Property<DateTime?>("LastModified");
+            }
 
-			base.OnModelCreating(modelBuilder);
-		}
+            base.OnModelCreating(modelBuilder);
+        }
 
-		public DbSet<Programme> Programmes { get; set; }
-		public DbSet<Library> Libraries { get; set; }
-		public DbSet<Track> Tracks { get; set; }
-		public DbSet<Sample> Samples { get; set; }
-		public DbSet<LibraryProgramme> LibraryProgrammes { get; set; }
+        public DbSet<Programme> Programmes { get; set; }
+        public DbSet<Library> Libraries { get; set; }
+        public DbSet<Track> Tracks { get; set; }
+        public DbSet<Sample> Samples { get; set; }
+        public DbSet<LibraryProgramme> LibraryProgrammes { get; set; }
 
-		public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken)) {
-			ShadowPropertyUpdate();
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken)) {
+            ShadowPropertyUpdate();
 
-			return await base.SaveChangesAsync(cancellationToken);
-		}
+            return await base.SaveChangesAsync(cancellationToken);
+        }
 
-		public override int SaveChanges() {
-			ShadowPropertyUpdate();
+        public override int SaveChanges() {
+            ShadowPropertyUpdate();
 
-			return base.SaveChanges();
-		}
+            return base.SaveChanges();
+        }
 
-		private void ShadowPropertyUpdate() {
-			foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified)) {
-				if (entry.State == EntityState.Added)
-					entry.Property("Created").CurrentValue = DateTime.Now;
-				else
-					entry.Property("LastModified").CurrentValue = DateTime.Now;
-			}
-		}
-	}
+        private void ShadowPropertyUpdate() {
+            foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified)) {
+                if (entry.State == EntityState.Added)
+                    entry.Property("Created").CurrentValue = DateTime.Now;
+                else
+                    entry.Property("LastModified").CurrentValue = DateTime.Now;
+            }
+        }
+    }
 }

@@ -33,15 +33,15 @@ namespace BeepBong.Web.Pages.Programmes
             }
 
             Programme = await _context.Programmes
-										.Select(p => new ProgrammeEditViewModel() {
-											ProgrammeId = p.ProgrammeId,
-											Name = p.Name,
-											Year = p.Year,
-											Channel = p.Channel,
-											AudioComposer = p.AudioComposer,
-											Logo = p.Logo,
-											IsLibraryMusic = p.IsLibraryMusic
-										}).FirstOrDefaultAsync(m => m.ProgrammeId == id);
+                                        .Select(p => new ProgrammeEditViewModel() {
+                                            ProgrammeId = p.ProgrammeId,
+                                            Name = p.Name,
+                                            Year = p.Year,
+                                            Channel = p.Channel,
+                                            AudioComposer = p.AudioComposer,
+                                            Logo = p.Logo,
+                                            IsLibraryMusic = p.IsLibraryMusic
+                                        }).FirstOrDefaultAsync(m => m.ProgrammeId == id);
 
             if (Programme == null)
             {
@@ -57,25 +57,25 @@ namespace BeepBong.Web.Pages.Programmes
                 return Page();
             }
 
-			Programme p = new Programme() {
-				ProgrammeId = Programme.ProgrammeId,
-				Name = Programme.Name,
-				Year = Programme.Year,
-				Channel = Programme.Channel,
-				AudioComposer = Programme.AudioComposer,
-				IsLibraryMusic = Programme.IsLibraryMusic
-			};
+            Programme p = new Programme() {
+                ProgrammeId = Programme.ProgrammeId,
+                Name = Programme.Name,
+                Year = Programme.Year,
+                Channel = Programme.Channel,
+                AudioComposer = Programme.AudioComposer,
+                IsLibraryMusic = Programme.IsLibraryMusic
+            };
 
-			if (Programme.LogoUpload != null && Programme.LogoUpload.Length > 0) {
-				using (var ms = new MemoryStream()) {
-					await Programme.LogoUpload.CopyToAsync(ms);
-					byte[] image = ms.ToArray();
+            if (Programme.LogoUpload != null && Programme.LogoUpload.Length > 0) {
+                using (var ms = new MemoryStream()) {
+                    await Programme.LogoUpload.CopyToAsync(ms);
+                    byte[] image = ms.ToArray();
 
-					p.Logo = "data:" + Programme.LogoUpload.ContentType + ";base64," + Convert.ToBase64String(image);
-				}
-			} else {
-				p.Logo = Programme.Logo;
-			}
+                    p.Logo = "data:" + Programme.LogoUpload.ContentType + ";base64," + Convert.ToBase64String(image);
+                }
+            } else {
+                p.Logo = Programme.Logo;
+            }
 
             _context.Attach(p).State = EntityState.Modified;
 

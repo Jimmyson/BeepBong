@@ -37,12 +37,12 @@ namespace BeepBong.Web.Pages.Tracks
             {
                 return NotFound();
             }
-			ViewData["ProgrammeId"] = new SelectList(_context.Programmes
-														.Select(p => new {
-															ProgrammeId = p.ProgrammeId,
-															Name = p.Name + " (" + p.Year + ")"
-														}),
-													"ProgrammeId", "Name");
+            ViewData["ProgrammeId"] = new SelectList(_context.Programmes
+                                                        .Select(p => new {
+                                                            ProgrammeId = p.ProgrammeId,
+                                                            Name = p.Name + " (" + p.Year + ")"
+                                                        }),
+                                                    "ProgrammeId", "Name");
             return Page();
         }
 

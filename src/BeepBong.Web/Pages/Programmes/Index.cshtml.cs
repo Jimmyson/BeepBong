@@ -25,7 +25,7 @@ namespace BeepBong.Web.Pages.Programmes
         public async Task OnGetAsync()
         {
             Programme = await _context.Programmes
-				.Include(p => p.Tracks)
+                .Include(p => p.Tracks)
                 .Select(p => new ProgrammeTrackCountViewModel() {
                     ProgrammeId = p.ProgrammeId,
                     Name = p.Name,
@@ -34,11 +34,11 @@ namespace BeepBong.Web.Pages.Programmes
                     AudioComposer = p.AudioComposer,
                     IsLibraryMusic = p.IsLibraryMusic,
                     TrackCount = p.Tracks.Count,
-					Logo = p.Logo
+                    Logo = p.Logo
                 })
-				.OrderBy(p => p.Name)
-				.ThenBy(p => p.Year)
-				.ToListAsync();
+                .OrderBy(p => p.Name)
+                .ThenBy(p => p.Year)
+                .ToListAsync();
         }
     }
 }

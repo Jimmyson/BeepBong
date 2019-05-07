@@ -7,9 +7,9 @@ namespace BeepBong.DataAccess.Test
     public static class InMemoryContext
     {
         public static DbContextOptions<BeepBongContext> ContextGenerator(string name) {
-			return new DbContextOptionsBuilder<BeepBongContext>()
-				.UseInMemoryDatabase(databaseName: name)
-				.Options;
-		}
+            return new DbContextOptionsBuilder<BeepBongContext>()
+                .UseInMemoryDatabase(databaseName: name)
+                .Options;
+        }
     }
 }

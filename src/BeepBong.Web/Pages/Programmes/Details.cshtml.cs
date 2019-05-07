@@ -30,28 +30,28 @@ namespace BeepBong.Web.Pages.Programmes
             }
 
             Programme = await _context.Programmes
-				.Select(p => new ProgrammeViewModel
-				{
-					ProgrammeId = p.ProgrammeId,
-					Name = p.Name,
-					Year = p.Year,
-					Channel = p.Channel,
-					AudioComposer = p.AudioComposer,
-					IsLibraryMusic = p.IsLibraryMusic,
-					Logo = p.Logo,
-					Tracks = p.Tracks.Where(t => t.ProgrammeId == p.ProgrammeId)
-								.OrderBy(t => t.Name)
+                .Select(p => new ProgrammeViewModel
+                {
+                    ProgrammeId = p.ProgrammeId,
+                    Name = p.Name,
+                    Year = p.Year,
+                    Channel = p.Channel,
+                    AudioComposer = p.AudioComposer,
+                    IsLibraryMusic = p.IsLibraryMusic,
+                    Logo = p.Logo,
+                    Tracks = p.Tracks.Where(t => t.ProgrammeId == p.ProgrammeId)
+                                .OrderBy(t => t.Name)
                                 .ThenBy(t => t.Subtitle)
-								.Select(t => new TrackViewModel {
-									TrackId = t.TrackId,
-									Name = t.Name,
-									Subtitle = t.Subtitle,
-									Description = t.Description,
-									SampleCount = (p.IsLibraryMusic) ? 0 : t.Samples.Count
-								})
-								.ToList()
-				})
-				.FirstOrDefaultAsync(m => m.ProgrammeId == id);
+                                .Select(t => new TrackViewModel {
+                                    TrackId = t.TrackId,
+                                    Name = t.Name,
+                                    Subtitle = t.Subtitle,
+                                    Description = t.Description,
+                                    SampleCount = (p.IsLibraryMusic) ? 0 : t.Samples.Count
+                                })
+                                .ToList()
+                })
+                .FirstOrDefaultAsync(m => m.ProgrammeId == id);
 
             if (Programme == null)
             {
