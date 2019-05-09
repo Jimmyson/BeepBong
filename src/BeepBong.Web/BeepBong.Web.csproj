@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BeepBong.DataAccess\BeepBong.DataAccess.csproj" />
     <ProjectReference Include="..\BeepBong.Domain\BeepBong.Domain.csproj" />
+    <ProjectReference Include="..\BeepBong.Application\BeepBong.Application.csproj" />
   </ItemGroup>
 
 </Project>

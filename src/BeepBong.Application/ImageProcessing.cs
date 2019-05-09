@@ -3,7 +3,7 @@ using ImageMagick;
 
 namespace BeepBong.Application
 {
-    public class ImageProcessing
+    public class ImageProcessing : IDisposable
     {
         private MagickImage Image { get; set; }
 
@@ -26,8 +26,8 @@ namespace BeepBong.Application
         /// </summary>
         /// <param name="imageData">Byte Image Sequence</param>
         /// <returns>Byte Image Sequence of scaled image</returns>
-        public void DownscaleImage(byte[] imageData) {
-            DownscaleImage(imageData, 720);
+        public void DownscaleImage() {
+            DownscaleImage(720);
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace BeepBong.Application
         /// <param name="imageData"Byte Image Sequence></param>
         /// <param name="height">Desired height in pixels</param>
         /// <returns>Byte Image Sequence of scaled image</returns>
-        public void DownscaleImage(byte[] imageData, int height)
+        public void DownscaleImage(int height)
         {
             // Check size
             if (Image.Height > height)
@@ -44,6 +44,15 @@ namespace BeepBong.Application
                 // Scale Image and retain aspect
                 Image.Scale(0, height);
             }
+        }
+
+        /// <summary>
+        /// Clean up Object for removal
+        /// </summary>
+        public void Dispose()
+        {
+            Image.Dispose();
+            Image = null;
         }
     }
 }

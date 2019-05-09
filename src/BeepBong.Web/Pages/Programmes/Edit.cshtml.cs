@@ -10,6 +10,7 @@ using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
 using BeepBong.Web.ViewModels;
 using System.IO;
+using BeepBong.Application;
 
 namespace BeepBong.Web.Pages.Programmes
 {
@@ -66,14 +67,20 @@ namespace BeepBong.Web.Pages.Programmes
                 IsLibraryMusic = Programme.IsLibraryMusic
             };
 
-            if (Programme.LogoUpload != null && Programme.LogoUpload.Length > 0) {
-                using (var ms = new MemoryStream()) {
+            if (Programme.LogoUpload != null && Programme.LogoUpload.Length > 0)
+            {
+                using (var ms = new MemoryStream())
+                {
                     await Programme.LogoUpload.CopyToAsync(ms);
-                    byte[] image = ms.ToArray();
-
-                    p.Logo = "data:" + Programme.LogoUpload.ContentType + ";base64," + Convert.ToBase64String(image);
+                    
+                    using (ImageProcessing imageProc = new ImageProcessing(ms.ToArray()))
+                    {
+                        imageProc.DownscaleImage();
+                        p.Logo = imageProc.ToDataURL();
+                    }
                 }
-            } else {
+            } else 
+            {
                 p.Logo = Programme.Logo;
             }
 

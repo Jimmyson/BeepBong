@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
 using BeepBong.Web.ViewModels;
+using BeepBong.Application;
 using System.IO;
 
 namespace BeepBong.Web.Pages.Programmes
@@ -48,9 +49,12 @@ namespace BeepBong.Web.Pages.Programmes
             if (Programme.LogoUpload != null && Programme.LogoUpload.Length > 0) {
                 using (var ms = new MemoryStream()) {
                     await Programme.LogoUpload.CopyToAsync(ms);
-                    byte[] image = ms.ToArray();
 
-                    p.Logo = "data:" + Programme.LogoUpload.ContentType + ";base64," + Convert.ToBase64String(image);
+                    using (ImageProcessing imageProc = new ImageProcessing(ms.ToArray()))
+                    {
+                        imageProc.DownscaleImage();
+                        p.Logo = imageProc.ToDataURL();
+                    }
                 }
             }
 
