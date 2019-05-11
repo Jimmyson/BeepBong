@@ -140,7 +140,7 @@ namespace BeepBong.Application
                                             (d.Composer != null) ? new XAttribute("composer", d.Composer) : null, 
                                             (d.Library == true) ? new XAttribute("library", d.Library) : null, 
                                             (d.Logo != null) ? new XAttribute("logo", d.Logo) : null, 
-                                            (d.Tracks.Count() > 1) ? d.Tracks.Select(t => 
+                                            (d.Tracks.Count() > 0) ? d.Tracks.Select(t => 
                                                 new XElement("Track", 
                                                     (t.Title != null) ? new XAttribute("title", t.Title) : null, 
                                                     (t.Subtitle != null) ? new XAttribute("subtitle", t.Subtitle) : null, 

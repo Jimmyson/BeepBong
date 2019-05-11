@@ -6,11 +6,16 @@ namespace BeepBong.Application
     public class ImageProcessing : IDisposable
     {
         private MagickImage Image { get; set; }
+        private IMagickImage TempImage { get; set; }
 
         public ImageProcessing(byte[] imageData)
         {
             Image = new MagickImage(imageData);
+            TempImage = new MagickImage(imageData);
         }
+
+        public int Width { get => (TempImage != null ? TempImage.Width : 0); }
+        public int Height { get => (TempImage != null ? TempImage.Height : 0); }
 
         /// <summary>
         /// Convert an encoded image into a Base64 Data URL
@@ -18,7 +23,7 @@ namespace BeepBong.Application
         /// <returns></returns>
         public string ToDataURL()
         {
-            return "data:" + Image.FormatInfo.MimeType + ";base64," + Image.ToBase64();
+            return "data:" + TempImage.FormatInfo.MimeType + ";base64," + TempImage.ToBase64();
         }
 
         /// <summary>
@@ -41,8 +46,11 @@ namespace BeepBong.Application
             // Check size
             if (Image.Height > height)
             {
+                // Reset Temp Image
+                TempImage = Image.Clone();
+
                 // Scale Image and retain aspect
-                Image.Scale(0, height);
+                TempImage.Scale(0, height);
             }
         }
 
@@ -52,7 +60,9 @@ namespace BeepBong.Application
         public void Dispose()
         {
             Image.Dispose();
+            TempImage.Dispose();
             Image = null;
+            TempImage = null;
         }
     }
 }
