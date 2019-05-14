@@ -5,6 +5,10 @@
     {
       "library": "wavesurfer.js@2.2.1",
       "destination": "wwwroot\\lib\\wavesurfer.js"
+    },
+    {
+      "library": "bootstrap-select@1.13.10",
+      "destination": "wwwroot\\lib\\bootstrap-select"
     }
   ]
 }

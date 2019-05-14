@@ -106,9 +106,9 @@
                 <span asp-validation-for="Sample.Notes" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @if (String.IsNullOrEmpty(TrackId)) {
+                @if (String.IsNullOrEmpty(TrackId) && ViewData.Keys.Contains("TrackId")) {
                     <label asp-for="Sample.TrackId" class="control-label"></label>
-                    <select asp-for="Sample.TrackId" class ="form-control" asp-items="ViewBag.TrackId" ></select>
+                    <select asp-for="Sample.TrackId" class="form-control selectpicker" data-live-search="true" data-size="10" asp-items="ViewBag.TrackId" ></select>
                 } else {
                     <input type="hidden" asp-for="Sample.TrackId" value="@TrackId" />
                 }
