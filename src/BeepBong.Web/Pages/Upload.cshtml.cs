@@ -32,7 +32,6 @@ namespace BeepBong.Web.Pages.Samples
                                                         Programme = t.Programme.Name + (!String.IsNullOrEmpty(t.Programme.Year) ? " (" + t.Programme.Year + ")" : "")
                                                     }), "TrackId", "Name", 1, "Programme");
             }
-            new SelectListItem();
             // ViewData["Compression"] = new SelectList(Enum.GetValues(typeof(CompressionEnum)).Cast<CompressionEnum>());
             // ViewData["BitRateMode"] = new SelectList(Enum.GetValues(typeof(BitRateModeEnum)).Cast<BitRateModeEnum>());
             return Page();
