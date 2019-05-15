@@ -20,11 +20,11 @@ namespace BeepBong.Web.Pages.Programmes
             _context = context;
         }
 
-        public IList<ProgrammeTrackCountViewModel> Programme { get;set; }
+        public PaginatedList<ProgrammeTrackCountViewModel> Programme { get;set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int? pageNumber, int pageSize = 20)
         {
-            Programme = await _context.Programmes
+            var query = _context.Programmes
                 .Include(p => p.Tracks)
                 .Select(p => new ProgrammeTrackCountViewModel() {
                     ProgrammeId = p.ProgrammeId,
@@ -38,7 +38,9 @@ namespace BeepBong.Web.Pages.Programmes
                 })
                 .OrderBy(p => p.Name)
                 .ThenBy(p => p.Year)
-                .ToListAsync();
+                .AsQueryable();
+
+            Programme = await PaginatedList<ProgrammeTrackCountViewModel>.CreateAsync(query, pageNumber ?? 1, pageSize);
         }
     }
 }
