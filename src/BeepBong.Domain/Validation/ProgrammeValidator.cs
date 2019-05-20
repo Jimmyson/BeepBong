@@ -8,8 +8,12 @@ namespace BeepBong.Domain.Validation
         public ProgrammeValidator()
         {
             RuleFor(p => p.Name).NotNull().NotEmpty().NoURLInString();
-            RuleFor(p => p.Year).NotNull().Length(4).Matches(@"^\d{4}$");
-            //RuleFor(p => p.IsLibraryMusic).NotNull().NotEmpty();
+
+            RuleFor(p => p.AirDate).NotNull()
+                                    .GreaterThanOrEqualTo(p => p.Channel.Commencement)
+                                    .When(p => p.Channel != null && p.Channel.Commencement != null)
+                                    .LessThan(p => p.Channel.Closed)
+                                    .When(p => p.Channel != null && p.Channel.Closed != null);
         }
     }
 }

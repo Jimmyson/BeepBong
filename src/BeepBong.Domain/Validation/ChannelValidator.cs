@@ -8,7 +8,8 @@ namespace BeepBong.Domain.Validation
         public ChannelValidator()
         {
             RuleFor(c => c.Name).NotNull().NotEmpty().NoURLInString();
-            RuleFor(c => c.Organisation).NoURLInString();
+            RuleFor(c => c.Commencement).NotNull().NotEmpty().LessThan(c => c.Closed);
+            RuleFor(c => c.Closed).NotNull().GreaterThan(c => c.Commencement);
         }
     }
 }

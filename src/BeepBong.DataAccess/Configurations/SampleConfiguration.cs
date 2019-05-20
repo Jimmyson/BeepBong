@@ -19,6 +19,7 @@ namespace BeepBong.DataAccess.Configurations
                     v => v.ToString(),
                     v => (BitRateModeEnum)Enum.Parse(typeof(BitRateModeEnum), v));
 
+            builder.HasIndex(e => e.Fingerprint);
         }
     }
 }

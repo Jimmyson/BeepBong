@@ -17,8 +17,7 @@ namespace BeepBong.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new ProgrammeConfiguration());
-            modelBuilder.ApplyConfiguration(new LibraryProgrammeConfiguration());
+            modelBuilder.ApplyConfiguration(new ProgrammeTrackListConfiguration());
             modelBuilder.ApplyConfiguration(new SampleConfiguration());
 
             foreach (var entityType in modelBuilder.Model.GetEntityTypes()) {
@@ -29,11 +28,14 @@ namespace BeepBong.DataAccess
             base.OnModelCreating(modelBuilder);
         }
 
+        public DbSet<Broadcaster> Broadcasters { get; set; }
+        public DbSet<Channel> Channels { get; set; }
         public DbSet<Programme> Programmes { get; set; }
         public DbSet<Library> Libraries { get; set; }
+        public DbSet<TrackList> TrackLists { get; set; }
         public DbSet<Track> Tracks { get; set; }
         public DbSet<Sample> Samples { get; set; }
-        public DbSet<LibraryProgramme> LibraryProgrammes { get; set; }
+        public DbSet<ProgrammeTrackList> ProgrammeTrackLists { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken)) {
             ShadowPropertyUpdate();
