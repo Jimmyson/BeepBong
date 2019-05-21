@@ -18,7 +18,7 @@ namespace BeepBong.Domain.Models
 
         public ICollection<ProgrammeTrackList> ProgrammeTrackLists { get; set; }
 
-        public Guid ChannelId { get; set; }
+        public Guid? ChannelId { get; set; }
         public Channel Channel { get; set; }
     }
 }
