@@ -1,17 +1,15 @@
-using BeepBong.Domain.Models;
+using BeepBong.Application.ViewModels;
 using FluentValidation;
 
-namespace BeepBong.Domain.Validation
+namespace BeepBong.Application.Commands.Validation
 {
-    public class TrackValidator : AbstractValidator<Track>
+    public class TrackValidator : AbstractValidator<TrackEditViewModel>
     {
         public TrackValidator()
         {
             RuleFor(t => t.Name).NotNull().NotEmpty().NoURLInString();
             RuleFor(t => t.Variant).NoURLInString();
             RuleFor(t => t.Description).NoURLInString();
-
-            RuleFor(t => t.Samples).Empty().When(t => t.TrackList != null && t.TrackList.Library == true);
         }
     }
 }

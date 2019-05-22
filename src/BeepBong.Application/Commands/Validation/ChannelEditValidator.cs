@@ -1,11 +1,11 @@
-using BeepBong.Domain.Models;
+using BeepBong.Application.ViewModels;
 using FluentValidation;
 
-namespace BeepBong.Domain.Validation
+namespace BeepBong.Application.Commands.Validation
 {
-    public class ChannelValidator : AbstractValidator<Channel>
+    public class ChannelEditValidator : AbstractValidator<ChannelEditViewModel>
     {
-        public ChannelValidator()
+        public ChannelEditValidator()
         {
             RuleFor(c => c.Name).NotNull().NotEmpty().NoURLInString();
             RuleFor(c => c.Commencement).NotNull().NotEmpty().LessThan(c => c.Closed);

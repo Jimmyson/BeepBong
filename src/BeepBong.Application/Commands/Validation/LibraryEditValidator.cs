@@ -1,11 +1,11 @@
 using BeepBong.Domain.Models;
 using FluentValidation;
 
-namespace BeepBong.Domain.Validation
+namespace BeepBong.Application.Commands.Validation
 {
-    public class LibraryValidator : AbstractValidator<Library>
+    public class LibraryEditValidator : AbstractValidator<Library>
     {
-        public LibraryValidator()
+        public LibraryEditValidator()
         {
             RuleFor(c => c.AlbumName).NotNull().NotEmpty().NoURLInString();
             RuleFor(c => c.Label).NoURLInString();
