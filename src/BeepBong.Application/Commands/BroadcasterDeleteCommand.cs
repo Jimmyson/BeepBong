@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BeepBong.Application.Commands
 {
-    public class BroadcasterDeleteCommand
+    public class BroadcasterDeleteCommand : ICommand<Guid>
     {
         private readonly BeepBongContext _context;
         private readonly ChannelDeleteCommand _channelDeleteCommand;
@@ -19,6 +20,22 @@ namespace BeepBong.Application.Commands
         }
 
         public void SendCommand(Guid id)
+        {
+            Action(id);
+
+            // Save Database
+            _context.SaveChanges();
+        }
+
+        public async Task SendCommandAsync(Guid id)
+        {
+            Action(id);
+
+            // Save Database
+            await _context.SaveChangesAsync();
+        }
+
+        private void Action(Guid id)
         {
             List<Guid> channelList = _context.Channels
                 .Where(c => c.BroadcasterId == id)
@@ -38,8 +55,6 @@ namespace BeepBong.Application.Commands
             {
                 _context.Broadcasters.Remove(b);
             }
-            
-            _context.SaveChanges();
         }
     }
 }

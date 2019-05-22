@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
@@ -5,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BeepBong.Application.Commands
 {
-    public class ChannelEditCommand
+    public class ChannelEditCommand : ICommand<ChannelEditViewModel>
     {
         private readonly BeepBongContext _context;
 
@@ -13,7 +14,24 @@ namespace BeepBong.Application.Commands
 
         public void SendCommand(ChannelEditViewModel viewModel)
         {
-            Channel c = new Channel() {
+            Action(viewModel);
+
+            // Save Changes
+            _context.SaveChanges();
+        }
+
+        public async Task SendCommandAsync(ChannelEditViewModel viewModel)
+        {
+            Action(viewModel);
+
+            // Save Changes
+            await _context.SaveChangesAsync();
+        }
+
+        private void Action(ChannelEditViewModel viewModel)
+        {
+            Channel c = new Channel()
+            {
                 ChannelId = viewModel.ChannelId,
                 Name = viewModel.Name,
                 Commencement = viewModel.Commencement,
@@ -22,7 +40,7 @@ namespace BeepBong.Application.Commands
             };
 
             bool isNew = (viewModel.ChannelId == null);
-            
+
             // Attach Entites
             _context.Attach(c).State = (isNew) ? EntityState.Added : EntityState.Modified;
         }

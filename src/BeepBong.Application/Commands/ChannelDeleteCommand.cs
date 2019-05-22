@@ -1,19 +1,36 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BeepBong.Application.Commands
 {
-    public class ChannelDeleteCommand
+    public class ChannelDeleteCommand : ICommand<Guid>
     {
         private readonly BeepBongContext _context;
 
         public ChannelDeleteCommand(BeepBongContext context) => _context = context;
 
         public void SendCommand(Guid id)
+        {
+            Action(id);
+
+            // Save Changes
+            _context.SaveChanges();
+        }
+
+        public async Task SendCommandAsync(Guid id)
+        {
+            Action(id);
+
+            // Save Changes
+            await _context.SaveChangesAsync();
+        }
+
+        private void Action(Guid id)
         {
             List<Programme> programmeList = _context.Programmes.Where(p => p.ChannelId == id).ToList();
 
@@ -31,8 +48,6 @@ namespace BeepBong.Application.Commands
             {
                 _context.Channels.Remove(c);
             }
-            
-            _context.SaveChanges();
         }
     }
 }

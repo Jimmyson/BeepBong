@@ -1,18 +1,33 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using BeepBong.Application.Commands;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
 
 namespace BeepBong.Application.Queries
 {
-    public class ProgrammeDeleteCommand
+    public class ProgrammeDeleteCommand : ICommand<Guid>
     {
         private readonly BeepBongContext _context;
 
         public ProgrammeDeleteCommand(BeepBongContext context) => _context = context;
 
         public void SendCommand(Guid id)
+        {
+            Action(id);
+            _context.SaveChanges();
+        }
+
+        public async Task SendCommandAsync(Guid id)
+        {
+            Action(id);
+
+            await _context.SaveChangesAsync();
+        }
+
+        private void Action(Guid id)
         {
             List<ProgrammeTrackList> list = _context.ProgrammeTrackLists.Where(ptl => ptl.ProgrammeId == id).ToList();
 
@@ -27,8 +42,6 @@ namespace BeepBong.Application.Queries
             {
                 _context.Programmes.Remove(p);
             }
-            
-            _context.SaveChanges();
         }
     }
 }

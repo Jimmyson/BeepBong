@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
@@ -7,13 +8,29 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BeepBong.Application.Commands
 {
-    public class SampleCreateCommand
+    public class SampleCreateCommand : ICommand<SampleCreateViewModel>
     {
         private readonly BeepBongContext _context;
 
         public SampleCreateCommand(BeepBongContext context) => _context = context;
 
         public void SendCommand(SampleCreateViewModel viewModel)
+        {
+            Action(viewModel);
+
+            // Save Database
+            _context.SaveChanges();
+        }
+
+        public async Task SendCommandAsync(SampleCreateViewModel viewModel)
+        {
+            Action(viewModel);
+
+            // Save Database
+            await _context.SaveChangesAsync();
+        }
+
+        private void Action(SampleCreateViewModel viewModel)
         {
             Sample s = new Sample()
             {
@@ -34,9 +51,6 @@ namespace BeepBong.Application.Commands
             };
 
             _context.Attach(s);
-
-            // Save Database
-            _context.SaveChanges();
         }
     }
 }
