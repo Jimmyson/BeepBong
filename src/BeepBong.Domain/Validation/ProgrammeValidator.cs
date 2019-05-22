@@ -8,6 +8,7 @@ namespace BeepBong.Domain.Validation
         public ProgrammeValidator()
         {
             RuleFor(p => p.Name).NotNull().NotEmpty().NoURLInString();
+            RuleFor(p => p.Name).NoURLInString();
 
             RuleFor(p => p.AirDate).NotNull()
                                     .GreaterThanOrEqualTo(p => p.Channel.Commencement)

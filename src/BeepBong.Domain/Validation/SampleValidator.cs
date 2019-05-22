@@ -13,6 +13,7 @@ namespace BeepBong.Domain.Validation
             RuleFor(s => s.SampleCount).NotNull().NotEmpty().GreaterThan(0);
             RuleFor(s => s.AudioChannelCount).NotNull().NotEmpty().GreaterThan(0);
             RuleFor(s => s.BitRate).NotNull().NotEmpty().GreaterThan(0);
+            RuleFor(s => s.BitDepth).NotNull().NotEmpty().GreaterThan(0);
 
             RuleFor(s => s.BitRateMode).NotNull().IsInEnum();
             RuleFor(s => s.Compression).NotNull().IsInEnum();
@@ -21,6 +22,9 @@ namespace BeepBong.Domain.Validation
             RuleFor(s => s.Codec).NotNull().NotEmpty().NoURLInString();
             RuleFor(s => s.OtherAttributes).NoURLInString();
             RuleFor(s => s.Notes).NoURLInString();
+
+            RuleFor(s => s.Waveform).NoURLInString();
+            RuleFor(s => s.Spectrograph).NoURLInString();
         }
     }
 }
