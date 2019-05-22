@@ -30,6 +30,8 @@ namespace BeepBong.Application.Commands
             await _context.SaveChangesAsync();
         }
 
+        //@TODO: Add logic to skip if null
+        //@TODO: Make Async
         private void Action(Guid id)
         {
             List<Programme> programmeList = _context.Programmes.Where(p => p.ChannelId == id).ToList();
