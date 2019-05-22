@@ -13,7 +13,7 @@ namespace BeepBong.Application.Queries
 
         public ProgrammeIndexQuery(BeepBongContext context) => _context = context;
 
-        public IQueryable<ProgrammeIndexViewModel> GetQuery(Guid? channelId)
+        public IQueryable<ProgrammeIndexViewModel> GetQuery(Guid? channelId = null)
         {
             return _context.ProgrammeTrackLists
                 .Include(ptl => ptl.Programme)
@@ -23,7 +23,7 @@ namespace BeepBong.Application.Queries
                 .Select(ptl => new ProgrammeIndexViewModel() {
                     ProgrammeId = ptl.Programme.ProgrammeId,
                     Name = ptl.Programme.Name,
-                    Year = ptl.Programme.AirDate.ToString("yyyy"),
+                    Year = ptl.Programme.AirDate.Year.ToString(),
                     Channel = ptl.Programme.Channel.Name,
                     Logo = ptl.Programme.LogoLocation,
                     ContainsLibrary = ptl.TrackList.Any(tl => tl.Library),

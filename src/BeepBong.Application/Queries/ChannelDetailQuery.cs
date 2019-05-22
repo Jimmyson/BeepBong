@@ -23,7 +23,7 @@ namespace BeepBong.Application.Queries
                     Programmes = c.Programmes.Select(p => new SimpleProgramme() {
                         ProgrammeId = p.ProgrammeId,
                         Name = p.Name,
-                        Year = p.AirDate.ToString("y")
+                        Year = p.AirDate.Year.ToString()
                     }).ToList()
                 });
         }
