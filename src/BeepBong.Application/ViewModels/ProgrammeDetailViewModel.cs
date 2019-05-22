@@ -13,6 +13,7 @@ namespace BeepBong.Application.ViewModels
         public List<SimpleTrackList> TrackLists { get; set; }    
     }
 
+
     public class SimpleTrackList
     {
         public Guid TrackListId { get; set; }
@@ -20,12 +21,13 @@ namespace BeepBong.Application.ViewModels
         public string Composer { get; set; }
         public List<SimpleTrack> Tracks { get; set; }
     }
-
+    
     public class SimpleTrack
     {
         public Guid TrackId { get; set; }
         public string Name { get; set; }
         public string Variant { get; set; }
         public string Description { get; set; }
+        public int SampleCount { get; set; }
     }
 }

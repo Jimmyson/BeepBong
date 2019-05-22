@@ -36,7 +36,8 @@ namespace BeepBong.Application.Queries
                             TrackId = t.TrackId,
                             Name = t.Name,
                             Variant = t.Variant,
-                            Description = t.Description
+                            Description = t.Description,
+                            SampleCount = t.Samples.Count
                         }).ToList()
                     }).ToList()
                 });

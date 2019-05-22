@@ -21,6 +21,7 @@ namespace BeepBong.Application.Queries
                     Commencement = c.Commencement,
                     Closed = c.Closed,
                     Programmes = c.Programmes.Select(p => new SimpleProgramme() {
+                        ProgrammeId = p.ProgrammeId,
                         Name = p.Name,
                         Year = p.AirDate.ToString("y")
                     }).ToList()

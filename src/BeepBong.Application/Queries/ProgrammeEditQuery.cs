@@ -12,7 +12,7 @@ namespace BeepBong.Application.Queries
         public ProgrammeEditQuery(BeepBongContext context) => _context = context;
 
 
-        public System.Linq.IQueryable<ProgrammeEditViewModel> GetQuery(Guid programmeId)
+        public IQueryable<ProgrammeEditViewModel> GetQuery(Guid programmeId)
         {
             return _context.ProgrammeTrackLists
                 .Where(ptl => ptl.ProgrammeId == programmeId)

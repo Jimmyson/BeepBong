@@ -15,6 +15,7 @@ namespace BeepBong.Application.ViewModels
 
     public class SimpleProgramme
     {
+        public Guid ProgrammeId { get; set; }
         public string Name { get; set; }
         public string Year { get; set; }
     }
