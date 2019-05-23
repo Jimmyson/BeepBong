@@ -58,9 +58,9 @@
                 <span asp-validation-for="Sample.SampleCount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Sample.Channels" class="control-label"></label>
-                <input asp-for="Sample.Channels" class="form-control" readonly/>
-                <span asp-validation-for="Sample.Channels" class="text-danger"></span>
+                <label asp-for="Sample.AudioChannelCount" class="control-label"></label>
+                <input asp-for="Sample.AudioChannelCount" class="form-control" readonly/>
+                <span asp-validation-for="Sample.AudioChannelCount" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Sample.BitRate" class="control-label"></label>
@@ -113,10 +113,10 @@
                     <input type="hidden" asp-for="Sample.TrackId" value="@TrackId" />
                 }
             </div>
-            <div>
+            <!-- <div>
                 <input type="hidden" asp-for="Sample.WaveformImage" class="form-control" readonly/>
                 <input type="hidden" asp-for="Sample.SpecImage" class="form-control" readonly/>
-            </div>
+            </div> -->
             <div class="form-group">
                 <!-- <submit class="btn btn-primary">
                     <svg class="i"><use xlink:href="#i-edit" /></svg>

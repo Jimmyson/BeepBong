@@ -1,12 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+// using System;
+// using System.Collections.Generic;
+// using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
+// using Microsoft.AspNetCore.Mvc.Rendering;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
+using BeepBong.Application.Commands;
 
 namespace BeepBong.Web.Pages.Libraries
 {
@@ -14,15 +15,9 @@ namespace BeepBong.Web.Pages.Libraries
     {
         private readonly BeepBongContext _context;
 
-        public CreateModel(BeepBongContext context)
-        {
-            _context = context;
-        }
+        public CreateModel(BeepBongContext context) => _context = context;
 
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
+        public IActionResult OnGet() => Page();
 
         [BindProperty]
         public Library Library { get; set; }
@@ -34,8 +29,10 @@ namespace BeepBong.Web.Pages.Libraries
                 return Page();
             }
 
-            _context.Libraries.Add(Library);
-            await _context.SaveChangesAsync();
+            await new LibraryEditCommand(_context).SendCommandAsync(Library);
+
+            // _context.Libraries.Add(Library);
+            // await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

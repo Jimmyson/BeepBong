@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
+using BeepBong.Application.Queries;
+using BeepBong.Application.ViewModels;
+using BeepBong.Application.Commands;
 
 namespace BeepBong.Web.Pages.Samples
 {
@@ -14,13 +17,10 @@ namespace BeepBong.Web.Pages.Samples
     {
         private readonly BeepBongContext _context;
 
-        public DeleteModel(BeepBongContext context)
-        {
-            _context = context;
-        }
+        public DeleteModel(BeepBongContext context) => _context = context;
 
         [BindProperty]
-        public Sample Sample { get; set; }
+        public SampleDetailViewModel Sample { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -29,8 +29,11 @@ namespace BeepBong.Web.Pages.Samples
                 return NotFound();
             }
 
-            Sample = await _context.Samples
-                .Include(s => s.Track).FirstOrDefaultAsync(m => m.SampleId == id);
+            var query = new SampleDetailQuery(_context).GetQuery(id.Value);
+            Sample = await query.FirstOrDefaultAsync();
+
+            // Sample = await _context.Samples
+            //     .Include(s => s.Track).FirstOrDefaultAsync(m => m.SampleId == id);
 
             if (Sample == null)
             {
@@ -46,13 +49,15 @@ namespace BeepBong.Web.Pages.Samples
                 return NotFound();
             }
 
-            Sample = await _context.Samples.FindAsync(id);
+            await new SampleDeleteCommand(_context).SendCommandAsync(id.Value);
 
-            if (Sample != null)
-            {
-                _context.Samples.Remove(Sample);
-                await _context.SaveChangesAsync();
-            }
+            // Sample = await _context.Samples.FindAsync(id);
+
+            // if (Sample != null)
+            // {
+            //     _context.Samples.Remove(Sample);
+            //     await _context.SaveChangesAsync();
+            // }
 
             return RedirectToPage("../Tracks/Details", new {id = Sample.TrackId});
         }

@@ -11,7 +11,7 @@
     <a asp-page="Create">Create New</a>
 </p>
 
-@{ Html.RenderPartial("_PageTabs", Model.Programme); }
+@{ await Html.RenderPartialAsync("_PageTabs", Model.Programme); }
 
 <div class="card-deck" >
 @foreach (var item in Model.Programme) {
@@ -26,16 +26,13 @@
                     @if(!String.IsNullOrEmpty(item.Channel)) {
                         <span><svg class="i"><use xlink:href="#i-desktop" /></svg> @Html.DisplayFor(modelItem => item.Channel)</span><br />
                     }
-                    @if(!String.IsNullOrEmpty(item.AudioComposer)) {
-                        <span><svg class="i"><use xlink:href="#i-user" /></svg> @Html.DisplayFor(modelItem => item.AudioComposer)</span>
-                    }
                 </p>
             </div>
                 <span>@Html.DisplayFor(modelItem => item.TrackCount) @(item.TrackCount == 1 ? "Track" : "Tracks")</span>
         </div>
         <div class="card-footer">
             <div>
-                @if (item.IsLibraryMusic) {
+                @if (item.ContainsLibrary) {
                     <svg class="i"><use xlink:href="#i-music" /></svg>
                     <span class="text-left">Library Music</span>
                 }
@@ -56,4 +53,4 @@
 }
 </div>
 
-@{ Html.RenderPartial("_PageTabs", Model.Programme); }
+@{ await Html.RenderPartialAsync("_PageTabs", Model.Programme); }

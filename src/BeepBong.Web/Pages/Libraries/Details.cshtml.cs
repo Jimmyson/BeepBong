@@ -1,12 +1,13 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+// using System.Collections.Generic;
+// using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
+using BeepBong.Application.Queries;
 
 namespace BeepBong.Web.Pages.Libraries
 {
@@ -14,10 +15,7 @@ namespace BeepBong.Web.Pages.Libraries
     {
         private readonly BeepBongContext _context;
 
-        public DetailsModel(BeepBongContext context)
-        {
-            _context = context;
-        }
+        public DetailsModel(BeepBongContext context) => _context = context;
 
         public Library Library { get; set; }
 
@@ -28,7 +26,10 @@ namespace BeepBong.Web.Pages.Libraries
                 return NotFound();
             }
 
-            Library = await _context.Libraries.FirstOrDefaultAsync(m => m.LibraryId == id);
+            var query = new LibraryDetailQuery(_context).GetQuery(id.Value);
+            Library = await query.FirstOrDefaultAsync();
+
+            //Library = await _context.Libraries.FirstOrDefaultAsync(m => m.LibraryId == id);
 
             if (Library == null)
             {

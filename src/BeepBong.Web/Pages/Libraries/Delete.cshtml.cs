@@ -1,12 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+// using System.Collections.Generic;
+// using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
+using BeepBong.Application.Queries;
+using BeepBong.Application.Commands;
 
 namespace BeepBong.Web.Pages.Libraries
 {
@@ -29,7 +31,10 @@ namespace BeepBong.Web.Pages.Libraries
                 return NotFound();
             }
 
-            Library = await _context.Libraries.FirstOrDefaultAsync(m => m.LibraryId == id);
+            var query = new LibraryDetailQuery(_context).GetQuery(id.Value);
+            Library = await query.FirstOrDefaultAsync();
+
+            //Library = await _context.Libraries.FirstOrDefaultAsync(m => m.LibraryId == id);
 
             if (Library == null)
             {
@@ -45,13 +50,15 @@ namespace BeepBong.Web.Pages.Libraries
                 return NotFound();
             }
 
-            Library = await _context.Libraries.FindAsync(id);
+            await new LibraryDeleteCommand(_context).SendCommandAsync(id.Value);
 
-            if (Library != null)
-            {
-                _context.Libraries.Remove(Library);
-                await _context.SaveChangesAsync();
-            }
+            // Library = await _context.Libraries.FindAsync(id);
+
+            // if (Library != null)
+            // {
+            //     _context.Libraries.Remove(Library);
+            //     await _context.SaveChangesAsync();
+            // }
 
             return RedirectToPage("./Index");
         }

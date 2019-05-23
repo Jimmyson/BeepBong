@@ -1,13 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+// using System.Collections.Generic;
+// using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
-using BeepBong.Domain.Models;
-using BeepBong.Web.ViewModels;
+// using BeepBong.Domain.Models;
+// using BeepBong.Web.ViewModels;
+using BeepBong.Application.ViewModels;
+using BeepBong.Application.Queries;
 
 namespace BeepBong.Web.Pages.Programmes
 {
@@ -15,12 +17,9 @@ namespace BeepBong.Web.Pages.Programmes
     {
         private readonly BeepBongContext _context;
 
-        public DetailsModel(BeepBongContext context)
-        {
-            _context = context;
-        }
+        public DetailsModel(BeepBongContext context) => _context = context;
 
-        public ProgrammeViewModel Programme { get; set; }
+        public ProgrammeDetailViewModel Programme { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -29,29 +28,18 @@ namespace BeepBong.Web.Pages.Programmes
                 return NotFound();
             }
 
-            Programme = await _context.Programmes
-                .Select(p => new ProgrammeViewModel
-                {
-                    ProgrammeId = p.ProgrammeId,
-                    Name = p.Name,
-                    Year = p.Year,
-                    Channel = p.Channel,
-                    AudioComposer = p.AudioComposer,
-                    IsLibraryMusic = p.IsLibraryMusic,
-                    Logo = p.Logo,
-                    Tracks = p.Tracks.Where(t => t.ProgrammeId == p.ProgrammeId)
-                                .OrderBy(t => t.Name)
-                                .ThenBy(t => t.Subtitle)
-                                .Select(t => new TrackViewModel {
-                                    TrackId = t.TrackId,
-                                    Name = t.Name,
-                                    Subtitle = t.Subtitle,
-                                    Description = t.Description,
-                                    SampleCount = (p.IsLibraryMusic) ? 0 : t.Samples.Count
-                                })
-                                .ToList()
-                })
-                .FirstOrDefaultAsync(m => m.ProgrammeId == id);
+            var query = new ProgrammeDetailQuery(_context).GetQuery(id.Value);
+
+            Programme = await query.FirstOrDefaultAsync();
+
+            // Programme = await _context.Programmes
+            //     .Select(p => new ProgrammeViewModel
+            //     {
+            //         ProgrammeId = p.ProgrammeId,
+            //         Name = p.Name,
+            //         Year = p.AirDate.ToString(),
+            //     })
+            //     .FirstOrDefaultAsync(m => m.ProgrammeId == id);
 
             if (Programme == null)
             {
