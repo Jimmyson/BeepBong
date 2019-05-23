@@ -15,19 +15,17 @@ namespace BeepBong.Application.Queries
 
         public IQueryable<ProgrammeIndexViewModel> GetQuery(Guid? channelId = null)
         {
-            return _context.ProgrammeTrackLists
-                .Include(ptl => ptl.Programme)
-                .Include(ptl => ptl.TrackList)
-                .WhereIf(channelId != null, ptl => ptl.ProgrammeId == channelId)
-                .GroupBy(ptl => ptl.Programme, ptl => ptl.TrackList, (key, g) => new {Programme = key, TrackList = g.ToList()})
-                .Select(ptl => new ProgrammeIndexViewModel() {
-                    ProgrammeId = ptl.Programme.ProgrammeId,
-                    Name = ptl.Programme.Name,
-                    Year = ptl.Programme.AirDate.Year.ToString(),
-                    Channel = ptl.Programme.Channel.Name,
-                    Logo = ptl.Programme.LogoLocation,
-                    ContainsLibrary = ptl.TrackList.Any(tl => tl.Library),
-                    TrackCount = ptl.TrackList.Sum(tl => tl.Tracks.Count),
+            return _context.Programmes
+                .Include(p => p.ProgrammeTrackLists)
+                .WhereIf(channelId != null, p => p.ProgrammeId == channelId)
+                .Select(p => new ProgrammeIndexViewModel() {
+                    ProgrammeId = p.ProgrammeId,
+                    Name = p.Name,
+                    Year = (p.AirDate.HasValue) ? p.AirDate.Value.Year.ToString() : null,
+                    Channel = (p.Channel != null) ? p.Channel.Name : null,
+                    Logo = p.LogoLocation,
+                    ContainsLibrary = (p.ProgrammeTrackLists.Any()) ? p.ProgrammeTrackLists.FirstOrDefault(ptl => ptl.TrackList.Library).TrackList.Library : false,
+                    TrackCount = p.ProgrammeTrackLists.Sum(ptl => ptl.TrackList.Tracks.Count),
                 })
                 .OrderBy(ls => ls.Name)
                 .ThenBy(ls => ls.Year)

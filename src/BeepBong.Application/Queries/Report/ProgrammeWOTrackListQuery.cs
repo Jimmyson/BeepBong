@@ -19,7 +19,7 @@ namespace BeepBong.Application.Queries.Report
                 .Select(p => new ProgrammeWOTrackListViewModel() {
                     ProgrammeId = p.ProgrammeId,
                     Name = p.Name,
-                    Year = p.AirDate.Year.ToString(),
+                    Year = (p.AirDate.HasValue) ? p.AirDate.Value.Year.ToString() : null,
                     ChannelName = p.Channel.Name
                 })
                 .OrderBy(ls => ls.Name)

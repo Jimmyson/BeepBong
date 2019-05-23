@@ -80,24 +80,24 @@ namespace BeepBong.Application
                     context.Broadcasters.Add(b);
                     context.SaveChanges();
                 }
+            }
 
-                // Programmes w/o Channels
-                foreach (var programme in broadcasting.Element("Programmes").Elements("Programme"))
+            // Programmes w/o Channels
+            foreach (var programme in broadcasting.Element("Programmes").Elements("Programme"))
+            {
+                if (programme.HasAttributes)
                 {
-                    if (programme.HasAttributes)
+                    Programme p = CreateProgrammeEntity(programme.Attributes());
+                    if (programme.Attribute("ref") != null)
                     {
-                        Programme p = CreateProgrammeEntity(programme.Attributes());
-                        if (programme.Attribute("ref") != null)
-                        {
-                            Guid id = new Guid();
-                            programmeIds.Add(id, programme.Attribute("ref").Value);
-                            p.ProgrammeId = id;
-                        }
+                        Guid id = new Guid();
+                        programmeIds.Add(id, programme.Attribute("ref").Value);
+                        p.ProgrammeId = id;
+                    }
 
-                        using (var context = new BeepBongContext(options)) {
-                            context.Programmes.Add(p);
-                            context.SaveChanges();
-                        }
+                    using (var context = new BeepBongContext(options)) {
+                        context.Programmes.Add(p);
+                        context.SaveChanges();
                     }
                 }
             }
@@ -144,6 +144,9 @@ namespace BeepBong.Application
                         }
                         else
                         {
+                            if (t == null)
+                                t = new Track();
+                            
                             //Fall back name value
                             if (string.IsNullOrEmpty(t.Name))
                                 t.Name = track.Value;
@@ -340,7 +343,7 @@ namespace BeepBong.Application
                 if (attribute.Name == "name")
                     p.Name = attribute.Value;
                 if (attribute.Name == "year")
-                    p.AirDate = DateTime.Parse(attribute.Value);
+                    p.AirDate = new DateTime(int.Parse(attribute.Value), 1, 1);
                 //if (attribute.Name == "logo")
                 //    p.Logo = attribute.Value;
             }

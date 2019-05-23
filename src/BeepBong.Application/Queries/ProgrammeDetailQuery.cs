@@ -24,13 +24,14 @@ namespace BeepBong.Application.Queries
                     ProgrammeId = ptl.Programme.ProgrammeId,
                     Name = ptl.Programme.Name,
                     AirDate = ptl.Programme.AirDate,
-                    ChannelName = ptl.Programme.Channel.Name,
+                    ChannelName = (ptl.Programme.Channel != null) ? ptl.Programme.Channel.Name : null,
                     Logo = ptl.Programme.LogoLocation,
                     TrackLists = ptl.TrackList.Select(tl => new SimpleTrackList()
                     {
                         TrackListId = tl.TrackListId,
                         Name = tl.Name,
                         Composer = tl.Composer,
+                        Library = tl.Library,
                         Tracks = tl.Tracks.Select(t => new SimpleTrack()
                         {
                             TrackId = t.TrackId,

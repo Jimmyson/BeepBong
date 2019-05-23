@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace BeepBong.Application.Commands.Validation
 {
-    public class TrackValidator : AbstractValidator<TrackEditViewModel>
+    public class TrackEditValidator : AbstractValidator<TrackEditViewModel>
     {
-        public TrackValidator()
+        public TrackEditValidator()
         {
             RuleFor(t => t.Name).NotNull().NotEmpty().NoURLInString();
             RuleFor(t => t.Variant).NoURLInString();

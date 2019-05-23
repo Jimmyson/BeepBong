@@ -7,7 +7,7 @@ namespace BeepBong.Application.ViewModels
     {
         public Guid ProgrammeId { get; set; }
         public string Name { get; set; }
-        public DateTime AirDate { get; set; }
+        public DateTime? AirDate { get; set; }
         public string ChannelName { get; set; }
         public string Logo { get; set; }
         public List<SimpleTrackList> TrackLists { get; set; }    
@@ -19,6 +19,7 @@ namespace BeepBong.Application.ViewModels
         public Guid TrackListId { get; set; }
         public string Name { get; set; }
         public string Composer { get; set; }
+        public bool Library { get; set; }
         public List<SimpleTrack> Tracks { get; set; }
     }
     

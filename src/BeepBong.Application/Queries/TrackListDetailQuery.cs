@@ -22,7 +22,7 @@ namespace BeepBong.Application.Queries
                     Programmes = tl.ProgrammeTrackLists.Select(ptl => new SimpleProgramme() {
                         ProgrammeId = ptl.ProgrammeId,
                         Name = ptl.Programme.Name,
-                        Year = ptl.Programme.AirDate.Year.ToString()
+                        Year = (ptl.Programme.AirDate.HasValue) ? ptl.Programme.AirDate.Value.Year.ToString() : null
                     }).ToList(),
                     Tracks = tl.Tracks.Select(t => new SimpleTrack() {
                         TrackId = t.TrackId,

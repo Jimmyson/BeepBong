@@ -12,7 +12,7 @@ namespace BeepBong.Domain.Models
 
         public Guid ProgrammeId { get; set; }
         public string Name { get; set; }
-        public DateTime AirDate { get; set; }
+        public DateTime? AirDate { get; set; }
         
         public string LogoLocation { get; set; }
 
