@@ -59,7 +59,7 @@ namespace BeepBong.DataAccess.Test
 
             using (var context = new BeepBongContext(options))
             {
-                Assert.Single(context.Programmes);
+                Assert.Single(context.TrackLists);
                 Assert.Single(context.Tracks);
                 Assert.Single(context.Samples);
 

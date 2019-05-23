@@ -5,9 +5,10 @@ using Xunit;
 using BeepBong.Domain.Models;
 using BeepBong.DataAccess;
 using BeepBong.Web.Pages.Programmes;
-using BeepBong.Web.ViewModels;
+// using BeepBong.Web.ViewModels;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using BeepBong.Application.ViewModels;
 
 namespace BeepBong.Web.Test
 {
@@ -15,6 +16,7 @@ namespace BeepBong.Web.Test
     {
         public DetailsModel model;
 
+        //@TODO: Solve Cancellation Token error
         [Fact]
         public async Task ListProgrammeAndTrackAsync()
         {
@@ -22,12 +24,24 @@ namespace BeepBong.Web.Test
             connection.Open();
 
             Programme p = new Programme() {
+                ProgrammeId = new Guid(),
                 Name = "test"
+            };
+            TrackList tl = new TrackList() {
+                TrackListId = new Guid(),
+                Name = "Test List"
             };
             Track t = new Track() {
                 Name = "Track test"
             };
-            p.Tracks.Add(t);
+            ProgrammeTrackList ptl = new ProgrammeTrackList() {
+                ProgrammeId = p.ProgrammeId,
+                TrackListId = tl.TrackListId
+            };
+
+            tl.Tracks.Add(t);
+            ptl.Programme = p;
+            ptl.TrackList = tl;
 
             try {
                 var options = new DbContextOptionsBuilder<BeepBongContext>()
@@ -39,8 +53,18 @@ namespace BeepBong.Web.Test
                     // Create the schema in the database
                     context.Database.EnsureCreated();
 
-                    context.Programmes.Add(p);
+                    //context.Programmes.Add(p);
+                    //context.TrackLists.Add(tl);
+                    context.ProgrammeTrackLists.Add(ptl);
                     context.SaveChanges();
+                }
+
+                using (var context = new BeepBongContext(options))
+                {
+                    Assert.NotEmpty(context.Programmes);
+                    Assert.NotEmpty(context.TrackLists);
+                    Assert.NotEmpty(context.Tracks);
+                    Assert.NotEmpty(context.ProgrammeTrackLists);
                 }
 
                 using (var context = new BeepBongContext(options))
@@ -52,9 +76,11 @@ namespace BeepBong.Web.Test
                     await model.OnGetAsync(id);
 
                     Assert.NotNull(model.Programme);
-                    Assert.IsType<ProgrammeViewModel>(model.Programme);
-                    Assert.NotEmpty(model.Programme.Tracks);
-                    Assert.IsType<TrackViewModel>(model.Programme.Tracks.FirstOrDefault());
+                    Assert.IsType<ProgrammeDetailViewModel>(model.Programme);
+                    Assert.NotEmpty(model.Programme.TrackLists);
+                    Assert.IsType<SimpleTrackList>(model.Programme.TrackLists.FirstOrDefault());
+                    Assert.NotEmpty(model.Programme.TrackLists.FirstOrDefault().Tracks);
+                    Assert.IsType<SimpleTrack>(model.Programme.TrackLists.FirstOrDefault().Tracks.FirstOrDefault());
                 }
             }
             finally {

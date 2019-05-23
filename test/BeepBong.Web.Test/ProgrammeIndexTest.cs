@@ -1,13 +1,14 @@
-using System;
+// using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 using BeepBong.Domain.Models;
 using BeepBong.DataAccess;
 using BeepBong.Web.Pages.Programmes;
-using BeepBong.Web.ViewModels;
+// using BeepBong.Web.ViewModels;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using BeepBong.Application.ViewModels;
 
 namespace BeepBong.Web.Test
 {
@@ -24,10 +25,6 @@ namespace BeepBong.Web.Test
             Programme p = new Programme() {
                 Name = "test"
             };
-            Track t = new Track() {
-                Name = "Track test"
-            };
-            p.Tracks.Add(t);
 
             try {
                 var options = new DbContextOptionsBuilder<BeepBongContext>()
@@ -47,11 +44,10 @@ namespace BeepBong.Web.Test
                 {
                     model = new IndexModel(context);
 
-                    await model.OnGetAsync();
+                    await model.OnGetAsync(null);
 
                     Assert.NotEmpty(model.Programme);
-                    Assert.IsType<ProgrammeTrackCountViewModel>(model.Programme.FirstOrDefault());
-                    Assert.Equal(1, model.Programme.FirstOrDefault().TrackCount);
+                    Assert.IsType<ProgrammeIndexViewModel>(model.Programme.FirstOrDefault());
                 }
             }
             finally {

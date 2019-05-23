@@ -18,7 +18,7 @@ namespace BeepBong.DataAccess.Test
                 context.Programmes.Add(new Programme()
                 {
                     Name = "Hello World",
-                    AirDate = DateTime.Parse("2000")
+                    AirDate = DateTime.Now
                 });
                 context.SaveChanges();
             };
@@ -46,7 +46,7 @@ namespace BeepBong.DataAccess.Test
                 context.Programmes.Add(new Programme()
                 {
                     Name = "Hello World",
-                    AirDate = DateTime.Parse("2000")
+                    AirDate = DateTime.Now
                 });
                 context.SaveChanges();
             };
