@@ -15,18 +15,18 @@ namespace BeepBong.Application.Queries
 
         public IQueryable<ProgrammeDetailViewModel> GetQuery(Guid programmeId)
         {
-            return _context.ProgrammeTrackLists
-                .Include(ptl => ptl.Programme)
-                .Include(ptl => ptl.TrackList)
-                .Where(ptl => ptl.ProgrammeId == programmeId)
-                .GroupBy(ptl => ptl.Programme, ptl => ptl.TrackList, (key, g) => new {Programme = key, TrackList = g.ToList()})
-                .Select(ptl => new ProgrammeDetailViewModel() {
-                    ProgrammeId = ptl.Programme.ProgrammeId,
-                    Name = ptl.Programme.Name,
-                    AirDate = ptl.Programme.AirDate,
-                    ChannelName = (ptl.Programme.Channel != null) ? ptl.Programme.Channel.Name : null,
-                    Logo = ptl.Programme.LogoLocation,
-                    TrackLists = ptl.TrackList.Select(tl => new SimpleTrackList()
+            return _context.Programmes
+                .Include(p => p.ProgrammeTrackLists)
+                .ThenInclude(ptl => ptl.TrackList)
+                .ThenInclude(tl => tl.Tracks)
+                .Where(p => p.ProgrammeId == programmeId)
+                .Select(p => new ProgrammeDetailViewModel() {
+                    ProgrammeId = p.ProgrammeId,
+                    Name = p.Name,
+                    AirDate = (p.AirDate.HasValue) ? p.AirDate.Value.ToShortDateString() : null,
+                    ChannelName = (p.Channel != null) ? p.Channel.Name : null,
+                    Logo = p.LogoLocation,
+                    TrackLists = p.ProgrammeTrackLists.Select(ptl => ptl.TrackList).Select(tl => new SimpleTrackList()
                     {
                         TrackListId = tl.TrackListId,
                         Name = tl.Name,

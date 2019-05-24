@@ -17,6 +17,8 @@ namespace BeepBong.Application.Queries
         {
             return _context.Programmes
                 .Include(p => p.ProgrammeTrackLists)
+                .ThenInclude(ptl => ptl.TrackList)
+                .ThenInclude(tl => tl.Tracks)
                 .WhereIf(channelId != null, p => p.ProgrammeId == channelId)
                 .Select(p => new ProgrammeIndexViewModel() {
                     ProgrammeId = p.ProgrammeId,
@@ -24,8 +26,8 @@ namespace BeepBong.Application.Queries
                     Year = (p.AirDate.HasValue) ? p.AirDate.Value.Year.ToString() : null,
                     Channel = (p.Channel != null) ? p.Channel.Name : null,
                     Logo = p.LogoLocation,
-                    ContainsLibrary = (p.ProgrammeTrackLists.Any()) ? p.ProgrammeTrackLists.FirstOrDefault(ptl => ptl.TrackList.Library).TrackList.Library : false,
-                    TrackCount = p.ProgrammeTrackLists.Sum(ptl => ptl.TrackList.Tracks.Count),
+                    ContainsLibrary = p.ProgrammeTrackLists.Any(ptl => ptl.TrackList.Library == true),
+                    TrackCount = p.ProgrammeTrackLists.Select(ptl => ptl.TrackList.Tracks.Count).Sum()
                 })
                 .OrderBy(ls => ls.Name)
                 .ThenBy(ls => ls.Year)

@@ -14,16 +14,15 @@ namespace BeepBong.Application.Queries
 
         public IQueryable<ProgrammeEditViewModel> GetQuery(Guid programmeId)
         {
-            return _context.ProgrammeTrackLists
-                .Where(ptl => ptl.ProgrammeId == programmeId)
-                .GroupBy(ptl => ptl.Programme, ptl => ptl.TrackListId, (key, g) => new { Programme = key, TrackList = g.ToList()})
-                .Select(ptl => new ProgrammeEditViewModel() {
-                    ProgrammeId = ptl.Programme.ProgrammeId,
-                    Name = ptl.Programme.Name,
-                    AirDate = ptl.Programme.AirDate,
-                    LogoLocation = ptl.Programme.LogoLocation,
-                    ChannelId = ptl.Programme.ChannelId,
-                    TrackListIds = ptl.TrackList
+            return _context.Programmes
+                .Where(p => p.ProgrammeId == programmeId)
+                .Select(p => new ProgrammeEditViewModel() {
+                    ProgrammeId = p.ProgrammeId,
+                    Name = p.Name,
+                    AirDate = p.AirDate,
+                    LogoLocation = p.LogoLocation,
+                    ChannelId = p.ChannelId,
+                    TrackListIds = p.ProgrammeTrackLists.Select(ptl => ptl.TrackListId).ToList()
                 });
         }
     }
