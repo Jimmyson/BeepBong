@@ -5,7 +5,6 @@ using Xunit;
 using BeepBong.Domain.Models;
 using BeepBong.DataAccess;
 using BeepBong.Web.Pages.Programmes;
-// using BeepBong.Web.ViewModels;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.Application.ViewModels;
@@ -16,7 +15,6 @@ namespace BeepBong.Web.Test
     {
         public DetailsModel model;
 
-        //@TODO: Solve Cancellation Token error
         [Fact]
         public async Task ListProgrammeAndTrackAsync()
         {
@@ -24,11 +22,9 @@ namespace BeepBong.Web.Test
             connection.Open();
 
             Programme p = new Programme() {
-                ProgrammeId = new Guid(),
                 Name = "test"
             };
             TrackList tl = new TrackList() {
-                TrackListId = new Guid(),
                 Name = "Test List"
             };
             Track t = new Track() {
@@ -53,8 +49,6 @@ namespace BeepBong.Web.Test
                     // Create the schema in the database
                     context.Database.EnsureCreated();
 
-                    //context.Programmes.Add(p);
-                    //context.TrackLists.Add(tl);
                     context.ProgrammeTrackLists.Add(ptl);
                     context.SaveChanges();
                 }

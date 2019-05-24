@@ -1,14 +1,7 @@
-// using System;
-// using System.Collections.Generic;
-// using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-// using Microsoft.AspNetCore.Mvc.Rendering;
 using BeepBong.DataAccess;
-// using BeepBong.Domain.Models;
-// using BeepBong.Web.ViewModels;
-// using BeepBong.Application;
 // using System.IO;
 using BeepBong.Application.ViewModels;
 using BeepBong.Application.Commands;
@@ -33,14 +26,6 @@ namespace BeepBong.Web.Pages.Programmes
                 return Page();
             }
 
-            await new ProgrammeEditCommand(_context).SendCommandAsync(Programme);
-
-            // Programme p = new Programme() {
-            //     ProgrammeId = Programme.ProgrammeId,
-            //     Name = Programme.Name,
-            //     AirDate = DateTime.Parse(Programme.Year)
-            // };
-
             // if (Programme.LogoUpload != null && Programme.LogoUpload.Length > 0) {
             //     using (var ms = new MemoryStream()) {
             //         await Programme.LogoUpload.CopyToAsync(ms);
@@ -53,8 +38,7 @@ namespace BeepBong.Web.Pages.Programmes
             //     }
             // }
 
-            //_context.Programmes.Add(p);
-            //await _context.SaveChangesAsync();
+            await new ProgrammeEditCommand(_context).SendCommandAsync(Programme);
 
             return RedirectToPage("./Index");
         }

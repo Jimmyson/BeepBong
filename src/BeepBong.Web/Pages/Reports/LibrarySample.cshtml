@@ -7,6 +7,8 @@
 
 <h1>Library with Samples Report</h1>
 
+@{ await Html.RenderPartialAsync("_PageTabs", Model.LibrarySample); }
+
 <table class="table">
     <thead>
         <tr>
@@ -37,3 +39,5 @@
 }
     </tbody>
 </table>
+
+@{ await Html.RenderPartialAsync("_PageTabs", Model.LibrarySample); }

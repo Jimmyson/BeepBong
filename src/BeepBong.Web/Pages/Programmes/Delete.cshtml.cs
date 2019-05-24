@@ -1,12 +1,9 @@
 using System;
-// using System.Collections.Generic;
-// using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
-// using BeepBong.Domain.Models;
 using BeepBong.Application.Queries;
 using BeepBong.Application.ViewModels;
 
@@ -29,10 +26,7 @@ namespace BeepBong.Web.Pages.Programmes
             }
 
             var query = new ProgrammeDetailQuery(_context).GetQuery(id.Value);
-
             Programme = await query.FirstOrDefaultAsync();
-
-            //Programme = await _context.Programmes.FirstOrDefaultAsync(m => m.ProgrammeId == id);
 
             if (Programme == null)
             {
@@ -49,14 +43,6 @@ namespace BeepBong.Web.Pages.Programmes
             }
 
             await new ProgrammeDeleteCommand(_context).SendCommandAsync(id.Value);
-            
-            //Programme = await _context.Programmes.FindAsync(id);
-
-            // if (Programme != null)
-            // {
-            //     _context.Programmes.Remove(Programme);
-            //     await _context.SaveChangesAsync();
-            // }
 
             return RedirectToPage("./Index");
         }
