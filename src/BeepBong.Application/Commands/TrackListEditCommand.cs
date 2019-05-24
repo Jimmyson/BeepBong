@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,14 +39,14 @@ namespace BeepBong.Application.Commands
                 Composer = viewModel.Composer
             };
 
-            List<ProgrammeTrackList> programmeLists =
+            List<ProgrammeTrackList> programmeLists = (viewModel.Programmes != null) ?
                 viewModel.Programmes.Select(p => new ProgrammeTrackList()
                 {
                     TrackListId = viewModel.TrackListId,
                     ProgrammeId = p
-                }).ToList();
+                }).ToList() : new List<ProgrammeTrackList>();
 
-            bool isNew = (viewModel.TrackListId == null);
+            bool isNew = (viewModel.TrackListId == Guid.Empty);
 
             // Attach Entites
             _context.Attach(TrackList).State = (isNew) ? EntityState.Added : EntityState.Modified;
@@ -63,7 +64,7 @@ namespace BeepBong.Application.Commands
                     programmeLists.Remove(programmeList);
             }
             // Add new itmes
-            _context.AttachRange(programmeLists);
+            _context.ProgrammeTrackLists.AddRange(programmeLists);
         }
     }
 }

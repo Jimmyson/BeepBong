@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
@@ -39,7 +40,7 @@ namespace BeepBong.Application.Commands
                 BroadcasterId = viewModel.BroadcasterId
             };
 
-            bool isNew = (viewModel.ChannelId == null);
+            bool isNew = (viewModel.ChannelId == Guid.Empty);
 
             // Attach Entites
             _context.Attach(c).State = (isNew) ? EntityState.Added : EntityState.Modified;

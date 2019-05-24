@@ -40,7 +40,7 @@ namespace BeepBong.Application.Commands
                 Label = viewModel.Label
             };
 
-            bool isNew = (viewModel.LibraryId == null);
+            bool isNew = (viewModel.LibraryId == Guid.Empty);
 
             _context.Attach(l).State = (isNew) ? EntityState.Added : EntityState.Modified;
         }

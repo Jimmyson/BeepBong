@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -41,7 +42,7 @@ namespace BeepBong.Application.Commands
                 TrackListId = viewModel.TrackListId
             };
 
-            bool isNew = (viewModel.TrackId == null);
+            bool isNew = (viewModel.TrackId == Guid.Empty);
 
             // Attach Entites
             _context.Attach(track).State = (isNew) ? EntityState.Added : EntityState.Modified;

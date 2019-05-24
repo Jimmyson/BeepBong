@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
@@ -37,7 +38,7 @@ namespace BeepBong.Application.Commands
                 Country = viewModel.Country
             };
 
-            bool isNew = (viewModel.BroadcasterId == null);
+            bool isNew = (viewModel.BroadcasterId == Guid.Empty);
 
             // Attach Entites
             _context.Attach(b).State = (isNew) ? EntityState.Added : EntityState.Modified;
