@@ -7,18 +7,19 @@ using System.Linq;
 
 namespace BeepBong.Application.Queries
 {
-    public class ProgrammeIndexQuery
+    public class ProgrammeChannelIndexQuery
     {
         private readonly BeepBongContext _context;
 
-        public ProgrammeIndexQuery(BeepBongContext context) => _context = context;
+        public ProgrammeChannelIndexQuery(BeepBongContext context) => _context = context;
 
-        public IQueryable<ProgrammeIndexViewModel> GetQuery()
+        public IQueryable<ProgrammeIndexViewModel> GetQuery(Guid channelId)
         {
             return _context.Programmes
                 .Include(p => p.ProgrammeTrackLists)
                 .ThenInclude(ptl => ptl.TrackList)
                 .ThenInclude(tl => tl.Tracks)
+                .Where(p => p.ChannelId == channelId)
                 .Select(p => new ProgrammeIndexViewModel() {
                     ProgrammeId = p.ProgrammeId,
                     Name = p.Name,
@@ -28,8 +29,8 @@ namespace BeepBong.Application.Queries
                     ContainsLibrary = p.ProgrammeTrackLists.Any(ptl => ptl.TrackList.Library == true),
                     TrackCount = p.ProgrammeTrackLists.Select(ptl => ptl.TrackList.Tracks.Count).Sum()
                 })
-                .OrderBy(ls => ls.Name)
-                .ThenBy(ls => ls.Year)
+                .OrderBy(ls => ls.Year)
+                .ThenBy(ls => ls.Name)
                 .AsQueryable();
         }
     }

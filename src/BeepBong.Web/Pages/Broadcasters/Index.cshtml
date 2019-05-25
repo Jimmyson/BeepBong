@@ -1,8 +1,14 @@
 @page
 @model BeepBong.Web.Pages.Broadcasters.IndexModel
+@using BeepBong.Web.ViewModel
+@using BeepBong.Application.ViewModels
 
 @{
     ViewData["Title"] = "Index";
+	var pageRouting = new PageTabsViewModel<BroadcasterIndexViewModel>()
+		{
+			Pagination = Model.Broadcaster
+		};
 }
 
 <h1>Index</h1>
@@ -11,7 +17,7 @@
     <a asp-page="Create">Create New</a>
 </p>
 
-@{ await Html.RenderPartialAsync("_PageTabs", Model.Broadcaster); }
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }
 
 <div class="card-deck" >
 @foreach (var item in Model.Broadcaster) {
@@ -22,7 +28,7 @@
                 <div class="list-group list-group-horizontal-sm">
                 @foreach (var channel in item.ChannelList)
                 {
-                    <a class="list-group-item d-flex justify-content-between align-items-center" asp-page="../Programmes/Index" asp-route-channelId="@channel.ChannelId">
+                    <a class="list-group-item d-flex justify-content-between align-items-center" asp-page="../Programmes/ChannelIndex" asp-route-Id="@channel.ChannelId">
                         @channel.Name
                         <span class="badge badge-primary badge-pill">2</span>
                     </a>
@@ -47,4 +53,4 @@
 }
 </div>
 
-@{ await Html.RenderPartialAsync("_PageTabs", Model.Broadcaster); }
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }

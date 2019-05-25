@@ -64,7 +64,7 @@ namespace BeepBong.Web.Pages.TrackLists
                 }
             }
 
-            return RedirectToPage("./Details", new {id = TrackList.TrackListId});
+            return RedirectToPage("./Index");
         }
 
         private bool TrackListExists(Guid id)

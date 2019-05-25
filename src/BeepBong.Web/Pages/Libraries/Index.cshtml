@@ -1,8 +1,14 @@
 @page
 @model BeepBong.Web.Pages.Libraries.IndexModel
+@using BeepBong.Web.ViewModel
+@using BeepBong.Domain.Models
 
 @{
     ViewData["Title"] = "Index";
+	var pageRouting = new PageTabsViewModel<Library>()
+		{
+			Pagination = Model.Library
+		};
 }
 
 <h1>Index</h1>
@@ -11,7 +17,7 @@
     <a asp-page="Create">Create New</a>
 </p>
 
-@{ await Html.RenderPartialAsync("_PageTabs", Model.Library); }
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }
 
 <table class="table">
     <thead>
@@ -56,4 +62,4 @@
     </tbody>
 </table>
 
-@{ await Html.RenderPartialAsync("_PageTabs", Model.Library); }
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }

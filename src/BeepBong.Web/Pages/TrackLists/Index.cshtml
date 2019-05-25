@@ -1,8 +1,14 @@
 @page
 @model BeepBong.Web.Pages.TrackLists.IndexModel
+@using BeepBong.Web.ViewModel
+@using BeepBong.Application.ViewModels
 
 @{
     ViewData["Title"] = "Index";
+	var pageRouting = new PageTabsViewModel<TrackListIndexViewModel>()
+		{
+			Pagination = Model.TrackList,
+		};
 }
 
 <h1>Index</h1>
@@ -11,7 +17,7 @@
     <a asp-page="Create">Create New</a>
 </p>
 
-@{ await Html.RenderPartialAsync("_PageTabs", Model.TrackList); }
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }
 
 <table class="table">
     <thead>
@@ -24,6 +30,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TrackList[0].Library)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrackList[0].ProgrammeCount)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TrackList[0].TrackCount)
@@ -44,6 +53,9 @@
                 @Html.DisplayFor(modelItem => item.Library)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.ProgrammeCount)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.TrackCount)
             </td>
             <td>
@@ -56,4 +68,4 @@
     </tbody>
 </table>
 
-@{ await Html.RenderPartialAsync("_PageTabs", Model.TrackList); }
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }

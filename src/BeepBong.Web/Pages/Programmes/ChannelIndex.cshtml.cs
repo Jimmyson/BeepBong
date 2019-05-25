@@ -7,17 +7,17 @@ using System;
 
 namespace BeepBong.Web.Pages.Programmes
 {
-    public class IndexModel : PageModel
+    public class ChannelIndexModel : PageModel
     {
         private readonly BeepBongContext _context;
 
-        public IndexModel(BeepBongContext context) => _context = context;
+        public ChannelIndexModel(BeepBongContext context) => _context = context;
 
         public PaginatedList<ProgrammeIndexViewModel> Programme { get;set; }
 
-        public async Task OnGetAsync(int? pageNumber, int pageSize = 20)
+        public async Task OnGetAsync(Guid id, int? pageNumber, int pageSize = 20)
         {
-            var query = new ProgrammeIndexQuery(_context).GetQuery();
+            var query = new ProgrammeChannelIndexQuery(_context).GetQuery(id);
 
             Programme = await PaginatedList<ProgrammeIndexViewModel>.CreateAsync(query, pageNumber ?? 1, pageSize);
         }

@@ -8,6 +8,7 @@ namespace BeepBong.Application.ViewModels
         public string Name { get; set; }
         public string Composer { get; set; }
         public bool Library { get; set; }
+        public int ProgrammeCount { get; set; }
         public int TrackCount { get; set; }
     }
 }

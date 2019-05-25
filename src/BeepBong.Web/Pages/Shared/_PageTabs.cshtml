@@ -1,40 +1,40 @@
-﻿@using BeepBong.DataAccess
+﻿@using BeepBong.Web.ViewModel;
 
-@if (Model.TotalPages > 1)
+@if (Model.Pagination.TotalPages > 1)
 {
-    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    var prevDisabled = !Model.Pagination.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Pagination.HasNextPage ? "disabled" : "";
     var tabCount = 3;
     var page = 0;
     
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             <li class="page-item @(prevDisabled)">
-                <a asp-route-pageNumber="@(Model.PageIndex - 1)" class="page-link">Previous</a>
+                <a asp-route-pageNumber="@(Model.Pagination.PageIndex - 1)" asp-route-id="@Model.Id" class="page-link">Previous</a>
             </li>
             @for(int i = tabCount; i > 0; i--) {
-                @if (Model.PageIndex - i > 0)
+                @if (Model.Pagination.PageIndex - i > 0)
                 {
-                    page = (Model.PageIndex - i);
+                    page = (Model.Pagination.PageIndex - i);
                     <li class="page-item">
-                        <a asp-route-pageNumber="@(page)" class="page-link">@(page)</a>
+                        <a asp-route-pageNumber="@(page)" asp-route-id="@Model.Id" class="page-link">@(page)</a>
                     </li>
                 }
             }
             <li class="page-item active">
-                <a class="page-link">@(Model.PageIndex)</a>
+                <a class="page-link">@(Model.Pagination.PageIndex)</a>
             </li>
             @for(int i = 1; i <= tabCount; i++) {
-                @if (Model.PageIndex + i <= Model.TotalPages)
+                @if (Model.Pagination.PageIndex + i <= Model.Pagination.TotalPages)
                 {
-                    page = (Model.PageIndex + i);
+                    page = (Model.Pagination.PageIndex + i);
                     <li class="page-item">
-                        <a asp-route-pageNumber="@(page)" class="page-link">@(page)</a>
+                        <a asp-route-pageNumber="@(page)" asp-route-id="@Model.Id" class="page-link">@(page)</a>
                     </li>
                 }
             }
             <li class="page-item @(nextDisabled)">
-                <a asp-route-pageNumber="@(Model.PageIndex + 1)" class="page-link">Next</a>
+                <a asp-route-pageNumber="@(Model.Pagination.PageIndex + 1)" asp-route-id="@Model.Id" class="page-link">Next</a>
             </li>
         </ul>
     </nav>

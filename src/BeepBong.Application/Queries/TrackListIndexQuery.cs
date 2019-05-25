@@ -22,6 +22,7 @@ namespace BeepBong.Application.Queries
                     Name = p.Name,
                     Composer = p.Composer,
                     Library = p.Library,
+                    ProgrammeCount = p.ProgrammeTrackLists.Count,
                     TrackCount = p.Tracks.Count
                 })
                 .OrderBy(ls => ls.Name)

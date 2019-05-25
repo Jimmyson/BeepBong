@@ -1,13 +1,19 @@
 ﻿@page
 @model MyApp.Namespace.OrphanedTrackListModel
+@using BeepBong.Web.ViewModel
+@using BeepBong.Application.ViewModels.Report
 
 @{
     ViewData["Title"] = "Orphaned Track Lists Report";
+	var pageRouting = new PageTabsViewModel<OrphanedTrackListViewModel>()
+		{
+			Pagination = Model.TrackLists,
+		};
 }
 
 <h1>Orphaned Track Lists Report</h1>
 
-@{ await Html.RenderPartialAsync("_PageTabs", Model.TrackLists); }
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }
 
 <table class="table">
     <thead>
@@ -52,4 +58,4 @@
     </tbody>
 </table>
 
-@{ await Html.RenderPartialAsync("_PageTabs", Model.TrackLists); }
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }

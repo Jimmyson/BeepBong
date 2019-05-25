@@ -1,5 +1,5 @@
 @page
-@model BeepBong.Web.Pages.Programmes.IndexModel
+@model BeepBong.Web.Pages.Programmes.ChannelIndexModel
 @using BeepBong.Web.ViewModel
 @using BeepBong.Application.ViewModels
 
@@ -7,7 +7,8 @@
     ViewData["Title"] = "Index";
 	var pageRouting = new PageTabsViewModel<ProgrammeIndexViewModel>()
 		{
-			Pagination = Model.Programme
+			Pagination = Model.Programme,
+			Id = ModelState.Values.First().AttemptedValue
 		};
 }
 
@@ -57,6 +58,10 @@
         </div>
     </div>
 }
+</div>
+
+<div>
+    <a asp-page="../Broadcasters/Index">Back to Broadcaster List</a>
 </div>
 
 @{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }

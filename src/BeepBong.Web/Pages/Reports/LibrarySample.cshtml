@@ -1,13 +1,19 @@
 @page
 @model BeepBong.Web.Pages.Reports.LibrarySampleModel
+@using BeepBong.Web.ViewModel
+@using BeepBong.Application.ViewModels.Report
 
 @{
     ViewData["Title"] = "Library with Samples Report";
+	var pageRouting = new PageTabsViewModel<LibrarySampleViewModel>()
+		{
+			Pagination = Model.LibrarySample,
+		};
 }
 
 <h1>Library with Samples Report</h1>
 
-@{ await Html.RenderPartialAsync("_PageTabs", Model.LibrarySample); }
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }
 
 <table class="table">
     <thead>
@@ -40,4 +46,4 @@
     </tbody>
 </table>
 
-@{ await Html.RenderPartialAsync("_PageTabs", Model.LibrarySample); }
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }
