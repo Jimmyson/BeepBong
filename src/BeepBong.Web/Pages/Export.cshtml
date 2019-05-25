@@ -1,0 +1,16 @@
+@page
+@model BeepBong.Web.Pages.ExportModel
+
+@{
+    ViewData["Title"] = "Data Export";
+}
+
+<h1>Data Export</h1>
+
+<form method="post">
+	<input type="submit" asp-page-handler="Download"/>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

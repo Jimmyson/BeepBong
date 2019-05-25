@@ -59,7 +59,7 @@ namespace BeepBong.Application
                                     p = CreateProgrammeEntity(programme.Attributes());
                                     if (programme.Attribute("ref") != null)
                                     {
-                                        Guid id = new Guid();
+                                        Guid id = Guid.NewGuid();
                                         programmeIds.Add(id, programme.Attribute("ref").Value);
                                         p.ProgrammeId = id;
                                     }
@@ -90,7 +90,7 @@ namespace BeepBong.Application
                     Programme p = CreateProgrammeEntity(programme.Attributes());
                     if (programme.Attribute("ref") != null)
                     {
-                        Guid id = new Guid();
+                        Guid id = Guid.NewGuid();
                         programmeIds.Add(id, programme.Attribute("ref").Value);
                         p.ProgrammeId = id;
                     }
@@ -114,7 +114,7 @@ namespace BeepBong.Application
                     tl = CreateTrackListEntity(trackList.Attributes());
                     if (trackList.Attribute("ref") != null)
                     {
-                        Guid id = new Guid();
+                        Guid id = Guid.NewGuid();
                         trackListIds.Add(id, trackList.Attribute("ref").Value);
                         tl.TrackListId = id;
                     }
@@ -225,7 +225,7 @@ namespace BeepBong.Application
 
                 // Create the XML object
                 xdoc = new XDocument(
-                            new XElement("BeepBongCollection"),
+                            new XElement("BeepBongCollection",
                                 new XElement("Broadcasting",
                                     context.Broadcasters.Select(
                                         b => new XElement("Broadcaster",
@@ -246,14 +246,16 @@ namespace BeepBong.Application
                                                             )) : null
                                         )
                                     ),
-                                    context.Programmes
-                                        .Where(p => p.ChannelId == null)
-                                        .Select(p => new XElement("Programme",
-                                            new XAttribute("ref", programmeIds[p.ProgrammeId]),
-                                            (p.Name != null) ? new XAttribute("name", p.Name) : null, 
-                                            (p.AirDate != null) ? new XAttribute("year", p.AirDate) : null, 
-                                            (p.LogoLocation != null) ? new XAttribute("logo", p.LogoLocation) : null
-                                        ))
+                                    new XElement("Programmes",
+										context.Programmes
+											.Where(p => p.ChannelId == null)
+											.Select(p => new XElement("Programme",
+												new XAttribute("ref", programmeIds[p.ProgrammeId]),
+												(p.Name != null) ? new XAttribute("name", p.Name) : null, 
+												(p.AirDate != null) ? new XAttribute("year", p.AirDate) : null, 
+												(p.LogoLocation != null) ? new XAttribute("logo", p.LogoLocation) : null
+											))
+									)
                                 ),
                                 new XElement("AudioCollection",
                                     context.TrackLists.Select(
@@ -303,6 +305,7 @@ namespace BeepBong.Application
                                                 new XAttribute("trackListRef", trackListIds[ptl.TrackListId])
                                             ))
                                 )
+							)
                 );
             }
 
@@ -343,7 +346,7 @@ namespace BeepBong.Application
                 if (attribute.Name == "name")
                     p.Name = attribute.Value;
                 if (attribute.Name == "year")
-                    p.AirDate = new DateTime(int.Parse(attribute.Value), 1, 1);
+                    p.AirDate = DateTime.Parse(attribute.Value);
                 //if (attribute.Name == "logo")
                 //    p.Logo = attribute.Value;
             }
