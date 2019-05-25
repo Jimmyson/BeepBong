@@ -1,5 +1,4 @@
 using System;
-// using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -7,8 +6,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
-// using BeepBong.Domain.Models;
-// using BeepBong.Web.ViewModels;
 using BeepBong.Application.Queries;
 using BeepBong.Application.ViewModels;
 using BeepBong.Application.Commands;
@@ -34,14 +31,6 @@ namespace BeepBong.Web.Pages.Samples
             var query = new SampleEditQuery(_context).GetQuery(id.Value);
             Sample = await query.FirstOrDefaultAsync();
 
-            // Sample = await _context.Samples
-            //     .Include(s => s.Track).FirstOrDefaultAsync(m => m.SampleId == id);
-
-            // SampleEdit = new SampleEditViewModel() {
-            //     SampleId = Sample.SampleId,
-            //     Notes = Sample.Notes
-            // };
-
             if (Sample == null)
             {
                 return NotFound();
@@ -64,17 +53,10 @@ namespace BeepBong.Web.Pages.Samples
             {
                 return Page();
             }
-            
-            // Sample = _context.Samples
-            //     .Include(s => s.Track).FirstOrDefault(m => m.SampleId == SampleEdit.SampleId);
-            // Sample.Notes = SampleEdit.Notes;
-
-            // _context.Attach(Sample).State = EntityState.Modified;
 
             try
             {
                 await new SampleEditCommand(_context).SendCommandAsync(Sample);
-                // await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {

@@ -9,8 +9,9 @@ using BeepBong.Application.ViewModels;
 using BeepBong.Application.Queries;
 using BeepBong.Application.Commands;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Globalization;
 
-namespace BeepBong.Web.Pages.Programmes
+namespace BeepBong.Web.Pages.Broadcasters
 {
     public class EditModel : PageModel
     {
@@ -19,7 +20,7 @@ namespace BeepBong.Web.Pages.Programmes
         public EditModel(BeepBongContext context) => _context = context;
 
         [BindProperty]
-        public ProgrammeEditViewModel Programme { get; set; }
+        public BroadcasterEditViewModel Broadcaster { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -28,13 +29,16 @@ namespace BeepBong.Web.Pages.Programmes
                 return NotFound();
             }
 
-            var query = new ProgrammeEditQuery(_context).GetQuery(id.Value);
-            Programme = await query.FirstOrDefaultAsync();
+            var query = new BroadcasterEditQuery(_context).GetQuery(id.Value);
+            Broadcaster = await query.FirstOrDefaultAsync();
+            
+            var data = CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(ct => new { Code = ct.Name, Country = new RegionInfo(ct.LCID).Name});
 
-            ViewData["TrackListIds"] = new SelectList(_context.TrackLists.Select(tl => new {tl.TrackListId, tl.Name}),"TrackListId", "Name");
-            ViewData["ChannelIds"] = new SelectList(_context.Channels.Select(c => new {c.ChannelId, c.Name}),"ChannelId", "Name");
+            //ViewData["CountryList"] = //new SelectList(CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(c => new {, c.}),"ChannelId", "Name");
+                //new SelectList(CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(ct => new { Code = ct.Name, Country = new RegionInfo(ct.LCID).Name}));
 
-            if (Programme == null)
+
+            if (Broadcaster == null)
             {
                 return NotFound();
             }
@@ -50,11 +54,11 @@ namespace BeepBong.Web.Pages.Programmes
 
             try
             {
-                await new ProgrammeEditCommand(_context).SendCommandAsync(Programme);
+                await new BroadcasterEditCommand(_context).SendCommandAsync(Broadcaster);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProgrammeExists(Programme.ProgrammeId))
+                if (!BroadcasterExists(Broadcaster.BroadcasterId))
                 {
                     return NotFound();
                 }
@@ -64,12 +68,12 @@ namespace BeepBong.Web.Pages.Programmes
                 }
             }
 
-            return RedirectToPage("./Details", new {id = Programme.ProgrammeId});
+            return RedirectToPage("./Details", new {id = Broadcaster.BroadcasterId});
         }
 
-        private bool ProgrammeExists(Guid id)
+        private bool BroadcasterExists(Guid id)
         {
-            return _context.Programmes.Any(e => e.ProgrammeId == id);
+            return _context.Broadcasters.Any(e => e.BroadcasterId == id);
         }
     }
 }

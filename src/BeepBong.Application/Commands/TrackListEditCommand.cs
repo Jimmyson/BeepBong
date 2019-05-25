@@ -36,7 +36,8 @@ namespace BeepBong.Application.Commands
             {
                 TrackListId = viewModel.TrackListId,
                 Name = viewModel.Name,
-                Composer = viewModel.Composer
+                Composer = viewModel.Composer,
+                Library = viewModel.Library
             };
 
             List<ProgrammeTrackList> programmeLists = (viewModel.Programmes != null) ?

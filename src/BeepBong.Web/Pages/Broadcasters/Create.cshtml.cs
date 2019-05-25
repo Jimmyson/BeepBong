@@ -2,10 +2,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BeepBong.DataAccess;
-using BeepBong.Domain.Models;
+using BeepBong.Application.ViewModels;
 using BeepBong.Application.Commands;
 
-namespace BeepBong.Web.Pages.Libraries
+namespace BeepBong.Web.Pages.Broadcasters
 {
     public class CreateModel : PageModel
     {
@@ -16,7 +16,7 @@ namespace BeepBong.Web.Pages.Libraries
         public IActionResult OnGet() => Page();
 
         [BindProperty]
-        public Library Library { get; set; }
+        public BroadcasterEditViewModel Broadcaster { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -25,7 +25,7 @@ namespace BeepBong.Web.Pages.Libraries
                 return Page();
             }
 
-            await new LibraryEditCommand(_context).SendCommandAsync(Library);
+            await new BroadcasterEditCommand(_context).SendCommandAsync(Broadcaster);
 
             return RedirectToPage("./Index");
         }

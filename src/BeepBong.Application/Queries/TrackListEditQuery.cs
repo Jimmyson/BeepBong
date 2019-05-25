@@ -18,6 +18,7 @@ namespace BeepBong.Application.Queries
                 .Select(tl => new TrackListEditViewModel() {
                     TrackListId = tl.TrackListId,
                     Name = tl.Name,
+                    Library = tl.Library,
                     Composer = tl.Composer,
                     Programmes = tl.ProgrammeTrackLists.Select(ptl => ptl.ProgrammeId).ToList()
                 });

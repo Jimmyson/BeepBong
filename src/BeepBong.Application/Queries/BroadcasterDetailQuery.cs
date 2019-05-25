@@ -5,17 +5,17 @@ using BeepBong.DataAccess;
 
 namespace BeepBong.Application.Queries
 {
-    public class BroadcasterEditQuery
+    public class BroadcasterDetailQuery
     {
         private readonly BeepBongContext _context;
 
-        public BroadcasterEditQuery(BeepBongContext context) => _context = context;
+        public BroadcasterDetailQuery(BeepBongContext context) => _context = context;
 
-        public IQueryable<BroadcasterEditViewModel> GetQuery(Guid id)
+        public IQueryable<BroadcasterDetailViewModel> GetQuery(Guid id)
         {
             return _context.Broadcasters
                 .Where(b => b.BroadcasterId == id)
-                .Select(b => new BroadcasterEditViewModel() {
+                .Select(b => new BroadcasterDetailViewModel() {
                     BroadcasterId = b.BroadcasterId,
                     Name = b.Name,
                     Country = b.Country

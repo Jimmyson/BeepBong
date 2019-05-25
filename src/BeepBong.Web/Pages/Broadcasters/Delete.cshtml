@@ -1,0 +1,38 @@
+@page
+@model BeepBong.Web.Pages.Broadcasters.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Broadcaster</h4>
+    <hr />
+    <div class="row">
+        <div class="col-sm-4">
+            <dl class="row">
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.Broadcaster.Name)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.Broadcaster.Name)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.Broadcaster.Country)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.Broadcaster.Country)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Broadcaster.BroadcasterId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

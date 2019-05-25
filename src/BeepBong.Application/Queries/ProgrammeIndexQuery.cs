@@ -19,7 +19,7 @@ namespace BeepBong.Application.Queries
                 .Include(p => p.ProgrammeTrackLists)
                 .ThenInclude(ptl => ptl.TrackList)
                 .ThenInclude(tl => tl.Tracks)
-                .WhereIf(channelId != null, p => p.ProgrammeId == channelId)
+                .WhereIf(channelId != null, p => p.ChannelId == channelId)
                 .Select(p => new ProgrammeIndexViewModel() {
                     ProgrammeId = p.ProgrammeId,
                     Name = p.Name,

@@ -5,7 +5,7 @@ using BeepBong.Application.Queries;
 using BeepBong.Application.ViewModels;
 using System;
 
-namespace BeepBong.Web.Pages.Programmes
+namespace BeepBong.Web.Pages.TrackLists
 {
     public class IndexModel : PageModel
     {
@@ -13,13 +13,13 @@ namespace BeepBong.Web.Pages.Programmes
 
         public IndexModel(BeepBongContext context) => _context = context;
 
-        public PaginatedList<ProgrammeIndexViewModel> Programme { get;set; }
+        public PaginatedList<TrackListIndexViewModel> TrackList { get;set; }
 
         public async Task OnGetAsync(int? pageNumber, int pageSize = 20, Guid? channelId = null)
         {
-            var query = new ProgrammeIndexQuery(_context).GetQuery(channelId);
+            var query = new TrackListIndexQuery(_context).GetQuery(channelId);
 
-            Programme = await PaginatedList<ProgrammeIndexViewModel>.CreateAsync(query, pageNumber ?? 1, pageSize);
+            TrackList = await PaginatedList<TrackListIndexViewModel>.CreateAsync(query, pageNumber ?? 1, pageSize);
         }
     }
 }

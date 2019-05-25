@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
-using BeepBong.Domain.Models;
+using BeepBong.Application.ViewModels;
 using BeepBong.Application.Queries;
 using BeepBong.Application.Commands;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Globalization;
 
-namespace BeepBong.Web.Pages.Libraries
+namespace BeepBong.Web.Pages.TrackLists
 {
     public class EditModel : PageModel
     {
@@ -18,7 +20,7 @@ namespace BeepBong.Web.Pages.Libraries
         public EditModel(BeepBongContext context) => _context = context;
 
         [BindProperty]
-        public Library Library { get; set; }
+        public TrackListEditViewModel TrackList { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -27,10 +29,12 @@ namespace BeepBong.Web.Pages.Libraries
                 return NotFound();
             }
 
-            var query = new LibraryEditQuery(_context).GetQuery(id.Value);
-            Library = await query.FirstOrDefaultAsync();
+            var query = new TrackListEditQuery(_context).GetQuery(id.Value);
+            TrackList = await query.FirstOrDefaultAsync();
 
-            if (Library == null)
+            ViewData["ProgrammeIds"] = new SelectList(_context.Programmes.Select(p => new{p.ProgrammeId, Name = p.Name + ((p.AirDate.HasValue) ? " (" + p.AirDate.Value.Year + ")" : "")}),"ProgrammeId", "Name").OrderBy(l => l.Text);
+
+            if (TrackList == null)
             {
                 return NotFound();
             }
@@ -46,11 +50,11 @@ namespace BeepBong.Web.Pages.Libraries
 
             try
             {
-                await new LibraryEditCommand(_context).SendCommandAsync(Library);
+                await new TrackListEditCommand(_context).SendCommandAsync(TrackList);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LibraryExists(Library.LibraryId))
+                if (!TrackListExists(TrackList.TrackListId))
                 {
                     return NotFound();
                 }
@@ -60,12 +64,12 @@ namespace BeepBong.Web.Pages.Libraries
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Details", new {id = TrackList.TrackListId});
         }
 
-        private bool LibraryExists(Guid id)
+        private bool TrackListExists(Guid id)
         {
-            return _context.Libraries.Any(e => e.LibraryId == id);
+            return _context.TrackLists.Any(e => e.TrackListId == id);
         }
     }
 }

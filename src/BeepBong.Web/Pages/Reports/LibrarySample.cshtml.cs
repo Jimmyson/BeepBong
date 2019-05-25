@@ -1,14 +1,6 @@
-// using System;
-// using System.Collections.Generic;
-// using System.Diagnostics;
-// using System.Linq;
 using System.Threading.Tasks;
-// using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-// using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
-// using BeepBong.Domain.Models;
-// using BeepBong.Web.ViewModels;
 using BeepBong.Application.ViewModels.Report;
 using BeepBong.Application.Queries.Report;
 

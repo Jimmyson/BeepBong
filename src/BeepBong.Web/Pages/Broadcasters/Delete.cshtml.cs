@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
-using BeepBong.Domain.Models;
 using BeepBong.Application.Queries;
+using BeepBong.Application.ViewModels;
 using BeepBong.Application.Commands;
 
-namespace BeepBong.Web.Pages.Libraries
+namespace BeepBong.Web.Pages.Broadcasters
 {
     public class DeleteModel : PageModel
     {
@@ -17,7 +17,7 @@ namespace BeepBong.Web.Pages.Libraries
         public DeleteModel(BeepBongContext context) => _context = context;
 
         [BindProperty]
-        public Library Library { get; set; }
+        public BroadcasterDetailViewModel Broadcaster { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -26,10 +26,10 @@ namespace BeepBong.Web.Pages.Libraries
                 return NotFound();
             }
 
-            var query = new LibraryDetailQuery(_context).GetQuery(id.Value);
-            Library = await query.FirstOrDefaultAsync();
+            var query = new BroadcasterDetailQuery(_context).GetQuery(id.Value);
+            Broadcaster = await query.FirstOrDefaultAsync();
 
-            if (Library == null)
+            if (Broadcaster == null)
             {
                 return NotFound();
             }
@@ -43,7 +43,7 @@ namespace BeepBong.Web.Pages.Libraries
                 return NotFound();
             }
 
-            await new LibraryDeleteCommand(_context).SendCommandAsync(id.Value);
+            await new BroadcasterDeleteCommand(_context).SendCommandAsync(id.Value);
 
             return RedirectToPage("./Index");
         }
