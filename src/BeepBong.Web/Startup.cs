@@ -12,9 +12,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
 using FluentValidation.AspNetCore;
-using FluentValidation;
-using BeepBong.Domain.Models;
-using BeepBong.Domain.Validation;
+// using FluentValidation;
+// using BeepBong.Domain.Models;
+// using BeepBong.Domain.Validation;
+using BeepBong.Application.ViewModels;
+using BeepBong.Application.Commands.Validation;
 
 namespace BeepBong.Web
 {
@@ -41,15 +43,8 @@ namespace BeepBong.Web
                 options.UseSqlite(Configuration.GetConnectionString("BeepBongContext")));
 
             services.AddMvc()
-                .AddFluentValidation()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            // Add Validators
-            services.AddTransient<IValidator<Programme>, ProgrammeValidator>();
-            services.AddTransient<IValidator<Track>, TrackValidator>();
-            services.AddTransient<IValidator<Sample>, SampleValidator>();
-            services.AddTransient<IValidator<Library>, LibraryValidator>();
-            services.AddTransient<IValidator<Channel>, ChannelValidator>();
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SampleEditViewModel>()); // Add Validators
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

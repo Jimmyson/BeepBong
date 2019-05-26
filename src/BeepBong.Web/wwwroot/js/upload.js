@@ -34,9 +34,9 @@ if ('WebAssembly' in window) {
 document.body.appendChild(MediaInfoJs);
 
 function addImages() {
-	document.getElementById('Sample_WaveformImage').value = wavesurfer.exportImage();
-	var canvasCount = document.getElementsByTagName('canvas').length;
-	document.getElementById('Sample_SpecImage').value = document.getElementsByTagName('canvas')[canvasCount-1].toDataURL();
+	//document.getElementById('Sample_WaveformImage').value = wavesurfer.exportImage();
+	//var canvasCount = document.getElementsByTagName('canvas').length;
+	//document.getElementById('Sample_SpecImage').value = document.getElementsByTagName('canvas')[canvasCount-1].toDataURL();
 	document.getElementsByTagName('form')[0].submit();
 }
 
@@ -56,7 +56,7 @@ MediaInfoJs.onload = function () {
 
         document.getElementById('Sample_SampleRate').value = MI.Get(MediaInfoModule.Stream.Audio, 0, 'SamplingRate');
         document.getElementById('Sample_SampleCount').value = MI.Get(MediaInfoModule.Stream.Audio, 0, 'SamplingCount');
-        document.getElementById('Sample_Channels').value = MI.Get(MediaInfoModule.Stream.Audio, 0, 'Channel(s)');
+        document.getElementById('Sample_AudioChannelCount').value = MI.Get(MediaInfoModule.Stream.Audio, 0, 'Channel(s)');
         document.getElementById('Sample_BitRate').value = MI.Get(MediaInfoModule.Stream.Audio, 0, 'BitRate');
         document.getElementById('Sample_BitRateMode').value = MI.Get(MediaInfoModule.Stream.Audio, 0, 'BitRate_Mode');
         document.getElementById('Sample_BitDepth').value = MI.Get(MediaInfoModule.Stream.Audio, 0, 'BitDepth');

@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using BeepBong.DataAccess;
-using BeepBong.Domain.Models;
-using BeepBong.Web.ViewModels;
-using BeepBong.Application;
-using System.IO;
+// using System.IO;
+using BeepBong.Application.ViewModels;
+using BeepBong.Application.Commands;
 
 namespace BeepBong.Web.Pages.Programmes
 {
@@ -17,15 +12,9 @@ namespace BeepBong.Web.Pages.Programmes
     {
         private readonly BeepBongContext _context;
 
-        public CreateModel(BeepBongContext context)
-        {
-            _context = context;
-        }
+        public CreateModel(BeepBongContext context) => _context = context;
 
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
+        public IActionResult OnGet() => Page();
 
         [BindProperty]
         public ProgrammeEditViewModel Programme { get; set; }
@@ -37,29 +26,19 @@ namespace BeepBong.Web.Pages.Programmes
                 return Page();
             }
 
-            Programme p = new Programme() {
-                ProgrammeId = Programme.ProgrammeId,
-                Name = Programme.Name,
-                Year = Programme.Year,
-                Channel = Programme.Channel,
-                AudioComposer = Programme.AudioComposer,
-                IsLibraryMusic = Programme.IsLibraryMusic
-            };
+            // if (Programme.LogoUpload != null && Programme.LogoUpload.Length > 0) {
+            //     using (var ms = new MemoryStream()) {
+            //         await Programme.LogoUpload.CopyToAsync(ms);
 
-            if (Programme.LogoUpload != null && Programme.LogoUpload.Length > 0) {
-                using (var ms = new MemoryStream()) {
-                    await Programme.LogoUpload.CopyToAsync(ms);
+            //         using (ImageProcessing imageProc = new ImageProcessing(ms.ToArray()))
+            //         {
+            //             imageProc.DownscaleImage();
+            //             p.LogoLocation = imageProc.ToDataURL();
+            //         }
+            //     }
+            // }
 
-                    using (ImageProcessing imageProc = new ImageProcessing(ms.ToArray()))
-                    {
-                        imageProc.DownscaleImage();
-                        p.Logo = imageProc.ToDataURL();
-                    }
-                }
-            }
-
-            _context.Programmes.Add(p);
-            await _context.SaveChangesAsync();
+            await new ProgrammeEditCommand(_context).SendCommandAsync(Programme);
 
             return RedirectToPage("./Index");
         }

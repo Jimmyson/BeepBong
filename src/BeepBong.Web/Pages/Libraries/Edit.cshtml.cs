@@ -1,13 +1,13 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
+using BeepBong.Application.Queries;
+using BeepBong.Application.Commands;
 
 namespace BeepBong.Web.Pages.Libraries
 {
@@ -15,10 +15,7 @@ namespace BeepBong.Web.Pages.Libraries
     {
         private readonly BeepBongContext _context;
 
-        public EditModel(BeepBongContext context)
-        {
-            _context = context;
-        }
+        public EditModel(BeepBongContext context) => _context = context;
 
         [BindProperty]
         public Library Library { get; set; }
@@ -30,7 +27,8 @@ namespace BeepBong.Web.Pages.Libraries
                 return NotFound();
             }
 
-            Library = await _context.Libraries.FirstOrDefaultAsync(m => m.LibraryId == id);
+            var query = new LibraryEditQuery(_context).GetQuery(id.Value);
+            Library = await query.FirstOrDefaultAsync();
 
             if (Library == null)
             {
@@ -46,11 +44,9 @@ namespace BeepBong.Web.Pages.Libraries
                 return Page();
             }
 
-            _context.Attach(Library).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                await new LibraryEditCommand(_context).SendCommandAsync(Library);
             }
             catch (DbUpdateConcurrencyException)
             {

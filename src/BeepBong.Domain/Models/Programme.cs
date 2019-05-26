@@ -7,20 +7,18 @@ namespace BeepBong.Domain.Models
     {
         public Programme()
         {
-            Tracks = new List<Track>();
-            LibraryProgrammes = new List<LibraryProgramme>();
+            ProgrammeTrackLists = new List<ProgrammeTrackList>();
         }
 
         public Guid ProgrammeId { get; set; }
         public string Name { get; set; }
-        public string Year { get; set; }
-        public string Channel { get; set; }
-        public string AudioComposer { get; set; }
+        public DateTime? AirDate { get; set; }
         
-        public string Logo { get; set; }
-        public bool IsLibraryMusic { get; set; }
+        public string LogoLocation { get; set; }
 
-        public ICollection<Track> Tracks { get; set; }
-        public ICollection<LibraryProgramme> LibraryProgrammes { get; set; }
+        public ICollection<ProgrammeTrackList> ProgrammeTrackLists { get; set; }
+
+        public Guid? ChannelId { get; set; }
+        public Channel Channel { get; set; }
     }
 }

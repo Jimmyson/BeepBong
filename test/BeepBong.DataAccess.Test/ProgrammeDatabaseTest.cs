@@ -1,8 +1,8 @@
-using System;
+// using System;
 using System.Linq;
 using Xunit;
 using BeepBong.Domain.Models;
-using BeepBong.DataAccess;
+// using BeepBong.DataAccess;
 using Microsoft.EntityFrameworkCore;
 
 namespace BeepBong.DataAccess.Test
@@ -36,7 +36,7 @@ namespace BeepBong.DataAccess.Test
         [Fact]
         public void ProgrammeTrackSampleCascadeDelete()
         {
-            Programme p = new Programme() {
+            TrackList tl = new TrackList() {
                 Name = "Test"
             };
             Track t = new Track() {
@@ -47,33 +47,33 @@ namespace BeepBong.DataAccess.Test
             };
 
             t.Samples.Add(s);
-            p.Tracks.Add(t);
+            tl.Tracks.Add(t);
 
             var options = InMemoryContext.ContextGenerator("ProgrammeTrackSampleCascadeDelete");
             
             using (var context = new BeepBongContext(options))
             {
-                context.Programmes.Add(p);
+                context.TrackLists.Add(tl);
                 context.SaveChanges();
             }
 
             using (var context = new BeepBongContext(options))
             {
-                Assert.Single(context.Programmes);
+                Assert.Single(context.TrackLists);
                 Assert.Single(context.Tracks);
                 Assert.Single(context.Samples);
 
-                var programme = context.Programmes
-                                .Include(pr => pr.Tracks)
-                                .ThenInclude(tr => tr.Samples).First();
+                var trackList = context.TrackLists
+                                .Include(trl => trl.Tracks)
+                                .ThenInclude(trl => trl.Samples).First();
 
-                context.Programmes.Remove(programme);
+                context.TrackLists.Remove(trackList);
                 context.SaveChanges();
             }
 
             using (var context = new BeepBongContext(options))
             {
-                Assert.Empty(context.Programmes);
+                Assert.Empty(context.TrackLists);
                 Assert.Empty(context.Tracks);
                 Assert.Empty(context.Samples);
             }
@@ -88,48 +88,48 @@ namespace BeepBong.DataAccess.Test
             Programme p = new Programme() {
                 Name = "Test"
             };
-            Library l = new Library() {
-                AlbumName = "Record"
+            TrackList tl = new TrackList() {
+                Name = "Record"
             };
 
-            LibraryProgramme lp = new LibraryProgramme();
+            ProgrammeTrackList ptl = new ProgrammeTrackList();
 
-            p.Tracks.Add(t);
-            p.LibraryProgrammes.Add(lp);
-            l.LibraryProgrammes.Add(lp);
+            tl.Tracks.Add(t);
+            p.ProgrammeTrackLists.Add(ptl);
+            tl.ProgrammeTrackLists.Add(ptl);
 
             var options = InMemoryContext.ContextGenerator("ProgrammeRelationshipsRemove");
             
             using (var context = new BeepBongContext(options))
             {
                 context.Programmes.Add(p);
-                context.Libraries.Add(l);
+                context.TrackLists.Add(tl);
                 context.SaveChanges();
             }
 
             using (var context = new BeepBongContext(options))
             {
-                Assert.Single(context.Programmes);
+                Assert.Single(context.TrackLists);
                 Assert.Single(context.Tracks);
-                Assert.Single(context.LibraryProgrammes);
+                Assert.Single(context.ProgrammeTrackLists);
                 
-                Assert.Single(context.Libraries);
+                Assert.Single(context.Programmes);
 
-                var programme = context.Programmes
-                                .Include(pr => pr.Tracks)
-                                .Include(pr => pr.LibraryProgrammes).First();
+                var trackList = context.TrackLists
+                                .Include(pr => pr.ProgrammeTrackLists)
+                                .Include(pr => pr.Tracks).First();
 
-                context.Programmes.Remove(programme);
+                context.TrackLists.Remove(trackList);
                 context.SaveChanges();
             }
 
             using (var context = new BeepBongContext(options))
             {
-                Assert.Empty(context.Programmes);
+                Assert.Empty(context.TrackLists);
                 Assert.Empty(context.Tracks);
-                Assert.Empty(context.LibraryProgrammes);
+                Assert.Empty(context.ProgrammeTrackLists);
 
-                Assert.Single(context.Libraries);
+                Assert.Single(context.Programmes);
             }
         }
     }

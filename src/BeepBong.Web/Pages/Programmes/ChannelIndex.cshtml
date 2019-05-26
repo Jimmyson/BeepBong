@@ -1,0 +1,67 @@
+@page
+@model BeepBong.Web.Pages.Programmes.ChannelIndexModel
+@using BeepBong.Web.ViewModel
+@using BeepBong.Application.ViewModels
+
+@{
+    ViewData["Title"] = "Index";
+	var pageRouting = new PageTabsViewModel<ProgrammeIndexViewModel>()
+		{
+			Pagination = Model.Programme,
+			Id = ModelState.Values.First().AttemptedValue
+		};
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }
+
+<div class="card-deck" >
+@foreach (var item in Model.Programme) {
+    <div class="card mb-3" style="min-width: 14rem;">
+        @if (!String.IsNullOrEmpty(item.Logo)) { <img class="card-img-top" src="@item.Logo"/> }
+        <div class="card-body">
+            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+            <div class="card-text">
+                <p>
+                    <span><svg class="i"><use xlink:href="#i-calendar" /></svg> 
+                    @(!String.IsNullOrEmpty(item.Year) ? item.Year : "Unknown")</span><br />
+                    @if(!String.IsNullOrEmpty(item.Channel)) {
+                        <span><svg class="i"><use xlink:href="#i-desktop" /></svg> @Html.DisplayFor(modelItem => item.Channel)</span><br />
+                    }
+                </p>
+            </div>
+                <span>@Html.DisplayFor(modelItem => item.TrackCount) @(item.TrackCount == 1 ? "Track" : "Tracks")</span>
+        </div>
+        <div class="card-footer">
+            <div>
+                @if (item.ContainsLibrary) {
+                    <svg class="i"><use xlink:href="#i-music" /></svg>
+                    <span class="text-left">Contains Library Music</span>
+                }
+            </div>
+            <div>
+                <a asp-page="./Edit" asp-route-id="@item.ProgrammeId">
+                    <svg class="i"><use xlink:href="#i-edit" /></svg>
+                </a> |
+                <a asp-page="./Details" asp-route-id="@item.ProgrammeId">
+                    <svg class="i"><use xlink:href="#i-info" /></svg>
+                </a> |
+                <a asp-page="./Delete" asp-route-id="@item.ProgrammeId">
+                    <svg class="i text-danger"><use xlink:href="#i-trash" /></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+}
+</div>
+
+<div>
+    <a asp-page="../Broadcasters/Index">Back to Broadcaster List</a>
+</div>
+
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }

@@ -1,12 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
-using BeepBong.Domain.Models;
+using BeepBong.Application.Queries;
+using BeepBong.Application.ViewModels;
 
 namespace BeepBong.Web.Pages.Programmes
 {
@@ -14,13 +13,10 @@ namespace BeepBong.Web.Pages.Programmes
     {
         private readonly BeepBongContext _context;
 
-        public DeleteModel(BeepBongContext context)
-        {
-            _context = context;
-        }
+        public DeleteModel(BeepBongContext context) => _context = context;
 
         [BindProperty]
-        public Programme Programme { get; set; }
+        public ProgrammeDetailViewModel Programme { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -29,7 +25,8 @@ namespace BeepBong.Web.Pages.Programmes
                 return NotFound();
             }
 
-            Programme = await _context.Programmes.FirstOrDefaultAsync(m => m.ProgrammeId == id);
+            var query = new ProgrammeDetailQuery(_context).GetQuery(id.Value);
+            Programme = await query.FirstOrDefaultAsync();
 
             if (Programme == null)
             {
@@ -45,13 +42,7 @@ namespace BeepBong.Web.Pages.Programmes
                 return NotFound();
             }
 
-            Programme = await _context.Programmes.FindAsync(id);
-
-            if (Programme != null)
-            {
-                _context.Programmes.Remove(Programme);
-                await _context.SaveChangesAsync();
-            }
+            await new ProgrammeDeleteCommand(_context).SendCommandAsync(id.Value);
 
             return RedirectToPage("./Index");
         }

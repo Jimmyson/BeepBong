@@ -1,18 +1,23 @@
 @page
 @model BeepBong.Web.Pages.Reports.LibrarySampleModel
+@using BeepBong.Web.ViewModel
+@using BeepBong.Application.ViewModels.Report
 
 @{
     ViewData["Title"] = "Library with Samples Report";
+	var pageRouting = new PageTabsViewModel<LibrarySampleViewModel>()
+		{
+			Pagination = Model.LibrarySample,
+		};
 }
 
 <h1>Library with Samples Report</h1>
 
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LibrarySample.First().ProgrammeName)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.LibrarySample.First().TrackName)
             </th>
@@ -25,9 +30,6 @@
     <tbody>
 @foreach (var item in Model.LibrarySample) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProgrammeName)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TrackName)
             </td>
@@ -43,3 +45,5 @@
 }
     </tbody>
 </table>
+
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }

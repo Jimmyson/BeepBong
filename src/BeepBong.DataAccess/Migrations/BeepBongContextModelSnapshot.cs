@@ -14,7 +14,49 @@ namespace BeepBong.DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854");
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
+
+            modelBuilder.Entity("BeepBong.Domain.Models.Broadcaster", b =>
+                {
+                    b.Property<Guid>("BroadcasterId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Country");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<DateTime?>("LastModified");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("BroadcasterId");
+
+                    b.ToTable("Broadcasters");
+                });
+
+            modelBuilder.Entity("BeepBong.Domain.Models.Channel", b =>
+                {
+                    b.Property<Guid>("ChannelId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("BroadcasterId");
+
+                    b.Property<DateTime?>("Closed");
+
+                    b.Property<DateTime?>("Commencement");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<DateTime?>("LastModified");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("ChannelId");
+
+                    b.HasIndex("BroadcasterId");
+
+                    b.ToTable("Channels");
+                });
 
             modelBuilder.Entity("BeepBong.Domain.Models.Library", b =>
                 {
@@ -38,54 +80,53 @@ namespace BeepBong.DataAccess.Migrations
                     b.ToTable("Libraries");
                 });
 
-            modelBuilder.Entity("BeepBong.Domain.Models.LibraryProgramme", b =>
-                {
-                    b.Property<Guid>("ProgrammeId");
-
-                    b.Property<Guid>("LibraryId");
-
-                    b.Property<DateTime>("Created");
-
-                    b.Property<DateTime?>("LastModified");
-
-                    b.HasKey("ProgrammeId", "LibraryId");
-
-                    b.HasIndex("LibraryId");
-
-                    b.ToTable("LibraryProgrammes");
-                });
-
             modelBuilder.Entity("BeepBong.Domain.Models.Programme", b =>
                 {
                     b.Property<Guid>("ProgrammeId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("AudioComposer");
+                    b.Property<DateTime?>("AirDate");
 
-                    b.Property<string>("Channel");
+                    b.Property<Guid?>("ChannelId");
 
                     b.Property<DateTime>("Created");
 
-                    b.Property<bool>("IsLibraryMusic");
-
                     b.Property<DateTime?>("LastModified");
 
-                    b.Property<string>("Logo");
+                    b.Property<string>("LogoLocation");
 
                     b.Property<string>("Name");
 
-                    b.Property<string>("Year")
-                        .HasMaxLength(4);
-
                     b.HasKey("ProgrammeId");
 
+                    b.HasIndex("ChannelId");
+
                     b.ToTable("Programmes");
+                });
+
+            modelBuilder.Entity("BeepBong.Domain.Models.ProgrammeTrackList", b =>
+                {
+                    b.Property<Guid>("ProgrammeId");
+
+                    b.Property<Guid>("TrackListId");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<DateTime?>("LastModified");
+
+                    b.HasKey("ProgrammeId", "TrackListId");
+
+                    b.HasIndex("TrackListId");
+
+                    b.ToTable("ProgrammeTrackLists");
                 });
 
             modelBuilder.Entity("BeepBong.Domain.Models.Sample", b =>
                 {
                     b.Property<Guid>("SampleId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AudioChannelCount");
 
                     b.Property<int>("BitDepth");
 
@@ -94,8 +135,6 @@ namespace BeepBong.DataAccess.Migrations
                     b.Property<string>("BitRateMode")
                         .IsRequired();
 
-                    b.Property<int>("Channels");
-
                     b.Property<string>("Codec");
 
                     b.Property<string>("Compression")
@@ -103,11 +142,13 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<DateTime>("Created");
 
-                    b.Property<string>("Duration");
+                    b.Property<string>("Fingerprint");
 
                     b.Property<DateTime?>("LastModified");
 
                     b.Property<string>("Notes");
+
+                    b.Property<string>("OtherAttributes");
 
                     b.Property<int>("SampleCount");
 
@@ -120,6 +161,9 @@ namespace BeepBong.DataAccess.Migrations
                     b.Property<string>("Waveform");
 
                     b.HasKey("SampleId");
+
+                    b.HasIndex("Fingerprint")
+                        .IsUnique();
 
                     b.HasIndex("TrackId");
 
@@ -139,27 +183,62 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<Guid>("ProgrammeId");
+                    b.Property<Guid>("TrackListId");
 
-                    b.Property<string>("Subtitle");
+                    b.Property<string>("Variant");
 
                     b.HasKey("TrackId");
 
-                    b.HasIndex("ProgrammeId");
+                    b.HasIndex("TrackListId");
 
                     b.ToTable("Tracks");
                 });
 
-            modelBuilder.Entity("BeepBong.Domain.Models.LibraryProgramme", b =>
+            modelBuilder.Entity("BeepBong.Domain.Models.TrackList", b =>
                 {
-                    b.HasOne("BeepBong.Domain.Models.Library", "Library")
-                        .WithMany("LibraryProgrammes")
-                        .HasForeignKey("LibraryId")
+                    b.Property<Guid>("TrackListId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Composer");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<DateTime?>("LastModified");
+
+                    b.Property<bool>("Library");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("TrackListId");
+
+                    b.ToTable("TrackLists");
+                });
+
+            modelBuilder.Entity("BeepBong.Domain.Models.Channel", b =>
+                {
+                    b.HasOne("BeepBong.Domain.Models.Broadcaster", "Broadcaster")
+                        .WithMany("Channels")
+                        .HasForeignKey("BroadcasterId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("BeepBong.Domain.Models.Programme", b =>
+                {
+                    b.HasOne("BeepBong.Domain.Models.Channel", "Channel")
+                        .WithMany("Programmes")
+                        .HasForeignKey("ChannelId");
+                });
+
+            modelBuilder.Entity("BeepBong.Domain.Models.ProgrammeTrackList", b =>
+                {
+                    b.HasOne("BeepBong.Domain.Models.Programme", "Programme")
+                        .WithMany("ProgrammeTrackLists")
+                        .HasForeignKey("ProgrammeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("BeepBong.Domain.Models.Programme", "Programme")
-                        .WithMany("LibraryProgrammes")
-                        .HasForeignKey("ProgrammeId")
+                    b.HasOne("BeepBong.Domain.Models.TrackList", "TrackList")
+                        .WithMany("ProgrammeTrackLists")
+                        .HasForeignKey("TrackListId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -173,9 +252,9 @@ namespace BeepBong.DataAccess.Migrations
 
             modelBuilder.Entity("BeepBong.Domain.Models.Track", b =>
                 {
-                    b.HasOne("BeepBong.Domain.Models.Programme", "Programme")
+                    b.HasOne("BeepBong.Domain.Models.TrackList", "TrackList")
                         .WithMany("Tracks")
-                        .HasForeignKey("ProgrammeId")
+                        .HasForeignKey("TrackListId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

@@ -12,37 +12,30 @@
 <form method="post" enctype="multipart/form-data">
     <div class="row">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="col-md-4">
             <div class="form-group">
                 <label asp-for="Programme.Name" class="control-label"></label>
                 <input asp-for="Programme.Name" class="form-control" />
                 <span asp-validation-for="Programme.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Programme.Year" class="control-label"></label>
-                <input asp-for="Programme.Year" class="form-control" />
-                <span asp-validation-for="Programme.Year" class="text-danger"></span>
+                <label asp-for="Programme.AirDate" class="control-label"></label>
+                <input asp-for="Programme.AirDate" class="form-control" />
+                <span asp-validation-for="Programme.AirDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Programme.Channel" class="control-label"></label>
-                <input asp-for="Programme.Channel" class="form-control" />
-                <span asp-validation-for="Programme.Channel" class="text-danger"></span>
+                <label asp-for="Programme.ChannelId" class="control-label"></label>
+                <select asp-for="Programme.ChannelId" class="form-control" asp-items="ViewBag.ChannelIds" ></select>
+                <span asp-validation-for="Programme.ChannelId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Programme.AudioComposer" class="control-label"></label>
-                <input asp-for="Programme.AudioComposer" class="form-control" />
-                <span asp-validation-for="Programme.AudioComposer" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Programme.IsLibraryMusic" /> @Html.DisplayNameFor(model => model.Programme.IsLibraryMusic)
-                </label>
+                <label asp-for="Programme.TrackListIds" class="control-label"></label>
+                <select asp-for="Programme.TrackListIds" class="form-control" asp-items="ViewBag.TrackListIds" ></select>
+                <span asp-validation-for="Programme.TrackListIds" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
-        </div>
-        <div class="col-sm-8">
+        <!-- <div class="col-sm-8">
             <div class="form-group">
                 <label asp-for="Programme.LogoUpload"></label>
                 <div class="input-group mb-3">
@@ -64,7 +57,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </form>
 

@@ -5,9 +5,10 @@ using Xunit;
 using BeepBong.Domain.Models;
 using BeepBong.DataAccess;
 using BeepBong.Web.Pages.Samples;
-using BeepBong.Web.ViewModels;
+// using BeepBong.Web.ViewModels;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using BeepBong.Application.ViewModels;
 
 namespace BeepBong.Web.Test
 {
@@ -20,14 +21,14 @@ namespace BeepBong.Web.Test
             var connection = new SqliteConnection("DataSource=:memory:");
             connection.Open();
 
-            Programme p = new Programme() {
+            TrackList tl = new TrackList() {
                 Name = "test"
             };
             Track t = new Track() {
                 Name = "Track test",
-                Subtitle = "Special"
+                Variant = "Special"
             };
-            p.Tracks.Add(t);
+            tl.Tracks.Add(t);
 
             try {
                 var options = new DbContextOptionsBuilder<BeepBongContext>()
@@ -39,16 +40,17 @@ namespace BeepBong.Web.Test
                     // Create the schema in the database
                     context.Database.EnsureCreated();
 
-                    context.Programmes.Add(p);
+                    context.TrackLists.Add(tl);
                     context.SaveChanges();
                 }
 
-                SampleViewModel s = new SampleViewModel() {
-                    SampleCount = 1721,
-                    SampleRate = 271,
-                    Channels = 2,
+                SampleCreateViewModel s = new SampleCreateViewModel() {
+                    SampleCount = "1721",
+                    SampleRate = "271",
+                    AudioChannelCount = "2",
                     Codec = "MP3",
-                    BitRate = 128,
+                    BitRate = "128",
+                    BitDepth = "24",
                     BitRateMode = BitRateModeEnum.CBR,
                     Compression = CompressionEnum.Lossy
                 };

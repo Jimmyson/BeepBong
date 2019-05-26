@@ -1,8 +1,14 @@
 @page
 @model BeepBong.Web.Pages.Programmes.IndexModel
+@using BeepBong.Web.ViewModel
+@using BeepBong.Application.ViewModels
 
 @{
     ViewData["Title"] = "Index";
+	var pageRouting = new PageTabsViewModel<ProgrammeIndexViewModel>()
+		{
+			Pagination = Model.Programme
+		};
 }
 
 <h1>Index</h1>
@@ -11,7 +17,7 @@
     <a asp-page="Create">Create New</a>
 </p>
 
-@{ Html.RenderPartial("_PageTabs", Model.Programme); }
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }
 
 <div class="card-deck" >
 @foreach (var item in Model.Programme) {
@@ -26,18 +32,15 @@
                     @if(!String.IsNullOrEmpty(item.Channel)) {
                         <span><svg class="i"><use xlink:href="#i-desktop" /></svg> @Html.DisplayFor(modelItem => item.Channel)</span><br />
                     }
-                    @if(!String.IsNullOrEmpty(item.AudioComposer)) {
-                        <span><svg class="i"><use xlink:href="#i-user" /></svg> @Html.DisplayFor(modelItem => item.AudioComposer)</span>
-                    }
                 </p>
             </div>
                 <span>@Html.DisplayFor(modelItem => item.TrackCount) @(item.TrackCount == 1 ? "Track" : "Tracks")</span>
         </div>
         <div class="card-footer">
             <div>
-                @if (item.IsLibraryMusic) {
+                @if (item.ContainsLibrary) {
                     <svg class="i"><use xlink:href="#i-music" /></svg>
-                    <span class="text-left">Library Music</span>
+                    <span class="text-left">Contains Library Music</span>
                 }
             </div>
             <div>
@@ -56,4 +59,4 @@
 }
 </div>
 
-@{ Html.RenderPartial("_PageTabs", Model.Programme); }
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }

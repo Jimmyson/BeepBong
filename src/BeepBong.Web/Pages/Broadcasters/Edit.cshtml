@@ -1,0 +1,45 @@
+@page
+@model BeepBong.Web.Pages.Broadcasters.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Broadcaster</h4>
+<hr />
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-md-4">
+            <input type="hidden" asp-for="Broadcaster.BroadcasterId" />
+            <div class="form-group">
+                <label asp-for="Broadcaster.Name" class="control-label"></label>
+                <input asp-for="Broadcaster.Name" class="form-control" />
+                <span asp-validation-for="Broadcaster.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Broadcaster.Country" class="control-label"></label>
+                <input asp-for="Broadcaster.Country" class="form-control" />
+                <span asp-validation-for="Broadcaster.Country" class="text-danger"></span>
+            </div>
+            <!-- <div class="form-group">
+                <label asp-for="Broadcaster.ChannelIds" class="control-label"></label>
+                <select asp-for="Broadcaster.ChannelIds" class="form-control" asp-items="ViewBag.ChannelIds" ></select>
+                <span asp-validation-for="Broadcaster.ChannelIds" class="text-danger"></span>
+            </div> -->
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
