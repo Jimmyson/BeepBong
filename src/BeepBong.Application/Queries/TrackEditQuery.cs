@@ -1,20 +1,21 @@
 using System;
 using System.Linq;
+using BeepBong.Application.Interfaces;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
 
 namespace BeepBong.Application.Queries
 {
-    public class TrackEditQuery
+    public class TrackEditQuery : IQuery<TrackEditViewModel>
     {
         private readonly BeepBongContext _context;
 
         public TrackEditQuery(BeepBongContext context) => _context = context;
 
-        public IQueryable<TrackEditViewModel> GetQuery(Guid trackId)
+        public IQueryable<TrackEditViewModel> GetQuery(Guid? trackId)
         {
             return _context.Tracks
-                .Where(t => t.TrackId == trackId)
+                .Where(t => t.TrackId == trackId.Value)
                 .Select(t => new TrackEditViewModel() {
                     TrackId = t.TrackId,
                     Name = t.Name,

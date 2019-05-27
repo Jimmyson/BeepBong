@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace BeepBong.Application.Commands
+namespace BeepBong.Application.Interfaces
 {
     public interface ICommand<T>
     {

@@ -1,3 +1,4 @@
+using BeepBong.Application.Interfaces;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -7,19 +8,19 @@ using System.Linq;
 
 namespace BeepBong.Application.Queries
 {
-    public class ProgrammeDetailQuery
+    public class ProgrammeDetailQuery : IQuery<ProgrammeDetailViewModel>
     {
         private readonly BeepBongContext _context;
 
         public ProgrammeDetailQuery(BeepBongContext context) => _context = context;
 
-        public IQueryable<ProgrammeDetailViewModel> GetQuery(Guid programmeId)
+        public IQueryable<ProgrammeDetailViewModel> GetQuery(Guid? programmeId)
         {
             return _context.Programmes
                 .Include(p => p.ProgrammeTrackLists)
                 .ThenInclude(ptl => ptl.TrackList)
                 .ThenInclude(tl => tl.Tracks)
-                .Where(p => p.ProgrammeId == programmeId)
+                .Where(p => p.ProgrammeId == programmeId.Value)
                 .Select(p => new ProgrammeDetailViewModel() {
                     ProgrammeId = p.ProgrammeId,
                     Name = p.Name,

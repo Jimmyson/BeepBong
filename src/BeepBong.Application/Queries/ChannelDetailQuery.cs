@@ -1,20 +1,21 @@
 using System;
 using System.Linq;
+using BeepBong.Application.Interfaces;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
 
 namespace BeepBong.Application.Queries
 {
-    public class ChannelDetailQuery
+    public class ChannelDetailQuery : IQuery<ChannelDetailViewModel>
     {
         private readonly BeepBongContext _context;
 
         public ChannelDetailQuery(BeepBongContext context) => _context = context;
         
-        public IQueryable<ChannelDetailViewModel> GetQuery(Guid channelId)
+        public IQueryable<ChannelDetailViewModel> GetQuery(Guid? channelId)
         {
             return _context.Channels
-                .Where(c => c.ChannelId == channelId)
+                .Where(c => c.ChannelId == channelId.Value)
                 .Select(c => new ChannelDetailViewModel() {
                     ChannelId = c.ChannelId,
                     Name = c.Name,

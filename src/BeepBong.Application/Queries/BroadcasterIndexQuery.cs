@@ -1,16 +1,18 @@
+using System;
 using System.Linq;
+using BeepBong.Application.Interfaces;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
 
 namespace BeepBong.Application.Queries
 {
-    public class BroadcasterIndexQuery
+    public class BroadcasterIndexQuery : IQuery<BroadcasterIndexViewModel>
     {
         private readonly BeepBongContext _context;
 
         public BroadcasterIndexQuery(BeepBongContext context) => _context = context;
 
-        public IQueryable<BroadcasterIndexViewModel> GetQuery()
+        public IQueryable<BroadcasterIndexViewModel> GetQuery(Guid? id)
         {
             return _context.Broadcasters
                 .Select(b => new BroadcasterIndexViewModel() {
