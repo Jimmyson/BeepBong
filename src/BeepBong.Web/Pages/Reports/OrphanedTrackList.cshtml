@@ -1,5 +1,5 @@
 ﻿@page
-@model MyApp.Namespace.OrphanedTrackListModel
+@model BeepBong.Web.Pages.Reports.OrphanedTrackListModel
 @using BeepBong.Web.ViewModel
 @using BeepBong.Application.ViewModels.Report
 
@@ -19,16 +19,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TrackLists.First().Name)
+                @Html.DisplayNameFor(model => model.TrackLists[0].Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TrackLists.First().Composer)
+                @Html.DisplayNameFor(model => model.TrackLists[0].Composer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TrackLists.First().Library)
+                @Html.DisplayNameFor(model => model.TrackLists[0].Library)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TrackLists.First().TrackCount)
+                @Html.DisplayNameFor(model => model.TrackLists[0].TrackCount)
             </th>
             <th></th>
         </tr>

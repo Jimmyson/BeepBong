@@ -16,7 +16,7 @@ namespace BeepBong.Web.Pages.Broadcasters
 
         public async Task OnGetAsync(int? pageNumber, int pageSize = 20)
         {
-            var query = new BroadcasterIndexQuery(_context).GetQuery();
+            var query = new BroadcasterIndexQuery(_context).GetQuery(null);
 
             Broadcaster = await PaginatedList<BroadcasterIndexViewModel>.CreateAsync(query, pageNumber ?? 1, pageSize);
         }

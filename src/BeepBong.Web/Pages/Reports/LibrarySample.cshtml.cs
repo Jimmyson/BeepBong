@@ -16,7 +16,7 @@ namespace BeepBong.Web.Pages.Reports
 
         public async Task OnGetAsync(int? pageNumber, int pageSize = 20)
         {
-            var query = new LibrarySampleQuery(_context).GetQuery();
+            var query = new LibrarySampleQuery(_context).GetQuery(null);
 
             LibrarySample = await PaginatedList<LibrarySampleViewModel>.CreateAsync(query, pageNumber ?? 1, pageSize);
         }

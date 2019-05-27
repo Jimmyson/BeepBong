@@ -10,19 +10,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BeepBong.Web.Pages.Reports
 {
-    public class OrphanedTrackListModel : PageModel
+    public class ProgrammeNoTrackListModel : PageModel
     {
         private readonly BeepBongContext _context;
 
-        public OrphanedTrackListModel(BeepBongContext context) => _context = context;
+        public ProgrammeNoTrackListModel(BeepBongContext context) => _context = context;
 
-        public PaginatedList<OrphanedTrackListViewModel> TrackLists { get; set; }
+        public PaginatedList<ProgrammeWOTrackListViewModel> ProgrammeLists { get; set; }
 
         public async Task OnGetAsync(int? pageNumber, int pageSize = 20)
         {
-            var query = new OrphanedTrackListQuery(_context).GetQuery(null);
+            var query = new ProgrammeWOTrackListQuery(_context).GetQuery(null);
 
-            TrackLists = await PaginatedList<OrphanedTrackListViewModel>.CreateAsync(query, pageNumber ?? 1, pageSize);
+            ProgrammeLists = await PaginatedList<ProgrammeWOTrackListViewModel>.CreateAsync(query, pageNumber ?? 1, pageSize);
         }
     }
 }

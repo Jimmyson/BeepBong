@@ -1,0 +1,55 @@
+﻿@page
+@model BeepBong.Web.Pages.Reports.ProgrammeNoTrackListModel
+@using BeepBong.Web.ViewModel
+@using BeepBong.Application.ViewModels.Report
+
+@{
+    ViewData["Title"] = "Programmes without Track Lists Report";
+	var pageRouting = new PageTabsViewModel<ProgrammeWOTrackListViewModel>()
+		{
+			Pagination = Model.ProgrammeLists,
+		};
+}
+
+<h1>Programmes without Track Lists Report</h1>
+
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProgrammeLists[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProgrammeLists[0].Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProgrammeLists[0].ChannelName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ProgrammeLists) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChannelName)
+            </td>
+            <td>
+                <a asp-page="../Programmes/Edit" asp-route-id="@item.ProgrammeId">Edit</a> |
+                <!-- <a asp-page="../Programmes/Details" asp-route-id="@item.ProgrammeId">Details</a>| -->
+                <a asp-page="../Programmes/Delete" asp-route-id="@item.ProgrammeId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }
