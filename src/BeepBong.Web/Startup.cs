@@ -16,7 +16,7 @@ using FluentValidation.AspNetCore;
 // using BeepBong.Domain.Models;
 // using BeepBong.Domain.Validation;
 using BeepBong.Application.ViewModels;
-using BeepBong.Application.Commands.Validation;
+using BeepBong.Application.Validation;
 
 namespace BeepBong.Web
 {

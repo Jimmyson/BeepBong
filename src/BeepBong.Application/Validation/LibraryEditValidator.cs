@@ -1,7 +1,7 @@
 using BeepBong.Domain.Models;
 using FluentValidation;
 
-namespace BeepBong.Application.Commands.Validation
+namespace BeepBong.Application.Validation
 {
     public class LibraryEditValidator : AbstractValidator<Library>
     {

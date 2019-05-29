@@ -2,7 +2,7 @@ using BeepBong.Domain.Models;
 using FluentValidation;
 using FluentValidation.Validators;
 
-namespace BeepBong.Application.Commands.Validation
+namespace BeepBong.Application.Validation
 {
     public class NoURLValidator : PropertyValidator
     {

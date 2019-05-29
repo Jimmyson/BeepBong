@@ -1,7 +1,7 @@
 using FluentValidation;
 using FluentValidation.Validators;
 
-namespace BeepBong.Application.Commands.Validation
+namespace BeepBong.Application.Validation
 {
     public static class CustomValidatorExtensions
     {

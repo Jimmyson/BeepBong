@@ -1,7 +1,7 @@
 using BeepBong.Application.ViewModels;
 using FluentValidation;
 
-namespace BeepBong.Application.Commands.Validation
+namespace BeepBong.Application.Validation
 {
     public class SampleCreateValidator : AbstractValidator<SampleCreateViewModel>
     {
