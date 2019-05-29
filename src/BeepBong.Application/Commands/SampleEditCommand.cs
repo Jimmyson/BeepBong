@@ -17,22 +17,6 @@ namespace BeepBong.Application.Commands
 
         public void SendCommand(SampleEditViewModel viewModel)
         {
-            Action(viewModel);
-
-            // Save Database
-            _context.SaveChanges();
-        }
-
-        public async Task SendCommandAsync(SampleEditViewModel viewModel)
-        {
-            Action(viewModel);
-
-            // Save Database
-            await _context.SaveChangesAsync();
-        }
-
-        private void Action(SampleEditViewModel viewModel)
-        {
             Sample s = _context.Samples.Find(viewModel.SampleId);
 
             s.Notes = viewModel.Notes;

@@ -18,22 +18,6 @@ namespace BeepBong.Application.Commands
 
         public void SendCommand(TrackEditViewModel viewModel)
         {
-            Action(viewModel);
-
-            // Save Database
-            _context.SaveChanges();
-        }
-
-        public async Task SendCommandAsync(TrackEditViewModel viewModel)
-        {
-            Action(viewModel);
-
-            // Save Database
-            await _context.SaveChangesAsync();
-        }
-
-        private void Action(TrackEditViewModel viewModel)
-        {
             Track track = new Track()
             {
                 TrackId = viewModel.TrackId,

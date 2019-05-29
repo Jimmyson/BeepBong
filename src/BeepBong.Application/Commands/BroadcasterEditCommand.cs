@@ -16,22 +16,6 @@ namespace BeepBong.Application.Commands
 
         public void SendCommand(BroadcasterEditViewModel viewModel)
         {
-            Action(viewModel);
-
-            // Save Changes
-            _context.SaveChanges();
-        }
-
-        public async Task SendCommandAsync(BroadcasterEditViewModel viewModel)
-        {
-            Action(viewModel);
-
-            // Save Changes
-            await _context.SaveChangesAsync();
-        }
-
-        private void Action(BroadcasterEditViewModel viewModel)
-        {
             Broadcaster b = new Broadcaster()
             {
                 BroadcasterId = viewModel.BroadcasterId,

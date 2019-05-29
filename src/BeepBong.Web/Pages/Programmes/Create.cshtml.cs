@@ -38,7 +38,9 @@ namespace BeepBong.Web.Pages.Programmes
             //     }
             // }
 
-            await new ProgrammeEditCommand(_context).SendCommandAsync(Programme);
+            new ProgrammeEditCommand(_context).SendCommand(Programme);
+
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

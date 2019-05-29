@@ -17,24 +17,6 @@ namespace BeepBong.Application.Commands
 
         public void SendCommand(Guid id)
         {
-            Action(id);
-
-            // Save Changes
-            _context.SaveChanges();
-        }
-
-        public async Task SendCommandAsync(Guid id)
-        {
-            Action(id);
-
-            // Save Changes
-            await _context.SaveChangesAsync();
-        }
-
-        //@TODO: Add logic to skip if null
-        //@TODO: Make Async
-        private void Action(Guid id)
-        {
             List<Programme> programmeList = _context.Programmes.Where(p => p.ChannelId == id).ToList();
 
             Channel c = _context.Channels.Find(id);

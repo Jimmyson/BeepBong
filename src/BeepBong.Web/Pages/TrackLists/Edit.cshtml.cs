@@ -48,9 +48,11 @@ namespace BeepBong.Web.Pages.TrackLists
                 return Page();
             }
 
+            new TrackListEditCommand(_context).SendCommand(TrackList);
+
             try
             {
-                await new TrackListEditCommand(_context).SendCommandAsync(TrackList);
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {

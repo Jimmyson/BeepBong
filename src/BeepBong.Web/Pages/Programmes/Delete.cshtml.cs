@@ -42,7 +42,9 @@ namespace BeepBong.Web.Pages.Programmes
                 return NotFound();
             }
 
-            await new ProgrammeDeleteCommand(_context).SendCommandAsync(id.Value);
+            new ProgrammeDeleteCommand(_context).SendCommand(id.Value);
+
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

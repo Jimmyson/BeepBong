@@ -52,9 +52,11 @@ namespace BeepBong.Web.Pages.Broadcasters
                 return Page();
             }
 
+            new BroadcasterEditCommand(_context).SendCommand(Broadcaster);
+
             try
             {
-                await new BroadcasterEditCommand(_context).SendCommandAsync(Broadcaster);
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {

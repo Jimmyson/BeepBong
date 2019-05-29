@@ -44,9 +44,11 @@ namespace BeepBong.Web.Pages.Libraries
                 return Page();
             }
 
+            new LibraryEditCommand(_context).SendCommand(Library);
+
             try
             {
-                await new LibraryEditCommand(_context).SendCommandAsync(Library);
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {

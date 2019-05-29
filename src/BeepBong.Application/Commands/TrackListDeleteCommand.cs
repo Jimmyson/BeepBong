@@ -16,24 +16,6 @@ namespace BeepBong.Application.Queries
 
         public void SendCommand(Guid id)
         {
-            Action(id);
-
-            // Save Database
-            _context.SaveChanges();
-        }
-
-        public async Task SendCommandAsync(Guid id)
-        {
-            Action(id);
-
-            // Save Database
-            await _context.SaveChangesAsync();
-        }
-
-        //@TODO: Add logic to skip if null
-        //@TODO: Make Async
-        private void Action(Guid id)
-        {
             List<ProgrammeTrackList> list = _context.ProgrammeTrackLists.Where(ptl => ptl.TrackListId == id).ToList();
 
             TrackList tl = _context.TrackLists.Find(id);

@@ -43,7 +43,9 @@ namespace BeepBong.Web.Pages.Libraries
                 return NotFound();
             }
 
-            await new LibraryDeleteCommand(_context).SendCommandAsync(id.Value);
+            new LibraryDeleteCommand(_context).SendCommand(id.Value);
+
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

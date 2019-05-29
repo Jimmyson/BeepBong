@@ -49,7 +49,9 @@ namespace BeepBong.Web.Pages.Samples
                 return NotFound();
             }
 
-            await new SampleDeleteCommand(_context).SendCommandAsync(id.Value);
+            new SampleDeleteCommand(_context).SendCommand(id.Value);
+
+            await _context.SaveChangesAsync();
 
             // Sample = await _context.Samples.FindAsync(id);
 

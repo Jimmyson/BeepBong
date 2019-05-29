@@ -25,7 +25,9 @@ namespace BeepBong.Web.Pages.Libraries
                 return Page();
             }
 
-            await new LibraryEditCommand(_context).SendCommandAsync(Library);
+            new LibraryEditCommand(_context).SendCommand(Library);
+
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

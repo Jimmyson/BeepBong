@@ -54,9 +54,11 @@ namespace BeepBong.Web.Pages.Samples
                 return Page();
             }
 
+            new SampleEditCommand(_context).SendCommand(Sample);
+
             try
             {
-                await new SampleEditCommand(_context).SendCommandAsync(Sample);
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {

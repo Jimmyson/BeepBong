@@ -48,9 +48,11 @@ namespace BeepBong.Web.Pages.Programmes
                 return Page();
             }
 
+            new ProgrammeEditCommand(_context).SendCommand(Programme);
+
             try
             {
-                await new ProgrammeEditCommand(_context).SendCommandAsync(Programme);
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {

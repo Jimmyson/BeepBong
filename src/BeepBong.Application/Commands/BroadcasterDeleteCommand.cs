@@ -22,24 +22,6 @@ namespace BeepBong.Application.Commands
 
         public void SendCommand(Guid id)
         {
-            Action(id);
-
-            // Save Database
-            _context.SaveChanges();
-        }
-
-        public async Task SendCommandAsync(Guid id)
-        {
-            Action(id);
-
-            // Save Database
-            await _context.SaveChangesAsync();
-        }
-
-        //@TODO: Add logic to skip if null
-        //@TODO: Make Async
-        private void Action(Guid id)
-        {
             List<Guid> channelList = _context.Channels
                 .Where(c => c.BroadcasterId == id)
                 .Select(c => c.ChannelId)

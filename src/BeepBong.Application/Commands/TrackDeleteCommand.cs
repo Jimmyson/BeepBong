@@ -15,24 +15,6 @@ namespace BeepBong.Application.Commands
 
         public void SendCommand(Guid id)
         {
-            Action(id);
-
-            // Save Database
-            _context.SaveChanges();
-        }
-
-        public async Task SendCommandAsync(Guid id)
-        {
-            Action(id);
-
-            // Save Database
-            await _context.SaveChangesAsync();
-        }
-
-        //@TODO: Add logic to skip if null
-        //@TODO: Make Async
-        private void Action(Guid id)
-        {
             Track t = _context.Tracks.Find(id);
 
             _context.Remove(t);

@@ -17,22 +17,6 @@ namespace BeepBong.Application.Commands
 
         public void SendCommand(SampleCreateViewModel viewModel)
         {
-            Action(viewModel);
-
-            // Save Database
-            _context.SaveChanges();
-        }
-
-        public async Task SendCommandAsync(SampleCreateViewModel viewModel)
-        {
-            Action(viewModel);
-
-            // Save Database
-            await _context.SaveChangesAsync();
-        }
-
-        private void Action(SampleCreateViewModel viewModel)
-        {
             Sample s = new Sample()
             {
                 SampleRate = int.Parse(viewModel.SampleRate),

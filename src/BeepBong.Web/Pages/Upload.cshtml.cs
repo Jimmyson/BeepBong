@@ -50,7 +50,9 @@ namespace BeepBong.Web.Pages.Samples
             //     s.Spectrograph = Sample.SpecImage;
             // }
 
-            await new SampleCreateCommand(_context).SendCommandAsync(Sample);
+            new SampleCreateCommand(_context).SendCommand(Sample);
+
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("/Tracks/Details", new {id = Sample.TrackId});
         }

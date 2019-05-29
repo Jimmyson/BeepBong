@@ -25,7 +25,9 @@ namespace BeepBong.Web.Pages.TrackLists
                 return Page();
             }
 
-            await new TrackListEditCommand(_context).SendCommandAsync(TrackList);
+            new TrackListEditCommand(_context).SendCommand(TrackList);
+
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

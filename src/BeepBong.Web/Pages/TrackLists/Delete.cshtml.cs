@@ -43,7 +43,9 @@ namespace BeepBong.Web.Pages.TrackLists
                 return NotFound();
             }
 
-            await new TrackListDeleteCommand(_context).SendCommandAsync(id.Value);
+            new TrackListDeleteCommand(_context).SendCommand(id.Value);
+
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

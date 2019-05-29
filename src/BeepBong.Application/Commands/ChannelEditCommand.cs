@@ -16,22 +16,6 @@ namespace BeepBong.Application.Commands
 
         public void SendCommand(ChannelEditViewModel viewModel)
         {
-            Action(viewModel);
-
-            // Save Changes
-            _context.SaveChanges();
-        }
-
-        public async Task SendCommandAsync(ChannelEditViewModel viewModel)
-        {
-            Action(viewModel);
-
-            // Save Changes
-            await _context.SaveChangesAsync();
-        }
-
-        private void Action(ChannelEditViewModel viewModel)
-        {
             Channel c = new Channel()
             {
                 ChannelId = viewModel.ChannelId,

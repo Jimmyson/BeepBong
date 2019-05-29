@@ -43,7 +43,9 @@ namespace BeepBong.Web.Pages.Broadcasters
                 return NotFound();
             }
 
-            await new BroadcasterDeleteCommand(_context).SendCommandAsync(id.Value);
+            new BroadcasterDeleteCommand(_context).SendCommand(id.Value);
+
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

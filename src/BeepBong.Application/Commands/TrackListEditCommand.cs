@@ -15,23 +15,8 @@ namespace BeepBong.Application.Commands
         private readonly BeepBongContext _context;
 
         public TrackListEditCommand(BeepBongContext context) => _context = context;
-
+        
         public void SendCommand(TrackListEditViewModel viewModel)
-        {
-            Action(viewModel);
-
-            // Save Database
-            _context.SaveChanges();
-        }
-
-        public async Task SendCommandAsync(TrackListEditViewModel viewModel)
-        {
-            Action(viewModel);
-
-            // Save Database
-            await _context.SaveChangesAsync();
-        }
-        private void Action(TrackListEditViewModel viewModel)
         {
             TrackList TrackList = new TrackList()
             {
