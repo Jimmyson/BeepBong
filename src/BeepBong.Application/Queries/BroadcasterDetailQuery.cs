@@ -19,7 +19,8 @@ namespace BeepBong.Application.Queries
                 .Select(b => new BroadcasterDetailViewModel() {
                     BroadcasterId = b.BroadcasterId,
                     Name = b.Name,
-                    Country = b.Country
+                    Country = b.Country,
+                    ImageId = b.ImageId
                 });
         }
     }

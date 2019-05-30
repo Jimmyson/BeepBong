@@ -13,10 +13,11 @@ namespace BeepBong.Domain.Models
         public Guid ProgrammeId { get; set; }
         public string Name { get; set; }
         public DateTime? AirDate { get; set; }
-        
-        public string LogoLocation { get; set; }
 
         public ICollection<ProgrammeTrackList> ProgrammeTrackLists { get; set; }
+
+        public Guid? ImageId { get; set; }
+        public Image Image { get; set; }
 
         public Guid? ChannelId { get; set; }
         public Channel Channel { get; set; }

@@ -38,9 +38,9 @@
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </div>
-        <!-- <div class="col-sm-8">
+        <div class="col-sm-8">
             <div class="form-group">
-                <label asp-for="Programme.LogoUpload"></label>
+                <label asp-for="Programme.ImageUpload"></label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroupFileAddon01">
@@ -48,23 +48,41 @@
                         </span>
                     </div>
                     <div class="custom-file">
-                        <input class="custom-file-input" asp-for="Programme.LogoUpload" accept="image/png, image/jpeg" aria-describedby="inputGroupFileAddon01" onchange="updateLabel()"/>
-                        <label class="custom-file-label" id="Programme_LogoUpload_Label">Choose file...</label>
+                        <input class="custom-file-input" asp-for="Programme.ImageUpload" accept="image/png, image/jpeg" aria-describedby="inputGroupFileAddon01" onchange="updateLabel()"/>
+                        <label class="custom-file-label" id="Programme_ImageUpload_Label">Choose file...</label>
                     </div>
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-danger" type="button" onclick="clearImage()">
-                            <span>
-                                <svg class="i"><use xlink:href="#i-trash" /></svg>
-                            </span>
-                        </button>
-                    </div>
+                </div>
+            </div>
+            <div>
+                <label>Image Control</label>
+                <div class="input-group mb-3 btn-group">
+                    <button id="imageReset" disabled class="btn btn-outline-warning" type="button" onclick="resetImage()">
+                        <span>
+                            <svg class="i"><use xlink:href="#i-reload" /></svg>
+                            Reset Image Form
+                        </span>
+                    </button>
+                    <button id="imageClear" class="btn btn-outline-danger" type="button" onclick="clearImage()">
+                        <span>
+                            <svg class="i"><use xlink:href="#i-trash" /></svg>
+                            Remove Image
+                        </span>
+                    </button>
                 </div>
             </div>
             <div class="form-group">
                 <label>Current Logo</label><br/>
-                <img src="@Model.Programme.LogoLocation" width="auto" height="360px"/>
+                @if (Model.Programme.ImageId == null) {
+                    <i class="text-muted">No logo available</i>
+                }
+                else
+                {
+                    <img id="Programme_Image" src="/Image?id=@Model.Programme.ImageId" width="auto" height="360px"/>
+                }
+                <input type="hidden" asp-for="Programme.ImageId" />
+                <input type="hidden" asp-for="Programme.ImageIdChange" />
             </div>
-        </div> -->
+        </div>
     </div>
 </form>
 
@@ -73,6 +91,6 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/programmeCreate.js"></script>
+    <script src="~/js/programmeImageEdit.js"></script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

@@ -36,6 +36,7 @@ namespace BeepBong.DataAccess
         public DbSet<Track> Tracks { get; set; }
         public DbSet<Sample> Samples { get; set; }
         public DbSet<ProgrammeTrackList> ProgrammeTrackLists { get; set; }
+        public DbSet<Image> Images { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken)) {
             ShadowPropertyUpdate();

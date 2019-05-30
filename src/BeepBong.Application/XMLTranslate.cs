@@ -25,6 +25,8 @@ namespace BeepBong.Application
         {
             EmptyDictionary();
 
+            //@TODO: Implement Image Processing to send DataURI to EF Entitys
+
             // Broadcasters, Channels and Programmes
             XElement broadcasting = xml.Element("BeepBongCollection").Element("Broadcasting");
             
@@ -223,6 +225,8 @@ namespace BeepBong.Application
                     trackListIds.Add(trackListId, "tl"+(++id));
                 }
 
+                //@TODO: Implement Image Processing to send Image Entities to DataURI
+
                 // Create the XML object
                 xdoc = new XDocument(
                             new XElement("BeepBongCollection",
@@ -231,6 +235,7 @@ namespace BeepBong.Application
                                         b => new XElement("Broadcaster",
                                             (b.Name != null) ? new XAttribute("name", b.Name) : null,
                                             (b.Country != null) ? new XAttribute("country", b.Country) : null,
+                                            // (b.Image != null) ? new XAttribute("logo", b.Image.DataURI) : null,
                                             (b.Channels.Any()) ? context.Channels
                                                         .Where(c => c.BroadcasterId == b.BroadcasterId)
                                                         .Select(c => new XElement("Channel",
@@ -240,8 +245,8 @@ namespace BeepBong.Application
                                                                                         .Select(p => new XElement("Programme",
                                                                                             new XAttribute("ref", programmeIds[p.ProgrammeId]),
                                                                                             (p.Name != null) ? new XAttribute("name", p.Name) : null, 
-                                                                                            (p.AirDate != null) ? new XAttribute("year", p.AirDate) : null, 
-                                                                                            (p.LogoLocation != null) ? new XAttribute("logo", p.LogoLocation) : null
+                                                                                            (p.AirDate != null) ? new XAttribute("year", p.AirDate) : null
+                                                                                            // (p.Image != null) ? new XAttribute("logo", p.Image.DataURI) : null
                                                                                         )) : null                                                         
                                                             )) : null
                                         )
@@ -252,8 +257,8 @@ namespace BeepBong.Application
 											.Select(p => new XElement("Programme",
 												new XAttribute("ref", programmeIds[p.ProgrammeId]),
 												(p.Name != null) ? new XAttribute("name", p.Name) : null, 
-												(p.AirDate != null) ? new XAttribute("year", p.AirDate) : null, 
-												(p.LogoLocation != null) ? new XAttribute("logo", p.LogoLocation) : null
+												(p.AirDate != null) ? new XAttribute("year", p.AirDate) : null
+												// (p.Image != null) ? new XAttribute("logo", p.Image.DataURI) : null
 											))
 									)
                                 ),

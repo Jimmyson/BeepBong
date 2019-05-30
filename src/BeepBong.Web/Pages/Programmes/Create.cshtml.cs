@@ -5,6 +5,10 @@ using BeepBong.DataAccess;
 // using System.IO;
 using BeepBong.Application.ViewModels;
 using BeepBong.Application.Commands;
+using BeepBong.Web.ViewModel;
+using BeepBong.Application;
+using System.IO;
+using BeepBong.Domain.Models;
 
 namespace BeepBong.Web.Pages.Programmes
 {
@@ -17,7 +21,7 @@ namespace BeepBong.Web.Pages.Programmes
         public IActionResult OnGet() => Page();
 
         [BindProperty]
-        public ProgrammeEditViewModel Programme { get; set; }
+        public ProgrammeUploadViewModel Programme { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -26,19 +30,34 @@ namespace BeepBong.Web.Pages.Programmes
                 return Page();
             }
 
-            // if (Programme.LogoUpload != null && Programme.LogoUpload.Length > 0) {
-            //     using (var ms = new MemoryStream()) {
-            //         await Programme.LogoUpload.CopyToAsync(ms);
+            ProgrammeEditViewModel p = new ProgrammeEditViewModel()
+            {
+                Name = Programme.Name,
+                AirDate = Programme.AirDate,
+                ChannelId = Programme.ChannelId,
+            };
 
-            //         using (ImageProcessing imageProc = new ImageProcessing(ms.ToArray()))
-            //         {
-            //             imageProc.DownscaleImage();
-            //             p.LogoLocation = imageProc.ToDataURL();
-            //         }
-            //     }
-            // }
+            if (Programme.ImageUpload != null && Programme.ImageUpload.Length > 0) {
+                
+                using (var ms = new MemoryStream()) {
+                    await Programme.ImageUpload.CopyToAsync(ms);
 
-            new ProgrammeEditCommand(_context).SendCommand(Programme);
+                    Image i = new Image();
+
+                    using (ImageProcessing imageProc = new ImageProcessing(ms.ToArray()))
+                    {
+                        imageProc.DownscaleImage();
+                        i.Base64 = imageProc.ToBase64();
+                        i.Height = imageProc.Height;
+                        i.MimeType = imageProc.MimeType;
+                        i.Width = imageProc.Width;
+
+                        p.Image = i;
+                    }
+                }
+            }
+
+            new ProgrammeEditCommand(_context).SendCommand(p);
 
             await _context.SaveChangesAsync();
 

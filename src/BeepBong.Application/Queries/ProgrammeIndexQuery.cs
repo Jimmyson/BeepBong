@@ -27,7 +27,7 @@ namespace BeepBong.Application.Queries
                     Name = p.Name,
                     Year = (p.AirDate.HasValue) ? p.AirDate.Value.Year.ToString() : null,
                     Channel = (p.Channel != null) ? p.Channel.Name : null,
-                    Logo = p.LogoLocation,
+                    ImageId = p.ImageId,
                     ContainsLibrary = p.ProgrammeTrackLists.Any(ptl => ptl.TrackList.Library == true),
                     TrackCount = p.ProgrammeTrackLists.Select(ptl => ptl.TrackList.Tracks.Count).Sum()
                 });

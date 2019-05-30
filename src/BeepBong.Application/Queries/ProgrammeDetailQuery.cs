@@ -26,7 +26,7 @@ namespace BeepBong.Application.Queries
                     Name = p.Name,
                     AirDate = (p.AirDate.HasValue) ? p.AirDate.Value.ToShortDateString() : null,
                     ChannelName = (p.Channel != null) ? p.Channel.Name : null,
-                    Logo = p.LogoLocation,
+                    ImageId = p.ImageId,
                     TrackLists = p.ProgrammeTrackLists.Select(ptl => ptl.TrackList).Select(tl => new SimpleTrackList()
                     {
                         TrackListId = tl.TrackListId,

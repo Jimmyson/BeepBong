@@ -9,7 +9,7 @@ namespace BeepBong.Application.ViewModels
         public string Name { get; set; }
         public string AirDate { get; set; }
         public string ChannelName { get; set; }
-        public string Logo { get; set; }
+        public Guid? ImageId { get; set; }
         public List<SimpleTrackList> TrackLists { get; set; }    
     }
 

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeepBong.DataAccess.Migrations
 {
     [DbContext(typeof(BeepBongContext))]
-    [Migration("20190523121531_InitialCreate")]
+    [Migration("20190529110225_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,15 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<DateTime>("Created");
 
+                    b.Property<Guid?>("ImageId");
+
                     b.Property<DateTime?>("LastModified");
 
                     b.Property<string>("Name");
 
                     b.HasKey("BroadcasterId");
+
+                    b.HasIndex("ImageId");
 
                     b.ToTable("Broadcasters");
                 });
@@ -58,6 +62,28 @@ namespace BeepBong.DataAccess.Migrations
                     b.HasIndex("BroadcasterId");
 
                     b.ToTable("Channels");
+                });
+
+            modelBuilder.Entity("BeepBong.Domain.Models.Image", b =>
+                {
+                    b.Property<Guid>("ImageId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Base64");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<int>("Height");
+
+                    b.Property<DateTime?>("LastModified");
+
+                    b.Property<string>("MimeType");
+
+                    b.Property<int>("Width");
+
+                    b.HasKey("ImageId");
+
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("BeepBong.Domain.Models.Library", b =>
@@ -93,15 +119,17 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<DateTime>("Created");
 
-                    b.Property<DateTime?>("LastModified");
+                    b.Property<Guid?>("ImageId");
 
-                    b.Property<string>("LogoLocation");
+                    b.Property<DateTime?>("LastModified");
 
                     b.Property<string>("Name");
 
                     b.HasKey("ProgrammeId");
 
                     b.HasIndex("ChannelId");
+
+                    b.HasIndex("ImageId");
 
                     b.ToTable("Programmes");
                 });
@@ -216,6 +244,13 @@ namespace BeepBong.DataAccess.Migrations
                     b.ToTable("TrackLists");
                 });
 
+            modelBuilder.Entity("BeepBong.Domain.Models.Broadcaster", b =>
+                {
+                    b.HasOne("BeepBong.Domain.Models.Image", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId");
+                });
+
             modelBuilder.Entity("BeepBong.Domain.Models.Channel", b =>
                 {
                     b.HasOne("BeepBong.Domain.Models.Broadcaster", "Broadcaster")
@@ -229,6 +264,10 @@ namespace BeepBong.DataAccess.Migrations
                     b.HasOne("BeepBong.Domain.Models.Channel", "Channel")
                         .WithMany("Programmes")
                         .HasForeignKey("ChannelId");
+
+                    b.HasOne("BeepBong.Domain.Models.Image", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId");
                 });
 
             modelBuilder.Entity("BeepBong.Domain.Models.ProgrammeTrackList", b =>

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using BeepBong.Application.Interfaces;
 using BeepBong.Application.ViewModels;
@@ -20,8 +21,29 @@ namespace BeepBong.Application.Commands
             {
                 BroadcasterId = viewModel.BroadcasterId,
                 Name = viewModel.Name,
-                Country = viewModel.Country
+                Country = viewModel.Country,
+                ImageId = viewModel.ImageId
             };
+
+            // Remove old image from System
+            if (viewModel.ImageChange && viewModel.Image == null)
+                new ImageDeleteCommand(_context).SendCommand(viewModel.ImageId.Value);
+
+            // Attach Image for Edit
+            if (viewModel.Image != null && viewModel.ImageId != null)
+            {
+                // Add new image
+                b.Image = _context.Images.Where(i => i.ImageId == viewModel.ImageId).First();
+                // new ImageEditCommand(_context).SendCommand(viewModel.Image);
+                b.Image.Base64 = viewModel.Image.Base64;
+                b.Image.Height = viewModel.Image.Height;
+                b.Image.MimeType = viewModel.Image.MimeType;
+                b.Image.Width = viewModel.Image.Width;
+            }
+            else if (viewModel.Image != null && viewModel.ImageId == null)
+            {
+                b.Image = viewModel.Image;
+            }
 
             bool isNew = (viewModel.BroadcasterId == Guid.Empty);
 

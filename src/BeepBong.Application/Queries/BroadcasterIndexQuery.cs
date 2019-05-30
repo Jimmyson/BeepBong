@@ -19,6 +19,7 @@ namespace BeepBong.Application.Queries
                     BroadcasterId = b.BroadcasterId,
                     Name = b.Name,
                     Country = b.Country,
+                    ImageId = b.ImageId,
                     ChannelList = b.Channels.Select(c => new SimpleChannel() {
                         ChannelId = c.ChannelId,
                         Name = c.Name,

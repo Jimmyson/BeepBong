@@ -12,27 +12,53 @@
 <form method="post" enctype="multipart/form-data">
     <div class="row">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Broadcaster.Name" class="control-label"></label>
-                <input asp-for="Broadcaster.Name" class="form-control" />
-                <span asp-validation-for="Broadcaster.Name" class="text-danger"></span>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="Broadcaster.Name" class="control-label"></label>
+                    <input asp-for="Broadcaster.Name" class="form-control" />
+                    <span asp-validation-for="Broadcaster.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Broadcaster.Country" class="control-label"></label>
+                    <select asp-for="Broadcaster.Country" class="form-control" asp-items="ViewBag.CountryList" ></select>
+                    <span asp-validation-for="Broadcaster.Country" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Broadcaster.Country" class="control-label"></label>
-                <select asp-for="Broadcaster.Country" class="form-control" asp-items="ViewBag.CountryList" ></select>
-                <span asp-validation-for="Broadcaster.Country" class="text-danger"></span>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label asp-for="Broadcaster.ImageUpload"></label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">
+                                <svg class="i"><use xlink:href="#i-photo" /></svg>
+                            </span>
+                        </div>
+                        <div class="custom-file">
+                            <input class="custom-file-input" asp-for="Broadcaster.ImageUpload" accept="image/png, image/jpeg" aria-describedby="inputGroupFileAddon01" onchange="updateLabel()"/>
+                            <label class="custom-file-label" id="Broadcaster_LogoUpload_Label">Choose file...</label>
+                        </div>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-danger" type="button" onclick="clearImage()">
+                                <span>
+                                    <svg class="i"><use xlink:href="#i-trash" /></svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+        </div>
+
+        <div>
+            <a asp-page="./Index">Back to List</a>
+        </div>
     </div>
 </form>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
-
 @section Scripts {
-    <script src="~/js/BroadcasterCreate.js"></script>
+    <script src="~/js/broadcasterImageCreate.js"></script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

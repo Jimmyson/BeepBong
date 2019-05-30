@@ -8,6 +8,7 @@ namespace BeepBong.Application.ViewModels
         public Guid BroadcasterId { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
+        public Guid? ImageId { get; set; }
         public List<string> ChannelNames { get; set; }
     }
 }

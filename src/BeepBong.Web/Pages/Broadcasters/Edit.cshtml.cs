@@ -10,6 +10,10 @@ using BeepBong.Application.Queries;
 using BeepBong.Application.Commands;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Globalization;
+using BeepBong.Web.ViewModel;
+using BeepBong.Domain.Models;
+using System.IO;
+using BeepBong.Application;
 
 namespace BeepBong.Web.Pages.Broadcasters
 {
@@ -20,7 +24,7 @@ namespace BeepBong.Web.Pages.Broadcasters
         public EditModel(BeepBongContext context) => _context = context;
 
         [BindProperty]
-        public BroadcasterEditViewModel Broadcaster { get; set; }
+        public BroadcasterUploadViewModel Broadcaster { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -30,7 +34,18 @@ namespace BeepBong.Web.Pages.Broadcasters
             }
 
             var query = new BroadcasterEditQuery(_context).GetQuery(id.Value);
-            Broadcaster = await query.FirstOrDefaultAsync();
+            var entity = await query.FirstOrDefaultAsync();
+
+            if (entity != null)
+            {
+                Broadcaster = new BroadcasterUploadViewModel() {
+                    BroadcasterId = entity.BroadcasterId,
+                    Name = entity.Name,
+                    Country = entity.Country,
+                    ImageId = entity.ImageId,
+                    ImageIdChange = entity.ImageId
+                };
+            }
             
             var data = CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(ct => new { Code = ct.Name, Country = new RegionInfo(ct.LCID).Name});
 
@@ -52,7 +67,38 @@ namespace BeepBong.Web.Pages.Broadcasters
                 return Page();
             }
 
-            new BroadcasterEditCommand(_context).SendCommand(Broadcaster);
+            var model = new BroadcasterEditViewModel() {
+                BroadcasterId = Broadcaster.BroadcasterId,
+                Name = Broadcaster.Name,
+                Country = Broadcaster.Country,
+                ImageId = Broadcaster.ImageId
+            };
+
+            model.ImageChange = (Broadcaster.ImageIdChange != Broadcaster.ImageId);
+
+            if (Broadcaster.ImageUpload != null && Broadcaster.ImageUpload.Length > 0)
+            {
+                // Adjust Image
+                using (var ms = new MemoryStream())
+                {
+                    await Broadcaster.ImageUpload.CopyToAsync(ms);
+
+                    Image i = new Image();
+                    
+                    using (ImageProcessing imageProc = new ImageProcessing(ms.ToArray()))
+                    {
+                        imageProc.DownscaleImage();
+                        i.Base64 = imageProc.ToBase64();
+                        i.MimeType = imageProc.MimeType;
+                        i.Width = imageProc.Width;
+                        i.Height = imageProc.Height;
+                    }
+
+                    model.Image = i;
+                }
+            }
+
+            new BroadcasterEditCommand(_context).SendCommand(model);
 
             try
             {
@@ -70,7 +116,7 @@ namespace BeepBong.Web.Pages.Broadcasters
                 }
             }
 
-            return RedirectToPage("./Details", new {id = Broadcaster.BroadcasterId});
+            return RedirectToPage("./Index");
         }
 
         private bool BroadcasterExists(Guid id)

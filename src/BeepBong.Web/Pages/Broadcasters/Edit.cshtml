@@ -33,6 +33,51 @@
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </div>
+        <div class="col-sm-8">
+            <div class="form-group">
+                <label asp-for="Broadcaster.ImageUpload"></label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">
+                            <svg class="i"><use xlink:href="#i-photo" /></svg>
+                        </span>
+                    </div>
+                    <div class="custom-file">
+                        <input class="custom-file-input" asp-for="Broadcaster.ImageUpload" accept="image/png, image/jpeg" aria-describedby="inputGroupFileAddon01" onchange="updateLabel()"/>
+                        <label class="custom-file-label" id="Broadcaster_ImageUpload_Label">Choose file...</label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label>Image Control</label>
+                <div class="input-group mb-3 btn-group">
+                    <button id="imageReset" disabled class="btn btn-outline-warning" type="button" onclick="resetImage()">
+                        <span>
+                            <svg class="i"><use xlink:href="#i-reload" /></svg>
+                            Reset Image Form
+                        </span>
+                    </button>
+                    <button id="imageClear" class="btn btn-outline-danger" type="button" onclick="clearImage()">
+                        <span>
+                            <svg class="i"><use xlink:href="#i-trash" /></svg>
+                            Remove Image
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Current Logo</label><br/>
+                @if (Model.Broadcaster.ImageId == null) {
+                    <i class="text-muted">No logo available</i>
+                }
+                else
+                {
+                    <img id="Broadcaster_Image" src="/Image?id=@Model.Broadcaster.ImageId" width="auto" height="360px"/>
+                }
+                <input type="hidden" asp-for="Broadcaster.ImageId" />
+                <input type="hidden" asp-for="Broadcaster.ImageIdChange" />
+            </div>
+        </div>
     </div>
 </form>
 
@@ -41,5 +86,6 @@
 </div>
 
 @section Scripts {
+    <script src="~/js/broadcasterImageEdit.js"></script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

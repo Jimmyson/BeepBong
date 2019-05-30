@@ -21,7 +21,7 @@ namespace BeepBong.Application.Queries
                     ProgrammeId = p.ProgrammeId,
                     Name = p.Name,
                     AirDate = p.AirDate,
-                    LogoLocation = p.LogoLocation,
+                    ImageId = p.ImageId,
                     ChannelId = p.ChannelId,
                     TrackListIds = p.ProgrammeTrackLists.Select(ptl => ptl.TrackListId).ToList()
                 });

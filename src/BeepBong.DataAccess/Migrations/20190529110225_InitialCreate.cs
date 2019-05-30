@@ -8,18 +8,20 @@ namespace BeepBong.DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Broadcasters",
+                name: "Images",
                 columns: table => new
                 {
-                    BroadcasterId = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Country = table.Column<string>(nullable: true),
+                    ImageId = table.Column<Guid>(nullable: false),
+                    MimeType = table.Column<string>(nullable: true),
+                    Base64 = table.Column<string>(nullable: true),
+                    Width = table.Column<int>(nullable: false),
+                    Height = table.Column<int>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
                     LastModified = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Broadcasters", x => x.BroadcasterId);
+                    table.PrimaryKey("PK_Images", x => x.ImageId);
                 });
 
             migrationBuilder.CreateTable(
@@ -56,26 +58,25 @@ namespace BeepBong.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Channels",
+                name: "Broadcasters",
                 columns: table => new
                 {
-                    ChannelId = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Commencement = table.Column<DateTime>(nullable: true),
-                    Closed = table.Column<DateTime>(nullable: true),
                     BroadcasterId = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true),
+                    ImageId = table.Column<Guid>(nullable: true),
                     Created = table.Column<DateTime>(nullable: false),
                     LastModified = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Channels", x => x.ChannelId);
+                    table.PrimaryKey("PK_Broadcasters", x => x.BroadcasterId);
                     table.ForeignKey(
-                        name: "FK_Channels_Broadcasters_BroadcasterId",
-                        column: x => x.BroadcasterId,
-                        principalTable: "Broadcasters",
-                        principalColumn: "BroadcasterId",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Broadcasters_Images_ImageId",
+                        column: x => x.ImageId,
+                        principalTable: "Images",
+                        principalColumn: "ImageId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -102,26 +103,26 @@ namespace BeepBong.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Programmes",
+                name: "Channels",
                 columns: table => new
                 {
-                    ProgrammeId = table.Column<Guid>(nullable: false),
+                    ChannelId = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    AirDate = table.Column<DateTime>(nullable: true),
-                    LogoLocation = table.Column<string>(nullable: true),
-                    ChannelId = table.Column<Guid>(nullable: true),
+                    Commencement = table.Column<DateTime>(nullable: true),
+                    Closed = table.Column<DateTime>(nullable: true),
+                    BroadcasterId = table.Column<Guid>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
                     LastModified = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Programmes", x => x.ProgrammeId);
+                    table.PrimaryKey("PK_Channels", x => x.ChannelId);
                     table.ForeignKey(
-                        name: "FK_Programmes_Channels_ChannelId",
-                        column: x => x.ChannelId,
-                        principalTable: "Channels",
-                        principalColumn: "ChannelId",
-                        onDelete: ReferentialAction.Restrict);
+                        name: "FK_Channels_Broadcasters_BroadcasterId",
+                        column: x => x.BroadcasterId,
+                        principalTable: "Broadcasters",
+                        principalColumn: "BroadcasterId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -158,6 +159,35 @@ namespace BeepBong.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Programmes",
+                columns: table => new
+                {
+                    ProgrammeId = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    AirDate = table.Column<DateTime>(nullable: true),
+                    ImageId = table.Column<Guid>(nullable: true),
+                    ChannelId = table.Column<Guid>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false),
+                    LastModified = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Programmes", x => x.ProgrammeId);
+                    table.ForeignKey(
+                        name: "FK_Programmes_Channels_ChannelId",
+                        column: x => x.ChannelId,
+                        principalTable: "Channels",
+                        principalColumn: "ChannelId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Programmes_Images_ImageId",
+                        column: x => x.ImageId,
+                        principalTable: "Images",
+                        principalColumn: "ImageId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProgrammeTrackLists",
                 columns: table => new
                 {
@@ -184,6 +214,11 @@ namespace BeepBong.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Broadcasters_ImageId",
+                table: "Broadcasters",
+                column: "ImageId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Channels_BroadcasterId",
                 table: "Channels",
                 column: "BroadcasterId");
@@ -192,6 +227,11 @@ namespace BeepBong.DataAccess.Migrations
                 name: "IX_Programmes_ChannelId",
                 table: "Programmes",
                 column: "ChannelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Programmes_ImageId",
+                table: "Programmes",
+                column: "ImageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProgrammeTrackLists_TrackListId",
@@ -240,6 +280,9 @@ namespace BeepBong.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Broadcasters");
+
+            migrationBuilder.DropTable(
+                name: "Images");
         }
     }
 }

@@ -42,7 +42,9 @@ namespace BeepBong.Web
             services.AddDbContext<BeepBongContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("BeepBongContext")));
 
-            services.AddMvc()
+            services.AddMvc(options => {
+                options.CacheProfiles.Add("Default30", new CacheProfile{ Duration = 30 });
+            })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SampleEditViewModel>()); // Add Validators
         }

@@ -54,6 +54,9 @@ namespace BeepBong.Application
             }
         }
 
+        public string ToBase64() => TempImage.ToBase64();
+        public string MimeType => TempImage.FormatInfo.MimeType;
+
         /// <summary>
         /// Clean up Object for removal
         /// </summary>

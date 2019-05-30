@@ -36,13 +36,13 @@
         <div class="col-sm-8">
             <dl>
                 <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Programme.Logo)
+                    @Html.DisplayNameFor(model => model.Programme.ImageId)
                 </dt>
                 <dd class="col-sm-12">
-                    @if(String.IsNullOrEmpty(Model.Programme.Logo)) {
+                    @if (Model.Programme.ImageId == null) {
                         <i class="text-muted">No logo available</i>
                     } else {
-                        <img src="@Model.Programme.Logo" width="auto" height="360px"/>
+                        <img src="~/Image?id=@Model.Programme.ImageId" width="auto" height="360px"/>
                     }
                 </dd>
             </dl>

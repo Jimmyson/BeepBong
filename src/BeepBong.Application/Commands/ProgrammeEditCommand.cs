@@ -23,8 +23,29 @@ namespace BeepBong.Application.Commands
                 ProgrammeId = viewModel.ProgrammeId,
                 Name = viewModel.Name,
                 AirDate = viewModel.AirDate,
-                ChannelId = viewModel.ChannelId
+                ChannelId = viewModel.ChannelId,
+                ImageId = viewModel.ImageId
             };
+
+            // Remove old image from System
+            if (viewModel.ImageChange && viewModel.Image == null)
+                new ImageDeleteCommand(_context).SendCommand(viewModel.ImageId.Value);
+
+            // Attach Image for Edit
+            if (viewModel.Image != null && viewModel.ImageId != null)
+            {
+                // Add new image
+                programme.Image = _context.Images.Where(i => i.ImageId == viewModel.ImageId).First();
+                // new ImageEditCommand(_context).SendCommand(viewModel.Image);
+                programme.Image.Base64 = viewModel.Image.Base64;
+                programme.Image.Height = viewModel.Image.Height;
+                programme.Image.MimeType = viewModel.Image.MimeType;
+                programme.Image.Width = viewModel.Image.Width;
+            }
+            else if (viewModel.Image != null && viewModel.ImageId == null)
+            {
+                programme.Image = viewModel.Image;
+            }
 
             List<ProgrammeTrackList> trackLists = (viewModel.TrackListIds != null) ?
                 viewModel.TrackListIds.Select(tl => new ProgrammeTrackList()

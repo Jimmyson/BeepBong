@@ -8,7 +8,7 @@ namespace BeepBong.Application.ViewModels
         public string Name { get; set; }
         public string Year { get; set; }
         public string Channel { get; set; }
-        public string Logo { get; set; }
+        public Guid? ImageId { get; set; }
         public bool ContainsLibrary { get; set; }
         public int TrackCount { get; set; }
     }
