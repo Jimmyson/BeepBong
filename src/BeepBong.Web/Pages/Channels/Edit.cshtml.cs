@@ -47,7 +47,7 @@ namespace BeepBong.Web.Pages.Channels
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || Channel.ChannelId == Guid.Empty)
             {
                 return Page();
             }

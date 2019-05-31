@@ -39,7 +39,7 @@ namespace BeepBong.Web.Pages.Libraries
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || Library.LibraryId == Guid.Empty)
             {
                 return Page();
             }

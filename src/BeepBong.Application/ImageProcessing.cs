@@ -71,9 +71,13 @@ namespace BeepBong.Application
         public void Dispose()
         {
             Image.Dispose();
-            TempImage.Dispose();
             Image = null;
-            TempImage = null;
+
+			if (TempImage != null)
+			{
+				TempImage.Dispose();
+				TempImage = null;
+			}
         }
     }
 }

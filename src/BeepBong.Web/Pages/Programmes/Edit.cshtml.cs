@@ -60,7 +60,7 @@ namespace BeepBong.Web.Pages.Programmes
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || Programme.ProgrammeId == Guid.Empty)
             {
                 return Page();
             }

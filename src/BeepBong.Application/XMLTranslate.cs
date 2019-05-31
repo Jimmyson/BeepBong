@@ -353,7 +353,7 @@ namespace BeepBong.Application
                 if (attribute.Name == "name")
                     p.Name = attribute.Value;
                 if (attribute.Name == "year")
-                    p.AirDate = DateTime.Parse(attribute.Value);
+                    p.AirDate = (attribute.Value.Length == 4) ? new DateTime(int.Parse(attribute.Value),1,1) : DateTime.Parse(attribute.Value);
                 if (attribute.Name == "logo")
                     p.Image = CreateImageObject(attribute.Value);
             }

@@ -49,7 +49,7 @@ namespace BeepBong.Web.Pages.Samples
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || Sample.SampleId == Guid.Empty)
             {
                 return Page();
             }

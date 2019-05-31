@@ -43,7 +43,7 @@ namespace BeepBong.Web.Pages.TrackLists
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || TrackList.TrackListId == Guid.Empty)
             {
                 return Page();
             }

@@ -62,7 +62,7 @@ namespace BeepBong.Web.Pages.Broadcasters
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || Broadcaster.BroadcasterId == Guid.Empty)
             {
                 return Page();
             }
