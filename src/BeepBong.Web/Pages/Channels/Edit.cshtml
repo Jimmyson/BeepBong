@@ -1,0 +1,88 @@
+@page
+@model BeepBong.Web.Pages.Channels.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Channel</h4>
+<hr />
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Channel.Name" class="control-label"></label>
+                <input asp-for="Channel.Name" class="form-control" />
+                <span asp-validation-for="Channel.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Channel.Commencement" class="control-label"></label>
+                <input asp-for="Channel.Commencement" class="form-control" />
+                <span asp-validation-for="Channel.Commencement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Channel.Closed" class="control-label"></label>
+                <input asp-for="Channel.Closed" class="form-control" />
+                <span asp-validation-for="Channel.Closed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Channel.BroadcasterId" class="control-label"></label>
+                <select asp-for="Channel.BroadcasterId" class="form-control" asp-items="ViewBag.BroadcasterIds" ></select>
+                <span asp-validation-for="Channel.BroadcasterId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+        <!-- <div class="col-sm-8">
+            <div class="form-group">
+                <label asp-for="Channel.ImageUpload"></label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">
+                            <svg class="i"><use xlink:href="#i-photo" /></svg>
+                        </span>
+                    </div>
+                    <div class="custom-file">
+                        <input class="custom-file-input" asp-for="Channel.ImageUpload" accept="image/png, image/jpeg" aria-describedby="inputGroupFileAddon01" onchange="updateLabel()"/>
+                        <label class="custom-file-label" id="Broadcaster_ImageUpload_Label">Choose file...</label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label>Image Control</label>
+                <div class="input-group mb-3 btn-group">
+                    <button id="imageReset" disabled class="btn btn-outline-warning" type="button" onclick="resetImage()">
+                        <span>
+                            <svg class="i"><use xlink:href="#i-reload" /></svg>
+                            Reset Image Form
+                        </span>
+                    </button>
+                    <button id="imageClear" class="btn btn-outline-danger" type="button" onclick="clearImage()">
+                        <span>
+                            <svg class="i"><use xlink:href="#i-trash" /></svg>
+                            Remove Image
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Current Logo</label><br/>
+                    <i class="text-muted">No logo available</i>
+                <input type="hidden" asp-for="Channel.ImageId" />
+                <input type="hidden" asp-for="Channel.ImageIdChange" />
+            </div>
+        </div> -->
+    </div>
+</form>
+
+<div>
+    <a asp-page="../Broadcasters/Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

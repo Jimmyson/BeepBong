@@ -49,7 +49,7 @@ namespace BeepBong.Web.Pages.Programmes
             }
 
             ViewData["TrackListIds"] = new SelectList(_context.TrackLists.Select(tl => new {tl.TrackListId, tl.Name}),"TrackListId", "Name");
-            ViewData["ChannelIds"] = new SelectList(_context.Channels.Select(c => new {c.ChannelId, c.Name}),"ChannelId", "Name");
+            ViewData["ChannelIds"] = new SelectList(_context.Channels.Select(c => new {c.ChannelId, c.Name}) ,"ChannelId", "Name");
 
             if (Programme == null)
             {

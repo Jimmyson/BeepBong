@@ -14,7 +14,8 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Create New Broadcaster</a> |
+    <a asp-page="../Channels/Create">Create New Channel</a>
 </p>
 
 @{ await Html.RenderPartialAsync("_PageTabs", pageRouting); }
@@ -39,7 +40,13 @@
                             <div class="float-right">
                                 <span class="badge badge-primary badge-pill">
                                     @channel.ProgrammeCount
-                                </span>
+                                </span> | 
+                                <a asp-page="../Channels/Edit" asp-route-id="@channel.ChannelId">
+                                    <svg class="i"><use xlink:href="#i-edit" /></svg>
+                                </a> |
+                                <a asp-page="../Channels/Delete" asp-route-id="@channel.ChannelId">
+                                    <svg class="i text-danger"><use xlink:href="#i-trash" /></svg>
+                                </a>
                             </div>
                         </div>
                     }

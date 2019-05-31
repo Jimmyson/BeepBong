@@ -1,0 +1,50 @@
+@page
+@model BeepBong.Web.Pages.Channels.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Channel</h4>
+    <hr />
+    <div class="row">
+        <div class="col-sm-4">
+            <dl class="row">
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.Channel.Name)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.Channel.Name)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.Channel.BroadcasterName)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.Channel.BroadcasterName)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.Channel.Commencement)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.Channel.Commencement)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.Channel.Closed)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.Channel.Closed)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Channel.ChannelId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="../Channels/Index">Back to List</a>
+    </form>
+</div>
