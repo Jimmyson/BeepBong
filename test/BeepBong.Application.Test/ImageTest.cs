@@ -42,9 +42,21 @@ namespace BeepBong.Application.Test
                 image2.DownscaleImage();
 
             //Then
-                Assert.Equal(image1.ToDataURL(), image2.ToDataURL());
+                Assert.Equal(image1.ToDataURI(), image2.ToDataURI());
                 imageFile.Close();
             }
         }
+
+		[Fact]
+		public void OpenDataURI()
+		{
+			var imageFile = File.ReadAllText("..\\..\\..\\data.txt");
+
+			ImageProcessing image = new ImageProcessing(imageFile.Split(',')[1]);
+
+			Assert.Equal(720, image.Height);
+			Assert.Equal(1280, image.Width);
+			Assert.Equal("image/jpeg", image.MimeType);
+		}
     }
 }

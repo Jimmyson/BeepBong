@@ -5,27 +5,35 @@ namespace BeepBong.Application
 {
     public class ImageProcessing : IDisposable
     {
-        private MagickImage Image { get; set; }
+        private IMagickImage Image { get; set; }
         private IMagickImage TempImage { get; set; }
 
         public ImageProcessing(byte[] imageData)
         {
             Image = new MagickImage(imageData);
-            TempImage = new MagickImage(imageData);
         }
 
-        public int Width { get => (TempImage != null ? TempImage.Width : 0); }
-        public int Height { get => (TempImage != null ? TempImage.Height : 0); }
+		public ImageProcessing(string base64)
+		{
+			if (base64.StartsWith("data:"))
+				base64 = base64.Split(',')[1];
+			
+			Image = MagickImage.FromBase64(base64);
+		}
+
+        public int Width { get => (TempImage != null ? TempImage.Width : Image.Width); }
+        public int Height { get => (TempImage != null ? TempImage.Height : Image.Height); }
 
         /// <summary>
-        /// Convert an encoded image into a Base64 Data URL
+        /// Convert an encoded image into a Base64 Data URI
         /// </summary>
         /// <returns></returns>
-        public string ToDataURL()
+        public string ToDataURI()
         {
-            return "data:" + TempImage.FormatInfo.MimeType + ";base64," + TempImage.ToBase64();
+            return (TempImage != null) ?
+					"data:" + TempImage.FormatInfo.MimeType + ";base64," + TempImage.ToBase64()
+					: "data:" + Image.FormatInfo.MimeType + ";base64," + Image.ToBase64();
         }
-
         /// <summary>
         /// Scale down the image to the default height value of 720px. Scale retains image ratio.
         /// </summary>
@@ -54,8 +62,8 @@ namespace BeepBong.Application
             }
         }
 
-        public string ToBase64() => TempImage.ToBase64();
-        public string MimeType => TempImage.FormatInfo.MimeType;
+        public string ToBase64() => (TempImage != null) ? TempImage.ToBase64() : Image.ToBase64();
+        public string MimeType => (TempImage != null) ? TempImage.FormatInfo.MimeType : Image.FormatInfo.MimeType;
 
         /// <summary>
         /// Clean up Object for removal

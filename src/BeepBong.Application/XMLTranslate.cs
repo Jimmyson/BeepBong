@@ -235,7 +235,7 @@ namespace BeepBong.Application
                                         b => new XElement("Broadcaster",
                                             (b.Name != null) ? new XAttribute("name", b.Name) : null,
                                             (b.Country != null) ? new XAttribute("country", b.Country) : null,
-                                            // (b.Image != null) ? new XAttribute("logo", b.Image.DataURI) : null,
+                                            (b.Image != null) ? new XAttribute("logo", b.Image.Base64) : null,
                                             (b.Channels.Any()) ? context.Channels
                                                         .Where(c => c.BroadcasterId == b.BroadcasterId)
                                                         .Select(c => new XElement("Channel",
@@ -245,8 +245,8 @@ namespace BeepBong.Application
                                                                                         .Select(p => new XElement("Programme",
                                                                                             new XAttribute("ref", programmeIds[p.ProgrammeId]),
                                                                                             (p.Name != null) ? new XAttribute("name", p.Name) : null, 
-                                                                                            (p.AirDate != null) ? new XAttribute("year", p.AirDate) : null
-                                                                                            // (p.Image != null) ? new XAttribute("logo", p.Image.DataURI) : null
+                                                                                            (p.AirDate != null) ? new XAttribute("year", p.AirDate) : null,
+                                                                                            (p.Image != null) ? new XAttribute("logo", p.Image.Base64) : null
                                                                                         )) : null                                                         
                                                             )) : null
                                         )
@@ -257,8 +257,8 @@ namespace BeepBong.Application
 											.Select(p => new XElement("Programme",
 												new XAttribute("ref", programmeIds[p.ProgrammeId]),
 												(p.Name != null) ? new XAttribute("name", p.Name) : null, 
-												(p.AirDate != null) ? new XAttribute("year", p.AirDate) : null
-												// (p.Image != null) ? new XAttribute("logo", p.Image.DataURI) : null
+												(p.AirDate != null) ? new XAttribute("year", p.AirDate) : null,
+												(p.Image != null) ? new XAttribute("logo", p.Image.Base64) : null
 											))
 									)
                                 ),
@@ -326,6 +326,8 @@ namespace BeepBong.Application
                     b.Name = att.Value;
                 if (att.Name == "country")
                     b.Country = att.Value;
+                if (att.Name == "logo")
+                    b.Image = CreateImageObject(att.Value);
             }
 
             return b;
@@ -352,8 +354,8 @@ namespace BeepBong.Application
                     p.Name = attribute.Value;
                 if (attribute.Name == "year")
                     p.AirDate = DateTime.Parse(attribute.Value);
-                //if (attribute.Name == "logo")
-                //    p.Logo = attribute.Value;
+                if (attribute.Name == "logo")
+                    p.Image = CreateImageObject(attribute.Value);
             }
 
             return p;
@@ -452,5 +454,21 @@ namespace BeepBong.Application
             programmeIds.Clear();
             trackListIds.Clear();
         }
+
+		private static Image CreateImageObject(string base64)
+		{
+			using (ImageProcessing ip = new ImageProcessing(base64))
+			{
+				Image i = new Image()
+				{
+					MimeType = ip.MimeType,
+					Width = ip.Width,
+					Height = ip.Height,
+					Base64 = ip.ToBase64()
+				};
+
+				return i;
+			}
+		}
     }
 }
