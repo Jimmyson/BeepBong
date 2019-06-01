@@ -27,7 +27,7 @@ git clone https://github.com/Jimmyson/BeepBong.git
 Once the code is downloaded, you can commence a build of the plaform.
 
 ```
-dotnet ef database update .\src\BeepBong.DataAccess --startup-project .\src\BeepBong.Web
+dotnet ef database update --project .\src\BeepBong.DataAccess --startup-project .\src\BeepBong.Web
 dotnet build .\src\BeepBong.Web
 ```
 
