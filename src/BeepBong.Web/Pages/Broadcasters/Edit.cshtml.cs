@@ -9,7 +9,6 @@ using BeepBong.Application.ViewModels;
 using BeepBong.Application.Queries;
 using BeepBong.Application.Commands;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Globalization;
 using BeepBong.Web.ViewModel;
 using BeepBong.Domain.Models;
 using System.IO;
@@ -46,12 +45,6 @@ namespace BeepBong.Web.Pages.Broadcasters
                     ImageIdChange = entity.ImageId
                 };
             }
-            
-            var data = CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(ct => new { Code = ct.Name, Country = new RegionInfo(ct.LCID).Name});
-
-            //ViewData["CountryList"] = //new SelectList(CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(c => new {, c.}),"ChannelId", "Name");
-                //new SelectList(CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(ct => new { Code = ct.Name, Country = new RegionInfo(ct.LCID).Name}));
-
 
             if (Broadcaster == null)
             {

@@ -15,6 +15,7 @@ namespace BeepBong.Application.Queries
         public IQueryable<BroadcasterIndexViewModel> GetQuery(Guid? id)
         {
             return _context.Broadcasters
+                .OrderBy(b => b.Name)
                 .Select(b => new BroadcasterIndexViewModel() {
                     BroadcasterId = b.BroadcasterId,
                     Name = b.Name,

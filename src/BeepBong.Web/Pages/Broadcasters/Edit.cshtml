@@ -34,20 +34,6 @@
             </div>
         </div>
         <div class="col-sm-8">
-            <div class="form-group">
-                <label asp-for="Broadcaster.ImageUpload"></label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">
-                            <svg class="i"><use xlink:href="#i-photo" /></svg>
-                        </span>
-                    </div>
-                    <div class="custom-file">
-                        <input class="custom-file-input" asp-for="Broadcaster.ImageUpload" accept="image/png, image/jpeg" aria-describedby="inputGroupFileAddon01" onchange="updateLabel()"/>
-                        <label class="custom-file-label" id="Broadcaster_ImageUpload_Label">Choose file...</label>
-                    </div>
-                </div>
-            </div>
             <div>
                 <label>Image Control</label>
                 <div class="input-group mb-3 btn-group">
@@ -63,6 +49,20 @@
                             Remove Image
                         </span>
                     </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Broadcaster.ImageUpload"></label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">
+                            <svg class="i"><use xlink:href="#i-photo" /></svg>
+                        </span>
+                    </div>
+                    <div class="custom-file">
+                        <input class="custom-file-input" asp-for="Broadcaster.ImageUpload" accept="image/png, image/jpeg" aria-describedby="inputGroupFileAddon01" onchange="updateLabel()"/>
+                        <label class="custom-file-label" id="Broadcaster_ImageUpload_Label">Choose file...</label>
+                    </div>
                 </div>
             </div>
             <div class="form-group">

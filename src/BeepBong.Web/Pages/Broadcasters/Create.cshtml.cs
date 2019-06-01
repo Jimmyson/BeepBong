@@ -26,6 +26,12 @@ namespace BeepBong.Web.Pages.Broadcasters
         {
             if (!ModelState.IsValid)
             {
+            
+            //var data = CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(ct => new { Code = ct.Name, Country = new RegionInfo(ct.LCID).EnglishName});
+
+            //ViewData["CountryList"] = //new SelectList(CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(c => new {, c.}),"ChannelId", "Name");
+                //new SelectList(CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(ct => new { Code = ct.Name, Country = new RegionInfo(ct.LCID).Name}));
+
                 return Page();
             }
 

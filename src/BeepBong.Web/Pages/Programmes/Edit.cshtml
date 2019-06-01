@@ -26,12 +26,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Programme.ChannelId" class="control-label"></label>
-                <select asp-for="Programme.ChannelId" class="form-control" asp-items="ViewBag.ChannelIds" ></select>
+                <select asp-for="Programme.ChannelId" class="form-control selectpicker" data-live-search="true" data-size="10" asp-items="ViewBag.ChannelIds" ></select>
                 <span asp-validation-for="Programme.ChannelId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Programme.TrackListIds" class="control-label"></label>
-                <select asp-for="Programme.TrackListIds" class="form-control" asp-items="ViewBag.TrackListIds" ></select>
+                <select asp-for="Programme.TrackListIds" class="form-control selectpicker" data-live-search="true" data-size="10" multiple asp-items="ViewBag.TrackListIds" ></select>
                 <span asp-validation-for="Programme.TrackListIds" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -39,20 +39,6 @@
             </div>
         </div>
         <div class="col-sm-8">
-            <div class="form-group">
-                <label asp-for="Programme.ImageUpload"></label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">
-                            <svg class="i"><use xlink:href="#i-photo" /></svg>
-                        </span>
-                    </div>
-                    <div class="custom-file">
-                        <input class="custom-file-input" asp-for="Programme.ImageUpload" accept="image/png, image/jpeg" aria-describedby="inputGroupFileAddon01" onchange="updateLabel()"/>
-                        <label class="custom-file-label" id="Programme_ImageUpload_Label">Choose file...</label>
-                    </div>
-                </div>
-            </div>
             <div>
                 <label>Image Control</label>
                 <div class="input-group mb-3 btn-group">
@@ -68,6 +54,20 @@
                             Remove Image
                         </span>
                     </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Programme.ImageUpload"></label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">
+                            <svg class="i"><use xlink:href="#i-photo" /></svg>
+                        </span>
+                    </div>
+                    <div class="custom-file">
+                        <input class="custom-file-input" asp-for="Programme.ImageUpload" accept="image/png, image/jpeg" aria-describedby="inputGroupFileAddon01" onchange="updateLabel()"/>
+                        <label class="custom-file-label" id="Programme_ImageUpload_Label">Choose file...</label>
+                    </div>
                 </div>
             </div>
             <div class="form-group">

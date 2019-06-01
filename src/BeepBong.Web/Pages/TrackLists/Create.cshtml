@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="TrackList.Programmes" class="control-label"></label>
-                <select asp-for="TrackList.Programmes" class="form-control" asp-items="ViewBag.ProgrammeIds" ></select>
+                <select asp-for="TrackList.Programmes" class="form-control selectpicker" data-live-search="true" data-size="10" multiple asp-items="ViewBag.ProgrammeIds" ></select>
                 <span asp-validation-for="TrackList.Programmes" class="text-danger"></span>
             </div>
             <div class="form-group">

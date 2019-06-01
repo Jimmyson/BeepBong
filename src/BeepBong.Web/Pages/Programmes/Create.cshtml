@@ -25,12 +25,12 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Programme.ChannelId" class="control-label"></label>
-                    <select asp-for="Programme.ChannelId" class="form-control" asp-items="ViewBag.ChannelIds" ></select>
+                    <select asp-for="Programme.ChannelId" class="form-control selectpicker" data-live-search="true" data-size="10" asp-items="ViewBag.ChannelIds" ></select>
                     <span asp-validation-for="Programme.ChannelId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Programme.TrackListIds" class="control-label"></label>
-                    <select asp-for="Programme.TrackListIds" class="form-control" asp-items="ViewBag.TrackListIds" ></select>
+                    <select asp-for="Programme.TrackListIds" class="form-control selectpicker" data-live-search="true" data-size="10" multiple asp-items="ViewBag.TrackListIds" ></select>
                     <span asp-validation-for="Programme.TrackListIds" class="text-danger"></span>
                 </div>
                 <div class="form-group">
