@@ -27,10 +27,12 @@ namespace BeepBong.Application.Queries
 
         public bool Exists(TrackEditViewModel model)
         {
-            return _context.Tracks.Any(t => t.Name.ToLower() == model.Name.ToLower()
-                    && t.Variant.ToLower() == model.Variant.ToLower()
-                    && t.Description.ToLower() == model.Description.ToLower()
-                    && t.TrackListId == model.TrackListId);
+            return _context.Tracks.Any(t =>
+                t.TrackId != model.TrackId
+                && t.Name.ToLower() == model.Name.ToLower()
+                && t.Variant.ToLower() == model.Variant.ToLower()
+                && t.Description.ToLower() == model.Description.ToLower()
+                && t.TrackListId == model.TrackListId);
         }
     }
 }

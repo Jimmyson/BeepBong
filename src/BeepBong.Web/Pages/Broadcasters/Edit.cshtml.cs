@@ -62,13 +62,14 @@ namespace BeepBong.Web.Pages.Broadcasters
 
         public async Task<IActionResult> OnPostAsync()
         {
-            BroadcasterEditViewModel b = new BroadcasterEditViewModel()
-            {
+            BroadcasterEditViewModel model = new BroadcasterEditViewModel() {
+                BroadcasterId = Broadcaster.BroadcasterId,
                 Name = Broadcaster.Name,
-                Country = Broadcaster.Country
+                Country = Broadcaster.Country,
+                ImageId = Broadcaster.ImageId
             };
 
-            if (_query.Exists(b))
+            if (_query.Exists(model))
             {
                 ModelState.AddModelError("Exists", "A broadcaster already exists with these properties");
             }
@@ -77,13 +78,6 @@ namespace BeepBong.Web.Pages.Broadcasters
             {
                 return await OnGetAsync(Broadcaster.BroadcasterId);
             }
-
-            var model = new BroadcasterEditViewModel() {
-                BroadcasterId = Broadcaster.BroadcasterId,
-                Name = Broadcaster.Name,
-                Country = Broadcaster.Country,
-                ImageId = Broadcaster.ImageId
-            };
 
             model.ImageChange = (Broadcaster.ImageIdChange != Broadcaster.ImageId);
 

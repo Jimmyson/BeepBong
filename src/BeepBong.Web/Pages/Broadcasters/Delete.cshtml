@@ -26,7 +26,33 @@
                 <dd class="col-sm-6">
                     @Html.DisplayFor(model => model.Broadcaster.Country)
                 </dd>
+                <dt class="col-sm-12">
+                    @Html.DisplayNameFor(model => model.Broadcaster.ChannelNames)
+                </dt>
+                <dd class="col-sm-12">
+                    <ul>
+                    @foreach (var channel in Model.Broadcaster.ChannelNames)
+                    {
+                        <li>@Html.DisplayFor(model => channel)</li>
+                    }
+                    </ul>
+                </dd>
             </dl>
+        </div>
+        <div class="col-sm-8">
+            <dt>
+                @Html.DisplayNameFor(model => model.Broadcaster.ImageId)
+            </dt>
+            <dd>
+            @if (!Model.Broadcaster.ImageId.HasValue)
+            {
+                <i class="text-muted">No logo available</i>
+            }
+            else
+            {
+                <img src="/Image?id=@Model.Broadcaster.ImageId" width="auto" height="360px" />
+            }
+            </dd>
         </div>
     </div>
     

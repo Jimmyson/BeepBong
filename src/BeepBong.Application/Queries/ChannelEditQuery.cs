@@ -27,8 +27,10 @@ namespace BeepBong.Application.Queries
 
         public bool Exists(ChannelEditViewModel model)
         {
-            return _context.Channels.Any(c => c.Name.ToLower() == model.Name.ToLower()
-                    && c.BroadcasterId == model.BroadcasterId);
+            return _context.Channels.Any(
+                c => c.ChannelId != model.ChannelId
+                && c.Name.ToLower() == model.Name.ToLower()
+                && c.BroadcasterId == model.BroadcasterId);
         }
     }
 }

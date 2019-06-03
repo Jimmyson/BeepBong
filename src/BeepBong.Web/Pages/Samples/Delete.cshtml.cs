@@ -32,9 +32,6 @@ namespace BeepBong.Web.Pages.Samples
             var query = new SampleDetailQuery(_context).GetQuery(id.Value);
             Sample = await query.FirstOrDefaultAsync();
 
-            // Sample = await _context.Samples
-            //     .Include(s => s.Track).FirstOrDefaultAsync(m => m.SampleId == id);
-
             if (Sample == null)
             {
                 return NotFound();
@@ -52,14 +49,6 @@ namespace BeepBong.Web.Pages.Samples
             new SampleDeleteCommand(_context).SendCommand(id.Value);
 
             await _context.SaveChangesAsync();
-
-            // Sample = await _context.Samples.FindAsync(id);
-
-            // if (Sample != null)
-            // {
-            //     _context.Samples.Remove(Sample);
-            //     await _context.SaveChangesAsync();
-            // }
 
             return RedirectToPage("../Tracks/Details", new {id = Sample.TrackId});
         }

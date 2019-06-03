@@ -27,8 +27,10 @@ namespace BeepBong.Application.Queries
 
         public bool Exists(TrackListEditViewModel model)
         {
-            return _context.TrackLists.Any(tl => tl.Name.ToLower() == model.Name.ToLower()
-                    && tl.Composer.ToLower() == model.Composer.ToLower());
+            return _context.TrackLists.Any(tl =>
+                tl.TrackListId != model.TrackListId
+                && tl.Name.ToLower() == model.Name.ToLower()
+                && tl.Composer.ToLower() == model.Composer.ToLower());
         }
     }
 }

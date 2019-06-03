@@ -20,7 +20,8 @@ namespace BeepBong.Application.Queries
                     BroadcasterId = b.BroadcasterId,
                     Name = b.Name,
                     Country = b.Country,
-                    ImageId = b.ImageId
+                    ImageId = b.ImageId,
+                    ChannelNames = b.Channels.Select(c => c.Name).ToList()
                 });
         }
     }

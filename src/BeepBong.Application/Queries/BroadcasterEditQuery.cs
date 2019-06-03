@@ -19,14 +19,17 @@ namespace BeepBong.Application.Queries
                 .Select(b => new BroadcasterEditViewModel() {
                     BroadcasterId = b.BroadcasterId,
                     Name = b.Name,
-                    Country = b.Country
+                    Country = b.Country,
+                    ImageId = b.ImageId
                 });
         }
 
         public bool Exists(BroadcasterEditViewModel model)
         {
-            return _context.Broadcasters.Any(b => b.Name.ToLower() == model.Name.ToLower()
-                    && b.Country == model.Country);
+            return _context.Broadcasters.Any(
+                b => b.BroadcasterId != model.BroadcasterId
+                && b.Name.ToLower() == model.Name.ToLower()
+                && b.Country == model.Country);
         }
     }
 }

@@ -20,9 +20,11 @@ namespace BeepBong.Application.Queries
 
         public bool Exists(Library model)
         {
-            return _context.Libraries.Any(l => l.AlbumName.ToLower() == model.AlbumName.ToLower()
-                    && l.Catalog == model.Catalog
-                    && l.Label == model.Label);
+            return _context.Libraries.Any(
+                l => l.LibraryId != model.LibraryId
+                && l.AlbumName.ToLower() == model.AlbumName.ToLower()
+                && l.Catalog == model.Catalog
+                && l.Label == model.Label);
         }
     }
 }
