@@ -7,7 +7,7 @@ namespace BeepBong.Web.ViewModel.Validation
     {
         public ProgrammeUploadValidator()
         {
-            RuleFor(b => b.Name).NotNull().NotEmpty().NoURLInString();
+            RuleFor(p => p.Name).NotNull().NotEmpty().NoURLInString();
         }
     }
 }

@@ -7,10 +7,10 @@ namespace BeepBong.Application.Validation
     {
         public LibraryEditValidator()
         {
-            RuleFor(c => c.AlbumName).NotNull().NotEmpty().NoURLInString();
-            RuleFor(c => c.Label).NoURLInString();
-            RuleFor(c => c.Catalog).NoURLInString();
-            RuleFor(c => c.MBID).NoURLInString();
+            RuleFor(l => l.AlbumName).NotNull().NotEmpty().NoURLInString();
+            RuleFor(l => l.Label).NoURLInString();
+            RuleFor(l => l.Catalog).NoURLInString();
+            RuleFor(l => l.MBID).NoURLInString();
         }
     }
 }

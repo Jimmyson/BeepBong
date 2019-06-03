@@ -7,8 +7,8 @@ namespace BeepBong.Application.Validation
     {
         public TrackListEditValidator()
         {
-            RuleFor(p => p.Name).NotNull().NotEmpty().NoURLInString();
-            RuleFor(p => p.Composer).NoURLInString();
+            RuleFor(tl => tl.Name).NotNull().NotEmpty().NoURLInString();
+            RuleFor(tl => tl.Composer).NoURLInString();
         }
     }
 }

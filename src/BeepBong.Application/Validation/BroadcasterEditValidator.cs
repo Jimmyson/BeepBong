@@ -7,8 +7,8 @@ namespace BeepBong.Application.Validation
     {
         public BroadcasterEditValidator()
         {
-            RuleFor(p => p.Name).NotNull().NotEmpty().NoURLInString();
-            RuleFor(p => p.Country).NoURLInString();
+            RuleFor(b => b.Name).NotNull().NotEmpty().NoURLInString();
+            RuleFor(b => b.Country).NoURLInString();
         }
     }
 }
