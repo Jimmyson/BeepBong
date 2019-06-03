@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BeepBong.Application.Interfaces;
 using BeepBong.Application.ViewModels;
@@ -28,6 +29,13 @@ namespace BeepBong.Application.Commands
             bool isNew = (viewModel.LibraryId == Guid.Empty);
 
             _context.Attach(l).State = (isNew) ? EntityState.Added : EntityState.Modified;
+        }
+
+        public bool Exists(Library model)
+        {
+            return _context.Libraries.Any(l => l.AlbumName.ToLower() == model.AlbumName.ToLower()
+                    && l.Catalog == model.Catalog
+                    && l.Label == model.Label);
         }
     }
 }

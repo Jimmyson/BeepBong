@@ -32,5 +32,13 @@ namespace BeepBong.Application.Commands
             // Attach Entites
             _context.Attach(track).State = (isNew) ? EntityState.Added : EntityState.Modified;
         }
+
+        public bool Exists(TrackEditViewModel model)
+        {
+            return _context.Tracks.Any(t => t.Name.ToLower() == model.Name.ToLower()
+                    && t.Variant.ToLower() == model.Variant.ToLower()
+                    && t.Description.ToLower() == model.Description.ToLower()
+                    && t.TrackListId == model.TrackListId);
+        }
     }
 }

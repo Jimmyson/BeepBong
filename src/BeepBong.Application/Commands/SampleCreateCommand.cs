@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BeepBong.Application.Interfaces;
 using BeepBong.Application.ViewModels;
@@ -36,6 +37,19 @@ namespace BeepBong.Application.Commands
             };
 
             _context.Attach(s);
+        }
+
+        public bool Exists(SampleCreateViewModel model)
+        {
+            return _context.Samples.Any(s => s.SampleRate == int.Parse(model.SampleRate)
+                    && s.SampleCount == int.Parse(model.SampleCount)
+                    && s.AudioChannelCount == int.Parse(model.AudioChannelCount)
+                    && s.BitRate == int.Parse(model.BitRate)
+                    && s.BitRateMode == model.BitRateMode
+                    && s.BitDepth == int.Parse(model.BitDepth)
+                    && s.Codec == model.Codec
+                    && s.Fingerprint == model.Fingerprint
+                    && s.Compression == model.Compression);
         }
     }
 }
