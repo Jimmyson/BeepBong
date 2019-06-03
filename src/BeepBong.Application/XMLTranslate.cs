@@ -239,7 +239,9 @@ namespace BeepBong.Application
                                             (b.Channels.Any()) ? context.Channels
                                                         .Where(c => c.BroadcasterId == b.BroadcasterId)
                                                         .Select(c => new XElement("Channel",
-                                                                (c.Name != null) ? new XAttribute("name", c.Name) : null,                                                         
+                                                                (c.Name != null) ? new XAttribute("name", c.Name) : null,
+                                                                (c.Commencement != null) ? new XAttribute("commencement", c.Commencement) : null,
+                                                                (c.Closed != null) ? new XAttribute("closed", c.Closed) : null,
                                                                 (c.Programmes.Any()) ? context.Programmes
                                                                                         .Where(p => p.ChannelId == c.ChannelId)
                                                                                         .Select(p => new XElement("Programme",
@@ -340,6 +342,10 @@ namespace BeepBong.Application
             {
                 if (att.Name == "name")
                     c.Name = att.Value;
+                if (att.Name == "commencement")
+                    c.Commencement = DateTime.Parse(att.Value);
+                if (att.Name == "closed")
+                    c.Closed = DateTime.Parse(att.Value);
             }
 
             return c;
