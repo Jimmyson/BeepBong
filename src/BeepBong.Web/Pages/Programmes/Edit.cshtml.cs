@@ -19,8 +19,13 @@ namespace BeepBong.Web.Pages.Programmes
     public class EditModel : PageModel
     {
         private readonly BeepBongContext _context;
+        private readonly ProgrammeEditCommand _command;
 
-        public EditModel(BeepBongContext context) => _context = context;
+        public EditModel(BeepBongContext context)
+        {
+            _context = context;
+            _command = new ProgrammeEditCommand(_context);
+        }
 
         [BindProperty]
         public ProgrammeUploadViewModel Programme { get; set; }
@@ -60,12 +65,7 @@ namespace BeepBong.Web.Pages.Programmes
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || Programme.ProgrammeId == Guid.Empty)
-            {
-                return Page();
-            }
-
-            var model = new ProgrammeEditViewModel() {
+            ProgrammeEditViewModel model = new ProgrammeEditViewModel() {
                 ProgrammeId = Programme.ProgrammeId,
                 Name = Programme.Name,
                 AirDate = Programme.AirDate,
@@ -73,6 +73,16 @@ namespace BeepBong.Web.Pages.Programmes
                 ChannelId = Programme.ChannelId,
                 TrackListIds = Programme.TrackListIds
             };
+            
+            if (_command.Exists(model))
+            {
+                ModelState.AddModelError("Exists", "A programme already exists with these properties");
+            }
+
+            if (!ModelState.IsValid || Programme.ProgrammeId == Guid.Empty)
+            {
+                return await OnGetAsync(Programme.ProgrammeId);
+            }
 
             model.ImageChange = (Programme.ImageIdChange != Programme.ImageId);
 
@@ -98,7 +108,7 @@ namespace BeepBong.Web.Pages.Programmes
                 }
             }
 
-            new ProgrammeEditCommand(_context).SendCommand(model);
+            _command.SendCommand(model);
 
             try
             {

@@ -13,8 +13,13 @@ namespace BeepBong.Web.Pages.Samples
     public class UploadModel : PageModel
     {
         private readonly BeepBongContext _context;
+        private readonly SampleCreateCommand _command;
 
-        public UploadModel(BeepBongContext context) => _context = context;
+        public UploadModel(BeepBongContext context)
+        {
+            _context = context;
+            _command = new SampleCreateCommand(_context);
+        }
 
         public IActionResult OnGet()
         {
@@ -35,9 +40,14 @@ namespace BeepBong.Web.Pages.Samples
 
         public async Task<IActionResult> OnPostAsync()
         {
+            if (_command.Exists(Sample))
+            {
+                ModelState.AddModelError("Exists", "A sample already exists with these properties");
+            }   
+
             if (!ModelState.IsValid)
             {
-                return Page();
+                return OnGet();
             }
 
             // // Save Waveform to Model

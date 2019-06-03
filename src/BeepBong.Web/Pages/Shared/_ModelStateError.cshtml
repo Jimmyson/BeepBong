@@ -1,0 +1,6 @@
+@if (!ViewData.ModelState.IsValid && ViewData.ModelState["Exists"].Errors.Count > 0)
+{
+    <div class="alert alert-danger">
+        @ViewData.ModelState["Exists"].Errors.First().ErrorMessage
+    </div>
+}

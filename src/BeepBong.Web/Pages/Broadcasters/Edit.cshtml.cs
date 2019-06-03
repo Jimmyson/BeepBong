@@ -19,8 +19,13 @@ namespace BeepBong.Web.Pages.Broadcasters
     public class EditModel : PageModel
     {
         private readonly BeepBongContext _context;
+        private readonly BroadcasterEditCommand _command;
 
-        public EditModel(BeepBongContext context) => _context = context;
+        public EditModel(BeepBongContext context)
+        {
+            _context = context;
+            _command = new BroadcasterEditCommand(_context);
+        }
 
         [BindProperty]
         public BroadcasterUploadViewModel Broadcaster { get; set; }
@@ -55,9 +60,20 @@ namespace BeepBong.Web.Pages.Broadcasters
 
         public async Task<IActionResult> OnPostAsync()
         {
+            BroadcasterEditViewModel b = new BroadcasterEditViewModel()
+            {
+                Name = Broadcaster.Name,
+                Country = Broadcaster.Country
+            };
+
+            if (_command.Exists(b))
+            {
+                ModelState.AddModelError("Exists", "A broadcaster already exists with these properties");
+            }
+
             if (!ModelState.IsValid || Broadcaster.BroadcasterId == Guid.Empty)
             {
-                return Page();
+                return await OnGetAsync(Broadcaster.BroadcasterId);
             }
 
             var model = new BroadcasterEditViewModel() {
@@ -91,7 +107,7 @@ namespace BeepBong.Web.Pages.Broadcasters
                 }
             }
 
-            new BroadcasterEditCommand(_context).SendCommand(model);
+            _command.SendCommand(model);
 
             try
             {

@@ -14,8 +14,13 @@ namespace BeepBong.Web.Pages.Libraries
     public class EditModel : PageModel
     {
         private readonly BeepBongContext _context;
+        private readonly LibraryEditCommand _command;
 
-        public EditModel(BeepBongContext context) => _context = context;
+        public EditModel(BeepBongContext context)
+        {
+            _context = context;
+            _command = new LibraryEditCommand(_context);
+        }
 
         [BindProperty]
         public Library Library { get; set; }
@@ -39,12 +44,17 @@ namespace BeepBong.Web.Pages.Libraries
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || Library.LibraryId == Guid.Empty)
+            if (_command.Exists(Library))
             {
-                return Page();
+                ModelState.AddModelError("Exists", "A library already exists with these properties");
             }
 
-            new LibraryEditCommand(_context).SendCommand(Library);
+            if (!ModelState.IsValid || Library.LibraryId == Guid.Empty)
+            {
+                return await OnGetAsync(Library.LibraryId);
+            }
+
+            _command.SendCommand(Library);
 
             try
             {

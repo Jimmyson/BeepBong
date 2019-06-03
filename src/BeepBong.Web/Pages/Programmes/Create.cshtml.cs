@@ -16,8 +16,13 @@ namespace BeepBong.Web.Pages.Programmes
     public class CreateModel : PageModel
     {
         private readonly BeepBongContext _context;
+        private readonly ProgrammeEditCommand _command;
 
-        public CreateModel(BeepBongContext context) => _context = context;
+        public CreateModel(BeepBongContext context)
+        {
+            _context = context;
+            _command = new ProgrammeEditCommand(_context);
+        }
 
         public IActionResult OnGet()
         {
@@ -32,17 +37,22 @@ namespace BeepBong.Web.Pages.Programmes
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
             ProgrammeEditViewModel p = new ProgrammeEditViewModel()
             {
                 Name = Programme.Name,
                 AirDate = Programme.AirDate,
                 ChannelId = Programme.ChannelId,
             };
+            
+            if (_command.Exists(p))
+            {
+                ModelState.AddModelError("Exists", "A programme already exists with these properties");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return OnGet();
+            }
 
             if (Programme.ImageUpload != null && Programme.ImageUpload.Length > 0) {
                 

@@ -14,32 +14,44 @@ namespace BeepBong.Web.Pages.Broadcasters
     public class CreateModel : PageModel
     {
         private readonly BeepBongContext _context;
+        private readonly BroadcasterEditCommand _command;
 
-        public CreateModel(BeepBongContext context) => _context = context;
+        public CreateModel(BeepBongContext context)
+        {
+            _context = context;
+            _command = new BroadcasterEditCommand(_context);
+        }
 
-        public IActionResult OnGet() => Page();
+        public IActionResult OnGet()
+        {
+            //var data = CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(ct => new { Code = ct.Name, Country = new RegionInfo(ct.LCID).EnglishName});
+
+            //ViewData["CountryList"] = //new SelectList(CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(c => new {, c.}),"ChannelId", "Name");
+                //new SelectList(CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(ct => new { Code = ct.Name, Country = new RegionInfo(ct.LCID).Name}));
+
+            return Page();
+        }
 
         [BindProperty]
         public BroadcasterUploadViewModel Broadcaster { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-            
-            //var data = CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(ct => new { Code = ct.Name, Country = new RegionInfo(ct.LCID).EnglishName});
-
-            //ViewData["CountryList"] = //new SelectList(CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(c => new {, c.}),"ChannelId", "Name");
-                //new SelectList(CultureInfo.GetCultures(CultureTypes.SpecificCultures).Select(ct => new { Code = ct.Name, Country = new RegionInfo(ct.LCID).Name}));
-
-                return Page();
-            }
-
             BroadcasterEditViewModel b = new BroadcasterEditViewModel()
             {
                 Name = Broadcaster.Name,
                 Country = Broadcaster.Country
             };
+
+            if (_command.Exists(b))
+            {
+                ModelState.AddModelError("Exists", "A broadcaster already exists with these properties");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return OnGet();
+            }
 
             if (Broadcaster.ImageUpload != null && Broadcaster.ImageUpload.Length > 0) {
                 
@@ -60,8 +72,8 @@ namespace BeepBong.Web.Pages.Broadcasters
                     }
                 }
             }
-            
-            new BroadcasterEditCommand(_context).SendCommand(b);
+
+            _command.SendCommand(b);
 
             await _context.SaveChangesAsync();
 

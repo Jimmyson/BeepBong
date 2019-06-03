@@ -51,7 +51,7 @@ namespace BeepBong.Web.Pages.Samples
         {
             if (!ModelState.IsValid || Sample.SampleId == Guid.Empty)
             {
-                return Page();
+                return await OnGetAsync(Sample.SampleId);
             }
 
             new SampleEditCommand(_context).SendCommand(Sample);

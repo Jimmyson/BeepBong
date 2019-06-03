@@ -16,8 +16,13 @@ namespace BeepBong.Web.Pages.TrackLists
     public class EditModel : PageModel
     {
         private readonly BeepBongContext _context;
+        private readonly TrackListEditCommand _command;
 
-        public EditModel(BeepBongContext context) => _context = context;
+        public EditModel(BeepBongContext context)
+        {
+            _context = context;
+            _command = new TrackListEditCommand(_context);
+        }
 
         [BindProperty]
         public TrackListEditViewModel TrackList { get; set; }
@@ -43,12 +48,17 @@ namespace BeepBong.Web.Pages.TrackLists
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || TrackList.TrackListId == Guid.Empty)
+            if (_command.Exists(TrackList))
             {
-                return Page();
+                ModelState.AddModelError("Exists", "A track list already exists with these properties");
             }
 
-            new TrackListEditCommand(_context).SendCommand(TrackList);
+            if (!ModelState.IsValid || TrackList.TrackListId == Guid.Empty)
+            {
+                return await OnGetAsync(TrackList.TrackListId);
+            }
+
+            _command.SendCommand(TrackList);
 
             try
             {

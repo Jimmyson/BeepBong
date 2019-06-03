@@ -10,8 +10,13 @@ namespace BeepBong.Web.Pages.TrackLists
     public class CreateModel : PageModel
     {
         private readonly BeepBongContext _context;
+        private readonly TrackListEditCommand _command;
 
-        public CreateModel(BeepBongContext context) => _context = context;
+        public CreateModel(BeepBongContext context)
+        {
+            _context = context;
+            _command = new TrackListEditCommand(_context);
+        }
 
         public IActionResult OnGet() => Page();
 
@@ -20,12 +25,17 @@ namespace BeepBong.Web.Pages.TrackLists
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (_command.Exists(TrackList))
             {
-                return Page();
+                ModelState.AddModelError("Exists", "A track list already exists with these properties");
             }
 
-            new TrackListEditCommand(_context).SendCommand(TrackList);
+            if (!ModelState.IsValid)
+            {
+                return OnGet();
+            }
+
+            _command.SendCommand(TrackList);
 
             await _context.SaveChangesAsync();
 

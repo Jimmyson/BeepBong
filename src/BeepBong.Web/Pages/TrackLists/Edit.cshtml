@@ -9,6 +9,9 @@
 
 <h4>TrackList</h4>
 <hr />
+
+@{ await Html.RenderPartialAsync("_ModelStateError"); }
+
 <form method="post" enctype="multipart/form-data">
     <div class="row">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>

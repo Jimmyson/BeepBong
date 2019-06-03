@@ -20,8 +20,13 @@ namespace BeepBong.Web.Pages.Channels
     public class EditModel : PageModel
     {
         private readonly BeepBongContext _context;
+        private readonly ChannelEditCommand _command;
 
-        public EditModel(BeepBongContext context) => _context = context;
+        public EditModel(BeepBongContext context)
+        {
+            _context = context;
+            _command = new ChannelEditCommand(_context);
+        }
 
         [BindProperty]
         public ChannelEditViewModel Channel { get; set; }
@@ -47,12 +52,17 @@ namespace BeepBong.Web.Pages.Channels
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || Channel.ChannelId == Guid.Empty)
+            if (_command.Exists(Channel))
             {
-                return Page();
+                ModelState.AddModelError("Exists", "A channel already exists with these properties");
             }
 
-            new ChannelEditCommand(_context).SendCommand(Channel);
+            if (!ModelState.IsValid || Channel.ChannelId == Guid.Empty)
+            {
+                return await OnGetAsync(Channel.ChannelId);
+            }
+
+            _command.SendCommand(Channel);
 
             try
             {
