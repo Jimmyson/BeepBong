@@ -31,11 +31,5 @@ namespace BeepBong.Application.Commands
             // Attach Entites
             _context.Attach(c).State = (isNew) ? EntityState.Added : EntityState.Modified;
         }
-
-        public bool Exists(ChannelEditViewModel model)
-        {
-            return _context.Channels.Any(c => c.Name.ToLower() == model.Name.ToLower()
-                    && c.BroadcasterId == model.BroadcasterId);
-        }
     }
 }

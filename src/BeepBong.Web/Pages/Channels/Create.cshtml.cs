@@ -10,6 +10,7 @@ using BeepBong.Domain.Models;
 using BeepBong.Application;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
+using BeepBong.Application.Queries;
 
 namespace BeepBong.Web.Pages.Channels
 {
@@ -17,11 +18,13 @@ namespace BeepBong.Web.Pages.Channels
     {
         private readonly BeepBongContext _context;
         private readonly ChannelEditCommand _command;
+        private readonly ChannelEditQuery _query;
 
         public CreateModel(BeepBongContext context)
         {
             _context = context;
             _command = new ChannelEditCommand(_context);
+            _query = new ChannelEditQuery(_context);
         }
 
         public IActionResult OnGet() 
@@ -36,7 +39,7 @@ namespace BeepBong.Web.Pages.Channels
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (_command.Exists(Channel))
+            if (_query.Exists(Channel))
             {
                 ModelState.AddModelError("Exists", "A channel already exists with these properties");
             }

@@ -10,6 +10,7 @@ using System.IO;
 using BeepBong.Domain.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
+using BeepBong.Application.Queries;
 
 namespace BeepBong.Web.Pages.Programmes
 {
@@ -17,11 +18,13 @@ namespace BeepBong.Web.Pages.Programmes
     {
         private readonly BeepBongContext _context;
         private readonly ProgrammeEditCommand _command;
+        private readonly ProgrammeEditQuery _query;
 
         public CreateModel(BeepBongContext context)
         {
             _context = context;
             _command = new ProgrammeEditCommand(_context);
+            _query = new ProgrammeEditQuery(_context);
         }
 
         public IActionResult OnGet()
@@ -44,7 +47,7 @@ namespace BeepBong.Web.Pages.Programmes
                 ChannelId = Programme.ChannelId,
             };
             
-            if (_command.Exists(p))
+            if (_query.Exists(p))
             {
                 ModelState.AddModelError("Exists", "A programme already exists with these properties");
             }

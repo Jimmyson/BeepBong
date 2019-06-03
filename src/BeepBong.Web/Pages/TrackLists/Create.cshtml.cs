@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using BeepBong.DataAccess;
 using BeepBong.Application.ViewModels;
 using BeepBong.Application.Commands;
+using BeepBong.Application.Queries;
 
 namespace BeepBong.Web.Pages.TrackLists
 {
@@ -11,11 +12,13 @@ namespace BeepBong.Web.Pages.TrackLists
     {
         private readonly BeepBongContext _context;
         private readonly TrackListEditCommand _command;
+        private readonly TrackListEditQuery _query;
 
         public CreateModel(BeepBongContext context)
         {
             _context = context;
             _command = new TrackListEditCommand(_context);
+            _query = new TrackListEditQuery(_context);
         }
 
         public IActionResult OnGet() => Page();
@@ -25,7 +28,7 @@ namespace BeepBong.Web.Pages.TrackLists
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (_command.Exists(TrackList))
+            if (_query.Exists(TrackList))
             {
                 ModelState.AddModelError("Exists", "A track list already exists with these properties");
             }

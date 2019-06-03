@@ -74,12 +74,5 @@ namespace BeepBong.Application.Commands
             // Add new itmes
             _context.ProgrammeTrackLists.AddRange(trackLists);
         }
-
-        public bool Exists(ProgrammeEditViewModel model)
-        {
-            return _context.Programmes.Any(p => p.Name.ToLower() == model.Name.ToLower()
-                    && p.ChannelId == model.ChannelId
-                    && p.AirDate == model.AirDate);
-        }
     }
 }

@@ -21,11 +21,13 @@ namespace BeepBong.Web.Pages.Channels
     {
         private readonly BeepBongContext _context;
         private readonly ChannelEditCommand _command;
+        private readonly ChannelEditQuery _query;
 
         public EditModel(BeepBongContext context)
         {
             _context = context;
             _command = new ChannelEditCommand(_context);
+            _query = new ChannelEditQuery(_context);
         }
 
         [BindProperty]
@@ -38,7 +40,7 @@ namespace BeepBong.Web.Pages.Channels
                 return NotFound();
             }
 
-            var query = new ChannelEditQuery(_context).GetQuery(id.Value);
+            var query = _query.GetQuery(id.Value);
             Channel = await query.FirstOrDefaultAsync();
 
             ViewData["BroadcasterIds"] = new SelectList(_context.Broadcasters.Select(b => new {b.BroadcasterId, b.Name}), "BroadcasterId", "Name");
@@ -52,7 +54,7 @@ namespace BeepBong.Web.Pages.Channels
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (_command.Exists(Channel))
+            if (_query.Exists(Channel))
             {
                 ModelState.AddModelError("Exists", "A channel already exists with these properties");
             }

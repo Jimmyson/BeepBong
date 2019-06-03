@@ -22,5 +22,11 @@ namespace BeepBong.Application.Queries
                     Country = b.Country
                 });
         }
+
+        public bool Exists(BroadcasterEditViewModel model)
+        {
+            return _context.Broadcasters.Any(b => b.Name.ToLower() == model.Name.ToLower()
+                    && b.Country == model.Country);
+        }
     }
 }

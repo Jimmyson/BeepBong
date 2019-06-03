@@ -53,11 +53,5 @@ namespace BeepBong.Application.Commands
             // Add new itmes
             _context.ProgrammeTrackLists.AddRange(programmeLists);
         }
-
-        public bool Exists(TrackListEditViewModel model)
-        {
-            return _context.TrackLists.Any(tl => tl.Name.ToLower() == model.Name.ToLower()
-                    && tl.Composer.ToLower() == model.Composer.ToLower());
-        }
     }
 }

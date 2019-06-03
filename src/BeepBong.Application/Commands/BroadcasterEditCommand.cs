@@ -50,11 +50,5 @@ namespace BeepBong.Application.Commands
             // Attach Entites
             _context.Attach(b).State = (isNew) ? EntityState.Added : EntityState.Modified;
         }
-
-        public bool Exists(BroadcasterEditViewModel model)
-        {
-            return _context.Broadcasters.Any(b => b.Name.ToLower() == model.Name.ToLower()
-                    && b.Country == model.Country);
-        }
     }
 }

@@ -15,11 +15,13 @@ namespace BeepBong.Web.Pages.Libraries
     {
         private readonly BeepBongContext _context;
         private readonly LibraryEditCommand _command;
+        private readonly LibraryEditQuery _query;
 
         public EditModel(BeepBongContext context)
         {
             _context = context;
             _command = new LibraryEditCommand(_context);
+            _query = new LibraryEditQuery(_context);
         }
 
         [BindProperty]
@@ -32,7 +34,7 @@ namespace BeepBong.Web.Pages.Libraries
                 return NotFound();
             }
 
-            var query = new LibraryEditQuery(_context).GetQuery(id.Value);
+            var query = _query.GetQuery(id.Value);
             Library = await query.FirstOrDefaultAsync();
 
             if (Library == null)
@@ -44,7 +46,7 @@ namespace BeepBong.Web.Pages.Libraries
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (_command.Exists(Library))
+            if (_query.Exists(Library))
             {
                 ModelState.AddModelError("Exists", "A library already exists with these properties");
             }

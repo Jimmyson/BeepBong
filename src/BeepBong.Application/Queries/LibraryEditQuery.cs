@@ -17,5 +17,12 @@ namespace BeepBong.Application.Queries
             return _context.Libraries
                 .Where(l => l.LibraryId == libraryId.Value);
         }
+
+        public bool Exists(Library model)
+        {
+            return _context.Libraries.Any(l => l.AlbumName.ToLower() == model.AlbumName.ToLower()
+                    && l.Catalog == model.Catalog
+                    && l.Label == model.Label);
+        }
     }
 }

@@ -26,5 +26,12 @@ namespace BeepBong.Application.Queries
                     TrackListIds = p.ProgrammeTrackLists.Select(ptl => ptl.TrackListId).ToList()
                 });
         }
+
+        public bool Exists(ProgrammeEditViewModel model)
+        {
+            return _context.Programmes.Any(p => p.Name.ToLower() == model.Name.ToLower()
+                    && p.ChannelId == model.ChannelId
+                    && p.AirDate == model.AirDate);
+        }
     }
 }

@@ -20,11 +20,13 @@ namespace BeepBong.Web.Pages.Programmes
     {
         private readonly BeepBongContext _context;
         private readonly ProgrammeEditCommand _command;
+        private readonly ProgrammeEditQuery _query;
 
         public EditModel(BeepBongContext context)
         {
             _context = context;
             _command = new ProgrammeEditCommand(_context);
+            _query = new ProgrammeEditQuery(_context);
         }
 
         [BindProperty]
@@ -37,7 +39,7 @@ namespace BeepBong.Web.Pages.Programmes
                 return NotFound();
             }
 
-            var query = new ProgrammeEditQuery(_context).GetQuery(id.Value);
+            var query = _query.GetQuery(id.Value);
             var entity = await query.FirstOrDefaultAsync();
 
             if (entity != null)
@@ -74,7 +76,7 @@ namespace BeepBong.Web.Pages.Programmes
                 TrackListIds = Programme.TrackListIds
             };
             
-            if (_command.Exists(model))
+            if (_query.Exists(model))
             {
                 ModelState.AddModelError("Exists", "A programme already exists with these properties");
             }

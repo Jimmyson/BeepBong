@@ -17,11 +17,13 @@ namespace BeepBong.Web.Pages.TrackLists
     {
         private readonly BeepBongContext _context;
         private readonly TrackListEditCommand _command;
+        private readonly TrackListEditQuery _query;
 
         public EditModel(BeepBongContext context)
         {
             _context = context;
             _command = new TrackListEditCommand(_context);
+            _query = new TrackListEditQuery(_context);
         }
 
         [BindProperty]
@@ -34,7 +36,7 @@ namespace BeepBong.Web.Pages.TrackLists
                 return NotFound();
             }
 
-            var query = new TrackListEditQuery(_context).GetQuery(id.Value);
+            var query = _query.GetQuery(id.Value);
             TrackList = await query.FirstOrDefaultAsync();
 
             ViewData["ProgrammeIds"] = new SelectList(_context.Programmes.Select(p => new{p.ProgrammeId, Name = p.Name + ((p.AirDate.HasValue) ? " (" + p.AirDate.Value.Year + ")" : "")}),"ProgrammeId", "Name").OrderBy(l => l.Text);
@@ -48,7 +50,7 @@ namespace BeepBong.Web.Pages.TrackLists
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (_command.Exists(TrackList))
+            if (_query.Exists(TrackList))
             {
                 ModelState.AddModelError("Exists", "A track list already exists with these properties");
             }

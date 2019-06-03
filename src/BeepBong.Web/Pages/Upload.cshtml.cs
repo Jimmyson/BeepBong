@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using BeepBong.DataAccess;
 using BeepBong.Application.ViewModels;
 using BeepBong.Application.Commands;
+using BeepBong.Application.Queries;
 
 namespace BeepBong.Web.Pages.Samples
 {
@@ -14,11 +15,13 @@ namespace BeepBong.Web.Pages.Samples
     {
         private readonly BeepBongContext _context;
         private readonly SampleCreateCommand _command;
+        private readonly SampleEditQuery _query;
 
         public UploadModel(BeepBongContext context)
         {
             _context = context;
             _command = new SampleCreateCommand(_context);
+            _query = new SampleEditQuery(_context);
         }
 
         public IActionResult OnGet()
@@ -40,7 +43,7 @@ namespace BeepBong.Web.Pages.Samples
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (_command.Exists(Sample))
+            if (_query.Exists(Sample))
             {
                 ModelState.AddModelError("Exists", "A sample already exists with these properties");
             }   

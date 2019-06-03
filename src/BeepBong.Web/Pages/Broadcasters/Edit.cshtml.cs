@@ -20,11 +20,13 @@ namespace BeepBong.Web.Pages.Broadcasters
     {
         private readonly BeepBongContext _context;
         private readonly BroadcasterEditCommand _command;
+        private readonly BroadcasterEditQuery _query;
 
         public EditModel(BeepBongContext context)
         {
             _context = context;
             _command = new BroadcasterEditCommand(_context);
+            _query = new BroadcasterEditQuery(_context);
         }
 
         [BindProperty]
@@ -37,7 +39,7 @@ namespace BeepBong.Web.Pages.Broadcasters
                 return NotFound();
             }
 
-            var query = new BroadcasterEditQuery(_context).GetQuery(id.Value);
+            var query = _query.GetQuery(id.Value);
             var entity = await query.FirstOrDefaultAsync();
 
             if (entity != null)
@@ -66,7 +68,7 @@ namespace BeepBong.Web.Pages.Broadcasters
                 Country = Broadcaster.Country
             };
 
-            if (_command.Exists(b))
+            if (_query.Exists(b))
             {
                 ModelState.AddModelError("Exists", "A broadcaster already exists with these properties");
             }

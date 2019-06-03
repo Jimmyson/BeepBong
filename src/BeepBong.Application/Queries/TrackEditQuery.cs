@@ -24,5 +24,13 @@ namespace BeepBong.Application.Queries
                     TrackListId = t.TrackListId
                 });
         }
+
+        public bool Exists(TrackEditViewModel model)
+        {
+            return _context.Tracks.Any(t => t.Name.ToLower() == model.Name.ToLower()
+                    && t.Variant.ToLower() == model.Variant.ToLower()
+                    && t.Description.ToLower() == model.Description.ToLower()
+                    && t.TrackListId == model.TrackListId);
+        }
     }
 }
