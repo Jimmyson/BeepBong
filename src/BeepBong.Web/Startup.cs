@@ -12,11 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
 using FluentValidation.AspNetCore;
-// using FluentValidation;
-// using BeepBong.Domain.Models;
-// using BeepBong.Domain.Validation;
 using BeepBong.Application.ViewModels;
 using BeepBong.Application.Validation;
+using BeepBong.Web.ViewModel;
 
 namespace BeepBong.Web
 {
@@ -46,7 +44,8 @@ namespace BeepBong.Web
                 options.CacheProfiles.Add("Default30", new CacheProfile{ Duration = 30 });
             })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SampleEditViewModel>()); // Add Validators
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SampleEditViewModel>().RegisterValidatorsFromAssemblyContaining<BroadcasterUploadViewModel>()); // Add Validators
+                //.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<BroadcasterUploadViewModel>()); // Add Validators
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
