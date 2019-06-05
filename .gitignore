@@ -375,9 +375,8 @@ __pycache__/
 
 ### Custom Rules
 *.db
-src/BeepBong.Web/wwwroot/lib/wavesurfer.js/*
-!src/BeepBong.Web/wwwroot/lib/wavesurfer.js/wavesurfer.min.*
-!src/BeepBong.Web/wwwroot/lib/wavesurfer.js/plugin/wavesurfer/wavesurfer.spectrogram.min.*
+!src/BeepBong.Web/wwwroot/lib/wavesurfer.js/**
+!src/BeepBong.Web/wwwroot/lib/bootstrap-select/**
 
 # Github Issue Templates
 .github/*
