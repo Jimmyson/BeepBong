@@ -103,6 +103,11 @@
                 <span asp-validation-for="Sample.Compression" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Sample.Fingerprint" class="control-label"></label>
+                <input asp-for="Sample.Fingerprint" class="form-control" readonly/>
+                <span asp-validation-for="Sample.Fingerprint" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Sample.Notes" class="control-label"></label>
                 <!-- <input asp-for="Sample.Notes" class="form-control" /> -->
                 <textarea asp-for="Sample.Notes" class="form-control"></textarea>

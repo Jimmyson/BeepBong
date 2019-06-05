@@ -43,6 +43,11 @@ namespace BeepBong.Web.Pages.Samples
 
         public async Task<IActionResult> OnPostAsync()
         {
+			if (IsSampleEmpty())
+			{
+				return OnGet();
+			}
+
             if (_query.Exists(Sample))
             {
                 ModelState.AddModelError("Exists", "A sample already exists with these properties");
@@ -69,5 +74,16 @@ namespace BeepBong.Web.Pages.Samples
 
             return RedirectToPage("/Tracks/Details", new {id = Sample.TrackId});
         }
+
+		private bool IsSampleEmpty()
+		{
+			return Sample.SampleRate == null ||
+				Sample.SampleCount == null ||
+				Sample.AudioChannelCount == null ||
+				Sample.BitRate == null ||
+				Sample.BitDepth == null ||
+				Sample.Codec == null ||
+				Sample.Fingerprint == null;
+		}
     }
 }
