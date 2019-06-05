@@ -6,9 +6,13 @@
 }
 
 <h1>Data Export</h1>
-
+<hr />
 <form method="post">
-	<input type="submit" asp-page-handler="Download"/>
+    <div>
+        <label for="ImageInclude">Include Images</label>
+        <input name="ImageInclude" type="checkbox" />
+    </div>
+    <input class="btn btn-primary" type="submit" asp-page-handler="Download" value="Recieve XML Data" />
 </form>
 
 @section Scripts {

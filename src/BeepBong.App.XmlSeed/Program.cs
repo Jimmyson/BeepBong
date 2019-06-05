@@ -73,7 +73,7 @@ namespace BeepBong.App.XmlSeed
         }
 
         static void ExportData(string filePath) {
-            XDocument xdoc = XMLTranslate.ExportData(options);
+            XDocument xdoc = XMLTranslate.ExportData(options, true);
             
             xdoc.Save(filePath);
         }
