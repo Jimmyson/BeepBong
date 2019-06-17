@@ -11,7 +11,7 @@ namespace BeepBong.Application.Queries
         private readonly BeepBongContext _context;
 
         public ChannelEditQuery(BeepBongContext context) => _context = context;
-        
+
         public IQueryable<ChannelEditViewModel> GetQuery(Guid? channelId)
         {
             return _context.Channels
@@ -29,7 +29,7 @@ namespace BeepBong.Application.Queries
         {
             return _context.Channels.Any(
                 c => c.ChannelId != model.ChannelId
-                && c.Name.ToLower() == model.Name.ToLower()
+                && string.Equals(c.Name, model.Name, StringComparison.OrdinalIgnoreCase)
                 && c.BroadcasterId == model.BroadcasterId);
         }
     }

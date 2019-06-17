@@ -65,12 +65,17 @@ namespace BeepBong.Application.Commands
             foreach (var trackList in existingPtl)
             {
                 if (!trackLists.Contains(trackList))
+                {
                     // Delete Changes
                     _context.Attach(trackList).State = EntityState.Deleted;
+                }
                 else
+                {
                     // Remove existing entites from ViewModel
                     trackLists.Remove(trackList);
+                }
             }
+
             // Add new itmes
             _context.ProgrammeTrackLists.AddRange(trackLists);
         }

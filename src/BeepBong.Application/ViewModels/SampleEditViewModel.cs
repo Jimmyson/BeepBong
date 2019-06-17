@@ -6,6 +6,6 @@ namespace BeepBong.Application.ViewModels
     {
         public Guid SampleId { get; set; }
         public string Notes { get; set; }
-        public Guid TrackId { get; set; }  
+        public Guid TrackId { get; set; }
     }
 }

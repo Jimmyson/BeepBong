@@ -3,7 +3,6 @@ using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BeepBong.Application.Queries
@@ -28,7 +27,7 @@ namespace BeepBong.Application.Queries
                     Year = (p.AirDate.HasValue) ? p.AirDate.Value.Year.ToString() : null,
                     Channel = (p.Channel != null) ? p.Channel.Name : null,
                     ImageId = p.ImageId,
-                    ContainsLibrary = p.ProgrammeTrackLists.Any(ptl => ptl.TrackList.Library == true),
+                    ContainsLibrary = p.ProgrammeTrackLists.Any(ptl => ptl.TrackList.Library),
                     TrackCount = p.ProgrammeTrackLists.Select(ptl => ptl.TrackList.Tracks.Count).Sum()
                 });
         }

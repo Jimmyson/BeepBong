@@ -34,7 +34,7 @@ namespace BeepBong.Application.Test
             //Given
                 ImageProcessing image1 = new ImageProcessing(mem.ToArray());
                 ImageProcessing image2 = new ImageProcessing(mem.ToArray());
-            
+
             //When
                 image1.DownscaleImage(9);
                 image1.DownscaleImage();
@@ -44,6 +44,9 @@ namespace BeepBong.Application.Test
             //Then
                 Assert.Equal(image1.ToDataURI(), image2.ToDataURI());
                 imageFile.Close();
+                image1.Dispose();
+                image2.Dispose();
+                mem.Dispose();
             }
         }
 
@@ -57,6 +60,8 @@ namespace BeepBong.Application.Test
 			Assert.Equal(720, image.Height);
 			Assert.Equal(1280, image.Width);
 			Assert.Equal("image/jpeg", image.MimeType);
+
+            image.Dispose();
 		}
     }
 }

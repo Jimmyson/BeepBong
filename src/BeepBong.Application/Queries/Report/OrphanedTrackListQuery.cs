@@ -15,7 +15,7 @@ namespace BeepBong.Application.Queries.Report
         public IQueryable<OrphanedTrackListViewModel> GetQuery(Guid? id)
         {
             return _context.TrackLists
-                .Where(tl => !tl.ProgrammeTrackLists.Any())
+                .Where(tl => tl.ProgrammeTrackLists.Count == 0)
                 .Select(tl => new OrphanedTrackListViewModel() {
                     TrackListId = tl.TrackListId,
                     Name = tl.Name,

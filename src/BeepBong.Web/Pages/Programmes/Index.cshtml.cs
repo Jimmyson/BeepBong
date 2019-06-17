@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using BeepBong.DataAccess;
 using BeepBong.Application.Queries;
 using BeepBong.Application.ViewModels;
-using System;
 
 namespace BeepBong.Web.Pages.Programmes
 {

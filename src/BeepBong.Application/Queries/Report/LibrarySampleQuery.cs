@@ -3,7 +3,6 @@ using BeepBong.Application.ViewModels;
 using BeepBong.Application.ViewModels.Report;
 using BeepBong.DataAccess;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BeepBong.Application.Queries.Report
@@ -17,7 +16,7 @@ namespace BeepBong.Application.Queries.Report
         public IQueryable<LibrarySampleViewModel> GetQuery(Guid? id)
         {
             return _context.Samples
-                .Where(s => s.Track.TrackList.Library == true)
+                .Where(s => s.Track.TrackList.Library)
                 .Select(s => new LibrarySampleViewModel() {
                     TrackListId = s.Track.TrackListId,
                     TrackListName = s.Track.TrackList.Name,

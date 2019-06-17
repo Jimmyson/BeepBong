@@ -4,10 +4,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using BeepBong.DataAccess;
 using BeepBong.Application.ViewModels;
 using BeepBong.Application.Commands;
-using BeepBong.Web.ViewModel;
-using System.IO;
-using BeepBong.Domain.Models;
-using BeepBong.Application;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
 using BeepBong.Application.Queries;
@@ -27,7 +23,7 @@ namespace BeepBong.Web.Pages.Channels
             _query = new ChannelEditQuery(_context);
         }
 
-        public IActionResult OnGet() 
+        public IActionResult OnGet()
         {
             ViewData["BroadcasterIds"] = new SelectList(_context.Broadcasters.Select(b => new {b.BroadcasterId, b.Name}), "BroadcasterId", "Name");
 
@@ -48,7 +44,7 @@ namespace BeepBong.Web.Pages.Channels
             {
                 return OnGet();
             }
-            
+
             _command.SendCommand(Channel);
 
             await _context.SaveChangesAsync();

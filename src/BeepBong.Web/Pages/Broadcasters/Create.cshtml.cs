@@ -56,8 +56,8 @@ namespace BeepBong.Web.Pages.Broadcasters
                 return OnGet();
             }
 
-            if (Broadcaster.ImageUpload != null && Broadcaster.ImageUpload.Length > 0) {
-                
+            if (Broadcaster.ImageUpload?.Length > 0)
+            {
                 using (var ms = new MemoryStream()) {
                     await Broadcaster.ImageUpload.CopyToAsync(ms);
 

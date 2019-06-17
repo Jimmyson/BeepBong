@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using BeepBong.Domain.Models;
 
 namespace BeepBong.Application.ViewModels
 {

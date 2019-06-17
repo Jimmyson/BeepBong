@@ -20,7 +20,7 @@ namespace BeepBong.Application.Queries
 
             TrackList tl = _context.TrackLists.Find(id);
 
-            if (list.Any())
+            if (list.Count > 0)
             {
                 _context.ProgrammeTrackLists.RemoveRange(list);
             }

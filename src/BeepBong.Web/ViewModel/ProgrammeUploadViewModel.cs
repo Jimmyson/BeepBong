@@ -9,8 +9,10 @@ namespace BeepBong.Web.ViewModel
     {
         public Guid ProgrammeId { get; set; }
         public string Name { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime? AirDate { get; set; }
+
         public IFormFile ImageUpload { get; set; }
         public Guid? ImageId { get; set; }
         public Guid? ImageIdChange { get; set; }

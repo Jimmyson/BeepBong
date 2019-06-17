@@ -3,7 +3,6 @@ using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BeepBong.Application.Queries

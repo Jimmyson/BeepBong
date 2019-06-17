@@ -1,4 +1,3 @@
-using System;
 using BeepBong.DataAccess;
 
 namespace BeepBong.Web.ViewModel

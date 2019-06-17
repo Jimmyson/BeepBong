@@ -13,8 +13,8 @@ namespace BeepBong.Application
     /// </summary>
     public static class XMLTranslate
     {
-        private static Dictionary<Guid, string> programmeIds = new Dictionary<Guid, string>();
-        private static Dictionary<Guid, string> trackListIds = new Dictionary<Guid, string>();
+        private static readonly Dictionary<Guid, string> programmeIds = new Dictionary<Guid, string>();
+        private static readonly Dictionary<Guid, string> trackListIds = new Dictionary<Guid, string>();
 
         /// <summary>
         /// Import data into the specified BeepBong Database
@@ -29,7 +29,7 @@ namespace BeepBong.Application
 
             // Broadcasters, Channels and Programmes
             XElement broadcasting = xml.Element("BeepBongCollection").Element("Broadcasting");
-            
+
             foreach (var broadcaster in broadcasting.Elements("Broadcaster"))
             {
                 // Create Broadcaster
@@ -121,7 +121,7 @@ namespace BeepBong.Application
                         tl.TrackListId = id;
                     }
                 }
-                
+
                 if (trackList.HasElements)
                 {
                     foreach (var track in trackList.Elements("Track"))
@@ -148,7 +148,7 @@ namespace BeepBong.Application
                         {
                             if (t == null)
                                 t = new Track();
-                            
+
                             //Fall back name value
                             if (string.IsNullOrEmpty(t.Name))
                                 t.Name = track.Value;
@@ -188,8 +188,8 @@ namespace BeepBong.Application
                 if (link.Attribute("programmeRef") != null && link.Attribute("trackListRef") != null)
                 {
                     ProgrammeTrackList ptl = new ProgrammeTrackList() {
-                        ProgrammeId = programmeIds.Where(l => l.Value == link.Attribute("programmeRef").Value).FirstOrDefault().Key,
-                        TrackListId = trackListIds.Where(l => l.Value == link.Attribute("trackListRef").Value).FirstOrDefault().Key
+                        ProgrammeId = programmeIds.FirstOrDefault(l => l.Value == link.Attribute("programmeRef").Value).Key,
+                        TrackListId = trackListIds.FirstOrDefault(l => l.Value == link.Attribute("trackListRef").Value).Key
                     };
 
                     using (var context = new BeepBongContext(options)) {
@@ -236,20 +236,20 @@ namespace BeepBong.Application
                                             (b.Name != null) ? new XAttribute("name", b.Name) : null,
                                             (b.Country != null) ? new XAttribute("country", b.Country) : null,
                                             (b.Image != null && exportImage) ? new XAttribute("logo", b.Image.Base64) : null,
-                                            (b.Channels.Any()) ? context.Channels
+                                            (b.Channels.Count > 0) ? context.Channels
                                                         .Where(c => c.BroadcasterId == b.BroadcasterId)
                                                         .Select(c => new XElement("Channel",
                                                                 (c.Name != null) ? new XAttribute("name", c.Name) : null,
                                                                 (c.Commencement != null) ? new XAttribute("commencement", c.Commencement) : null,
                                                                 (c.Closed != null) ? new XAttribute("closed", c.Closed) : null,
-                                                                (c.Programmes.Any()) ? context.Programmes
+                                                                (c.Programmes.Count > 0) ? context.Programmes
                                                                                         .Where(p => p.ChannelId == c.ChannelId)
                                                                                         .Select(p => new XElement("Programme",
                                                                                             new XAttribute("ref", programmeIds[p.ProgrammeId]),
-                                                                                            (p.Name != null) ? new XAttribute("name", p.Name) : null, 
+                                                                                            (p.Name != null) ? new XAttribute("name", p.Name) : null,
                                                                                             (p.AirDate != null) ? new XAttribute("year", p.AirDate) : null,
                                                                                             (p.Image != null && exportImage) ? new XAttribute("logo", p.Image.Base64) : null
-                                                                                        )) : null                                                         
+                                                                                        )) : null
                                                             )) : null
                                         )
                                     ),
@@ -258,7 +258,7 @@ namespace BeepBong.Application
 											.Where(p => p.ChannelId == null)
 											.Select(p => new XElement("Programme",
 												new XAttribute("ref", programmeIds[p.ProgrammeId]),
-												(p.Name != null) ? new XAttribute("name", p.Name) : null, 
+												(p.Name != null) ? new XAttribute("name", p.Name) : null,
 												(p.AirDate != null) ? new XAttribute("year", p.AirDate) : null,
 												(p.Image != null && exportImage) ? new XAttribute("logo", p.Image.Base64) : null
 											))
@@ -270,14 +270,14 @@ namespace BeepBong.Application
                                             new XAttribute("ref", trackListIds[tl.TrackListId]),
                                             (tl.Name != null) ? new XAttribute("name", tl.Name) : null,
                                             (tl.Composer != null) ? new XAttribute("composer", tl.Composer) : null,
-                                            (tl.Library == true) ? new XAttribute("library", tl.Library) : null,
-                                            (tl.Tracks.Any()) ? context.Tracks
+                                            (tl.Library) ? new XAttribute("library", tl.Library) : null,
+                                            (tl.Tracks.Count > 0) ? context.Tracks
                                                                 .Where(t => t.TrackListId == tl.TrackListId)
                                                                 .Select(t => new XElement("Track",
                                                                         (t.Name != null) ? new XAttribute("name", t.Name) : null,
                                                                         (t.Variant != null) ? new XAttribute("subtitle", t.Variant) : null,
                                                                         (t.Description != null) ? new XAttribute("description", t.Description) : null,
-                                                                        (t.Samples.Any()) ? context.Samples
+                                                                        (t.Samples.Count > 0) ? context.Samples
                                                                                             .Where(s => s.TrackId == t.TrackId)
                                                                                             .Select(s => new XElement("Sample",
                                                                                                     (s.SampleRate > 0) ? new XAttribute("sampleRate", s.SampleRate) : null,

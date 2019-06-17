@@ -22,7 +22,7 @@ namespace BeepBong.Application.Queries
         {
             return _context.Libraries.Any(
                 l => l.LibraryId != model.LibraryId
-                && l.AlbumName.ToLower() == model.AlbumName.ToLower()
+                && string.Equals(l.AlbumName, model.AlbumName, StringComparison.OrdinalIgnoreCase)
                 && l.Catalog == model.Catalog
                 && l.Label == model.Label);
         }

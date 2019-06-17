@@ -1,15 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Linq;
-using System.Linq;
-using BeepBong.Domain.Models;
 using BeepBong.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.Application;
 
 namespace BeepBong.App.XmlSeed
 {
-    class Program
+    static class Program
     {
         private static DbContextOptions<BeepBongContext> options;
 
@@ -25,7 +23,8 @@ namespace BeepBong.App.XmlSeed
             if (args.Length < 2) {
                 throw new ApplicationException("Missing file parameter");
             }
-            if (!args[1].ToLower().EndsWith(".xml")) {
+
+            if (!args[1].EndsWith(".xml", StringComparison.OrdinalIgnoreCase)) {
                 throw new ApplicationException("Not an XML file");
             }
 
@@ -45,7 +44,7 @@ namespace BeepBong.App.XmlSeed
                 if(!File.Exists(args[1])) {
                     throw new ApplicationException("File not found");
                 }
-                
+
                 CreateDatabase();
 
                 ImportData(args[1]);
@@ -54,7 +53,7 @@ namespace BeepBong.App.XmlSeed
             if (export) {
                 ExportData(args[1]);
             }
-            
+
             Console.WriteLine("Operation Complete");
             Console.ReadLine();
         }
@@ -74,7 +73,7 @@ namespace BeepBong.App.XmlSeed
 
         static void ExportData(string filePath) {
             XDocument xdoc = XMLTranslate.ExportData(options, true);
-            
+
             xdoc.Save(filePath);
         }
     }

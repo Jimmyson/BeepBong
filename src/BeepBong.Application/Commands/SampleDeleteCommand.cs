@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using BeepBong.Application.Interfaces;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;

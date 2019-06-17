@@ -75,7 +75,7 @@ namespace BeepBong.Web.Pages.Programmes
                 ChannelId = Programme.ChannelId,
                 TrackListIds = Programme.TrackListIds
             };
-            
+
             if (_query.Exists(model))
             {
                 ModelState.AddModelError("Exists", "A programme already exists with these properties");
@@ -88,7 +88,7 @@ namespace BeepBong.Web.Pages.Programmes
 
             model.ImageChange = (Programme.ImageIdChange != Programme.ImageId);
 
-            if (Programme.ImageUpload != null && Programme.ImageUpload.Length > 0)
+            if (Programme.ImageUpload?.Length > 0)
             {
                 // Adjust Image
                 using (var ms = new MemoryStream())
@@ -96,7 +96,7 @@ namespace BeepBong.Web.Pages.Programmes
                     await Programme.ImageUpload.CopyToAsync(ms);
 
                     Image i = new Image();
-                    
+
                     using (ImageProcessing imageProc = new ImageProcessing(ms.ToArray()))
                     {
                         imageProc.DownscaleImage();

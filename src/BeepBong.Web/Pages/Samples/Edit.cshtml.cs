@@ -37,13 +37,13 @@ namespace BeepBong.Web.Pages.Samples
             }
 
             ViewData["TrackId"] = new SelectList(_context.Tracks
-                                                    .Where(t => t.TrackList.Library == false)
+                                                    .Where(t => t.TrackList.Library)
                                                        .Select(t => new {
-                                                           TrackId = t.TrackId,
+                                                           t.TrackId,
                                                            Name = t.Name + ((!String.IsNullOrEmpty(t.Variant)) ? " [" + t.Variant + "]" : "") + " (" + t.TrackList.Name + ")"
                                                        }),
                                                     "TrackId", "Name");
-            
+
             return Page();
         }
 

@@ -46,7 +46,7 @@ namespace BeepBong.Web.Pages.Programmes
                 AirDate = Programme.AirDate,
                 ChannelId = Programme.ChannelId,
             };
-            
+
             if (_query.Exists(p))
             {
                 ModelState.AddModelError("Exists", "A programme already exists with these properties");
@@ -57,8 +57,8 @@ namespace BeepBong.Web.Pages.Programmes
                 return OnGet();
             }
 
-            if (Programme.ImageUpload != null && Programme.ImageUpload.Length > 0) {
-                
+            if (Programme.ImageUpload?.Length > 0)
+            {
                 using (var ms = new MemoryStream()) {
                     await Programme.ImageUpload.CopyToAsync(ms);
 
@@ -77,7 +77,7 @@ namespace BeepBong.Web.Pages.Programmes
                 }
             }
 
-            new ProgrammeEditCommand(_context).SendCommand(p);
+           _command.SendCommand(p);
 
             await _context.SaveChangesAsync();
 

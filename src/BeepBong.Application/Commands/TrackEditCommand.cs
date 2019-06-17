@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using BeepBong.Application.Interfaces;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;

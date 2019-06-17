@@ -9,9 +9,8 @@ namespace BeepBong.Application.Queries
     public class ProgrammeEditQuery : IQuery<ProgrammeEditViewModel>
     {
         private readonly BeepBongContext _context;
-        
-        public ProgrammeEditQuery(BeepBongContext context) => _context = context;
 
+        public ProgrammeEditQuery(BeepBongContext context) => _context = context;
 
         public IQueryable<ProgrammeEditViewModel> GetQuery(Guid? programmeId)
         {
@@ -31,7 +30,7 @@ namespace BeepBong.Application.Queries
         {
             return _context.Programmes.Any(
                 p => p.ProgrammeId != model.ProgrammeId
-                && p.Name.ToLower() == model.Name.ToLower()
+                && string.Equals(p.Name, model.Name, StringComparison.OrdinalIgnoreCase)
                 && p.ChannelId == model.ChannelId
                 && p.AirDate == model.AirDate);
         }

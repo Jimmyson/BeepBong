@@ -1,5 +1,3 @@
-using BeepBong.Domain.Models;
-using FluentValidation;
 using FluentValidation.Validators;
 
 namespace BeepBong.Application.Validation
@@ -8,7 +6,6 @@ namespace BeepBong.Application.Validation
     {
         public NoURLValidator() : base("The value contains a URL")
         {
-            
         }
 
         protected override bool IsValid(PropertyValidatorContext context)

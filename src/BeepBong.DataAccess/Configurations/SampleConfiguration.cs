@@ -13,7 +13,7 @@ namespace BeepBong.DataAccess.Configurations
                 .HasConversion(
                     v => v.ToString(),
                     v => (CompressionEnum)Enum.Parse(typeof(CompressionEnum), v));
-            
+
             builder.Property(e => e.BitRateMode)
                 .HasConversion(
                     v => v.ToString(),

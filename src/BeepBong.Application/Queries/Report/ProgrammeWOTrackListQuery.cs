@@ -3,7 +3,6 @@ using BeepBong.Application.ViewModels;
 using BeepBong.Application.ViewModels.Report;
 using BeepBong.DataAccess;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BeepBong.Application.Queries.Report
@@ -17,7 +16,7 @@ namespace BeepBong.Application.Queries.Report
         public IQueryable<ProgrammeWOTrackListViewModel> GetQuery(Guid? id)
         {
             return _context.Programmes
-                .Where(p => !p.ProgrammeTrackLists.Any())
+                .Where(p => p.ProgrammeTrackLists.Count == 0)
                 .Select(p => new ProgrammeWOTrackListViewModel() {
                     ProgrammeId = p.ProgrammeId,
                     Name = p.Name,

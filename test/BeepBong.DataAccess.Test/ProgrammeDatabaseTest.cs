@@ -27,7 +27,7 @@ namespace BeepBong.DataAccess.Test
 
         //     using (var context = new BeepBongContext(options)) {
         //         Assert.Single(context.Programmes);
-                
+
         //         Programme item = context.Programmes.First();
         //         Assert.Equal("2018", item.Year);
         //     }
@@ -50,7 +50,7 @@ namespace BeepBong.DataAccess.Test
             tl.Tracks.Add(t);
 
             var options = InMemoryContext.ContextGenerator("ProgrammeTrackSampleCascadeDelete");
-            
+
             using (var context = new BeepBongContext(options))
             {
                 context.TrackLists.Add(tl);
@@ -99,7 +99,7 @@ namespace BeepBong.DataAccess.Test
             tl.ProgrammeTrackLists.Add(ptl);
 
             var options = InMemoryContext.ContextGenerator("ProgrammeRelationshipsRemove");
-            
+
             using (var context = new BeepBongContext(options))
             {
                 context.Programmes.Add(p);
@@ -112,7 +112,7 @@ namespace BeepBong.DataAccess.Test
                 Assert.Single(context.TrackLists);
                 Assert.Single(context.Tracks);
                 Assert.Single(context.ProgrammeTrackLists);
-                
+
                 Assert.Single(context.Programmes);
 
                 var trackList = context.TrackLists

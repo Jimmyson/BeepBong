@@ -11,7 +11,6 @@ namespace BeepBong.Web.Pages
     {
         public void OnGet()
         {
-
         }
     }
 }

@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using BeepBong.Application.Queries.Report;
 using BeepBong.Application.ViewModels.Report;
 using BeepBong.DataAccess;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BeepBong.Web.Pages.Reports

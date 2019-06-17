@@ -17,12 +17,12 @@ namespace BeepBong.Application
 		{
 			if (base64.StartsWith("data:"))
 				base64 = base64.Split(',')[1];
-			
+
 			Image = MagickImage.FromBase64(base64);
 		}
 
-        public int Width { get => (TempImage != null ? TempImage.Width : Image.Width); }
-        public int Height { get => (TempImage != null ? TempImage.Height : Image.Height); }
+        public int Width => TempImage != null ? TempImage.Width : Image.Width;
+        public int Height => TempImage != null ? TempImage.Height : Image.Height;
 
         /// <summary>
         /// Convert an encoded image into a Base64 Data URI
@@ -34,10 +34,10 @@ namespace BeepBong.Application
 					"data:" + TempImage.FormatInfo.MimeType + ";base64," + TempImage.ToBase64()
 					: "data:" + Image.FormatInfo.MimeType + ";base64," + Image.ToBase64();
         }
+
         /// <summary>
         /// Scale down the image to the default height value of 720px. Scale retains image ratio.
         /// </summary>
-        /// <param name="imageData">Byte Image Sequence</param>
         /// <returns>Byte Image Sequence of scaled image</returns>
         public void DownscaleImage() {
             DownscaleImage(720);

@@ -11,7 +11,7 @@ namespace BeepBong.Application.Queries
         private readonly BeepBongContext _context;
 
         public ChannelDetailQuery(BeepBongContext context) => _context = context;
-        
+
         public IQueryable<ChannelDetailViewModel> GetQuery(Guid? channelId)
         {
             return _context.Channels
@@ -29,6 +29,5 @@ namespace BeepBong.Application.Queries
                     }).ToList()
                 });
         }
-        
     }
 }

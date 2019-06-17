@@ -10,9 +10,8 @@ namespace BeepBong.Application.ViewModels
         public string AirDate { get; set; }
         public string ChannelName { get; set; }
         public Guid? ImageId { get; set; }
-        public List<SimpleTrackList> TrackLists { get; set; }    
+        public List<SimpleTrackList> TrackLists { get; set; }
     }
-
 
     public class SimpleTrackList
     {
@@ -22,7 +21,7 @@ namespace BeepBong.Application.ViewModels
         public bool Library { get; set; }
         public List<SimpleTrack> Tracks { get; set; }
     }
-    
+
     public class SimpleTrack
     {
         public Guid TrackId { get; set; }

@@ -9,8 +9,10 @@ namespace BeepBong.Application.ViewModels
     {
         public Guid ProgrammeId { get; set; }
         public string Name { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime? AirDate { get; set; }
+
         public Image Image { get; set; }
         public Guid? ImageId { get; set; }
         public bool ImageChange { get; set; }

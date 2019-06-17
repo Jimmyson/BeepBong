@@ -9,11 +9,6 @@ using BeepBong.Application.ViewModels;
 using BeepBong.Application.Queries;
 using BeepBong.Application.Commands;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Globalization;
-using BeepBong.Web.ViewModel;
-using BeepBong.Domain.Models;
-using System.IO;
-using BeepBong.Application;
 
 namespace BeepBong.Web.Pages.Channels
 {

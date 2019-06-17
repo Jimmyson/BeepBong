@@ -26,7 +26,7 @@ namespace BeepBong.DataAccess.Test
             t.Samples.Add(s2);
 
             var options = InMemoryContext.ContextGenerator("TrackDeleteSamplesWithInclude");
-            
+
             using (var context = new BeepBongContext(options))
             {
                 context.Tracks.Add(t);
@@ -72,7 +72,7 @@ namespace BeepBong.DataAccess.Test
         //     t.Samples.Add(s2);
 
         //     var options = InMemoryContext.ContextGenerator("TrackDeleteSamplesWithoutInclude");
-            
+
         //     using (var context = new BeepBongContext(options))
         //     {
         //         context.Tracks.Add(t);

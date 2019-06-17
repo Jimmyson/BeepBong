@@ -8,7 +8,6 @@ using BeepBong.DataAccess;
 using BeepBong.Application.ViewModels;
 using BeepBong.Application.Queries;
 using BeepBong.Application.Commands;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using BeepBong.Web.ViewModel;
 using BeepBong.Domain.Models;
 using System.IO;
@@ -81,7 +80,7 @@ namespace BeepBong.Web.Pages.Broadcasters
 
             model.ImageChange = (Broadcaster.ImageIdChange != Broadcaster.ImageId);
 
-            if (Broadcaster.ImageUpload != null && Broadcaster.ImageUpload.Length > 0)
+            if (Broadcaster.ImageUpload?.Length > 0)
             {
                 // Adjust Image
                 using (var ms = new MemoryStream())
@@ -89,7 +88,7 @@ namespace BeepBong.Web.Pages.Broadcasters
                     await Broadcaster.ImageUpload.CopyToAsync(ms);
 
                     Image i = new Image();
-                    
+
                     using (ImageProcessing imageProc = new ImageProcessing(ms.ToArray()))
                     {
                         imageProc.DownscaleImage();

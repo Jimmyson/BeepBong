@@ -30,7 +30,7 @@ namespace BeepBong.Application.Queries
                         Name = t.Name,
                         Variant = t.Variant,
                         Description = t.Description,
-                        SampleCount = t.Samples.Count()
+                        SampleCount = t.Samples.Count
                     }).ToList()
                 });
         }

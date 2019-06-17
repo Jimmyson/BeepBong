@@ -11,7 +11,7 @@ namespace BeepBong.Application.Queries
         private readonly BeepBongContext _context;
 
         public ImageGetQuery(BeepBongContext context) => _context = context;
-        
+
         public IQueryable<ImageDetailViewModel> GetQuery(Guid? id = null)
         {
             return _context.Images

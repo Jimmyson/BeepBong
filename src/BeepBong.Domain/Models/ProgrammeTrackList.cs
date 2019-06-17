@@ -6,7 +6,7 @@ namespace BeepBong.Domain.Models
     {
         public Guid ProgrammeId { get; set; }
         public Programme Programme { get; set; }
-        
+
         public Guid TrackListId { get; set; }
         public TrackList TrackList { get; set; }
     }

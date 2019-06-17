@@ -29,9 +29,9 @@ namespace BeepBong.Application.Queries
         {
             return _context.Tracks.Any(t =>
                 t.TrackId != model.TrackId
-                && t.Name.ToLower() == model.Name.ToLower()
-                && t.Variant.ToLower() == model.Variant.ToLower()
-                && t.Description.ToLower() == model.Description.ToLower()
+                && string.Equals(t.Name, model.Name, StringComparison.OrdinalIgnoreCase)
+                && string.Equals(t.Variant, model.Variant, StringComparison.OrdinalIgnoreCase)
+                && string.Equals(t.Description, model.Description, StringComparison.OrdinalIgnoreCase)
                 && t.TrackListId == model.TrackListId);
         }
     }

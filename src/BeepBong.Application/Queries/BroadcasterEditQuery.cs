@@ -28,7 +28,7 @@ namespace BeepBong.Application.Queries
         {
             return _context.Broadcasters.Any(
                 b => b.BroadcasterId != model.BroadcasterId
-                && b.Name.ToLower() == model.Name.ToLower()
+                && string.Equals(b.Name, model.Name, StringComparison.OrdinalIgnoreCase)
                 && b.Country == model.Country);
         }
     }

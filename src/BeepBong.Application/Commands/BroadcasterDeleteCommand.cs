@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using BeepBong.Application.Interfaces;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace BeepBong.Application.Commands
 {

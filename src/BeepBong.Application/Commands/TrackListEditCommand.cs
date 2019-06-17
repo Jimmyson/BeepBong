@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using BeepBong.Application.Interfaces;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
@@ -15,7 +14,7 @@ namespace BeepBong.Application.Commands
         private readonly BeepBongContext _context;
 
         public TrackListEditCommand(BeepBongContext context) => _context = context;
-        
+
         public void SendCommand(TrackListEditViewModel viewModel)
         {
             TrackList TrackList = new TrackList()
@@ -44,12 +43,17 @@ namespace BeepBong.Application.Commands
             foreach (var programmeList in existingPtl)
             {
                 if (!programmeLists.Contains(programmeList))
+                {
                     // Delete Changes
                     _context.Attach(programmeList).State = EntityState.Deleted;
+                }
                 else
+                {
                     // Remove existing entites from ViewModel
                     programmeLists.Remove(programmeList);
+                }
             }
+
             // Add new itmes
             _context.ProgrammeTrackLists.AddRange(programmeLists);
         }

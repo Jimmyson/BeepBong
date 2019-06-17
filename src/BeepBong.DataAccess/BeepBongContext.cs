@@ -12,7 +12,6 @@ namespace BeepBong.DataAccess
     {
         public BeepBongContext(DbContextOptions<BeepBongContext> options) : base(options)
         {
-            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

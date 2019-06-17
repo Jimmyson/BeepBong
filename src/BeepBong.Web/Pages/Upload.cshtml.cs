@@ -28,9 +28,9 @@ namespace BeepBong.Web.Pages.Samples
         {
             if (!Request.Query.Keys.Contains("TrackId")) {
                 ViewData["TrackId"] = new SelectList(_context.Tracks
-                                                    .Where(t => t.TrackList.Library == false)
+                                                    .Where(t => t.TrackList.Library)
                                                     .Select(t => new {
-                                                        TrackId = t.TrackId,
+                                                        t.TrackId,
                                                         Name = t.Name + (!String.IsNullOrEmpty(t.Variant) ? " (" + t.Variant + ")" : ""),
                                                         Programme = t.TrackList.Name
                                                     }), "TrackId", "Name", 1, "Programme");
@@ -51,7 +51,7 @@ namespace BeepBong.Web.Pages.Samples
             if (_query.Exists(Sample))
             {
                 ModelState.AddModelError("Exists", "A sample already exists with these properties");
-            }   
+            }
 
             if (!ModelState.IsValid)
             {
@@ -68,7 +68,7 @@ namespace BeepBong.Web.Pages.Samples
             //     s.Spectrograph = Sample.SpecImage;
             // }
 
-            new SampleCreateCommand(_context).SendCommand(Sample);
+            _command.SendCommand(Sample);
 
             await _context.SaveChangesAsync();
 
@@ -77,13 +77,13 @@ namespace BeepBong.Web.Pages.Samples
 
 		private bool IsSampleEmpty()
 		{
-			return Sample.SampleRate == null ||
-				Sample.SampleCount == null ||
-				Sample.AudioChannelCount == null ||
-				Sample.BitRate == null ||
-				Sample.BitDepth == null ||
-				Sample.Codec == null ||
-				Sample.Fingerprint == null;
+			return Sample.SampleRate == null
+                || Sample.SampleCount == null
+                || Sample.AudioChannelCount == null
+                || Sample.BitRate == null
+                || Sample.BitDepth == null
+                || Sample.Codec == null
+                || Sample.Fingerprint == null;
 		}
     }
 }

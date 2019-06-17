@@ -73,8 +73,8 @@ namespace BeepBong.Web.Test
                     Assert.IsType<ProgrammeDetailViewModel>(model.Programme);
                     Assert.NotEmpty(model.Programme.TrackLists);
                     Assert.IsType<SimpleTrackList>(model.Programme.TrackLists.FirstOrDefault());
-                    Assert.NotEmpty(model.Programme.TrackLists.FirstOrDefault().Tracks);
-                    Assert.IsType<SimpleTrack>(model.Programme.TrackLists.FirstOrDefault().Tracks.FirstOrDefault());
+                    Assert.NotEmpty(model.Programme.TrackLists.FirstOrDefault()?.Tracks);
+                    Assert.IsType<SimpleTrack>(model.Programme.TrackLists.FirstOrDefault()?.Tracks.FirstOrDefault());
                 }
             }
             finally {

@@ -21,22 +21,21 @@ namespace BeepBong.DataAccess.Test
                     AirDate = DateTime.Now
                 });
                 context.SaveChanges();
-            };
+            }
 
             using (var context = new BeepBongContext(options)) {
                 var result = context.Programmes.OrderBy(p => EF.Property<DateTime>(p, "Created")).ToList();
 
                 Assert.Single(result);
 
-                var createdValue = context.Entry(result.First()).Property("Created").CurrentValue;
-                var lastModifiedValue = context.Entry(result.First()).Property("LastModified").CurrentValue;
+                var createdValue = context.Entry(result[0]).Property("Created").CurrentValue;
+                var lastModifiedValue = context.Entry(result[0]).Property("LastModified").CurrentValue;
 
                 Assert.NotNull(createdValue);
                 Assert.Null(lastModifiedValue);
             }
         }
 
-        
         [Fact]
         public void UpdateRecordTest()
         {
@@ -49,7 +48,7 @@ namespace BeepBong.DataAccess.Test
                     AirDate = DateTime.Now
                 });
                 context.SaveChanges();
-            };
+            }
 
             using (var context = new BeepBongContext(options)) {
                 var p = context.Programmes.First();
@@ -57,15 +56,15 @@ namespace BeepBong.DataAccess.Test
                 p.Name = "Hello World, Sample Name";
 
                 context.SaveChanges();
-            };
+            }
 
             using (var context = new BeepBongContext(options)) {
                 var result = context.Programmes.OrderBy(p => EF.Property<DateTime>(p, "Created")).ToList();
 
                 Assert.Single(result);
 
-                var createdValue = context.Entry(result.First()).Property("Created").CurrentValue;
-                var lastModifiedValue = context.Entry(result.First()).Property("LastModified").CurrentValue;
+                var createdValue = context.Entry(result[0]).Property("Created").CurrentValue;
+                var lastModifiedValue = context.Entry(result[0]).Property("LastModified").CurrentValue;
 
                 Assert.NotNull(createdValue);
                 Assert.NotNull(lastModifiedValue);
