@@ -15,6 +15,8 @@ using FluentValidation.AspNetCore;
 using BeepBong.Application.ViewModels;
 using BeepBong.Application.Validation;
 using BeepBong.Web.ViewModel;
+using BeepBong.Identity;
+using Microsoft.AspNetCore.Identity;
 
 namespace BeepBong.Web
 {
@@ -39,13 +41,33 @@ namespace BeepBong.Web
 
             services.AddDbContext<BeepBongContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("BeepBongContext")));
+				
+			services.AddDbContext<IdentityDataContext>(options =>
+				options.UseSqlite(
+					Configuration.GetConnectionString("BeepBongIdentityContext")));
 
             services.AddMvc(options => {
                 options.CacheProfiles.Add("Default30", new CacheProfile{ Duration = 30 });
             })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SampleEditViewModel>().RegisterValidatorsFromAssemblyContaining<BroadcasterUploadViewModel>()); // Add Validators
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SampleEditViewModel>().RegisterValidatorsFromAssemblyContaining<BroadcasterUploadViewModel>()) // Add Validators
                 //.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<BroadcasterUploadViewModel>()); // Add Validators
+				.AddRazorPagesOptions(options => {
+					options.AllowAreas = true;
+					options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+					options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+				});
+
+			services.ConfigureApplicationCookie(options =>
+			{
+				options.LoginPath = $"/Identity/Account/Login";
+				options.LogoutPath = $"/Identity/Account/Logout";
+				options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+			});
+
+			services.AddDefaultIdentity<BeepBongUser>()
+				.AddEntityFrameworkStores<IdentityDataContext>()
+				.AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,6 +94,7 @@ namespace BeepBong.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+			app.UseAuthentication();
 
             app.UseMvc();
         }
