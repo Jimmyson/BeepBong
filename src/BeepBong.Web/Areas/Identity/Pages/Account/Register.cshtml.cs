@@ -16,14 +16,14 @@ namespace BeepBong.Web.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<BeepBongUser> _signInManager;
-        private readonly UserManager<BeepBongUser> _userManager;
+        private readonly SignInManager<BeepBongIdentityUser> _signInManager;
+        private readonly UserManager<BeepBongIdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<BeepBongUser> userManager,
-            SignInManager<BeepBongUser> signInManager,
+            UserManager<BeepBongIdentityUser> userManager,
+            SignInManager<BeepBongIdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -71,7 +71,7 @@ namespace BeepBong.Web.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new BeepBongUser { UserName = Input.UserName, Email = Input.Email };
+                var user = new BeepBongIdentityUser { UserName = Input.UserName, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -87,7 +87,7 @@ namespace BeepBong.Web.Areas.Identity.Pages.Account
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false, "cookie");
                     return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)

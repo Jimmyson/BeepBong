@@ -12,13 +12,13 @@ namespace BeepBong.Web.Areas.Identity.Pages.Account.Manage
 {
     public class ChangePasswordModel : PageModel
     {
-        private readonly UserManager<BeepBongUser> _userManager;
-        private readonly SignInManager<BeepBongUser> _signInManager;
+        private readonly UserManager<BeepBongIdentityUser> _userManager;
+        private readonly SignInManager<BeepBongIdentityUser> _signInManager;
         private readonly ILogger<ChangePasswordModel> _logger;
 
         public ChangePasswordModel(
-            UserManager<BeepBongUser> userManager,
-            SignInManager<BeepBongUser> signInManager,
+            UserManager<BeepBongIdentityUser> userManager,
+            SignInManager<BeepBongIdentityUser> signInManager,
             ILogger<ChangePasswordModel> logger)
         {
             _userManager = userManager;

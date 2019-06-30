@@ -1,7 +1,7 @@
 @using Microsoft.AspNetCore.Identity
 @using BeepBong.Identity
-@inject SignInManager<BeepBongUser> SignInManager
-@inject UserManager<BeepBongUser> UserManager
+@inject SignInManager<BeepBongIdentityUser> SignInManager
+@inject UserManager<BeepBongIdentityUser> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))

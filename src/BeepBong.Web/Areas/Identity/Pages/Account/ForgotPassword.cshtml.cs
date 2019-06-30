@@ -15,10 +15,10 @@ namespace BeepBong.Web.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ForgotPasswordModel : PageModel
     {
-        private readonly UserManager<BeepBongUser> _userManager;
+        private readonly UserManager<BeepBongIdentityUser> _userManager;
         private readonly IEmailSender _emailSender;
 
-        public ForgotPasswordModel(UserManager<BeepBongUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<BeepBongIdentityUser> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;

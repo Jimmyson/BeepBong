@@ -12,11 +12,11 @@ namespace BeepBong.Web.Areas.Identity.Pages.Account.Manage
 {
     public class GenerateRecoveryCodesModel : PageModel
     {
-        private readonly UserManager<BeepBongUser> _userManager;
+        private readonly UserManager<BeepBongIdentityUser> _userManager;
         private readonly ILogger<GenerateRecoveryCodesModel> _logger;
 
         public GenerateRecoveryCodesModel(
-            UserManager<BeepBongUser> userManager,
+            UserManager<BeepBongIdentityUser> userManager,
             ILogger<GenerateRecoveryCodesModel> logger)
         {
             _userManager = userManager;

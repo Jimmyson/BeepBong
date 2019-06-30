@@ -17,6 +17,8 @@ using BeepBong.Application.Validation;
 using BeepBong.Web.ViewModel;
 using BeepBong.Identity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace BeepBong.Web
 {
@@ -42,7 +44,7 @@ namespace BeepBong.Web
             services.AddDbContext<BeepBongContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("BeepBongContext")));
 				
-			services.AddDbContext<IdentityDataContext>(options =>
+			services.AddDbContext<BeepBongIdentityContext>(options =>
 				options.UseSqlite(
 					Configuration.GetConnectionString("BeepBongIdentityContext")));
 
@@ -57,17 +59,35 @@ namespace BeepBong.Web
 					options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
 					options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
 				});
+			
+			services
+                .AddAuthentication("Identity.Application")
+                .AddCookie("Identity.Application", options =>
+					{
+						options.LoginPath = $"/Identity/Account/Login";
+						options.LogoutPath = $"/Identity/Account/Logout";
+						options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+					}
+				)
+				.AddCookie("Identity.External", options =>
+					{
+						options.LoginPath = $"/Identity/Account/Login";
+						options.LogoutPath = $"/Identity/Account/Logout";
+						options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+					}
+				);
 
-			services.ConfigureApplicationCookie(options =>
-			{
-				options.LoginPath = $"/Identity/Account/Login";
-				options.LogoutPath = $"/Identity/Account/Logout";
-				options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
-			});
-
-			services.AddDefaultIdentity<BeepBongUser>()
-				.AddEntityFrameworkStores<IdentityDataContext>()
+			services.AddIdentityCore<BeepBongIdentityUser>()
+				//.AddUserManager<UserManager<BeepBongIdentityUser>>()
+				//.AddEntityFrameworkStores<BeepBongIdentityContext>()
 				.AddDefaultTokenProviders();
+
+			services.AddScoped<IUserStore<BeepBongIdentityUser>, BeepBongIdentityUserStore>();
+			services.TryAddScoped<UserManager<BeepBongIdentityUser>>();
+			services.TryAddScoped<SignInManager<BeepBongIdentityUser>>();
+
+			// using Microsoft.AspNetCore.Identity.UI.Services;
+			services.AddSingleton<IEmailSender, EmailSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

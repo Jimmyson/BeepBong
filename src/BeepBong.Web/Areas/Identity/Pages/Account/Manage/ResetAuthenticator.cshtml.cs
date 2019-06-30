@@ -12,13 +12,13 @@ namespace BeepBong.Web.Areas.Identity.Pages.Account.Manage
 {
     public class ResetAuthenticatorModel : PageModel
     {
-        UserManager<BeepBongUser> _userManager;
-        private readonly SignInManager<BeepBongUser> _signInManager;
+        UserManager<BeepBongIdentityUser> _userManager;
+        private readonly SignInManager<BeepBongIdentityUser> _signInManager;
         ILogger<ResetAuthenticatorModel> _logger;
 
         public ResetAuthenticatorModel(
-            UserManager<BeepBongUser> userManager,
-            SignInManager<BeepBongUser> signInManager,
+            UserManager<BeepBongIdentityUser> userManager,
+            SignInManager<BeepBongIdentityUser> signInManager,
             ILogger<ResetAuthenticatorModel> logger)
         {
             _userManager = userManager;

@@ -13,9 +13,9 @@ namespace BeepBong.Web.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ConfirmEmailModel : PageModel
     {
-        private readonly UserManager<BeepBongUser> _userManager;
+        private readonly UserManager<BeepBongIdentityUser> _userManager;
 
-        public ConfirmEmailModel(UserManager<BeepBongUser> userManager)
+        public ConfirmEmailModel(UserManager<BeepBongIdentityUser> userManager)
         {
             _userManager = userManager;
         }

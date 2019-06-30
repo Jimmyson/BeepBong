@@ -14,13 +14,13 @@ namespace BeepBong.Web.Areas.Identity.Pages.Account.Manage
     {
         private const string AuthenicatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}";
 
-        private readonly UserManager<BeepBongUser> _userManager;
-        private readonly SignInManager<BeepBongUser> _signInManager;
+        private readonly UserManager<BeepBongIdentityUser> _userManager;
+        private readonly SignInManager<BeepBongIdentityUser> _signInManager;
         private readonly ILogger<TwoFactorAuthenticationModel> _logger;
 
         public TwoFactorAuthenticationModel(
-            UserManager<BeepBongUser> userManager,
-            SignInManager<BeepBongUser> signInManager,
+            UserManager<BeepBongIdentityUser> userManager,
+            SignInManager<BeepBongIdentityUser> signInManager,
             ILogger<TwoFactorAuthenticationModel> logger)
         {
             _userManager = userManager;

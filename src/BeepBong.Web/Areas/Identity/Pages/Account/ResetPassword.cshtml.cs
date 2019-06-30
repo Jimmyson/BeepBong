@@ -14,9 +14,9 @@ namespace BeepBong.Web.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ResetPasswordModel : PageModel
     {
-        private readonly UserManager<BeepBongUser> _userManager;
+        private readonly UserManager<BeepBongIdentityUser> _userManager;
 
-        public ResetPasswordModel(UserManager<BeepBongUser> userManager)
+        public ResetPasswordModel(UserManager<BeepBongIdentityUser> userManager)
         {
             _userManager = userManager;
         }

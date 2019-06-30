@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BeepBong.Identity
 {
-    public class IdentityDataContext : IdentityDbContext<BeepBongUser>
+    public class BeepBongIdentityContext : DbContext
     {
-        public IdentityDataContext(DbContextOptions<IdentityDataContext> options)
+        public BeepBongIdentityContext(DbContextOptions<BeepBongIdentityContext> options)
             : base(options)
         {
         }
@@ -22,5 +22,8 @@ namespace BeepBong.Identity
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+		public DbSet<BeepBongIdentityUser> Users { get; set; }
+		
     }
 }

@@ -16,13 +16,13 @@ namespace BeepBong.Web.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ExternalLoginModel : PageModel
     {
-        private readonly SignInManager<BeepBongUser> _signInManager;
-        private readonly UserManager<BeepBongUser> _userManager;
+        private readonly SignInManager<BeepBongIdentityUser> _signInManager;
+        private readonly UserManager<BeepBongIdentityUser> _userManager;
         private readonly ILogger<ExternalLoginModel> _logger;
 
         public ExternalLoginModel(
-            SignInManager<BeepBongUser> signInManager,
-            UserManager<BeepBongUser> userManager,
+            SignInManager<BeepBongIdentityUser> signInManager,
+            UserManager<BeepBongIdentityUser> userManager,
             ILogger<ExternalLoginModel> logger)
         {
             _signInManager = signInManager;
@@ -115,7 +115,7 @@ namespace BeepBong.Web.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new BeepBongUser { UserName = Input.Email, Email = Input.Email };
+                var user = new BeepBongIdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
