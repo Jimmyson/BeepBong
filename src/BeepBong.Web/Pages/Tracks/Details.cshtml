@@ -1,0 +1,140 @@
+@page
+@model BeepBong.Web.Pages.Tracks.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Track</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Track.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Track.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Track.Subtitle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Track.Subtitle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Track.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Track.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Track.ProgrammeName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Track.ProgrammeName)
+        </dd>
+    </dl>
+</div>
+@if (Model.Track.IsLibraryMusic == false)
+{
+    <div>
+    <h4>Samples</h4>
+    <hr />
+        <p>
+            <a asp-page="../Upload" asp-route-TrackId="@Model.Track.TrackId">
+                <svg class="i"><use xlink:href="#i-upload" /></svg>
+                Upload
+            </a>
+        </p>
+    @if (Model.Track.Samples.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Track.Samples.First().Duration)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Track.Samples.First().SampleRate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Track.Samples.First().SampleCount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Track.Samples.First().Channels)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Track.Samples.First().BitRate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Track.Samples.First().BitRateMode)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Track.Samples.First().BitDepth)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Track.Samples.First().Codec)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Track.Samples.First().Compression)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Track.Samples.First().Notes)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.Track.Samples) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Duration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SampleRate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SampleCount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Channels)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BitRate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BitRateMode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BitDepth)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Codec)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Compression)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Notes)
+                    </td>
+                    <td>
+                        <a asp-page="../Samples/Edit" asp-route-id="@item.SampleId">Edit</a> |
+                        <a asp-page="../Samples/Details" asp-route-id="@item.SampleId">Details</a> |
+                        <a asp-page="../Samples/Delete" asp-route-id="@item.SampleId">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else {
+        <h5><i>No Samples are listed for this track</i></h5>
+    }
+    </div>
+}
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Track.TrackId">Edit</a> |
+    <a asp-page="../Programmes/Details" asp-route-id="@Model.Track.ProgrammeId">Back to Programme</a>
+</div>

@@ -3,30 +3,28 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BeepBong.DataAccess;
 using BeepBong.Application.ViewModels;
 using BeepBong.Application.Queries;
 using BeepBong.Application.Commands;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace BeepBong.Web.Pages.TrackLists
+namespace BeepBong.Web.Pages.Tracks
 {
     public class EditModel : PageModel
     {
         private readonly BeepBongContext _context;
-        private readonly TrackListEditCommand _command;
-        private readonly TrackListEditQuery _query;
+        private readonly TrackEditQuery _query;
 
         public EditModel(BeepBongContext context)
         {
             _context = context;
-            _command = new TrackListEditCommand(_context);
-            _query = new TrackListEditQuery(_context);
+            _query = new TrackEditQuery(_context);
         }
 
         [BindProperty]
-        public TrackListEditViewModel TrackList { get; set; }
+        public TrackEditViewModel Track { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -36,31 +34,35 @@ namespace BeepBong.Web.Pages.TrackLists
             }
 
             var query = _query.GetQuery(id.Value);
-            TrackList = await query.FirstOrDefaultAsync();
+            Track = await query.FirstOrDefaultAsync();
 
-            if (TrackList == null)
+            if (Track == null)
             {
                 return NotFound();
             }
 			
-            ViewData["ProgrammeIds"] = new SelectList(_context.Programmes.Select(p => new{p.ProgrammeId, Name = p.Name + ((p.AirDate.HasValue) ? " (" + p.AirDate.Value.Year + ")" : "")}),"ProgrammeId", "Name").OrderBy(l => l.Text);
-
+            ViewData["TrackListId"] = new SelectList(_context.TrackLists
+                                                        .Select(tl => new {
+                                                            TrackListId = tl.TrackListId,
+                                                            Name = tl.Name + " (" + tl.Composer + ")"
+                                                        }),
+                                                    "TrackListId", "Name");
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (_query.Exists(TrackList))
+            if (_query.Exists(Track))
             {
                 ModelState.AddModelError("Exists", "A track list already exists with these properties");
             }
 
-            if (!ModelState.IsValid || TrackList.TrackListId == Guid.Empty)
+            if (!ModelState.IsValid || Track.TrackListId == Guid.Empty)
             {
-                return await OnGetAsync(TrackList.TrackListId);
+                return await OnGetAsync(Track.TrackListId);
             }
 
-            _command.SendCommand(TrackList);
+            new TrackEditCommand(_context).SendCommand(Track);
 
             try
             {
@@ -68,7 +70,7 @@ namespace BeepBong.Web.Pages.TrackLists
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TrackListExists(TrackList.TrackListId))
+                if (!TrackExists(Track.TrackId))
                 {
                     return NotFound();
                 }
@@ -78,12 +80,12 @@ namespace BeepBong.Web.Pages.TrackLists
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("../Programmes");
         }
 
-        private bool TrackListExists(Guid id)
+        private bool TrackExists(Guid id)
         {
-            return _context.TrackLists.Any(e => e.TrackListId == id);
+            return _context.Tracks.Any(e => e.TrackId == id);
         }
     }
 }

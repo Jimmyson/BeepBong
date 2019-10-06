@@ -1,0 +1,50 @@
+@page
+@model BeepBong.Web.Pages.Tracks.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Track</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Track.TrackId" />
+            <div class="form-group">
+                <label asp-for="Track.Name" class="control-label"></label>
+                <input asp-for="Track.Name" class="form-control" />
+                <span asp-validation-for="Track.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Track.Subtitle" class="control-label"></label>
+                <input asp-for="Track.Subtitle" class="form-control" />
+                <span asp-validation-for="Track.Subtitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Track.Description" class="control-label"></label>
+                <textarea asp-for="Track.Description" class="form-control" ></textarea>
+                <span asp-validation-for="Track.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Track.TrackListId" class="control-label"></label>
+                <select asp-for="Track.TrackListId" class="form-control" asp-items="ViewBag.TrackListId"></select>
+                <span asp-validation-for="Track.TrackListId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- <div>
+    <a asp-page="../Programmes/Details" asp-route-id="@Model.Track.ProgrammeId">Back to Programme</a>
+</div> -->
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
