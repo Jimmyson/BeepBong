@@ -1,0 +1,1672 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BeepBongCollection>
+  <Broadcasting>
+    <Broadcaster name="ITV plc" country="United Kingdom">
+      <Channel name="ITV">
+        <Programme ref="p92" name="ITV News" year="1999-01-01T00:00:00" />
+        <Programme ref="p55" name="ITV News" year="2004-01-01T00:00:00" />
+        <Programme ref="p112" name="ITV Regional News" year="2004-01-01T00:00:00" />
+        <Programme ref="p76" name="ITV News" year="2006-01-01T00:00:00" />
+        <Programme ref="p118" name="ITV Regional News" year="2006-01-01T00:00:00" />
+        <Programme ref="p143" name="ITV News at Ten" year="2008-01-01T00:00:00" />
+        <Programme ref="p147" name="ITV News" year="2009-01-01T00:00:00" />
+        <Programme ref="p38" name="ITV News" year="2013-01-01T00:00:00" />
+        <Programme ref="p113" name="ITV Regional News" year="2013-01-01T00:00:00" />
+        <Programme ref="p116" name="ITV News Election" year="2015-01-01T00:00:00" />
+        <Programme ref="p80" name="ITV News Election" year="2017-01-01T00:00:00" />
+        <Programme ref="p153" name="ITV News at Ten" year="2016-01-01T00:00:00" />
+      </Channel>
+    </Broadcaster>
+    <Broadcaster name="Channel Four Television Corporation" country="United Kingdom">
+      <Channel name="Channel 4">
+        <Programme ref="p120" name="Channel 4 News" year="1998-01-01T00:00:00" />
+        <Programme ref="p123" name="4 News" year="2007-01-01T00:00:00" />
+      </Channel>
+      <Channel name="SC/4">
+        <Programme ref="p141" name="Newyddion" year="2000-01-01T00:00:00" />
+        <Programme ref="p138" name="Newyddion" year="2005-01-01T00:00:00" />
+      </Channel>
+    </Broadcaster>
+    <Broadcaster name="British Broadcasting Corporation" country="United Kingdom">
+      <Channel name="BBC One">
+        <Programme ref="p146" name="BBC One O'Clock News" year="1993-01-01T00:00:00" />
+        <Programme ref="p56" name="BBC Breakfast" year="2006-01-01T00:00:00" />
+        <Programme ref="p135" name="Breakfast" year="2003-01-01T00:00:00" />
+        <Programme ref="p96" name="Breakfast" year="2000-01-01T00:00:00" />
+        <Programme ref="p111" name="BBC Breakfast" year="2018-01-01T00:00:00" />
+        <Programme ref="p152" name="BBC Breakfast Rio" year="2016-01-01T00:00:00" />
+        <Programme ref="p34" name="Sunday Politics" year="2011-01-01T00:00:00" />
+        <Programme ref="p99" name="BBC National News" year="2008-01-01T00:00:00" />
+        <Programme ref="p52" name="BBC National News" year="2007-01-01T00:00:00" />
+        <Programme ref="p36" name="BBC National News" year="2004-01-01T00:00:00" />
+        <Programme ref="p49" name="BBC National News" year="1999-01-01T00:00:00" />
+        <Programme ref="p54" name="BBC Breakfast Time" year="1983-01-01T00:00:00" />
+        <Programme ref="p8" name="BBC Breakfast Time" year="1986-01-01T00:00:00" />
+        <Programme ref="p64" name="BBC Breakfast News" year="1989-01-01T00:00:00" />
+        <Programme ref="p66" name="BBC Nine O'Clock News" year="1981-01-01T00:00:00" />
+        <Programme ref="p75" name="BBC Nine O'Clock News" year="1988-01-01T00:00:00" />
+        <Programme ref="p139" name="BBC Nine O'Clock News" year="1986-01-01T00:00:00" />
+        <Programme ref="p35" name="BBC Six O'Clock News" year="1984-01-01T00:00:00" />
+        <Programme ref="p119" name="BBC One O'Clock News" year="1987-01-01T00:00:00" />
+        <Programme ref="p78" name="Business Breakfast" year="1993-01-01T00:00:00" />
+        <Programme ref="p90" name="BBC Breakfast News" year="1993-01-01T00:00:00" />
+        <Programme ref="p100" name="BBC News" year="1993-01-01T00:00:00" />
+        <Programme ref="p68" name="BBC Nine O'Clock News" year="1993-01-01T00:00:00" />
+        <Programme ref="p47" name="BBC Six O'Clock News" year="1993-01-01T00:00:00" />
+        <Programme ref="p58" name="BBC Breakfast" year="2009-01-01T00:00:00" />
+        <Programme ref="p15" name="BBC Breakfast" year="2013-01-01T00:00:00" />
+        <Programme ref="p102" name="BBC Regional News" year="1999-01-01T00:00:00" />
+        <Programme ref="p41" name="BBC Regional News" year="2008-01-01T00:00:00" />
+        <Programme ref="p51" name="BBC Regional News" year="2002-01-01T00:00:00" />
+        <Programme ref="p122" name="Politics Live" year="2018-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC Alba">
+        <Programme ref="p1" name="An La" year="2008-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC World News">
+        <Programme ref="p23" name="Talking Business" year="2017-01-01T00:00:00" />
+        <Programme ref="p63" name="The Briefing" year="2017-01-01T00:00:00" />
+        <Programme ref="p155" name="Sportsday" year="2017-01-01T00:00:00" />
+        <Programme ref="p134" name="Outside Source" year="2015-01-01T00:00:00" />
+        <Programme ref="p104" name="Newsday" year="2015-01-01T00:00:00" />
+        <Programme ref="p10" name="Impact" year="2010-01-01T00:00:00" />
+        <Programme ref="p150" name="GMT" year="2010-01-01T00:00:00" />
+        <Programme ref="p93" name="Global" year="2016-01-01T00:00:00" />
+        <Programme ref="p9" name="Business Briefing" year="2017-01-01T00:00:00" />
+        <Programme ref="p73" name="Beyond 100 Days" year="2017-01-01T00:00:00" />
+        <Programme ref="p31" name="BBC World News" year="2013-01-01T00:00:00" />
+        <Programme ref="p88" name="World News America" year="2008-01-01T00:00:00" />
+        <Programme ref="p74" name="Focus on Africa" year="2012-01-01T00:00:00" />
+        <Programme ref="p16" name="World Business Report" year="2013-01-01T00:00:00" />
+        <Programme ref="p44" name="BBC World News" year="2008-01-01T00:00:00" />
+        <Programme ref="p25" name="BBC World News Branding" year="2008-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC World">
+        <Programme ref="p40" name="BBC World Branding" year="1999-01-01T00:00:00" />
+        <Programme ref="p53" name="BBC World News" year="2007-01-01T00:00:00" />
+        <Programme ref="p149" name="BBC World Branding" year="2007-01-01T00:00:00" />
+        <Programme ref="p130" name="BBC World News" year="2003-01-01T00:00:00" />
+        <Programme ref="p33" name="BBC World Branding" year="2003-01-01T00:00:00" />
+        <Programme ref="p14" name="BBC World News" year="2001-01-01T00:00:00" />
+        <Programme ref="p37" name="BBC World News" year="1999-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC World Service Television">
+        <Programme ref="p43" name="BBC World Service News" year="1991-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC News Channel">
+        <Programme ref="p57" name="BBC News" year="2013-01-01T00:00:00" />
+        <Programme ref="p133" name="Afternoon Live" year="2017-01-01T00:00:00" />
+        <Programme ref="p91" name="BBC News" year="2008-01-01T00:00:00" />
+        <Programme ref="p22" name="BBC News Slates" year="2017-01-01T00:00:00" />
+        <Programme ref="p48" name="BBC News Promos" year="2017-01-01T00:00:00" />
+        <Programme ref="p3" name="BBC News Channel Branding" year="2008-01-01T00:00:00" />
+        <Programme ref="p98" name="BBC News Channel Branding" year="2013-01-01T00:00:00" />
+        <Programme ref="p71" name="Timeline" year="2017-01-01T00:00:00" />
+      </Channel>
+      <Channel name="CBBC">
+        <Programme ref="p148" name="Newsround" year="2014-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC News 24">
+        <Programme ref="p109" name="Reporters" year="2002-01-01T00:00:00" />
+        <Programme ref="p142" name="StoryFix" year="2006-01-01T00:00:00" />
+        <Programme ref="p7" name="Sept 11 Remeberance" year="2002-01-01T00:00:00" />
+        <Programme ref="p121" name="BBC News 24 Tonight" year="2005-01-01T00:00:00" />
+        <Programme ref="p145" name="BBC News" year="2007-01-01T00:00:00" />
+        <Programme ref="p39" name="BBC News 24 Branding" year="2007-01-01T00:00:00" />
+        <Programme ref="p12" name="BBC News" year="2003-01-01T00:00:00" />
+        <Programme ref="p81" name="BBC News 24 Branding" year="2003-01-01T00:00:00" />
+        <Programme ref="p151" name="BBC News" year="1999-01-01T00:00:00" />
+        <Programme ref="p13" name="BBC News 24 Branding" year="1999-01-01T00:00:00" />
+        <Programme ref="p72" name="BBC News" year="1997-01-01T00:00:00" />
+        <Programme ref="p84" name="BBC News 24 Branding" year="1997-01-01T00:00:00" />
+        <Programme ref="p95" name="Business Today" year="1999-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC Four">
+        <Programme ref="p24" name="World News Today" year="2008-01-01T00:00:00" />
+        <Programme ref="p101" name="The World" year="2003-01-01T00:00:00" />
+        <Programme ref="p85" name="BBC Four News" year="2002-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC Three">
+        <Programme ref="p61" name="60 Seconds" year="2004-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC Parliament">
+        <Programme ref="p17" name="BBC Parliament" year="2016-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC Two">
+        <Programme ref="p45" name="Victoria Derbyshire" year="2015-01-01T00:00:00" />
+        <Programme ref="p82" name="Newsroom Live" year="2018-01-01T00:00:00" />
+        <Programme ref="p114" name="Newsroom Live" year="2016-01-01T00:00:00" />
+        <Programme ref="p110" name="Newsnight" year="1993-01-01T00:00:00" />
+        <Programme ref="p42" name="Newsnight" year="1982-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC One South West">
+        <Programme ref="p117" name="Spotlight" year="2015-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC One South East">
+        <Programme ref="p60" name="South East Today" year="2009-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC One East">
+        <Programme ref="p46" name="Look East" year="2004-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC One North East">
+        <Programme ref="p128" name="Look North Yorkshire" year="2017-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC One London">
+        <Programme ref="p27" name="BBC LDN" year="2001-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC One North West">
+        <Programme ref="p107" name="North West Tonight" year="2007-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC One Northern Ireland">
+        <Programme ref="p2" name="Newsline" year="2008-01-01T00:00:00" />
+        <Programme ref="p4" name="Newsline" year="2004-01-01T00:00:00" />
+        <Programme ref="p115" name="Newsline" year="1999-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC One Wales">
+        <Programme ref="p97" name="Wales Today" year="2018-01-01T00:00:00" />
+        <Programme ref="p86" name="Wales Today" year="2008-01-01T00:00:00" />
+        <Programme ref="p21" name="Wales Today" year="1999-01-01T00:00:00" />
+        <Programme ref="p30" name="Wales Today" year="2005-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC One Scotland">
+        <Programme ref="p87" name="Scotland Elections" year="2017-01-01T00:00:00" />
+        <Programme ref="p129" name="Politics Scotland" year="2016-01-01T00:00:00" />
+        <Programme ref="p105" name="Reporting Scotland" year="2008-01-01T00:00:00" />
+        <Programme ref="p89" name="Reporting Scotland" year="1999-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC One Channel Islands">
+        <Programme ref="p59" name="BBC Channel Islands" year="2017-01-01T00:00:00" />
+      </Channel>
+      <Channel name="BBC Choice">
+        <Programme ref="p136" name="Liquid News" year="2000-01-01T00:00:00" />
+      </Channel>
+    </Broadcaster>
+    <Broadcaster name="National Broadcasting Company" country="United States of America">
+      <Channel name="NBC">
+        <Programme ref="p108" name="NBC Nightly News" year="1985-01-01T00:00:00" />
+      </Channel>
+    </Broadcaster>
+    <Broadcaster name="Nine Network" country="Australia">
+      <Channel name="Channel 9">
+        <Programme ref="p6" name="National Nine News" year="1985-01-01T00:00:00" />
+        <Programme ref="p106" name="National Nine News" year="2000-01-01T00:00:00" />
+        <Programme ref="p50" name="National Nine News" year="2004-01-01T00:00:00" />
+        <Programme ref="p94" name="National Nine News" year="2006-01-01T00:00:00" />
+        <Programme ref="p140" name="National Nine News" year="2008-01-01T00:00:00" />
+      </Channel>
+    </Broadcaster>
+    <Broadcaster name="Seven Network" country="Australia">
+      <Channel name="Channel 7">
+        <Programme ref="p26" name="Seven Nightly News" year="1987-01-01T00:00:00" />
+        <Programme ref="p5" name="Seven Nightly News" year="1999-01-01T00:00:00" />
+        <Programme ref="p83" name="Seven News" year="2004-01-01T00:00:00" />
+        <Programme ref="p144" name="Seven News" year="2014-01-01T00:00:00" />
+        <Programme ref="p132" name="Seven News" year="2017-01-01T00:00:00" />
+      </Channel>
+    </Broadcaster>
+    <Broadcaster name="Australian Broadcasting Corporation" country="Australia">
+      <Channel name="ABC TV">
+        <Programme ref="p67" name="ABC News" year="1986-01-01T00:00:00" />
+        <Programme ref="p28" name="ABC News" year="1998-01-01T00:00:00" />
+        <Programme ref="p11" name="ABC News" year="2005-01-01T00:00:00" />
+        <Programme ref="p127" name="ABC News" year="2010-01-01T00:00:00" />
+        <Programme ref="p125" name="ABC News" year="2017-01-01T00:00:00" />
+        <Programme ref="p62" name="Breakfast News" year="2017-01-01T00:00:00" />
+        <Programme ref="p19" name="7.30 Report" year="2000-01-01T00:00:00" />
+        <Programme ref="p65" name="Australian Story" year="2010-01-01T00:00:00" />
+        <Programme ref="p131" name="Lateline" year="2015-01-01T00:00:00" />
+        <Programme ref="p20" name="Lateline" year="2001-01-01T00:00:00" />
+      </Channel>
+      <Channel name="ABC Comedy" />
+      <Channel name="ABC News 24">
+        <Programme ref="p103" name="One Plus One" year="2010-01-01T00:00:00" />
+        <Programme ref="p18" name="The Drum" year="2010-01-01T00:00:00" />
+      </Channel>
+      <Channel name="ABC News Channel">
+        <Programme ref="p77" name="The Drum" year="2019-01-01T00:00:00" />
+        <Programme ref="p69" name="Matter of Fact" year="2017-01-01T00:00:00" />
+      </Channel>
+    </Broadcaster>
+    <Broadcaster name="Ten Network" country="Australia">
+      <Channel name="10">
+        <Programme ref="p32" name="Ten News" year="1994-01-01T00:00:00" />
+        <Programme ref="p29" name="Ten News" year="2008-01-01T00:00:00" />
+        <Programme ref="p137" name="Ten News" year="2011-01-01T00:00:00" />
+        <Programme ref="p79" name="Ten Eyewitness News" year="2013-01-01T00:00:00" />
+        <Programme ref="p154" name="Ten News First" year="2018-01-01T00:00:00" />
+      </Channel>
+    </Broadcaster>
+    <Broadcaster name="Special Broadcasting Service" country="Australia">
+      <Channel name="SBS">
+        <Programme ref="p70" name="SBS World News" year="2002-01-01T00:00:00" />
+      </Channel>
+    </Broadcaster>
+    <Programmes>
+      <Programme ref="p124" name="Grand Designs" year="2003-01-01T00:00:00" />
+      <Programme ref="p126" name="Who Wants To Be A Millionare" year="1998-01-01T00:00:00" />
+    </Programmes>
+  </Broadcasting>
+  <AudioCollection>
+    <TrackList ref="tl78" name="4 News 1998" library="true" />
+    <TrackList ref="tl89" name="4 News 2007" library="true" />
+    <TrackList ref="tl11" name="ABC News 1986" composer="Tony Ansell, Peter Wall" />
+    <TrackList ref="tl136" name="ABC News 1998" />
+    <TrackList ref="tl35" name="ABC News 2005" composer="Martin Armiger, John Gray" />
+    <TrackList ref="tl62" name="ABC News 2010" composer="Martin Armiger" />
+    <TrackList ref="tl85" name="ABC News 2017" composer="Martin Armiger" />
+    <TrackList ref="tl64" name="Breakfast News 2017" composer="Colin Kiddy">
+      <Track name="World Headline News" description="Steady, beat-driven news theme" />
+      <Track name="World Headline News - 60s" description="Steady, beat-driven news theme" />
+      <Track name="World Headline News - 30s" description="Steady, beat-driven news theme" />
+      <Track name="World Headline News - sting" description="Steady, beat-driven news theme" />
+      <Track name="World Headline News" description="Alternative mix without rhythm toms" />
+    </TrackList>
+    <TrackList ref="tl52" name="7.30 Report 2000" />
+    <TrackList ref="tl143" name="Australian Story 2010" composer="Terry Devine-King" library="true">
+      <Track name="Now And Then" description="Classic 'Rock Anthem'. Driving, building, uplifting" />
+      <Track name="Now And Then 2" description="Classic 'Rock Anthem'. Ambient underscore, builds throughout" />
+      <Track name="Now And Then 3" description="Classic 'Rock Anthem'. Band underscore" />
+      <Track name="Now And Then 4 (60)" description="Classic 'Rock Anthem'. Driving, uplifting" />
+      <Track name="Now And Then 5 (30)" description="Classic 'Rock Anthem'. Driving, uplifting" />
+      <Track name="Now And Then 6 (Bridge)" description="Light piano bridge" />
+      <Track name="Now And Then 7 (Sting)" description="Light piano bridge" />
+    </TrackList>
+    <TrackList ref="tl92" name="Grand Designs 2003" composer="David Lowe" />
+    <TrackList ref="tl9" name="Lateline 2015" composer="David Sharp">
+      <Track name="Title + Vamp" />
+    </TrackList>
+    <TrackList ref="tl47" name="Lateline 2001" composer="David Sharp" library="true">
+      <Track name="Hitting Headlines 1" subtitle="DWCD 0224" />
+      <Track name="Hitting Headlines 1 - 60 Sec Vers." subtitle="DWCD 0224" />
+      <Track name="Hitting Headlines 1 - 30 Sec Vers." subtitle="DWCD 0224" />
+      <Track name="Hitting Headlines 1(a) - Sting" subtitle="DWCD 0224" />
+      <Track name="Hitting Headlines 1(b) - Sting" subtitle="DWCD 0224" />
+      <Track name="Hitting Headlines 2" subtitle="DWCD 0224" />
+      <Track name="Hitting Headlines 2 - 30 Sec Vers." subtitle="DWCD 0224" />
+      <Track name="Hitting Headlines 3" subtitle="DWCD 0224" />
+      <Track name="Hitting Headlines 3 - 60 Sec Vers." subtitle="DWCD 0224" />
+      <Track name="Hitting Headlines 3 - 30 Sec Vers." subtitle="DWCD 0224" />
+      <Track name="Hitting Headlines 3 - Sting" subtitle="DWCD 0224" />
+      <Track name="Hitting Headlines" subtitle="DWCOM 02" />
+      <Track name="Hitting Headlines - 30 Second" subtitle="DWCOM 02" />
+      <Track name="Hitting Headlines - 15 Second" subtitle="DWCOM 02" />
+    </TrackList>
+    <TrackList ref="tl17" name="NBC Nightly News 1985" composer="John Williams" />
+    <TrackList ref="tl144" name="National Nine News 1985" />
+    <TrackList ref="tl97" name="National Nine News 2000" />
+    <TrackList ref="tl114" name="National Nine News 2008" />
+    <TrackList ref="tl42" name="One Plus One 2010" composer="Rupert William, Gregson Williams" library="true">
+      <Track name="Business Update (a)" subtitle="60 second edit 01:00" description="Optimistic news bed to positive end statement." />
+      <Track name="Business Update (b)" subtitle="Alternative version 00:42" description="Slowly building bed to positive end statement." />
+      <Track name="Business Update (c)" subtitle="30 second edit 00:30" description="Short version of above." />
+      <Track name="Business Update (d)" subtitle="Alternative version 00:23" description="Build to short end statement." />
+      <Track name="Business Update (e)" subtitle="Link/Sting 00:12" description="Exciting optimistic statement." />
+      <Track name="Business Update (f)" subtitle="Link/Sting 00:04" description="Sting." />
+    </TrackList>
+    <TrackList ref="tl18" name="Seven Nightly News 1999" />
+    <TrackList ref="tl24" name="Seven News 2004" />
+    <TrackList ref="tl122" name="Seven News 2014" />
+    <TrackList ref="tl46" name="Seven News 2016" />
+    <TrackList ref="tl7" name="SBS World News 2002" />
+    <TrackList ref="tl108" name="Who Wants To Be A Millionare 1999" />
+    <TrackList ref="tl138" name="ITV News 1999" composer="David Graham Hewson, Johnny Pearson" library="true">
+      <Track name="Breaking News (a)" subtitle="Main version 00:36" description="Opening statement to news bed with chimes to button end." />
+      <Track name="Breaking News (b)" subtitle="Alternative version 00:40" description="Serious vein news bed with chimes and imposing end statement." />
+      <Track name="Breaking News (c)" subtitle="Link/Sting 00:07" description="News sting." />
+      <Track name="Breaking News (d)" subtitle="Alternative version 00:22" description="News bed to button end." />
+      <Track name="Breaking News (e)" subtitle="30 second edit 00:30" description="Punctuated news bed to imposing end statement." />
+    </TrackList>
+    <TrackList ref="tl79" name="ITV News 2004" composer="David Graham Hewson, Johnny Pearson" library="true">
+      <Track name="World Agenda (a)" subtitle="Main version 01:27" description="Prestigious current affairs theme to bed with 'bong' punctuations and button end." />
+      <Track name="World Agenda (b)" subtitle="Alternative version 00:23" description="Opening 'bong' statement into news bed." />
+      <Track name="World Agenda (c)" subtitle="60 second edit 01:00" description="Prestigious current affairs theme into news bed." />
+      <Track name="World Agenda (d)" subtitle="30 second edit 00:30" description="Opening sting to news bed." />
+      <Track name="World Agenda (e)" subtitle="Link/Sting 00:05" description="Bong stab." />
+      <Track name="World Agenda (f)" subtitle="60 second edit 01:00" description="News bed." />
+      <Track name="World Agenda (g)" subtitle="Link/Sting 00:06" description="Opening percussive sting." />
+      <Track name="World Agenda (h)" subtitle="Link/Sting 00:05" description="" />
+      <Track name="World Agenda (i)" subtitle="Alternative version 01:56" description="Soft percussive bed." />
+      <Track name="World Agenda (j)" subtitle="60 second edit 01:00" description="Percussive bed." />
+      <Track name="World Agenda (k)" subtitle="Link/Sting 00:04" description="" />
+      <Track name="World Agenda (l)" subtitle="Link/Sting 00:04" description="" />
+      <Track name="World Agenda (m)" subtitle="Link/Sting 00:03" description="Whoosh link." />
+      <Track name="World Agenda (n)" subtitle="Link/Sting 00:04" description="" />
+      <Track name="World Agenda (o)" subtitle="60 second edit 01:00" description="Optimistic slow building bed." />
+    </TrackList>
+    <TrackList ref="tl101" name="ITV Regional News 2004" composer="David Graham Hewson, Johnny Pearson, Bill Baylis" library="true">
+      <Track name="Network Report (a)" subtitle="Main version 00:12" description="Optimistic current affairs theme into news bed." />
+      <Track name="Network Report (b)" subtitle="30 second edit 00:33" description="Optimistic current affairs theme." />
+      <Track name="Network Report (c)" subtitle="Underscore version 01:02" description="News bed." />
+      <Track name="Network Report (d)" subtitle="Link/Sting 00:06" description="Futuristic sting." />
+      <Track name="Network Report (e)" subtitle="Link/Sting 00:06" description="Weather sting." />
+    </TrackList>
+    <TrackList ref="tl57" name="ITV News 2006" composer="David Graham Hewson, Johnny Pearson, Bill Baylis" library="true">
+      <Track name="Global Headlines (a)" subtitle="Main version 00:36" description="" />
+      <Track name="Global Headlines (p)" subtitle="Underscore version 01:10" description="" />
+      <Track name="Global Headlines (o)" subtitle="Underscore version 01:10" description="" />
+      <Track name="Global Headlines (n)" subtitle="Underscore version 00:44" description="" />
+      <Track name="Global Headlines (m)" subtitle="Link/Sting 00:08" description="" />
+      <Track name="Global Headlines (l)" subtitle="Link/Sting 00:09" description="" />
+      <Track name="Global Headlines (k)" subtitle="Underscore version 04:06" description="" />
+      <Track name="Global Headlines (j)" subtitle="Link/Sting 00:01" description="" />
+      <Track name="Global Headlines (i)" subtitle="Link/Sting 00:01" description="" />
+      <Track name="Global Headlines (h)" subtitle="Link/Sting 00:01" description="" />
+      <Track name="Global Headlines (g)" subtitle="Link/Sting 00:01" description="" />
+      <Track name="Global Headlines (f)" subtitle="Link/Sting 00:01" description="" />
+      <Track name="Global Headlines (e)" subtitle="Link/Sting 00:05" description="" />
+      <Track name="Global Headlines (d)" subtitle="Alternative version 01:43" description="" />
+      <Track name="Global Headlines (c)" subtitle="Alternative version 01:43" description="" />
+      <Track name="Global Headlines (b)" subtitle="Alternative version 01:42" description="" />
+      <Track name="Global Headlines (q)" subtitle="Link/Sting 00:05" description="" />
+      <Track name="Global Headlines (r)" subtitle="Link/Sting 00:03" description="" />
+    </TrackList>
+    <TrackList ref="tl111" name="ITV Regional News 2006" composer="David Graham Hewson, Johnny Pearson, Bill Baylis" library="true">
+      <Track name="Network Headlines (a)" subtitle="Main version 01:23" description="" />
+      <Track name="Network Headlines (b)" subtitle="Alternative version 01:23" description="" />
+      <Track name="Network Headlines (c)" subtitle="Alternative version 01:14" description="" />
+      <Track name="Network Headlines (d)" subtitle="Alternative version 00:19" description="" />
+      <Track name="Network Headlines (e)" subtitle="Alternative version 00:18" description="" />
+      <Track name="Network Headlines (f)" subtitle="Link/Sting 00:07" description="" />
+      <Track name="Network Headlines (g)" subtitle="Alternative version 01:08" description="" />
+      <Track name="Network Headlines (h)" subtitle="Alternative version 01:11" description="" />
+      <Track name="Network Headlines (i)" subtitle="Alternative version 01:15" description="" />
+      <Track name="Network Headlines (j)" subtitle="Link/Sting 00:07" description="" />
+      <Track name="Network Headlines (k)" subtitle="Alternative version 01:09" description="" />
+      <Track name="Network Headlines (l)" subtitle="Underscore version 00:07" description="" />
+    </TrackList>
+    <TrackList ref="tl12" name="ITV News at Ten 2008" composer="David Graham Hewson, Johnny Pearson, Bill Baylis" library="true">
+      <Track name="World Report (a)" subtitle="Main version 02:30" description="Arresting opening titles to Big Ben chime and 'bubble'." />
+      <Track name="World Report (b)" subtitle="Link/Sting 00:07" description="Link." />
+      <Track name="World Report (c)" subtitle="Link/Sting 00:06" description="Link." />
+      <Track name="World Report (d)" subtitle="Link/Sting 00:05" description="Link." />
+      <Track name="World Report (e)" subtitle="Link/Sting 00:07" description="Link." />
+    </TrackList>
+    <TrackList ref="tl48" name="ITV News 2009" composer="David Graham Hewson, Johnny Pearson, Bill Baylis" library="true">
+      <Track name="News Centre (a)" subtitle="30 second edit 00:31" description="Big Ben chime to subtle news bed" />
+      <Track name="News Centre (v)" subtitle="Link/Sting 00:04" description="Whoosh." />
+      <Track name="News Centre (u)" subtitle="Link/Sting 00:02" description="Whoosh." />
+      <Track name="News Centre (t)" subtitle="Link/Sting 00:02" description="Whoosh." />
+      <Track name="News Centre (s)" subtitle="Link/Sting 00:02" description="Percussion accent." />
+      <Track name="News Centre (r)" subtitle="Link/Sting 00:05" description="Punctuated news statement." />
+      <Track name="News Centre (q)" subtitle="Link/Sting 00:06" description="Punctuated news statement." />
+      <Track name="News Centre (p)" subtitle="Link/Sting 00:07" description="Punctuated news statement." />
+      <Track name="News Centre (o)" subtitle="Link/Sting 00:05" description="News statement." />
+      <Track name="News Centre (n)" subtitle="Link/Sting 00:05" description="News statement." />
+      <Track name="News Centre (m)" subtitle="Link/Sting 00:03" description="Punctuated link." />
+      <Track name="News Centre (l)" subtitle="Link/Sting 00:03" description="Percussion link." />
+      <Track name="News Centre (k)" subtitle="60 second edit 01:02" description="Urgent restless string bed building to arresting news theme at 0.42 and strident conclusion." />
+      <Track name="News Centre (j)" subtitle="Link/Sting 00:02" description="Percussion accent to bed." />
+      <Track name="News Centre (i)" subtitle="Alternative version 01:06" description="Arresting news theme to extended bed." />
+      <Track name="News Centre (h)" subtitle="Link/Sting 00:09" description="Arresting news theme to accent." />
+      <Track name="News Centre (g)" subtitle="Alternative version 00:26" description="News statement to bed." />
+      <Track name="News Centre (f)" subtitle="Alternative version 00:25" description="Bed to arresting news theme and end statement." />
+      <Track name="News Centre (e)" subtitle="Link/Sting 00:06" description="Subtle effect to single Big Ben Chime." />
+      <Track name="News Centre (d)" subtitle="Link/Sting 00:03" description="Subtle woosh effect." />
+      <Track name="News Centre (c)" subtitle="Alternative version 00:36" description="Arresting news theme to bed at 0.18'." />
+      <Track name="News Centre (b)" subtitle="60 second edit 01:00" description="Extended version of above without chime." />
+      <Track name="News Centre (w)" subtitle="Link/Sting 00:03" description="Whoosh." />
+      <Track name="News Centre (x)" subtitle="60 second edit 01:00" description="Understated urgent bed gradually building to arresting news statement." />
+    </TrackList>
+    <TrackList ref="tl32" name="ITV News 2013" composer="Dave Hewson, Johnny Pearson, Bill Baylis" library="true">
+      <Track name="Global Broadcast (a)" subtitle="Main version 01:09" description="Tense, forward-moving, pulsing news bed featuring Big Ben chimes to dramatic, punchy percussive conclusion" />
+      <Track name="Global Broadcast (u)" subtitle="Alternative version 00:59" description="Stabbing, percussive news bed with dramatic drum conclusion" />
+      <Track name="Global Broadcast (t)" subtitle="Alternative version 01:05" description="Tense, foward-moving, pulsing news bed" />
+      <Track name="Global Broadcast (s)" subtitle="Alternative version 01:05" description="Tense, foward-moving, pulsing news bed with dance beat" />
+      <Track name="Global Broadcast (r)" subtitle="Alternative version 00:13" description="News sting featuring horn theme over pulsing bed" />
+      <Track name="Global Broadcast (q)" subtitle="Alternative version 00:30" description="Tense, forward-moving, pulsing news bed to dramatic, punchy percussive conclusion" />
+      <Track name="Global Broadcast (p)" subtitle="Link/Sting 00:06" description="Percussive, stabbing sting" />
+      <Track name="Global Broadcast (o)" subtitle="Alternative version 00:06" description="Percussive, stabbing sting featuring Big Ben chime" />
+      <Track name="Global Broadcast (n)" subtitle="Link/Sting 00:08" description="Percussive, stabbing sting" />
+      <Track name="Global Broadcast (m)" subtitle="Link/Sting 00:09" description="Punchy, percussive news sting" />
+      <Track name="Global Broadcast (v)" subtitle="Link/Sting 00:06" description="Dramatic drum sting" />
+      <Track name="Global Broadcast (l)" subtitle="Alternative version 00:13" description="Punchy, percussive sting to pulsing news bed" />
+      <Track name="Global Broadcast (j)" subtitle="Link/Sting 00:09" description="Punchy, percussive news sting" />
+      <Track name="Global Broadcast (i)" subtitle="Alternative version 00:17" description="News sting with string stabs to pulsing bed" />
+      <Track name="Global Broadcast (h)" subtitle="Link/Sting 00:07" description="News sting with dramatic end" />
+      <Track name="Global Broadcast (g)" subtitle="Link/Sting 00:08" description="News sting with dramatic end" />
+      <Track name="Global Broadcast (f)" subtitle="Alternative version 00:11" description="Pulsing bed with dramatic, horn and percussive stabs" />
+      <Track name="Global Broadcast (e)" subtitle="Alternative version 00:11" description="News sting featuring horn theme over pulsing bed with dramatic, percussive stabs" />
+      <Track name="Global Broadcast (d)" subtitle="Alternative version 00:11" description="News sting featuring horn theme over pulsing bed" />
+      <Track name="Global Broadcast (c)" subtitle="Alternative version 00:29" description="Title sting into pulsing news bed" />
+      <Track name="Global Broadcast (b)" subtitle="Alternative version 00:42" description="Tense, forward-moving, pulsing news bed featuring Big Ben chime" />
+      <Track name="Global Broadcast (k)" subtitle="Link/Sting 00:07" description="Punchy, percussive news sting" />
+      <Track name="Global Broadcast (w)" subtitle="Alternative version 01:07" description="Tense, pulsing news bed featuring dance beat and punching synths to dramatic, percussive conclusion" />
+    </TrackList>
+    <TrackList ref="tl60" name="ITV Regional News 2013" composer="Dave Hewson, Johnny Pearson, Bill Baylis" library="true">
+      <Track name="Global Broadcast (x)" subtitle="Alternative version 01:25" description="Serious, pulsing news bed featuring dramatic horns and punchy percussion" />
+      <Track name="Global Broadcast (y)" subtitle="Alternative version 00:46" description="News theme featuring dramatic horns and punchy percussion to pulsing bed" />
+      <Track name="Global Broadcast (z)" subtitle="Alternative version 00:10" description="News sting featuring string theme over pulsing bed" />
+      <Track name="Global Broadcast (aa)" subtitle="Alternative version 00:11" description="News sting featuring string theme over pulsing bed and percussive stabs" />
+      <Track name="Global Broadcast (bb)" subtitle="Alternative version 00:13" description="News sting with dramatic percussive stabs" />
+      <Track name="Global Broadcast (cc)" subtitle="Alternative version 00:14" description="News sting with dramatic percussive stabs" />
+      <Track name="Global Broadcast (dd)" subtitle="Alternative version 00:12" description="News sting featuring forward-moving strings and percussive stabs" />
+      <Track name="Global Broadcast (ee)" subtitle="Alternative version 00:07" description="News sting featuring forward-moving strings and percussive stab conclusion" />
+      <Track name="Global Broadcast (ff)" subtitle="Alternative version 00:06" description="Punchy, percussive news theme conclusion" />
+      <Track name="Global Broadcast (gg)" subtitle="Alternative version 00:08" description="News sting featuring percussive stabs" />
+      <Track name="Global Broadcast (hh)" subtitle="Link/Sting 00:06" description="Dramatic, punchy news sting" />
+      <Track name="Global Broadcast (ii)" subtitle="Alternative version 00:10" description="News theme featuring punchy synth stabs" />
+      <Track name="Global Broadcast (jj)" subtitle="Alternative version 01:02" description="Tense, pulsing news bed" />
+      <Track name="Global Broadcast (kk)" subtitle="Alternative version 01:03" description="Conclusive news bed featuring tense strings and synths" />
+      <Track name="Global Broadcast (ll)" subtitle="Alternative version 00:09" description="Sparse, fresh weather theme" />
+      <Track name="Global Broadcast (mm)" subtitle="Alternative version 00:07" description="Ethereal synth swell" />
+    </TrackList>
+    <TrackList ref="tl133" name="ITV News Election 2015" composer="Dave Hewson, Johnny Pearson, Bill Baylis" library="true">
+      <Track name="Global Broadcast (nn)" subtitle="Alternative version 01:07" description="Pulsing news bed increasing tension with dramatic strings and horns, reaching early peak with Big Ben chimes" />
+      <Track name="Global Broadcast (bbb)" subtitle="Link/Sting 00:01" description="Scraping sound-design sting" />
+      <Track name="Global Broadcast (aaa)" subtitle="Link/Sting 00:01" description="Swooshing wipe sting" />
+      <Track name="Global Broadcast (zz)" subtitle="Link/Sting 00:03" description="Electronic, otherworldly wipes fade in and out in this sting" />
+      <Track name="Global Broadcast (yy)" subtitle="Link/Sting 00:01" description="Quickly approaching dramatic wipe" />
+      <Track name="Global Broadcast (xx)" subtitle="Link/Sting 00:01" description="Echoing wipe creates dramatic sting" />
+      <Track name="Global Broadcast (ww)" subtitle="Link/Sting 00:08" description="Dramatic string and percussion sting" />
+      <Track name="Global Broadcast (ccc)" subtitle="Link/Sting 00:08" description="Punchy percussion prepares a grand finale featuring lingering horns" />
+      <Track name="Global Broadcast (vv)" subtitle="Link/Sting 00:15" description="Tense strings and punchy percussion build a grand, dramatic entrance" />
+      <Track name="Global Broadcast (tt)" subtitle="Link/Sting 00:06" description="Repeated dramatic strap coming in with sudden tension" />
+      <Track name="Global Broadcast (ss)" subtitle="Alternative version 00:51" description="Forward-pushing, pulsing news bed" />
+      <Track name="Global Broadcast (rr)" subtitle="Alternative version 00:52" description="Big bong at the beginning establishes a dramatic mood for this pulsing, tense news piece" />
+      <Track name="Global Broadcast (qq)" subtitle="Alternative version 00:56" description="Dramatic horns and strings open this tense, forward-moving news bed" />
+      <Track name="Global Broadcast (pp)" subtitle="Alternative version 00:21" description="Majestic horns paired with dramatic strings building to a tension-loaded climax accompanied by Big Ben chimes" />
+      <Track name="Global Broadcast (oo)" subtitle="Alternative version 01:51" description="Punchy percussion over tense, active bed ending in a dramatic finale featuring strings and Big Ben chimes" />
+      <Track name="Global Broadcast (uu)" subtitle="Link/Sting 00:14" description="Dramatic percussion and strings reaching climax with a bong" />
+      <Track name="Global Broadcast (ddd)" subtitle="Link/Sting 00:11" description="Dramatic horns and strings over a punchy, tense news sting ending on dark note" />
+    </TrackList>
+    <TrackList ref="tl77" name="ITV News at Ten 2016" composer="Dave Hewson, Johnny Pearson, Bill Baylis" library="true">
+      <Track name="Global Broadcast (eee)" subtitle="Alternative version 00:59" description="Timpani roll introduces a tense title sting featuring animated strings and bold brass before dropping to a pulsing synth bed with fluttering strings" />
+      <Track name="Global Broadcast (fff)" subtitle="Alternative version 01:02" description="Massive bong bell introduces this tense, pulsing synth bed with fluttering strings" />
+      <Track name="Global Broadcast (ggg)" subtitle="Alternative version 01:08" description="Pulsing synth bed with tense, low synth string drone and driving kick drum" />
+      <Track name="Global Broadcast (hhh)" subtitle="Alternative version 01:03" description="Pulsing synth bed with tense, low synth string and fluttering strings" />
+      <Track name="Global Broadcast (iii)" subtitle="Alternative version 00:49" description="Powerful reverberant drum fill introduces this pulsing synth bed with tense, low synth string drone, driving kick drum and fluttering strings" />
+      <Track name="Global Broadcast (jjj)" subtitle="Edit 00:21" description="Powerful reverberant drum fill introduces this pulsing synth bed with tense, low synth string drone, driving kick drum and fluttering strings" />
+      <Track name="Global Broadcast (kkk)" subtitle="Alternative version 01:07" description="Pulsing synth bed with ticking electronic percussion builds with pads, strings and driving kick drum to dramatic end titles with majestic horns and strings and a big bong" />
+      <Track name="Global Broadcast (lll)" subtitle="Alternative version 01:07" description="Pulsing synth bed with ticking electronic percussion builds with pads, strings and driving kick drum to dramatic end titles with majestic horns and strings" />
+      <Track name="Global Broadcast (mmm)" subtitle="Link/Sting 00:11" description="Dramatic news sting with majestic strings and brass, massive drums and low synth drone" />
+      <Track name="Global Broadcast (nnn)" subtitle="Link/Sting 00:11" description="Dramatic news sting with majestic brass riff, massive drums and low synth drone" />
+    </TrackList>
+    <TrackList ref="tl132" name="An La 2008" composer="David Lowe">
+      <Track name="Titles" />
+      <Track name="Short Titles" />
+      <Track name="Headline Vamp no bongs" />
+      <Track name="Headline Vamp with bongs" />
+      <Track name="Bongs" />
+      <Track name="Long Close + 6" />
+      <Track name="Long Close + 3" />
+      <Track name="Short Close + 6" />
+      <Track name="Short Close + 3" />
+      <Track name="Sting with Hold" />
+      <Track name="Sting" />
+      <Track name="Coming Up Vamp" />
+    </TrackList>
+    <TrackList ref="tl14" name="BBC National News 1999" composer="David Lowe">
+      <Track name="CREDITS" />
+      <Track name="HEADLINE VAMP WITH 5 CLAPS" />
+      <Track name="HEADLINE VAMP WITH CLAP" />
+      <Track name="PROMO Bed" />
+      <Track name="PROMO 1" />
+      <Track name="PROMO 2" />
+      <Track name="STING &amp; BED" />
+      <Track name="STING 1" />
+      <Track name="STING 2" />
+      <Track name="STING 3" />
+      <Track name="TITLES" />
+      <Track name="UNUSED STING 2" />
+      <Track name="Tag" />
+      <Track name="Opening Titles with Pip" />
+    </TrackList>
+    <TrackList ref="tl16" name="BBC News 24 Branding 1999" composer="David Lowe">
+      <Track name="90 Sec Countdown" />
+      <Track name="90 Sec Countdown + Vamp" />
+      <Track name="Multiscreen" />
+      <Track name="Sting" />
+      <Track name="Ident" />
+    </TrackList>
+    <TrackList ref="tl54" name="BBC News 1999" composer="David Lowe">
+      <Track name="Tag A" />
+      <Track name="Tag B" />
+      <Track name="Headline Vamp" />
+      <Track name="Coming Up Vamp" />
+      <Track name="Titles" />
+      <Track name="Special Titles" />
+      <Track name="Sombre Titles" />
+    </TrackList>
+    <TrackList ref="tl29" name="BBC World Branding 1999" composer="David Lowe">
+      <Track name="Breakfiller A" />
+      <Track name="Breakfiller B" />
+      <Track name="Breakfiller C" />
+      <Track name="Breakfiller D" />
+      <Track name="Breakfiller E" />
+      <Track name="10 Second Countdown" />
+      <Track name="10 Second Countdown + Hold" />
+      <Track name="Hold + 10 Second Countdown + Hold" />
+      <Track name="60 Second Countdown" />
+      <Track name="Ident A + Hold" />
+      <Track name="Ident A" />
+      <Track name="Ident B + Hold" />
+      <Track name="Ident C + Hold" />
+    </TrackList>
+    <TrackList ref="tl63" name="BBC World News 1999" composer="David Lowe">
+      <Track name="Titles + Hold" />
+      <Track name="Special Titles A" />
+      <Track name="Special Titles B" />
+      <Track name="Special Close" />
+      <Track name="Twinkle + Vamp" />
+      <Track name="Opt In" />
+      <Track name="Opt Out" />
+      <Track name="Close" />
+      <Track name="Network Sting" />
+      <Track name="Breaking Sting" />
+      <Track name="Headline Vamp" />
+      <Track name="Headline Tag" />
+      <Track name="Business Sting" />
+      <Track name="Sport Sting" />
+      <Track name="Overnight Vamp" />
+      <Track name="Overnight Tag" />
+    </TrackList>
+    <TrackList ref="tl66" name="BBC World News 2002" composer="David Lowe">
+      <Track name="Titles + Hold" />
+      <Track name="Special Titles" />
+      <Track name="Special Close" />
+      <Track name="Twinkle + Vamp" />
+      <Track name="Opt In" />
+      <Track name="Opt Out" />
+      <Track name="Close Short" />
+      <Track name="Close Long" />
+      <Track name="Network Sting" />
+      <Track name="Piddle In" />
+      <Track name="Piddle Out" />
+      <Track name="Headline Vamp" />
+      <Track name="Coming Up Vamp" />
+      <Track name="Business Sting" />
+      <Track name="Sport Sting" />
+      <Track name="Sport Sting Long" />
+    </TrackList>
+    <TrackList ref="tl119" name="BBC National News 2004" composer="David Lowe">
+      <Track name="50 Years Titles" />
+    </TrackList>
+    <TrackList ref="tl34" name="BBC News 24 Branding 2003" composer="David Lowe" />
+    <TrackList ref="tl103" name="BBC News 2003" composer="David Lowe" />
+    <TrackList ref="tl75" name="BBC World Branding 2003" composer="David Lowe" />
+    <TrackList ref="tl70" name="BBC World News 2003" composer="David Lowe" />
+    <TrackList ref="tl49" name="BBC National News 2007" composer="David Lowe">
+      <Track name="Titles Long" />
+      <Track name="Titles Long (Master No Hold)" />
+      <Track name="Titles Long (Master With Hold)" />
+      <Track name="Titles Short" />
+      <Track name="Headline Vamp (no crash)" />
+      <Track name="Headline Vamp (with crash)" />
+      <Track name="Closing Vamp" />
+      <Track name="Long Close" />
+      <Track name="Short Close (Long)" />
+      <Track name="Short Close (Short)" />
+      <Track name="Promo Tag" />
+      <Track name="Promo Vamp" />
+      <Track name="Opt In Tag" />
+      <Track name="Opt Tag" />
+    </TrackList>
+    <TrackList ref="tl40" name="BBC News 24 Branding 2007" composer="David Lowe" />
+    <TrackList ref="tl27" name="BBC News 2007" composer="David Lowe">
+      <Track name="Titles1" />
+      <Track name="Headlines Bed" />
+      <Track name="Headlines Vamp Two Claps" />
+      <Track name="Headlines Vamp" />
+      <Track name="In Brief Bed" />
+      <Track name="In Brief Vamp - no crash" />
+      <Track name="In Brief Vamp Two claps" />
+      <Track name="In Brief Vamp" />
+      <Track name="Sting Hold" />
+      <Track name="Sting No Hold" />
+    </TrackList>
+    <TrackList ref="tl69" name="BBC World Branding 2007" composer="David Lowe">
+      <Track name="Ident" />
+      <Track name="Countdown (with SFX)" />
+      <Track name="Countdown (no SFX)" />
+    </TrackList>
+    <TrackList ref="tl26" name="BBC World News 2007" composer="David Lowe">
+      <Track name="Opening Titles - with hold" />
+      <Track name="Opt in sting 2" />
+      <Track name="Opt in sting 1" />
+      <Track name="Opt out 3 - with hold" />
+      <Track name="Opt out 2" />
+      <Track name="Opt out 1" />
+      <Track name="Sting" />
+      <Track name="Breaking News Sting" />
+      <Track name="Summary vamp 2" />
+      <Track name="Summary vamp 1" />
+      <Track name="Closing titles - long" />
+      <Track name="Closing titles - short" />
+      <Track name="Tag 2" />
+      <Track name="Tag 1" />
+      <Track name="Thunderclap" />
+      <Track name="Opening headline vamp - 4 thunderclaps" />
+      <Track name="Opening headline vamp - 3 thunderclaps" />
+      <Track name="Opening headline vamp - 2 thunderclaps" />
+      <Track name="Opening headline vamp - 1 thunderclap" />
+      <Track name="Opening Titles - without hold" />
+      <Track name="Opt in sting 2 with hold" />
+      <Track name="Opt in sting 3" />
+    </TrackList>
+    <TrackList ref="tl106" name="BBC National News 2008" composer="David Lowe">
+      <Track name="Titles" />
+      <Track name="Headline Vamp" />
+      <Track name="Closing Vamp" />
+      <Track name="Closing Tag" />
+      <Track name="Closing Sting" />
+      <Track name="Promo Vamp" />
+      <Track name="Promo Sting - Long" />
+      <Track name="Promo Sting - Medium" />
+      <Track name="Promo Sting - Short" />
+    </TrackList>
+    <TrackList ref="tl127" name="BBC News Channel Branding 2008" composer="David Lowe">
+      <Track name="Network Ident" />
+      <Track name="Countdown 2010 60 sec" />
+      <Track name="Countdown 2008 60 sec no build" />
+      <Track name="Countdown 2008 60 sec with whooshes v6" />
+      <Track name="Countdown 2008 60 sec with whooshes v5" />
+      <Track name="Countdown 2008 60 sec with whooshes v4" />
+      <Track name="Countdown 2008 60 sec with whooshes v3" />
+      <Track name="Countdown 2010 90 sec" />
+      <Track name="Countdown 2008 60 sec with whooshes v2" />
+      <Track name="Countdown 2008 60 sec v2" />
+      <Track name="Countdown 2008 60 sec v1" />
+      <Track name="Countdown 2008 90 sec with whooshes" />
+      <Track name="Countdown 2008 90 sec v2" />
+      <Track name="Countdown 2008 90 sec v1" />
+      <Track name="Network Ident with hold" />
+      <Track name="Countdown 2008 60 sec with whooshes v1" />
+      <Track name="Countdown 2010 90 sec with FXs" />
+    </TrackList>
+    <TrackList ref="tl50" name="BBC News 2008" composer="David Lowe">
+      <Track name="Titles" />
+      <Track name="Headline Vamp" />
+      <Track name="Stab V1" />
+      <Track name="Stab V2" />
+      <Track name="Breaking News V1" />
+      <Track name="Breaking News V2" />
+      <Track name="Quarter Head Stab" />
+      <Track name="Quarter Head Vamp" />
+    </TrackList>
+    <TrackList ref="tl30" name="BBC World News Branding 2008" composer="David Lowe">
+      <Track name="Countdown v1" />
+      <Track name="Countdown v2" />
+      <Track name="Countdown with whooshes v1" />
+      <Track name="Countdown with whooshes v2" />
+      <Track name="Countdown with whooshes v3" />
+      <Track name="Countdown with whooshes v4" />
+      <Track name="Ident" />
+      <Track name="Ident with build" />
+      <Track name="Ident with hold" />
+      <Track name="Ident with hold &amp; build" />
+    </TrackList>
+    <TrackList ref="tl13" name="BBC World News 2008" composer="David Lowe">
+      <Track name="Titles" />
+      <Track name="Headline Vamp" />
+      <Track name="Short Close" />
+      <Track name="Long Titles" />
+      <Track name="Long Close" />
+      <Track name="Into Break" />
+      <Track name="From Break" />
+      <Track name="Quarter Head Stab" />
+      <Track name="Quarter Head Vamp" />
+      <Track name="Round Up Stab" />
+      <Track name="Round Up Vamp" />
+      <Track name="Breakdown Bed" />
+      <Track name="Network Sting Opt Out" />
+      <Track name="Network Sting Opt In" />
+      <Track name="Special Close" />
+    </TrackList>
+    <TrackList ref="tl1" name="BBC News 24 Branding 1997">
+      <Track name="Top of the Hour Sequence" />
+      <Track name="Top of the Hour Sequence 2" />
+      <Track name="Ident A" />
+      <Track name="Ident B" />
+      <Track name="Ident C" />
+      <Track name="Ident D" />
+      <Track name="Promo Bumper 1" />
+      <Track name="Promo Bumper 2" />
+      <Track name="Promo Bumper 3" />
+      <Track name="Promo Bumper 4" />
+      <Track name="Promo Bumper 5" />
+    </TrackList>
+    <TrackList ref="tl4" name="BBC News 1997">
+      <Track name="Opening Titles + Hold" />
+      <Track name="Opening Titles" />
+      <Track name="Vamp" />
+    </TrackList>
+    <TrackList ref="tl113" name="BBC One O'Clock News 1993" composer="George Fenton">
+      <Track name="Sprinkle and Headline" />
+      <Track name="Title" />
+      <Track name="Close" />
+    </TrackList>
+    <TrackList ref="tl31" name="BBC Six O'Clock News 1993">
+      <Track name="Titles" />
+      <Track name="Headline Tag" />
+      <Track name="Close" />
+      <Track name="Close Vamp + Close" />
+      <Track name="Headline Vamp" />
+      <Track name="Coming Up Vamp" />
+      <Track name="Coming Up Tag" />
+    </TrackList>
+    <TrackList ref="tl128" name="BBC Nine O'Clock News 1993" composer="George Fenton">
+      <Track name="Sprinkle and Headline" />
+      <Track name="Sting" />
+      <Track name="Close" />
+    </TrackList>
+    <TrackList ref="tl83" name="BBC News 1993" composer="George Fenton">
+      <Track name="Opening" />
+      <Track name="Close" />
+    </TrackList>
+    <TrackList ref="tl100" name="BBC Breakfast News 1993" composer="George Fenton">
+      <Track name="Title" />
+      <Track name="Close" />
+      <Track name="Opt In Long" />
+      <Track name="Opt In Short" />
+      <Track name="Opt Out" />
+    </TrackList>
+    <TrackList ref="tl55" name="Business Breakfast 1993" composer="George Fenton">
+      <Track name="Titles" />
+      <Track name="Close" />
+    </TrackList>
+    <TrackList ref="tl10" name="BBC One O'Clock News 1987" composer="George Fenton">
+      <Track name="Summary Open" />
+      <Track name="Summary Close" />
+      <Track name="Titles (Voiced)" />
+      <Track name="Titles" />
+      <Track name="Close" />
+    </TrackList>
+    <TrackList ref="tl2" name="BBC Six O'Clock News 1984" composer="George Fenton">
+      <Track name="Titles" />
+      <Track name="Close" />
+    </TrackList>
+    <TrackList ref="tl68" name="BBC Nine O'Clock News 1986">
+      <Track name="Sprinkle and Headline" />
+      <Track name="Sting" />
+      <Track name="Close" />
+    </TrackList>
+    <TrackList ref="tl21" name="BBC Nine O'Clock News 1988" composer="George Fenton">
+      <Track name="Headline" />
+      <Track name="Title" />
+      <Track name="Close" />
+    </TrackList>
+    <TrackList ref="tl112" name="BBC News 1981" composer="George Fenton">
+      <Track name="Title" />
+      <Track name="Close" />
+    </TrackList>
+    <TrackList ref="tl56" name="BBC Breakfast News 1989" composer="George Fenton">
+      <Track name="Close" />
+      <Track name="Opt Out" />
+      <Track name="Titles Long" />
+      <Track name="Titles Short" />
+    </TrackList>
+    <TrackList ref="tl116" name="BBC Breakfast Time 1983" composer="George Fenton">
+      <Track name="Opening Titles" />
+      <Track name="Opt In" />
+      <Track name="Opt Out" />
+      <Track name="Close" />
+    </TrackList>
+    <TrackList ref="tl115" name="BBC Breakfast Time 1991" composer="George Fenton">
+      <Track name="Opening Titles" />
+      <Track name="Opt In" />
+      <Track name="Opt Out" />
+      <Track name="Close" />
+    </TrackList>
+    <TrackList ref="tl125" name="BBC World Service News 1991">
+      <Track name="Titles and Vamp" />
+      <Track name="Titles" />
+      <Track name="Vamp" />
+    </TrackList>
+    <TrackList ref="tl38" name="Newsnight 1982" composer="George Fenton">
+      <Track name="Titles" />
+      <Track name="Close" />
+    </TrackList>
+    <TrackList ref="tl135" name="Newsnight 1993" composer="George Fenton">
+      <Track name="Titles" />
+      <Track name="Close" />
+    </TrackList>
+    <TrackList ref="tl123" name="Sunday Politics 2011" composer="George Fenton">
+      <Track name="Titles" />
+      <Track name="Close" />
+    </TrackList>
+    <TrackList ref="tl110" name="Afternoon Live 2017" composer="David Lowe">
+      <Track name="HEADS" />
+      <Track name="LONG STING AND HOLD" />
+      <Track name="LONG TITLE AND HOLD" />
+      <Track name="NATIONWIDE" />
+      <Track name="SHORT STING AND HOLD" />
+      <Track name="STING TO HEADLINES 2" />
+      <Track name="STING TO HEADLINES" />
+    </TrackList>
+    <TrackList ref="tl142" name="BBC Breakfast Rio" composer="David Lowe">
+      <Track name="COMING UP BED" />
+      <Track name="COMING UP STING" />
+      <Track name="OPENING BED" />
+      <Track name="OPT IN AND HOLD" />
+      <Track name="OPT OUT STING" />
+      <Track name="PRE OPT OUT BED" />
+      <Track name="QUARTER HOUR STING" />
+      <Track name="QUARTER HOUR VAMP" />
+      <Track name="TITLES AND HOLD" />
+    </TrackList>
+    <TrackList ref="tl117" name="BBC News 2013" composer="David Lowe">
+      <Track name="BONG" />
+      <Track name="TEN TRAIL BONG" />
+      <Track name="TEN TRAIL 20 SECONDS" />
+      <Track name="SOMBRE CLOSE" />
+      <Track name="SHORT CLOSE" />
+      <Track name="ROUND UP VAMP" />
+      <Track name="QUARTER HEAD INTRO" />
+      <Track name="Q HEAD OPT IN" />
+      <Track name="OUT OF BREAK" />
+      <Track name="NEWS TITLES" />
+      <Track name="NEWS TITLES SHORT" />
+      <Track name="NEWS TITLES SHORT NO HOLD" />
+      <Track name="NEWS TITLES HARD IN" />
+      <Track name="MORE ON THIS TRANS WIPE" />
+      <Track name="MORE ON THIS STING" />
+      <Track name="MORE ON THIS BED" />
+      <Track name="LONG OPENING TITLE" />
+      <Track name="LONG CLOSE" />
+      <Track name="INTO BREAK" />
+      <Track name="HEADLINE VAMP" />
+      <Track name="HEAD STAB 2" />
+      <Track name="HEAD STAB 1" />
+      <Track name="HALF PAST INTRO" />
+      <Track name="CLOSE" />
+      <Track name="BREAKING NEWS 2" />
+      <Track name="BREAKING NEWS 1" />
+      <Track name="TEN TRAIL" />
+      <Track name="UP BEAT CLOSE" />
+    </TrackList>
+    <TrackList ref="tl126" name="BBC News Channel Branding 2013" composer="David Lowe">
+      <Track name="COUNTDOWN 57 SECS" />
+      <Track name="COUNTDOWN 90 SECS" />
+      <Track name="NETWORK IDENT + HOLD" />
+      <Track name="NETWORK IDENT" />
+      <Track name="NETWORK STING OPT IN" />
+      <Track name="NETWORK STING OPT OUT" />
+    </TrackList>
+    <TrackList ref="tl59" name="Victoria Derbyshire 2015" composer="David Lowe">
+      <Track name="ALTERNATE BED" />
+      <Track name="COMING UP BED" />
+      <Track name="INTO BREAK" />
+      <Track name="LONG CLOSE V1" />
+      <Track name="LONG CLOSE V2" />
+      <Track name="PROMO THEME" />
+      <Track name="QUARTER HOUR BED" />
+      <Track name="STAB INTO HEADLINE BED" />
+      <Track name="STING" />
+      <Track name="TITLES AND HOLD" />
+    </TrackList>
+    <TrackList ref="tl3" name="World Business Report 2013" composer="David Lowe">
+      <Track name="LONG STAB" />
+      <Track name="SHORT CLOSE" />
+      <Track name="SHORT STAB" />
+      <Track name="SHORT TITLES INTO VAMP" />
+      <Track name="STING" />
+      <Track name="TITLES INTO VAMP" />
+      <Track name="VAMP" />
+    </TrackList>
+    <TrackList ref="tl91" name="BBC Breakfast 2018" composer="David Lowe">
+      <Track name="PRE TITLE" />
+      <Track name="QH BED" />
+      <Track name="QH TAG " />
+    </TrackList>
+    <TrackList ref="tl86" name="Breakfast 2000" composer="David Lowe">
+      <Track name="Closing Titles" />
+      <Track name="Headline Bed" />
+      <Track name="Opening Bed" />
+      <Track name="Opening Titles" />
+      <Track name="Opt" />
+      <Track name="Sting" />
+    </TrackList>
+    <TrackList ref="tl139" name="Breakfast 2003" composer="David Lowe">
+      <Track name="CLOSING TITLES" />
+      <Track name="HEADLINE VAMP + STAB" />
+      <Track name="OPENING TITLES" />
+      <Track name="OPT IN + HOLD" />
+      <Track name="OPT IN" />
+      <Track name="OPT OUT + HOLD" />
+      <Track name="OPT OUT + PRE-BED" />
+      <Track name="OPT OUT" />
+      <Track name="STAB + BED" />
+      <Track name="STAB 2" />
+      <Track name="STAB" />
+    </TrackList>
+    <TrackList ref="tl93" name="BBC Breakfast 2006" composer="David Lowe">
+      <Track name="Closing Titles" />
+      <Track name="Opening + Vamp" />
+      <Track name="Opening Bed" />
+      <Track name="Opt In [Crash]" />
+      <Track name="Opt In" />
+      <Track name="Opt Out [Crash]" />
+      <Track name="Opt Out" />
+      <Track name="Quarter Bed [Crash]" />
+      <Track name="Quarter Bed" />
+      <Track name="Sting" />
+    </TrackList>
+    <TrackList ref="tl88" name="BBC Breakfast 2009" composer="David Lowe">
+      <Track name="Title w-hold" />
+      <Track name="Headlines" />
+      <Track name="Headlines w-start" />
+      <Track name="Quarter Headlines" />
+      <Track name="Sting" />
+      <Track name="Opt In" />
+      <Track name="Close Tag" />
+      <Track name="Close" />
+      <Track name="Coming Up" />
+    </TrackList>
+    <TrackList ref="tl104" name="BBC Breakfast 2013" composer="David Lowe">
+      <Track name="CLOSE Christmas" />
+      <Track name="HEAD VAMP" />
+      <Track name="STING 2" />
+      <Track name="STING STING 1" />
+      <Track name="Title" />
+      <Track name="Headline_Bed" />
+      <Track name="Headline_Bed_(V2)" />
+      <Track name="Headline_Bed_(V3)" />
+      <Track name="Trending_Bed" />
+      <Track name="Trending_Sting" />
+      <Track name="Trending_Sting_(V2)" />
+    </TrackList>
+    <TrackList ref="tl58" name="Business Today 1999" composer="David Lowe">
+      <Track name="Title" />
+      <Track name="Sting" />
+      <Track name="Vamp" />
+      <Track name="Stab" />
+    </TrackList>
+    <TrackList ref="tl72" name="BBC Four News 2002" composer="David Lowe">
+      <Track name="CREDITS - 15 SECONDS" />
+      <Track name="CREDITS - 30 SECONDS" />
+      <Track name="HEADLINE VAMP" />
+      <Track name="MID HEADLINE VAMP" />
+      <Track name="SPECIAL CREDITS" />
+      <Track name="SPECIAL TITLES" />
+      <Track name="SPRINKLE AND HEADLINE VAMP" />
+      <Track name="STAB" />
+      <Track name="TITLES" />
+    </TrackList>
+    <TrackList ref="tl65" name="BBC LDN 2001" composer="David Lowe">
+      <Track name="Alternate Title" />
+      <Track name="Close Short Vamp" />
+      <Track name="Close Vamp" />
+      <Track name="Opening Titles + Hold" />
+      <Track name="Opening Titles" />
+      <Track name="Quick Sting + Hold" />
+      <Track name="Quickest Sting" />
+      <Track name="Special Opening + Hold" />
+      <Track name="Special Opening" />
+      <Track name="Stab" />
+      <Track name="Sting + Hold" />
+      <Track name="Sting" />
+      <Track name="Vamp + Stab + Sting" />
+      <Track name="Vamp + Stab" />
+      <Track name="Vamp" />
+    </TrackList>
+    <TrackList ref="tl99" name="BBC News 24 Tonight 2005" composer="David Lowe">
+      <Track name="Sting" />
+      <Track name="Opening Vamp" />
+      <Track name="Quarter Vamp" />
+    </TrackList>
+    <TrackList ref="tl61" name="Newsline 1999" composer="David Lowe">
+      <Track name="TITLES AND HOLD" />
+      <Track name="BED INTO STING" />
+      <Track name="CREDITS" />
+      <Track name="STING" />
+    </TrackList>
+    <TrackList ref="tl95" name="Newsline 2004" composer="David Lowe">
+      <Track name="CLAP" />
+      <Track name="CREDITS - SHORT" />
+      <Track name="CREDITS" />
+      <Track name="HEADLINE BED WITHOUT CLAP" />
+      <Track name="HEADLINE BED" />
+      <Track name="STAB" />
+      <Track name="STING" />
+      <Track name="TITLES - SHORT" />
+      <Track name="TITLES" />
+    </TrackList>
+    <TrackList ref="tl45" name="Newsline 2008" composer="David Lowe">
+      <Track name="Title" />
+    </TrackList>
+    <TrackList ref="tl137" name="Newyddion 2000" composer="David Lowe">
+      <Track name="HEADLINE VAMP INTO STING WITH 2 CLAPS" />
+      <Track name="HEADLINE VAMP INTO STING WITH 3 CLAPS" />
+      <Track name="HEADLINE VAMP INTO STING WITH 4 CLAPS" />
+      <Track name="HEADLINE VAMP" />
+      <Track name="STING 1 &amp; HOLD" />
+      <Track name="STING 1" />
+      <Track name="STING 2 &amp; HOLD" />
+      <Track name="STING 2" />
+      <Track name="SUMMARY BED" />
+      <Track name="TAG" />
+      <Track name="TITLES - LONG WITH HOLD" />
+      <Track name="TITLES - LONG" />
+      <Track name="TITLES - SHORT" />
+    </TrackList>
+    <TrackList ref="tl134" name="Newyddion 2005" composer="David Lowe">
+      <Track name="ALTERNATE STING WITH HOLD" />
+      <Track name="TITLES" />
+    </TrackList>
+    <TrackList ref="tl51" name="North West Tonight 2007" composer="David Lowe">
+      <Track name="Unused Sting" />
+      <Track name="Closing Sting" />
+      <Track name="Closing Titles (.14)" />
+      <Track name="Headline_Vamp_1A" />
+      <Track name="Headline_Vamp_1B" />
+      <Track name="Headline_Vamp_2A" />
+      <Track name="Headline_Vamp_2B" />
+      <Track name="Sting_1" />
+      <Track name="Sting_2" />
+      <Track name="Titles_Short" />
+    </TrackList>
+    <TrackList ref="tl105" name="Reporting Scotland 1999" composer="David Lowe">
+      <Track name="Title and Hold" />
+      <Track name="Close" />
+    </TrackList>
+    <TrackList ref="tl129" name="Reporting Scotland 2008" composer="David Lowe">
+      <Track name="Titles" />
+      <Track name="Short Titles" />
+      <Track name="Close" />
+      <Track name="Long Sting" />
+      <Track name="Sting with long hold" />
+      <Track name="Sting with short hold" />
+      <Track name="Headline Bed" />
+      <Track name="Alternative Title" />
+    </TrackList>
+    <TrackList ref="tl96" name="Sept 11 Remeberance 2002" composer="David Lowe">
+      <Track name="Titles" />
+      <Track name="Vamp" />
+      <Track name="Close" />
+      <Track name="Sting" />
+      <Track name="Sting (with hold)" />
+      <Track name="Tag" />
+    </TrackList>
+    <TrackList ref="tl6" name="StoryFix 2006">
+      <Track name="Full_Theme" />
+      <Track name="Keys_only" />
+      <Track name="Original_Mix" />
+      <Track name="Sting_01" />
+      <Track name="Sting_02" />
+      <Track name="Sting_03" />
+      <Track name="Sting_04" />
+      <Track name="Sting_05" />
+    </TrackList>
+    <TrackList ref="tl22" name="The World 2004" composer="David Lowe">
+      <Track name="A T W STING" />
+      <Track name="CLOSE" />
+      <Track name="SPECIAL CLOSE" />
+      <Track name="SPECIAL TITLES" />
+      <Track name="STING 1" />
+      <Track name="STING 2" />
+      <Track name="STING 3" />
+      <Track name="STING 4" />
+      <Track name="STING 5" />
+      <Track name="STING LONG" />
+      <Track name="STING SHORT" />
+      <Track name="STING" />
+      <Track name="TITLES" />
+      <Track name="VAMP" />
+    </TrackList>
+    <TrackList ref="tl74" name="Focus on Africa 2012" composer="David Lowe">
+      <Track name="COMING UP VAMP" />
+      <Track name="HEAD VAMP" />
+      <Track name="LONG CLOSE" />
+      <Track name="OPT IN STING" />
+      <Track name="OPT OUT STING" />
+      <Track name="SHORT CLOSE" />
+      <Track name="STAB" />
+      <Track name="TITLE + FADE IN" />
+      <Track name="TITLE" />
+    </TrackList>
+    <TrackList ref="tl94" name="BBC Regional News 1999" composer="David Lowe">
+      <Track name="England Close" />
+      <Track name="England Spotlight Mix" />
+      <Track name="England Titles" />
+    </TrackList>
+    <TrackList ref="tl102" name="BBC Regional News 2002" composer="David Lowe">
+      <Track name="1199205398_11432_FT0_bbc_english_regions_2003__opening_titles" />
+      <Track name="England Sting + Vamp" />
+      <Track name="England Titles B + Vamp" />
+      <Track name="Regions - BBC News - 1999 - Spotlight with whoosh" />
+    </TrackList>
+    <TrackList ref="tl33" name="BBC Regional News 2008" composer="David Lowe">
+      <Track name="England Close" />
+      <Track name="England Headline Vamp + Thunderclap" />
+      <Track name="England Long Sting" />
+      <Track name="England Titles + Hold" />
+      <Track name="England Titles Short + Hold" />
+      <Track name="England Titles" />
+      <Track name="BBC_Midlands_-_BBC_Midlands_Today_2009_Opening_Titles (Incomplete)" />
+    </TrackList>
+    <TrackList ref="tl28" name="South East Today 2009" composer="David Lowe">
+      <Track name="South East + Midlands Today [David Lowe]" />
+      <Track name="South East Today Close" />
+      <Track name="South East Today" />
+    </TrackList>
+    <TrackList ref="tl118" name="Wales Today 2005" composer="David Lowe">
+      <Track name="Pop Bed" />
+      <Track name="Special Titles 3" />
+      <Track name="Special Titles 5" />
+      <Track name="Titles Full" />
+    </TrackList>
+    <TrackList ref="tl8" name="World News America 2008" composer="David Lowe">
+      <Track name="Bed 1" />
+      <Track name="Bed 2" />
+      <Track name="Bed 3" />
+      <Track name="Bed 4" />
+      <Track name="Bed 5 + opening clap" />
+      <Track name="Bed 5" />
+      <Track name="Bed 6" />
+      <Track name="Bed 7" />
+      <Track name="Bed 8 + close" />
+    </TrackList>
+    <TrackList ref="tl41" name="World News Today 2008" composer="David Lowe">
+      <Track name="Opening titles" />
+      <Track name="Headline vamp 2 (alt)" subtitle="ZA" />
+      <Track name="Headline vamp 1" subtitle="ZA" />
+      <Track name="Opening titles" subtitle="ZA" />
+      <Track name="Tag C" />
+      <Track name="Tag B alt" />
+      <Track name="Tag B" />
+      <Track name="Tag A alt" />
+      <Track name="Tag A" />
+      <Track name="Opt Sting B" />
+      <Track name="Headline vamp 3 (with sting)" subtitle="ZA" />
+      <Track name="Opt Sting A" />
+      <Track name="Sting C" />
+      <Track name="Sting B" />
+      <Track name="Sting A" />
+      <Track name="Long closing titles" />
+      <Track name="Closing titles" />
+      <Track name="Headline vamp" />
+      <Track name="Vamp" />
+      <Track name="Long opening titles" />
+      <Track name="Opening titles with headlines" />
+      <Track name="Special Sting" />
+      <Track name="Closing Titles" subtitle="ZA" />
+    </TrackList>
+    <TrackList ref="tl90" name="Reporters 2002">
+      <Track name="BED 60'" />
+      <Track name="END STING 3'" />
+      <Track name="LONG CLOSE 27'" />
+      <Track name="OPEN 1.15'" />
+      <Track name="OPEN 12'" />
+      <Track name="OPEN 30'" />
+      <Track name="OPEN 4'" />
+      <Track name="OPEN 7'" />
+      <Track name="PUNCTUATOR 1" />
+      <Track name="PUNCTUATOR 2" />
+      <Track name="STING 3'" />
+      <Track name="STING 6'" />
+    </TrackList>
+    <TrackList ref="tl67" name="BBC News Promos 2017" composer="David Lowe">
+      <Track name="BREAKING NEWS" />
+      <Track name="UPBEAT 15_1" />
+      <Track name="SERIOUS 3_15" />
+      <Track name="SERIOUS 2_15" />
+      <Track name="SERIOUS 1_15" />
+      <Track name="NEWS SERIOUS 3" />
+      <Track name="NEWS SERIOUS 2" />
+      <Track name="NEWS SERIOUS 1" />
+      <Track name="NEWS HAPPY 3" />
+      <Track name="NEWS HAPPY 2" />
+      <Track name="NEWS HAPPY 1" />
+      <Track name="NEWS GENERAL 9" />
+      <Track name="NEWS GENERAL 8" />
+      <Track name="NEWS GENERAL 7" />
+      <Track name="NEWS GENERAL 6" />
+      <Track name="UPBEAT 15_2" />
+      <Track name="NEWS GENERAL 5" />
+      <Track name="NEWS GENERAL 3" />
+      <Track name="NEWS GENERAL 2" />
+      <Track name="NEWS GENERAL 10" />
+      <Track name="NEWS GENERAL 1" />
+      <Track name="GENERAL 15_9" />
+      <Track name="GENERAL 15_8" />
+      <Track name="GENERAL 15_7" />
+      <Track name="GENERAL 15_6" />
+      <Track name="GENERAL 15_5" />
+      <Track name="GENERAL 15_4" />
+      <Track name="GENERAL 15_3" />
+      <Track name="GENERAL 15_2" />
+      <Track name="GENERAL 15_10" />
+      <Track name="GENERAL 15_1" />
+      <Track name="NEWS GENERAL 4" />
+      <Track name="UPBEAT 15_3" />
+    </TrackList>
+    <TrackList ref="tl81" name="BBC News Slates 2017" composer="David Lowe">
+      <Track name="SLATE 1" />
+      <Track name="SLATE 2" />
+      <Track name="SLATE 3" />
+      <Track name="SLATE 4" />
+      <Track name="SLATE 5" />
+      <Track name="SLATE 6" />
+    </TrackList>
+    <TrackList ref="tl39" name="BBC Parliament 2016" composer="David Lowe">
+      <Track name="SECS REMEMBRANCE" />
+      <Track name="2016 12 SECS AND 40 HOLD" />
+      <Track name="2016 12 SECS" />
+      <Track name="MAIN MIX" />
+      <Track name="UNDERSCORE 1" />
+      <Track name="UNDERSCORE 2" />
+    </TrackList>
+    <TrackList ref="tl71" name="BBC World News 2013" composer="David Lowe">
+      <Track name="NEWS 0500 HEADS OUT STING 3 SECS" />
+      <Track name="NEWS 0500 HEADS OUT STING 4 SECS" />
+      <Track name="NEWS HEAD VAMP" />
+      <Track name="NEWS LONG CLOSE" />
+      <Track name="NEWS OPT IN STING" />
+      <Track name="NEWS OPT OUT STING" />
+      <Track name="NEWS QH STAB" />
+      <Track name="NEWS QH VAMP" />
+      <Track name="NEWS RU STAB ALT" />
+      <Track name="NEWS RU STAB" />
+      <Track name="NEWS RU VAMP" />
+      <Track name="NEWS SHORT CLOSE" />
+      <Track name="NEWS TITLES 2_ BUILD" />
+    </TrackList>
+    <TrackList ref="tl109" name="Beyond 100 Days 2017" composer="David Lowe">
+      <Track name="COMING UP VAMP" />
+      <Track name="HEADLINE VAMP" />
+      <Track name="INTO BREAK" />
+      <Track name="LONG CLOSE" />
+      <Track name="OUT OF BREAK" />
+      <Track name="PROMO VAMP" />
+      <Track name="SHORT CLOSE" />
+      <Track name="STAB INTO HEADLINE" />
+      <Track name="STAB" />
+      <Track name="TITLES" />
+    </TrackList>
+    <TrackList ref="tl20" name="Business Briefing 2017" composer="David Lowe">
+      <Track name="1 MIN CLOSE" />
+      <Track name="END TITLES" />
+      <Track name="LONG TITLES AND HOLD" />
+      <Track name="ROUND UP" />
+      <Track name="SHORT TITLE INTO HEADS" />
+      <Track name="STING" />
+    </TrackList>
+    <TrackList ref="tl25" name="BBC Channel Islands 2017" composer="David Lowe">
+      <Track name="CLOSING" />
+      <Track name="COMING UP" />
+      <Track name="HEADS" />
+      <Track name="STAB" />
+      <Track name="STING 1 HOLD" />
+      <Track name="STING 1" />
+      <Track name="STING 2 HOLD" />
+      <Track name="STING 2" />
+      <Track name="TITLE AND HOLD" />
+      <Track name="TITLE" />
+    </TrackList>
+    <TrackList ref="tl107" name="Global 2016" composer="David Lowe">
+      <Track name="1 MIN CLOSER" />
+      <Track name="HEADLINE BED" />
+      <Track name="SHORT TITLES AND HOLD" />
+      <Track name="STAB V1" />
+      <Track name="STAB V2" />
+      <Track name="TITLES AND HOLD V1" />
+      <Track name="TITLES AND HOLD V2" />
+      <Track name="TITLES" />
+    </TrackList>
+    <TrackList ref="tl15" name="GMT 2010" composer="David Lowe">
+      <Track name="1 MIN CLOSER" />
+      <Track name="COMING UP BED" />
+      <Track name="HEADLINE BED" />
+      <Track name="QUARTER HOUR BED" />
+      <Track name="TITLES AND HOLD" />
+    </TrackList>
+    <TrackList ref="tl76" name="Impact 2010" composer="David Lowe">
+      <Track name="1 MIN CLOSER" />
+      <Track name="COMING UP BED" />
+      <Track name="COMING UP STING" />
+      <Track name="HEADLINE BED" />
+      <Track name="QUARTER HOUR BED" />
+      <Track name="TITLES AND HOLD" />
+    </TrackList>
+    <TrackList ref="tl140" name="Look North Yorkshire 2017" composer="David Lowe">
+      <Track name="BONG COMING UP" />
+      <Track name="BONG HEADLINES" />
+      <Track name="CLOSING" />
+      <Track name="COMING UP 2" />
+      <Track name="COMING UP 3" />
+      <Track name="COMING UP" />
+      <Track name="HEADLINES" />
+      <Track name="HOLD" />
+      <Track name="SHORT TITLE AND HOLD 1" />
+      <Track name="SHORT TITLE AND HOLD" />
+      <Track name="SHORT TITLE" />
+      <Track name="STING 2" />
+      <Track name="STING 3" />
+      <Track name="STING 4" />
+      <Track name="TITLES AND HOLD" />
+      <Track name="TITLES" />
+    </TrackList>
+    <TrackList ref="tl19" name="Newsday 2015" composer="David Lowe">
+      <Track name="MICHELLE INTRO 1" />
+      <Track name="CLOSING STING" />
+      <Track name="FULL TITLES AND HOLD" />
+      <Track name="HEADLINES V1" />
+      <Track name="HEADLINES V3" />
+      <Track name="MAIN TITLE AND HOLD" />
+      <Track name="MAIN TITLE LONDON FIRST" />
+      <Track name="MAIN TITLE VOICE OVER AND HOLD" />
+      <Track name="ONE MIN CLOSE" />
+      <Track name="SHORT TITLE" />
+      <Track name="STAB INTO HEADLINES" />
+    </TrackList>
+    <TrackList ref="tl23" name="Newsroom Live 2016" composer="David Lowe">
+      <Track name="TITLE AND HOLD" />
+      <Track name="V2" />
+      <Track name="V3" />
+      <Track name="NEWSROOM LIVE" />
+      <Track name="HALF HEAD CLEAN" />
+      <Track name="HALF HEAD RUMBLE" />
+    </TrackList>
+    <TrackList ref="tl44" name="Newsroom Live 2018" composer="David Lowe">
+      <Track name="SHORT TITLE AND HOLD" />
+      <Track name="STING" />
+      <Track name="TITLE AND HOLD" />
+      <Track name="TITLE" />
+    </TrackList>
+    <TrackList ref="tl121" name="Outside Source 2015" composer="David Lowe">
+      <Track name="1 MIN CLOSER" />
+      <Track name="HEADLINE BED" />
+      <Track name="TITLES AND HOLD" />
+      <Track name="CLOSER" />
+    </TrackList>
+    <TrackList ref="tl141" name="Politics Live 2018">
+      <Track name="STING" />
+      <Track name="TITLES AND BED" />
+    </TrackList>
+    <TrackList ref="tl98" name="Politics Scotland 2016">
+      <Track name="BED" />
+      <Track name="LONG CLOSE" />
+      <Track name="SHORT CLOSE" />
+      <Track name="STING" />
+      <Track name="TITLE" />
+    </TrackList>
+    <TrackList ref="tl73" name="Scotland Elections 2017">
+      <Track name="ELECTION CLOSE 1 MINUTE" />
+      <Track name="ELECTION TITLE AND HOLD" />
+      <Track name="ELECTIONS BED" />
+      <Track name="ELECTIONS HEADLINES" />
+      <Track name="ELECTIONS STING 2" />
+      <Track name="ELECTIONS STING" />
+    </TrackList>
+    <TrackList ref="tl36" name="Sportsday 2017" composer="David Lowe">
+      <Track name="BED" />
+      <Track name="END TITLES" />
+      <Track name="OPENING HEADS" />
+      <Track name="SHORT TITLES" />
+      <Track name="STING AND BED" />
+      <Track name="STING" />
+      <Track name="TITLES" />
+    </TrackList>
+    <TrackList ref="tl53" name="Sportsday Demo 2017" composer="David Lowe">
+      <Track name="BED 1" />
+      <Track name="BED 2" />
+      <Track name="ONE MIN CLOSE" />
+      <Track name="SHORT TITLES" />
+      <Track name="STING" />
+      <Track name="TITLES AND BED" />
+      <Track name="TITLES" />
+    </TrackList>
+    <TrackList ref="tl87" name="Spotlight 2015" composer="David Lowe">
+      <Track name="CLOSER ONE MINUTE" />
+      <Track name="V4" subtitle="Premix" />
+      <Track name="V3" subtitle="Premix" />
+      <Track name="V2" subtitle="Premix" />
+      <Track name="V1" subtitle="Premix" />
+      <Track name="BONGS 2" />
+      <Track name="BONGS 1" />
+      <Track name="STING 2" />
+      <Track name="V5" subtitle="Premix" />
+      <Track name="STING 1" />
+      <Track name="SHORT TITLE" />
+      <Track name="SHORT TITLE AND HOLD" />
+      <Track name="LONG TITLE" />
+      <Track name="LONG TITLE AND HOLD" />
+      <Track name="HEADLINE BED 3" />
+      <Track name="HEADLINE BED 2" />
+      <Track name="HEADLINE BED 1" />
+      <Track name="STAB PERC" />
+      <Track name="V6" subtitle="Premix" />
+    </TrackList>
+    <TrackList ref="tl37" name="The Briefing 2017" composer="David Lowe">
+      <Track name="1 MIN CLOSE" />
+      <Track name="SEC CLOSE" />
+      <Track name="5 SEC STING AND HOLD" />
+      <Track name="5 SEC STING" />
+      <Track name="OPENING HOLD" />
+      <Track name="OPENING TWINKLE AND VAMP" />
+      <Track name="ROUND UP VAMP" />
+      <Track name="SHORT STAB WITH TAIL" />
+      <Track name="SHORT STAB" />
+      <Track name="STAB" />
+      <Track name="TITLE" />
+      <Track name="VAMP" />
+    </TrackList>
+    <TrackList ref="tl5" name="Timeline 2017" composer="David Lowe">
+      <Track name="BED 1" />
+      <Track name="BED 2" />
+      <Track name="ONE MIN CLOSE" />
+      <Track name="SHORT TITLES" />
+      <Track name="STING" />
+      <Track name="TITLES AND BED" />
+      <Track name="TITLES" />
+    </TrackList>
+    <TrackList ref="tl120" name="Talking Business 2017" composer="David Lowe">
+      <Track name="1 MIN CLOSER" />
+      <Track name="COMING UP BED" />
+      <Track name="HEADLINE BED" />
+      <Track name="INTO BREAK" />
+      <Track name="STING" />
+      <Track name="TITLES AND HOLD V1" />
+      <Track name="TITLES AND HOLD V2" />
+      <Track name="TITLES" />
+    </TrackList>
+    <TrackList ref="tl131" name="Wales Today 2018" composer="David Lowe">
+      <Track name="CLOSING 1 MIN" />
+      <Track name="CLOSING TITLE" />
+      <Track name="HEADS BED 2" />
+      <Track name="HEADS BED 3" />
+      <Track name="HEADS BED 4" />
+      <Track name="HEADS BED" />
+      <Track name="SHORT TITLE 1" />
+      <Track name="SHORT TITLE 2" />
+      <Track name="TAG" />
+      <Track name="TITLES AND HOLD" />
+      <Track name="WEEKEND TITLE" />
+    </TrackList>
+    <TrackList ref="tl84" name="BBC News Remixes">
+      <Track name="Radio Waves" />
+      <Track name="Time Stretch" />
+      <Track name="Sonic Remix" />
+      <Track name="Sportsday Remix" />
+      <Track name="Countdown Remix" />
+      <Track name="World Connection" />
+      <Track name="Asian Dream" />
+      <Track name="Nation to Nation" />
+      <Track name="BBC World TV Mix" />
+      <Track name="Malaysian Dream" />
+    </TrackList>
+    <TrackList ref="tl80" name="SVRS BBC News Package" composer="SVRS">
+      <Track name="BBC ONE Summary Vamp" />
+      <Track name="World TOTH Vamp" />
+      <Track name="World Quarter Close Vamp &amp; Sting" />
+      <Track name="World Headline Vamp" />
+      <Track name="UK TOTH Vamp" />
+      <Track name="UK Quarter Sting" />
+      <Track name="UK Headline Vamp" />
+      <Track name="UK Close Vamp &amp; Sting" />
+      <Track name="UK BOTH Open" />
+      <Track name="Titles" />
+      <Track name="Summary Short Sting" />
+      <Track name="Summary Open Sting" />
+      <Track name="Summary Close Vamp &amp; Sting" />
+      <Track name="Sting" />
+      <Track name="Special Close" />
+      <Track name="Special Bulletin" />
+      <Track name="Short Sting" />
+      <Track name="Network Titles" />
+      <Track name="Nationals Quarter Sting" />
+      <Track name="Main Close" />
+      <Track name="Close Sting" />
+      <Track name="BOTH Sting" />
+      <Track name="World &quot;News In Brief&quot; Vamp" />
+      <Track name="World &quot;Return from Break&quot;" />
+    </TrackList>
+    <TrackList ref="tl43" name="SVRS BBC Business Edition 2010 Package" composer="SVRS">
+      <Track name="Main Close" />
+      <Track name="Middle Close" />
+      <Track name="Short Sting &amp; Hold" />
+      <Track name="Sting &amp; Hold" />
+      <Track name="Titles" />
+      <Track name="TOTH Vamp" />
+    </TrackList>
+    <TrackList ref="tl130" name="SVRS BBC World News Package" composer="SVRS">
+      <Track name="2010 - Ident 1" />
+      <Track name="2010 - Ident 2" />
+      <Track name="2010 - Short Ident 1" />
+      <Track name="2010 - Short Ident 2" />
+      <Track name="Countdown July 2009" />
+    </TrackList>
+    <TrackList ref="tl124" name="SVRS BBC World News Today 2009 Package" composer="SVRS">
+      <Track name="Alt TOTH Vamp" />
+      <Track name="Titles 2" />
+      <Track name="Titles 1" />
+      <Track name="Titles (No Detatche)" />
+      <Track name="Short Titles" />
+      <Track name="Short Titles (No Detatche)" />
+      <Track name="Short Sting &amp; Vamp" />
+      <Track name="Return Sting &amp; Hold" />
+      <Track name="TOTH Vamp" />
+      <Track name="Headline Vamp" />
+      <Track name="Break Vamp &amp; Sting" />
+      <Track name="Badawi Titles" />
+      <Track name="Badawi Short Titles" />
+      <Track name="Badawi Return Sting &amp; Hold" />
+      <Track name="Badawi Multipurpose Vamp" />
+      <Track name="Badawi Close Vamp &amp; Sting" />
+      <Track name="Badawi Break Vamp &amp; Sting" />
+      <Track name="Close Vamp &amp; Sting" />
+      <Track name="&quot;News In Brief&quot; Vamp" />
+    </TrackList>
+    <TrackList ref="tl82" name="SVRS BBC Breakfiller 2009 Package" composer="SVRS">
+      <Track name="Extended Version" />
+      <Track name="&quot;Coming Up&quot; Segment" />
+      <Track name="&quot;Markets&quot; Segment" />
+      <Track name="&quot;News&quot; Segment" />
+      <Track name="&quot;Now &amp; Next&quot; Segment" />
+      <Track name="&quot;Timecheck&quot; Segment" />
+      <Track name="&quot;Weather&quot; Segment" />
+    </TrackList>
+    <Libraries>
+      <Library name="Peaktime TV 2" catalog="KPM203" />
+      <Library name="Media Power" catalog="DWCD 0224" />
+      <Library name="News, Business and Technology" catalog="DWCOM 02" />
+      <Library name="News Around the World" catalog="DWCD 0612" />
+      <Library name="1980s" catalog="ANW 1106" />
+    </Libraries>
+  </AudioCollection>
+  <ProgrammeTrackListLink>
+    <Link programmeRef="p1" trackListRef="tl132" />
+    <Link programmeRef="p2" trackListRef="tl45" />
+    <Link programmeRef="p4" trackListRef="tl95" />
+    <Link programmeRef="p5" trackListRef="tl18" />
+    <Link programmeRef="p6" trackListRef="tl144" />
+    <Link programmeRef="p7" trackListRef="tl96" />
+    <Link programmeRef="p9" trackListRef="tl20" />
+    <Link programmeRef="p10" trackListRef="tl76" />
+    <Link programmeRef="p11" trackListRef="tl35" />
+    <Link programmeRef="p15" trackListRef="tl104" />
+    <Link programmeRef="p16" trackListRef="tl3" />
+    <Link programmeRef="p17" trackListRef="tl39" />
+    <Link programmeRef="p19" trackListRef="tl52" />
+    <Link programmeRef="p20" trackListRef="tl47" />
+    <Link programmeRef="p23" trackListRef="tl120" />
+    <Link programmeRef="p24" trackListRef="tl41" />
+    <Link programmeRef="p26" trackListRef="tl17" />
+    <Link programmeRef="p27" trackListRef="tl65" />
+    <Link programmeRef="p28" trackListRef="tl136" />
+    <Link programmeRef="p30" trackListRef="tl118" />
+    <Link programmeRef="p35" trackListRef="tl2" />
+    <Link programmeRef="p38" trackListRef="tl32" />
+    <Link programmeRef="p41" trackListRef="tl33" />
+    <Link programmeRef="p42" trackListRef="tl38" />
+    <Link programmeRef="p43" trackListRef="tl125" />
+    <Link programmeRef="p45" trackListRef="tl59" />
+    <Link programmeRef="p47" trackListRef="tl31" />
+    <Link programmeRef="p48" trackListRef="tl67" />
+    <Link programmeRef="p49" trackListRef="tl14" />
+    <Link programmeRef="p52" trackListRef="tl49" />
+    <Link programmeRef="p54" trackListRef="tl115" />
+    <Link programmeRef="p54" trackListRef="tl116" />
+    <Link programmeRef="p55" trackListRef="tl79" />
+    <Link programmeRef="p56" trackListRef="tl93" />
+    <Link programmeRef="p58" trackListRef="tl88" />
+    <Link programmeRef="p59" trackListRef="tl25" />
+    <Link programmeRef="p60" trackListRef="tl28" />
+    <Link programmeRef="p62" trackListRef="tl64" />
+    <Link programmeRef="p63" trackListRef="tl37" />
+    <Link programmeRef="p64" trackListRef="tl56" />
+    <Link programmeRef="p65" trackListRef="tl143" />
+    <Link programmeRef="p67" trackListRef="tl11" />
+    <Link programmeRef="p68" trackListRef="tl128" />
+    <Link programmeRef="p70" trackListRef="tl7" />
+    <Link programmeRef="p71" trackListRef="tl5" />
+    <Link programmeRef="p73" trackListRef="tl109" />
+    <Link programmeRef="p74" trackListRef="tl74" />
+    <Link programmeRef="p75" trackListRef="tl21" />
+    <Link programmeRef="p76" trackListRef="tl57" />
+    <Link programmeRef="p78" trackListRef="tl55" />
+    <Link programmeRef="p83" trackListRef="tl24" />
+    <Link programmeRef="p85" trackListRef="tl72" />
+    <Link programmeRef="p87" trackListRef="tl73" />
+    <Link programmeRef="p88" trackListRef="tl8" />
+    <Link programmeRef="p89" trackListRef="tl105" />
+    <Link programmeRef="p90" trackListRef="tl100" />
+    <Link programmeRef="p92" trackListRef="tl138" />
+    <Link programmeRef="p93" trackListRef="tl107" />
+    <Link programmeRef="p95" trackListRef="tl58" />
+    <Link programmeRef="p96" trackListRef="tl86" />
+    <Link programmeRef="p97" trackListRef="tl131" />
+    <Link programmeRef="p101" trackListRef="tl22" />
+    <Link programmeRef="p103" trackListRef="tl42" />
+    <Link programmeRef="p104" trackListRef="tl19" />
+    <Link programmeRef="p105" trackListRef="tl129" />
+    <Link programmeRef="p106" trackListRef="tl97" />
+    <Link programmeRef="p107" trackListRef="tl51" />
+    <Link programmeRef="p108" trackListRef="tl17" />
+    <Link programmeRef="p109" trackListRef="tl90" />
+    <Link programmeRef="p110" trackListRef="tl135" />
+    <Link programmeRef="p111" trackListRef="tl91" />
+    <Link programmeRef="p112" trackListRef="tl101" />
+    <Link programmeRef="p113" trackListRef="tl60" />
+    <Link programmeRef="p114" trackListRef="tl23" />
+    <Link programmeRef="p115" trackListRef="tl61" />
+    <Link programmeRef="p116" trackListRef="tl133" />
+    <Link programmeRef="p117" trackListRef="tl87" />
+    <Link programmeRef="p118" trackListRef="tl111" />
+    <Link programmeRef="p119" trackListRef="tl10" />
+    <Link programmeRef="p120" trackListRef="tl78" />
+    <Link programmeRef="p123" trackListRef="tl89" />
+    <Link programmeRef="p124" trackListRef="tl92" />
+    <Link programmeRef="p125" trackListRef="tl85" />
+    <Link programmeRef="p126" trackListRef="tl108" />
+    <Link programmeRef="p127" trackListRef="tl62" />
+    <Link programmeRef="p128" trackListRef="tl140" />
+    <Link programmeRef="p129" trackListRef="tl98" />
+    <Link programmeRef="p131" trackListRef="tl9" />
+    <Link programmeRef="p133" trackListRef="tl110" />
+    <Link programmeRef="p134" trackListRef="tl121" />
+    <Link programmeRef="p135" trackListRef="tl139" />
+    <Link programmeRef="p138" trackListRef="tl134" />
+    <Link programmeRef="p139" trackListRef="tl68" />
+    <Link programmeRef="p140" trackListRef="tl114" />
+    <Link programmeRef="p141" trackListRef="tl137" />
+    <Link programmeRef="p142" trackListRef="tl6" />
+    <Link programmeRef="p143" trackListRef="tl12" />
+    <Link programmeRef="p146" trackListRef="tl113" />
+    <Link programmeRef="p147" trackListRef="tl48" />
+    <Link programmeRef="p150" trackListRef="tl15" />
+    <Link programmeRef="p152" trackListRef="tl142" />
+    <Link programmeRef="p153" trackListRef="tl77" />
+    <Link programmeRef="p155" trackListRef="tl36" />
+  </ProgrammeTrackListLink>
+</BeepBongCollection>
