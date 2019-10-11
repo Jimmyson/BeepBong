@@ -14,6 +14,7 @@ namespace BeepBong.Application.Queries
 
         public ProgrammeChannelIndexQuery(BeepBongContext context) => _context = context;
 
+        [Obsolete("Use the ProgrammeIndexQuery, and pass in the Channel ID as the parameter.")]
         public IQueryable<ProgrammeIndexViewModel> GetQuery(Guid? channelId)
         {
             return _context.Programmes

@@ -19,6 +19,7 @@ namespace BeepBong.Application.Queries
                 .Include(p => p.ProgrammeTrackLists)
                 .ThenInclude(ptl => ptl.TrackList)
                 .ThenInclude(tl => tl.Tracks)
+                .WhereIf(id != null, p => p.ChannelId == id.Value) // Filter on Channel ID
                 .OrderBy(p => p.Name)
                 .ThenBy(p => p.AirDate)
                 .Select(p => new ProgrammeIndexViewModel() {
