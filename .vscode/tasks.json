@@ -2,12 +2,32 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "build seed",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/BeepBong.App.XmlSeed/BeepBong.App.XmlSeed.csproj"
+            ],
+            "problemMatcher": "$tsc"
+        },
+        {
+            "label": "build razor web",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
                 "${workspaceFolder}/src/BeepBong.Web/BeepBong.Web.csproj"
+            ],
+            "problemMatcher": "$tsc"
+        },
+        {
+            "label": "build vue web",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/BeepBong.Web.Vue/BeepBong.Web.Vue.csproj"
             ],
             "problemMatcher": "$tsc"
         },

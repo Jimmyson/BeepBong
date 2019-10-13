@@ -16,10 +16,10 @@
 			"console": "internalConsole"
 		},
         {
-            "name": ".NET Core Launch (web)",
+            "name": ".NET Core Launch Razor (web)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build razor web",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/src/BeepBong.Web/bin/Debug/netcoreapp2.2/BeepBong.Web.dll",
             "args": [],
@@ -38,10 +38,10 @@
 			}
         },
         {
-            "name": ".NET Core Launch (web)",
+            "name": ".NET Core Launch Vue (web)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build vue web",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/src/BeepBong.Web.Vue/bin/Debug/netcoreapp2.2/BeepBong.Web.Vue.dll",
             "args": [],
