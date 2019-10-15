@@ -1,65 +1,24 @@
 <template>
     <div id="programme">
         <header>
+            <div id="details">
+                <h3>programme name</h3>
+                <i data-feather="calendar"></i><span>programme airDate</span>
+                <i data-feather="tv"></i><span>programme channel</span>
+                <i data-feather="tv"></i><span>parent Programme</span>
+                <i data-feather="tv"></i><span>child Programme</span>
+                <i data-feather="tv"></i><span>child Programme</span>
+            </div>
             <div id="image">
                 <img />
             </div>
-            <h3>Hello!</h3>
-            <div id="details">
-                <h3>{{ programme.name }}</h3>
-                <i data-feather="calendar"></i><span>{{ programme.airDate }}</span>
-                <i data-feather="tv"></i><span>{{ programme.channel }}</span>
-                <i data-feather="tv"></i><span>{{ parentProgramme }}</span>
-                <i data-feather="tv"></i><span>{{ childProgramme }}</span>
-                <i data-feather="tv"></i><span>{{ childProgramme }}</span>
-            </div>
         </header>
-
+        <br />
         <div>
-            <tracklist/>
-            <tracklist/>
+            <tracklist />
+            <tracklist />
         </div>
     </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue';
-import Axios from 'axios';
-import { Component } from 'vue-property-decorator';
-
-class Programme {
-    imageId: string;
-    name: string;
-    airDate: string;
-    channel: string;
-
-    constructor()
-    {
-        this.imageId = "";
-        this.name = "";
-        this.airDate = "";
-        this.channel = "";
-    }
-}
-
-@Component
-export default class ProgrammeView extends Vue {
-    programme: Programme = new Programme();
-
-    getProgramme()
-    {
-        Axios.get('/api/Programme/' + this.$route.params.id)
-            .then(Response => {
-                this.programme.imageId = Response.data.imageId;
-                this.programme.name = Response.data.name;
-                this.programme.airDate = Response.data.airDate;
-                this.programme.channel = Response.data.channelName;
-            });
-    }
-
-    mounted()
-    {
-        this.getProgramme();
-    }
-}
-</script>
+<script src="./programme.ts"></script>

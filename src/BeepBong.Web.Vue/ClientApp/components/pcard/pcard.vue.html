@@ -1,0 +1,30 @@
+<template>
+    <div id="programme-card">
+        <div class="card mb-4" style="min-width: 21rem;">
+            <img class="card-img-top" />
+            <div class="card-body">
+                <h5 class="card-title">Programme Name</h5>
+                <div class="card-text">
+                    <p>
+                        <i data-feather="calendar"></i>Year
+                        <i data-feather="tv"></i>Channel
+                    </p>
+                </div>
+                <span>Track Count</span>
+            </div>
+            <div class="card-footer">
+                <div><!-- Display if Library Music is found -->
+                    <i data-feather="music"></i>
+                    <span class="text-left">Contains Library Music</span>
+                </div>
+                <div>
+                    <!-- <a><i data-feather="edit"></i></a> -->
+                    <router-link to="/programme/1">
+                        <i data-feather="info"></i>
+                    </router-link>
+                    <!-- <a><i data-feather="trash-2"></i></a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

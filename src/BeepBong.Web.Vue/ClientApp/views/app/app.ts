@@ -4,7 +4,7 @@ import { Component } from 'vue-property-decorator';
 
 @Component({
     components: {
-        MenuComponent: require('../../components/navmenu/navmenu.vue.html').default
+        MenuComponent: require('../../components/dashnav/dashnav.vue.html').default
     }
 })
 export default class AppComponent extends Vue {

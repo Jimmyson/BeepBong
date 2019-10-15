@@ -1,0 +1,45 @@
+<template>
+    <div id="tCreate">
+        <h3>Create new Tracklist</h3>
+        <div>
+            <input type="text" placeholder="Tracklist Name" />
+            <input type="text" placeholder="Tracklist Composer" />
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Notes</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>track name</td>
+                    <td>track description</td>
+                    <td>track notes</td>
+                    <td><i data-feather="x"></i><span>Remove</span></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><input type="text" placeholder="Track Name" /></td>
+                    <td><input type="text" placeholder="Track Description" /></td>
+                    <td><input type="text" placeholder="Track Notes" /></td>
+                    <td><i data-feather="plus"></i><span>Add Row</span></td>
+                </tr>
+            </tfoot>
+        </table>
+        <hr />
+        <div>
+            <h5>Bulk Track Writer</h5>
+            <textarea></textarea>
+        </div>
+        <div>
+            <input name="" id="" class="btn btn-primary" type="button" value="Submit">
+        </div>
+    </div>
+</template>
+
+<script src="./tracklistCreator.ts"></script>

@@ -1,0 +1,38 @@
+<template>
+    <div id="track">
+        <header>
+            <h3>Track</h3>
+            <span>{{ name }}</span>
+            <span>{{ description }}</span>
+        </header>
+
+        <div>
+            <i data-feather="upload-cloud"></i><span>Upload new sample</span>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Fingerprint</th>
+                    <th>Codec</th>
+                    <th>Depth</th>
+                    <th>Sample Rate</th>
+                    <th>Compression</th>
+                    <th>Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ fingerprint }}</td>
+                    <td>{{ codec }}</td>
+                    <td>{{ depth }}</td>
+                    <td>{{ sampleRate }}</td>
+                    <td>{{ compression }}</td>
+                    <td>{{ duration }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<script src="./track.ts"></script>

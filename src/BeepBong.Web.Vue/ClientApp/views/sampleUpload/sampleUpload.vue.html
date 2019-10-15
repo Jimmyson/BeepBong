@@ -1,0 +1,47 @@
+<template>
+    <div id="sampleUpload">
+        <h3>Sample Upload</h3>
+        <label>Tracklist</label>
+        <select>
+            <option value="">Track (Tracklist)</option>
+        </select>
+
+        <div id="fileSelect">
+            <i data-feather="upload"></i>
+            <input type="file" />
+            <div class="btn-group" role="group">
+                <button id="play" class="btn btn-outline-secondary"><i data-feather="play"></i></button>
+                <button id="stop" class="btn btn-outline-secondary"><i data-feather="square"></i></button>
+                <button id="delete" class="btn btn-outline-danger"><i data-feather="trash-2"></i></button>
+            </div>
+        </div>
+
+        <div>
+            <span>WAVEFORM</span>
+            <span>SPECTOGRAPH</span>
+        </div>
+        
+        <div id="metadata">
+            <span>Fingerprint: {{ fingerprint }}</span>
+
+            <span>Sample Rate: {{ rate }}</span>
+            <span>Sample Count: {{ count }}</span>
+
+            <span>Bitrate: {{ bitRate }}</span>
+            <span>Bitrate Mode: {{ bitRateMode }}</span>
+            <span>Bit Depth: {{ bitDepth }}</span>
+
+            <span>Codec: {{ codec }}</span>
+            <span>Compression Mode: {{ compression }}</span>
+            <span>Other Information: {{ other }}</span>
+        </div>
+        <div>
+            <textarea>Notes</textarea>
+        </div>
+        <div>
+            <button class="btn btn-primary">Upload</button>
+        </div>
+    </div>
+</template>
+
+<script src="./sampleUpload.ts"></script>

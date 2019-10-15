@@ -1,0 +1,52 @@
+<template>
+    <div id="tList">
+        <h5>Tracklist Name</h5>
+        <div>
+            <i data-feather="music"></i>
+            <i data-feather="user"></i><span>artist</span>
+            <i data-feather="book"></i>isLibrary
+        </div>
+        <div id="list">
+            <hr />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Note</th>
+                        <th>Fingerprints</th>
+                        <th>Duration</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">name</td>
+                        <td>description</td>
+                        <td>note</td>
+                        <td>fingerprint</td>
+                        <td>0:00:00</td>
+                        <td>
+                            <router-link to="/track/1">
+                                <i data-feather="info"></i>
+                            </router-link>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>
+
+<script lang="ts">
+    import Vue from 'vue';
+    import feather from 'feather-icons';
+
+    export default class TracklistView extends Vue {
+
+    mounted()
+    {
+        feather.replace();
+    }
+}
+</script>
