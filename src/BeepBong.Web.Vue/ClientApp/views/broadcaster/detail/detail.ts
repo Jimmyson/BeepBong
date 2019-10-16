@@ -4,9 +4,9 @@ import { Component } from 'vue-property-decorator';
 
 @Component({
     components: {
-        BroadcasterCard: require('../../components/bcard/bcard.vue.html').default
+        ChannelCard: require('../../../components/ccard/ccard.vue.html').default
     }
 })
-export default class BroadcasterList extends Vue {
+export default class BroadcastChannels extends Vue {
     mounted() { feather.replace(); }
 }

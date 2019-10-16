@@ -20,7 +20,7 @@ class Programme {
 
 @Component({
     components: {
-        Tracklist: require('../../components/tlist/tlist.vue.html').default
+        Tracklist: require('../../../components/tlist/tlist.vue.html').default
     }
 })
 export default class ProgrammeView extends Vue {

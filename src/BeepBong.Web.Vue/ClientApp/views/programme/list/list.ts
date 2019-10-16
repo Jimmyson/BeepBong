@@ -4,9 +4,9 @@ import { Component } from 'vue-property-decorator';
 
 @Component({
     components: {
-        ProgrammeCard: require('../../components/pcard/pcard.vue.html').default
+        ProgrammeCard: require('../../../components/pcard/pcard.vue.html').default
     }
 })
-export default class ProgrammeList extends Vue {
+export default class ProgrammeListView extends Vue {
     mounted() { feather.replace(); }
 }

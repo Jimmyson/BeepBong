@@ -4,7 +4,7 @@ import { Component } from 'vue-property-decorator';
 
 @Component({
     components: {
-        ChannelCard: require('../../components/ccard/ccard.vue.html').default
+        ChannelCard: require('../../../components/ccard/ccard.vue.html').default
     }
 })
 export default class ChannelList extends Vue {

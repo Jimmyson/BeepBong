@@ -10,20 +10,26 @@ const routes = [
     { path: '/counter', component: require('./views/counter/counter.vue.html').default }, // To be removed
     { path: '/fetchdata', component: require('./views/fetchdata/fetchdata.vue.html').default }, // To be removed
     
-    { path: '/broadcaster', component: require('./views/broadcasterlist/broadcasterlist.vue.html').default },
-    { path: '/channel', component: require('./views/channellist/channellist.vue.html').default },
+    { path: '/broadcaster', component: require('./views/broadcaster/list/list.vue.html').default }, // List of broadcaster
+    { path: '/broadcaster/:id', component: require('./views/broadcaster/detail/detail.vue.html').default }, // Broadcaster and Channel List
+    
+    { path: '/channel', component: require('./views/channel/list/list.vue.html').default }, // List of Channels
+    { path: '/channel/:id', component: require('./views/channel/detail/detail.vue.html').default }, // Channel and Programme List
 
-    { path: '/programme', component: require('./views/programmelist/programmelist.vue.html').default },
-    { path: '/programme/:id', component: require('./views/programme/programme.vue.html').default },
+    { path: '/programme', component: require('./views/programme/list/list.vue.html').default }, // List of Programmes
+    { path: '/programme/:id', component: require('./views/programme/detail/detail.vue.html').default }, // Programme and Tracklists
 
-    { path: '/track/:id', component: require('./views/track/track.vue.html').default },
+    { path: '/tracklist', component: require('./views/tracklist/list/list.vue.html').default }, // List of Tracklists
+    { path: '/tracklist/new', component: require('./views/tracklist/editor/editor.vue.html').default }, // Tacklist Creator
+    { path: '/tracklist/:id', component: require('./components/tlist/tlist.vue.html').default }, // Tracklist and Tracks
 
-    { path: '/tracklist', component: require('./views/tracklistList/tracklistList.vue.html').default },
-    { path: '/tracklist/new', component: require('./views/tracklistCreator/tracklistCreator.vue.html').default },
-    { path: '/tracklist/:id', component: require('./components/tlist/tlist.vue.html').default },
+    { path: '/library', component: require('./views/library/list.vue.html').default },
 
-    { path: '/sample/upload', component: require('./views/sampleUpload/sampleUpload.vue.html').default },
-    { path: '/library', component: require('./views/libraryList/librarylist.vue.html').default }
+    { path: '/track/:id', component: require('./views/track/detail/detail.vue.html').default }, // Track Detail
+
+    { path: '/sample/upload', component: require('./views/sample/upload/upload.vue.html').default }, // Sample Upload
+    //{ path: '/sample/:id', component: require('./views/sample/detail/detail.vue.html').default }, // Sample Detail
+    //{ path: '/sample/:id/edit', component: require('./views/sample/edit/edit.vue.html').default }, // Sample Edit
 ];
 
 new Vue({
