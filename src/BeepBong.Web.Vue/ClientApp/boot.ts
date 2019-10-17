@@ -24,7 +24,7 @@ const routes = [
 
     { path: '/tracklist', component: require('./views/tracklist/list/list.vue.html').default }, // List of Tracklists
     { path: '/tracklist/editor', component: require('./views/tracklist/editor/editor.vue.html').default }, // Tacklist Editor
-    { path: '/tracklist/:id', component: require('./components/tlist/tlist.vue.html').default }, // Tracklist and Tracks
+    { path: '/tracklist/:id', component: require('./views/tracklist/detail/detail.vue.html').default }, // Tracklist and Tracks
 
     { path: '/library', component: require('./views/library/list/list.vue.html').default },
     { path: '/library/editor', component: require('./views/library/editor/editor.vue.html').default },

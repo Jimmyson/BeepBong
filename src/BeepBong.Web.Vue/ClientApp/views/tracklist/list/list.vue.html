@@ -1,7 +1,9 @@
 <template>
     <div id="tracklistList">
         <h3>Tracklists</h3>
-        <router-link to="/tracklist/new" :exact="true">Create new list</router-link>
+        <router-link to="/tracklist/editor" :exact="true">
+            <i data-feather="plus"></i>Create new list
+        </router-link>
         <table class="table">
             <thead>
                 <tr>
