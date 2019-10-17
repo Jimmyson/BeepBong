@@ -1,0 +1,40 @@
+<template>
+    <div id="programmeEditor">
+        <header>
+            <input placeholder="programme name" />
+            <select>
+                <option>Channel 1</option>
+                <option>Channel 2</option>
+                <option>Channel 3</option>
+            </select>
+            <input type="date" placeholder="Airdate" />
+        </header>
+        <br />
+        <div>
+            <h3>Image Upload</h3>
+        </div>
+        <br />
+        <div>
+            <!-- Create when none is selected -->
+            <button>Create new Tracklist</button>
+            <div>Modal for Tracklist creator</div>
+            <!-- Select -->
+            <select multiple>
+                <option>Tracklist 1</option>
+                <option selected>Tracklist 2</option>
+                <option>Tracklist 3</option>
+                <option selected>Tracklist 4</option>
+            </select>
+            <ul>
+                <li>Tracklist 2</li>
+                <li>Tracklist 4</li>
+            </ul>
+        </div>
+        <div>
+            <button>Cancel</button>
+            <button>Submit</button>
+        </div>
+    </div>
+</template>
+
+<script src="./editor.ts"></script>

@@ -1,0 +1,33 @@
+<template>
+    <div id="sampleUpload">
+        <h3>Sample Detail</h3>
+        <div>
+            <span>Track Name</span>
+            <span>Artist</span>
+            <span>Tracklist</span>
+        </div>
+
+        <div>
+            <span>WAVEFORM</span>
+            <span>SPECTOGRAPH</span>
+        </div>
+        
+        <div id="metadata">
+            <span>Fingerprint: {{ fingerprint }}</span>
+
+            <span>Sample Rate: {{ rate }}</span>
+            <span>Sample Count: {{ count }}</span>
+
+            <span>Bitrate: {{ bitRate }}</span>
+            <span>Bitrate Mode: {{ bitRateMode }}</span>
+            <span>Bit Depth: {{ bitDepth }}</span>
+
+            <span>Codec: {{ codec }}</span>
+            <span>Compression Mode: {{ compression }}</span>
+            <span>Other Information: {{ other }}</span>
+        </div>
+        <div>
+            <p>Notes: &gt;Blah&lt;</p>
+        </div>
+    </div>
+</template>
