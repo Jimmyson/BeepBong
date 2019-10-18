@@ -11,7 +11,7 @@ namespace BeepBong.Web.Vue.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProgrammeController : ControllerBase
+    public class ProgrammeController : Controller
     {
         private readonly BeepBongContext _context;
 
