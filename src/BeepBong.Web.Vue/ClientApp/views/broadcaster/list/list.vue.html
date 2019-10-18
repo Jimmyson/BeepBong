@@ -5,17 +5,7 @@
             <i data-feather="plus"></i>Create new Broadcaster
         </router-link>
         <div class="card-deck">
-            <broadcaster-card />
-            <broadcaster-card />
-            <broadcaster-card />
-            <broadcaster-card />
-            <broadcaster-card />
-            <broadcaster-card />
-            <broadcaster-card />
-            <broadcaster-card />
-            <broadcaster-card />
-            <broadcaster-card />
-            <broadcaster-card />
+            <broadcaster-card v-for="broadcaster in broadcasters" v-bind:b="broadcaster"/>
         </div>
         <div>
             Pagination Elements

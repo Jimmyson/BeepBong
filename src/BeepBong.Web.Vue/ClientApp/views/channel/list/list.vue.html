@@ -5,17 +5,7 @@
             <i data-feather="plus"></i>Create new Channel
         </router-link>
         <div class="card-deck">
-            <channel-card />
-            <channel-card />
-            <channel-card />
-            <channel-card />
-            <channel-card />
-            <channel-card />
-            <channel-card />
-            <channel-card />
-            <channel-card />
-            <channel-card />
-            <channel-card />
+            <channel-card v-for="channel in channels" v-bind:c="channel" />
         </div>
         <div>
             Pagination Elements

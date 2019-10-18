@@ -3,11 +3,11 @@
         <div class="card mb-4" style="min-width: 21rem;">
             <img class="card-img-top" />
             <div class="card-body">
-                <h5 class="card-title">Programme Name</h5>
+                <h5 class="card-title">{{ p.name }}</h5>
                 <div class="card-text">
                     <p>
-                        <i data-feather="calendar"></i>Year
-                        <i data-feather="tv"></i>Channel
+                        <i data-feather="calendar"></i>{{ p.airDate }}<br />
+                        <i data-feather="tv"></i>{{ p.channelName }}
                     </p>
                 </div>
                 <span>Track Count</span>
@@ -27,3 +27,5 @@
         </div>
     </div>
 </template>
+
+<script src="./pcard.ts"></script>

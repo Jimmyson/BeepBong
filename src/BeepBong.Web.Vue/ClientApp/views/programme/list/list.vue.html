@@ -5,17 +5,7 @@
             <i data-feather="plus"></i>Create new programme
         </router-link>
         <div class="card-deck">
-            <programme-card />
-            <programme-card />
-            <programme-card />
-            <programme-card />
-            <programme-card />
-            <programme-card />
-            <programme-card />
-            <programme-card />
-            <programme-card />
-            <programme-card />
-            <programme-card />
+            <programme-card v-for="programme in programmes" v-bind:p="programme" />
         </div>
         <div>
             Pagination Elements
