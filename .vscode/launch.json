@@ -8,10 +8,10 @@
 			"name": "BeepBong Seed Data",
 			"type": "coreclr",
 			"request": "launch",
-			"preLaunchTask": "build",
-			"program": "${workspaceFolder}/src/BeepBong.App.Xml/bin/Debug/nercoreapp2.2/BeepBong.App.XmlSeed",
+			"preLaunchTask": "build seed",
+			"program": "${workspaceFolder}/src/BeepBong.App.XmlSeed/bin/Debug/netcoreapp2.2/BeepBong.App.XmlSeed.dll",
 			"args": ["import","${workspaceFolder}/src/BeepBong.App.XmlSeed/dataSeed.xml"],
-			"cwd": "${workspaceFolder}/src/Beepong.App.XmlSeed",
+			"cwd": "${workspaceFolder}/src/BeepBong.App.XmlSeed",
 			"stopAtEntry": false,
 			"console": "internalConsole"
 		},
