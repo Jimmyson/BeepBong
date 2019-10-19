@@ -22,10 +22,10 @@ export default class ProgrammeListView extends Vue {
     {
         Axios.get('/api/Programme')
             .then(response => {
-                response.data.items.forEach((element: { name: string; year: string; channel: string; }) => {
+                response.data.items.forEach((element: { name: string; airDate: string; channel: string; }) => {
                     var item = new ProgrammeItem();
                     item.name = element.name;
-                    item.airDate = element.year;
+                    item.airDate = element.airDate;
                     item.channelName = element.channel;
 
                     this.programmes.push(item);

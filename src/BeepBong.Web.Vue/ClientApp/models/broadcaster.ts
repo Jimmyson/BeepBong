@@ -2,12 +2,10 @@ export class BroadcasterItem {
     constructor() {
         this.broadcasterId = "";
         this.name = "";
-        this.airDate = "";
-        this.closedDate = "";
+        this.country = "";
     }
 
     broadcasterId: string;
     name: string;
-    airDate: string;
-    closedDate: string;
+    country: string;
 }

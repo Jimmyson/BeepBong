@@ -22,12 +22,8 @@ export default class ChannelList extends Vue {
     {
         Axios.get('/api/Channel')
             .then(response => {
-                response.data.items.forEach((element: { name: string; year: string }) => {
-                    var item = new ChannelItem();
-                    item.name = element.name;
-                    item.airDate = element.year;
-
-                    this.channels.push(item);
+                response.data.items.forEach((element: ChannelItem) => {
+                    this.channels.push(element);
                 });
                 // this.programmes[0].name = response.data.items[0].name;
                 // this.programmes[0].airDate = response.data.items[0].year;

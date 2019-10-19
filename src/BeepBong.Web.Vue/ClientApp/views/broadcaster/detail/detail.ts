@@ -4,6 +4,8 @@ import feather from 'feather-icons';
 import { Component } from 'vue-property-decorator';
 
 import { ChannelItem } from '../../../models/channel';
+import BroadcasterList from '../list/list';
+import { BroadcasterItem } from '../../../models/broadcaster';
 
 @Component({
     components: {
@@ -11,6 +13,7 @@ import { ChannelItem } from '../../../models/channel';
     }
 })
 export default class BroadcastChannels extends Vue {
+    broadcaster: BroadcasterItem = new BroadcasterItem();
     channels: ChannelItem[] = [];
 
     mounted() {
@@ -20,22 +23,19 @@ export default class BroadcastChannels extends Vue {
     
     getProgrammes()
     {
-        Axios.get('/api/Broadcaster/aceba20a-dde0-4148-998f-df524996c494')
+        Axios.get('/api/Broadcaster/' + this.$route.params.id)
             .then(response => {
-                response.data.channelNames.forEach((element: string) => {
-                    var item = new ChannelItem();
-                    item.name = element;
-                    //item.airDate = element.year;
-
-                    this.channels.push(item);
-                });
-                // this.programmes[0].name = response.data.items[0].name;
-                // this.programmes[0].airDate = response.data.items[0].year;
-                // this.programmes[0].channelName = response.data.items[0].channel;
+                this.broadcaster = response.data;
             })
             .catch(e =>
                 console.log(e)
             )
+
+        Axios.get('/api/Broadcaster/' + this.$route.params.id + '/Channels')
+            .then(Response => {
+                this.channels = Response.data.items;
+            })
+            .catch(e => alert(e));
     }
 
     updated() {

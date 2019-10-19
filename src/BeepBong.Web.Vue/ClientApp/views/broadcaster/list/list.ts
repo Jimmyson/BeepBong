@@ -22,12 +22,8 @@ export default class BroadcasterList extends Vue {
     {
         Axios.get('/api/Broadcaster')
             .then(response => {
-                response.data.items.forEach((element: { name: string; year: string}) => {
-                    var item = new BroadcasterItem();
-                    item.name = element.name;
-                    item.airDate = element.year;
-
-                    this.broadcasters.push(item);
+                response.data.items.forEach((element: BroadcasterItem) => {
+                    this.broadcasters.push(element);
                 });
                 // this.programmes[0].name = response.data.items[0].name;
                 // this.programmes[0].airDate = response.data.items[0].year;

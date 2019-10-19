@@ -9,8 +9,8 @@
                 </div>
             </div>
             <div class="card-footer">
-                <div class="float-right">
-                    <span class="text-muted"><i data-feather="radio"></i> Broadcaster</span>
+                <div class="float-right" v-if="c.broadcasterName">
+                    <span class="text-muted"><i data-feather="radio"></i> {{ c.broadcasterName }}</span>
                 </div>
                 <div class="float-left">
                     <!-- <a> -->

@@ -1,18 +1,17 @@
 <template>
     <div id="broadcastChannels">
         <header>
-            <span>Name</span>
-            <i data-feather="flag"></i><span>Country</span>
-            <i data-feather="calendar"></i><span>Opened</span>
-            <i data-feather="calendar"></i><span>Closed</span>
+            <h3>{{ broadcaster.name }}</h3>
+            <i data-feather="flag"></i><span>{{ broadcaster.country }}</span>
         </header>
         <router-link to="/broadcaster/editor?id=1">
             <i data-feather="edit"></i>Edit Broadcaster
         </router-link>
+        <hr />
         <div>
             <h5>Channels</h5>
             <div class="card-deck">
-                <channel-card v-for="channel in channels" v-bind:c="channel" />
+                <channel-card v-if="channels" v-for="channel in channels" v-bind:c="channel" />
             </div>
             <div>
                 Pagination Elements
