@@ -26,6 +26,12 @@ class Programme {
 export default class ProgrammeView extends Vue {
     programme: Programme = new Programme();
 
+    mounted()
+    {
+        feather.replace(); //@TODO: Consider removing
+        this.getProgramme();
+    }
+    
     getProgramme()
     {
         Axios.get('/api/Programme/' + this.$route.params.id)
@@ -37,9 +43,7 @@ export default class ProgrammeView extends Vue {
             });
     }
 
-    mounted()
-    {
+    updated() {
         feather.replace();
-        //this.getProgramme();
     }
 }

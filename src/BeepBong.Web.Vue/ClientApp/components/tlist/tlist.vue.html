@@ -1,10 +1,10 @@
 <template>
     <div id="tList">
-        <h5>Tracklist Name</h5>
+        <h5>{{ tl.name }} - Name</h5>
         <div>
             <i data-feather="music"></i>
-            <i data-feather="user"></i><span>artist</span>
-            <i data-feather="book"></i>isLibrary
+            <i data-feather="user"></i>{{ tl.composer }}
+            <i data-feather="book"></i>{{ tl.library }}
         </div>
         <div id="list">
             <hr />
@@ -20,12 +20,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td scope="row">name</td>
-                        <td>description</td>
-                        <td>note</td>
-                        <td>fingerprint</td>
-                        <td>0:00:00</td>
+                    <tr v-for="track in tl.tracks">
+                        <td scope="row">{{ track.name }}</td>
+                        <td>{{ track.description }}</td>
+                        <td>{{ track.note }}</td>
+                        <td>
+                            <span v-for="f in track.fingerprints">{{ f }}<br/></span>
+                        </td>
+                        <td>{{ track.duration }}</td>
                         <td>
                             <router-link to="/track/1">
                                 <i data-feather="info"></i>
@@ -37,3 +39,5 @@
         </div>
     </div>
 </template>
+
+<script src="./tlist.ts"></script>

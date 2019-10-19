@@ -4,5 +4,7 @@ import { Component } from 'vue-property-decorator';
 
 @Component
 export default class TrackView extends Vue {
-    mounted() { feather.replace(); }
+    mounted() {
+        feather.replace(); //@TODO: Consider moving to updated()
+    }
 }

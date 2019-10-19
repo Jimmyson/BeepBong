@@ -11,8 +11,8 @@ export default class TracklistListView extends Vue {
 
     mounted()
     {
-        this.getTracklists();
         feather.replace();
+        this.getTracklists();
     }
 
     getTracklists()
@@ -23,5 +23,9 @@ export default class TracklistListView extends Vue {
                     this.tracklists.push(element);
                 });
             }).catch(e => alert(e));
+    }
+
+    updated() {
+        feather.replace();
     }
 }

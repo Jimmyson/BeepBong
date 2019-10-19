@@ -38,4 +38,8 @@ export default class ProgrammeListView extends Vue {
                 console.log(e)
             )
     }
+    
+    updated() {
+        feather.replace();
+    }
 }

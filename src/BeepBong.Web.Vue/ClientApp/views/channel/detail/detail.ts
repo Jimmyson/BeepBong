@@ -14,7 +14,7 @@ export default class ChannelDetail extends Vue {
     programmes: ProgrammeItem[] = [];
 
     mounted() {
-        feather.replace();
+        feather.replace(); //@TODO: Consider removing
         this.getProgrammes();
     }
     
@@ -37,5 +37,9 @@ export default class ChannelDetail extends Vue {
             .catch(e =>
                 console.log(e)
             )
+    }
+    
+    updated() {
+        feather.replace();
     }
 }

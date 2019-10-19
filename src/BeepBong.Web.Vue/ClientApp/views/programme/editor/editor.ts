@@ -9,9 +9,7 @@ import { Component } from 'vue-property-decorator';
     }
 })
 export default class ProgrammeEditorView extends Vue {
-    mounted()
-    {
+    updated() {
         feather.replace();
-        //this.getProgramme();
     }
 }

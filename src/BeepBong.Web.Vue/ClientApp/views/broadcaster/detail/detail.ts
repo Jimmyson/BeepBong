@@ -14,7 +14,7 @@ export default class BroadcastChannels extends Vue {
     channels: ChannelItem[] = [];
 
     mounted() {
-        feather.replace();
+        feather.replace(); //@TODO: Consider removing
         this.getProgrammes();
     }
     
@@ -36,5 +36,9 @@ export default class BroadcastChannels extends Vue {
             .catch(e =>
                 console.log(e)
             )
+    }
+
+    updated() {
+        feather.replace();
     }
 }

@@ -37,4 +37,8 @@ export default class ChannelList extends Vue {
                 console.log(e)
             )
     }
+
+    updated() {
+        feather.replace();
+    }
 }

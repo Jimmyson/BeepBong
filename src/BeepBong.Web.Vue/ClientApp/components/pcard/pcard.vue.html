@@ -6,17 +6,17 @@
                 <h5 class="card-title">{{ p.name }}</h5>
                 <div class="card-text">
                     <p>
-                        <i data-feather="calendar"></i>{{ p.airDate }}<br />
-                        <i data-feather="tv"></i>{{ p.channelName }}
+                        <i data-feather="calendar"></i> {{ p.airDate }}<br />
+                        <i data-feather="tv"></i> {{ p.channelName }}
                     </p>
                 </div>
                 <span>Track Count</span>
             </div>
             <div class="card-footer">
-                <div><!-- Display if Library Music is found -->
-                    <span class="text-left text-muted"><i data-feather="music"></i>Contains Library Music</span>
+                <div class="float-right"><!-- Display if Library Music is found -->
+                    <span class="text-left text-muted"><i data-feather="book"></i> Contains Library Music</span>
                 </div>
-                <div>
+                <div class="float-left">
                     <!-- <a><i data-feather="edit"></i></a> -->
                     <router-link to="/programme/1">
                         <i data-feather="info"></i>
