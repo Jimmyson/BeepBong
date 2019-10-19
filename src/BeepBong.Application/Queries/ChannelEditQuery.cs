@@ -19,7 +19,7 @@ namespace BeepBong.Application.Queries
                 .Select(c => new ChannelEditViewModel() {
                     ChannelId = c.ChannelId,
                     Name = c.Name,
-                    Commencement = c.Commencement,
+                    Opened = c.Opened,
                     Closed = c.Closed,
                     BroadcasterId = c.BroadcasterId
                 });
