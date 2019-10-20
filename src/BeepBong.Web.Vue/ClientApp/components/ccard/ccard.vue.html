@@ -16,7 +16,7 @@
                     <!-- <a> -->
                         <i data-feather="edit"></i>
                     <!-- </a> | -->
-                    <router-link to="/channel/1">
+                    <router-link :to="{ name: 'channel-detail', params: { id: `${c.channelId}` } }">
                         <i data-feather="info"></i>
                     </router-link> |
                     <!-- <a> -->

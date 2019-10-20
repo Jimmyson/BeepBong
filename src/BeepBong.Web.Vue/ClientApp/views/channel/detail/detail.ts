@@ -3,6 +3,7 @@ import Axios from 'axios';
 import feather from 'feather-icons';
 import { Component } from 'vue-property-decorator';
 
+import { ChannelItem } from '../../../models/channel';
 import { ProgrammeItem } from '../../../models/programme';
 
 @Component({
@@ -11,6 +12,7 @@ import { ProgrammeItem } from '../../../models/programme';
     }
 })
 export default class ChannelDetail extends Vue {
+    channel: ChannelItem = new ChannelItem();
     programmes: ProgrammeItem[] = [];
 
     mounted() {
@@ -20,23 +22,22 @@ export default class ChannelDetail extends Vue {
     
     getProgrammes()
     {
-        Axios.get('/api/Channel/c147e034-e56e-4e0c-b049-2d718ec9a4a4')
+        Axios.get('/api/Channel/' + this.$route.params.id)
             .then(response => {
-                response.data.programmes.forEach((element: { name: string; year: string; channel: string; }) => {
-                    var item = new ProgrammeItem();
-                    item.name = element.name;
-                    item.airDate = element.year;
-                    item.channelName = element.channel;
-
-                    this.programmes.push(item);
-                });
-                // this.programmes[0].name = response.data.items[0].name;
-                // this.programmes[0].airDate = response.data.items[0].year;
-                // this.programmes[0].channelName = response.data.items[0].channel;
+                this.channel = response.data;
             })
             .catch(e =>
                 console.log(e)
-            )
+            );
+        
+        Axios.get('/api/Channel/' + this.$route.params.id + '/Programmes')
+            .then(response => {
+                console.log(response.data);
+                this.programmes = response.data.items;
+            })
+            .catch(e =>
+                alert(e)
+            );
     }
     
     updated() {

@@ -2,25 +2,24 @@
     <div id="programme">
         <header>
             <div id="details">
-                <h3>programme name</h3>
-                <i data-feather="calendar"></i><span>programme airDate</span>
-                <i data-feather="radio"></i><span>broadcaster</span>
-                <i data-feather="tv"></i><span>programme channel</span>
-                <i data-feather="tv"></i><span>parent Programme</span>
+                <h3>{{ programme.name }}</h3>
+                <i data-feather="calendar"></i><span>{{ programme.airDate }}</span>
+                <!-- <i data-feather="radio"></i><span>{{ programme.broadcasterName }}</span> -->
+                <i data-feather="tv"></i><span>{{ programme.channel }}</span>
+                <!-- <i data-feather="tv"></i><span>parent Programme</span>
                 <i data-feather="tv"></i><span>child Programme</span>
-                <i data-feather="tv"></i><span>child Programme</span>
+                <i data-feather="tv"></i><span>child Programme</span> -->
             </div>
             <div id="image">
                 <img />
             </div>
         </header>
-        <router-link to="/programme/editor?id=1">
+        <router-link :to="{name: 'programme-editor', query:  { id: `${programme.programmeId}`}}">
             <i data-feather="edit"></i>Edit Programme
         </router-link>
         <br />
-        <div>
-            <tracklist />
-            <tracklist />
+        <div v-if="programme.trackLists">
+            <tracklist v-for="tracklist in programme.trackLists" v-bind:tl="tracklist"/>
         </div>
     </div>
 </template>

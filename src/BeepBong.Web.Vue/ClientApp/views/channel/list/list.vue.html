@@ -4,11 +4,12 @@
         <router-link to="/channel/editor">
             <i data-feather="plus"></i>Create new Channel
         </router-link>
+        <hr />
+        <!-- <div v-if="">
+            <pagination v-bind:pg="pagination" />
+        </div> -->
         <div class="card-deck">
             <channel-card v-for="channel in channels" v-bind:c="channel" />
-        </div>
-        <div>
-            Pagination Elements
         </div>
     </div>
 </template>

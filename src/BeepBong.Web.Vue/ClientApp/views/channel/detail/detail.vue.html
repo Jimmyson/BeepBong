@@ -2,17 +2,17 @@
     <div id="channelDetail">
         <header>
             <div>
-                <h3>channel name</h3>
-                <i data-feather="radio"></i><span>broadcaster</span>
-                <i data-feather="calendar"></i><span>opened</span>
-                <i data-feather="calendar"></i><span>closed</span>
+                <h3>{{ channel.name }}</h3>
+                <i data-feather="radio"></i><span>{{ channel.broadcasterName }}</span>
+                <i data-feather="calendar"></i><span>{{ channel.opened }}</span>
+                <i data-feather="calendar"></i><span>{{ channel.closed }}</span>
             </div>
         </header>
-        <router-link to="/channel/editor?id=1" :exact="true">
+        <router-link :to="{ name: 'channel-editor', query: { id: `${channel.channelId}` } }">
             <i data-feather="edit"></i>Edit channel
         </router-link>
         <br />
-        <div class="card-deck">
+        <div class="card-deck" v-if="programmes">
             <programme-card v-for="programme in programmes" v-bind:p="programme"/>
         </div>
         <div>

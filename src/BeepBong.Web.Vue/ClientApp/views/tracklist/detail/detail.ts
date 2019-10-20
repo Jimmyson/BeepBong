@@ -22,14 +22,10 @@ export default class TracklistDetailView extends Vue {
 
     getTracklist()
     {
-        // Axios.get('/api/Tracklist/' + this.$route.params.id)
-        //     .then(response => {
-        //         this.tracklist;
-        //     })
-        this.tracklist.name = "Hello";
-        this.tracklist.trackListId = "value";
-        this.tracklist.library = true;
-        this.tracklist.composer = "Who>?";
-        this.tracklist.tracks = [new Track(), new Track()];
+        Axios.get('/api/Tracklist/' + this.$route.params.id)
+            .then(response => {
+                this.tracklist = response.data;
+            })
+            .catch(e => console.log(e));
     }
 }

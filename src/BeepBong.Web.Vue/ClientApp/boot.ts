@@ -15,8 +15,8 @@ const routes = [
     { path: '/broadcaster/:id', component: require('./views/broadcaster/detail/detail.vue.html').default }, // Broadcaster and Channel List
     
     { path: '/channel', component: require('./views/channel/list/list.vue.html').default }, // List of Channels
-    { path: '/channel/editor', component: require('./views/channel/editor/editor.vue.html').default }, // Channel Editor
-    { path: '/channel/:id', component: require('./views/channel/detail/detail.vue.html').default }, // Channel and Programme List
+    { path: '/channel/editor', name: 'channel-editor', component: require('./views/channel/editor/editor.vue.html').default }, // Channel Editor
+    { path: '/channel/:id', name: 'channel-detail', component: require('./views/channel/detail/detail.vue.html').default }, // Channel and Programme List
 
     { path: '/programme', component: require('./views/programme/list/list.vue.html').default }, // List of Programmes
     { path: '/programme/editor', name: 'programme-editor', component: require('./views/programme/editor/editor.vue.html').default }, // Programme Editor

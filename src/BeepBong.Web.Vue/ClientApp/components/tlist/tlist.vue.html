@@ -1,12 +1,12 @@
 <template>
     <div id="tList">
-        <h5>{{ tl.name }} - Name</h5>
+        <h5>{{ tl.name }}</h5>
         <div>
             <i data-feather="music"></i>
             <i data-feather="user"></i>{{ tl.composer }}
             <i data-feather="book"></i>{{ tl.library }}
         </div>
-        <div id="list">
+        <div id="list" v-if="tl.tracks.length > 0">
             <hr />
             <table class="table">
                 <thead>

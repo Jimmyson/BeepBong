@@ -3,20 +3,7 @@ import Axios from 'axios';
 import feather from 'feather-icons';
 import { Component } from 'vue-property-decorator';
 
-class Programme {
-    imageId: string;
-    name: string;
-    airDate: string;
-    channel: string;
-
-    constructor()
-    {
-        this.imageId = "";
-        this.name = "";
-        this.airDate = "";
-        this.channel = "";
-    }
-}
+import { ProgrammeItem } from '../../../models/programme';
 
 @Component({
     components: {
@@ -24,7 +11,7 @@ class Programme {
     }
 })
 export default class ProgrammeView extends Vue {
-    programme: Programme = new Programme();
+    programme: ProgrammeItem = new ProgrammeItem();
 
     mounted()
     {
@@ -36,10 +23,7 @@ export default class ProgrammeView extends Vue {
     {
         Axios.get('/api/Programme/' + this.$route.params.id)
             .then(Response => {
-                this.programme.imageId = Response.data.imageId;
-                this.programme.name = Response.data.name;
-                this.programme.airDate = Response.data.airDate;
-                this.programme.channel = Response.data.channelName;
+                this.programme = Response.data;
             });
     }
 
