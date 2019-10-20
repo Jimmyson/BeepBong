@@ -3,11 +3,13 @@ export class Track {
         this.trackId = "";
         this.name = "";
         this.description = "";
-        this.note = "";
+        this.variant = "";
+        this.inLibrary = true;
     }
 
     trackId: string;
     name: string;
     description: string;
-    note: string;
+    variant: string;
+    inLibrary: boolean;
 }

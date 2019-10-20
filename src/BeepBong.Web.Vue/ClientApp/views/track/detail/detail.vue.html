@@ -11,7 +11,7 @@
             </router-link> -->
         </div>
 
-        <table class="table">
+        <table class="table" v-if="track.isLibrary">
             <thead>
                 <tr>
                     <th>Fingerprint</th>
@@ -33,6 +33,9 @@
                 </tr>
             </tbody>
         </table>
+        <div v-else>
+            <span>This is a Library track. Samples will not be recorded or tracked.</span>
+        </div>
     </div>
 </template>
 

@@ -3,8 +3,10 @@
         <h5>{{ tl.name }}</h5>
         <div>
             <i data-feather="music"></i>
-            <i data-feather="user"></i>{{ tl.composer }}
-            <i data-feather="book"></i>{{ tl.library }}
+            <i data-feather="user"></i> {{ tl.composer }}
+            <span v-if="tl.library">
+                <i data-feather="book"></i> Library Music
+            </span>
         </div>
         <div id="list" v-if="tl.tracks.length > 0">
             <hr />
@@ -12,8 +14,8 @@
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Variant</th>
                         <th>Description</th>
-                        <th>Note</th>
                         <th>Fingerprints</th>
                         <th>Duration</th>
                         <th></th>
@@ -22,8 +24,8 @@
                 <tbody>
                     <tr v-for="track in tl.tracks">
                         <td scope="row">{{ track.name }}</td>
+                        <td>{{ track.variant }}</td>
                         <td>{{ track.description }}</td>
-                        <td>{{ track.note }}</td>
                         <td>
                             <span v-for="f in track.fingerprints">{{ f }}<br/></span>
                         </td>

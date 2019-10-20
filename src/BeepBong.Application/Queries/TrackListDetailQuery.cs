@@ -20,6 +20,7 @@ namespace BeepBong.Application.Queries
                     TrackListId = tl.TrackListId,
                     Name = tl.Name,
                     Composer = tl.Composer,
+                    Library = tl.Library,
                     Programmes = tl.ProgrammeTrackLists.Select(ptl => new SimpleProgramme() {
                         ProgrammeId = ptl.ProgrammeId,
                         Name = ptl.Programme.Name,

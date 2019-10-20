@@ -1,24 +1,31 @@
 <template>
     <div id="libraryList">
         <h3>Library</h3>
-        <table class="table">
+
+        <!-- <router-link to="/library/editor" :exact="true">
+            <i data-feather="plus"></i>Create new library
+        </router-link> -->
+
+        <table class="table" v-if="libraries">
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Artist</th>
                     <th>Catalog</th>
+                    <th>Label</th>
                     <th>MBID</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Name</td>
-                    <td>Artist</td>
-                    <td>Catalog</td>
-                    <td>MBID</td>
+                <tr v-for="library in libraries">
+                    <td>{{ library.albumName }}</td>
+                    <td>{{ library.label }}</td>
+                    <td>{{ library.catalog }}</td>
+                    <td>{{ library.mbid }}</td>
                 </tr>
             </tbody>
         </table>
         <span>Pagination</span>
     </div>
 </template>
+
+<script src="./list.ts"></script>

@@ -1,9 +1,9 @@
 <template>
     <div id="programmeList">
         <h3>Programmes</h3>
-        <router-link to="/programme/editor" :exact="true">
+        <!-- <router-link to="/programme/editor" :exact="true">
             <i data-feather="plus"></i>Create new programme
-        </router-link>
+        </router-link> -->
         <div class="card-deck">
             <programme-card v-for="programme in programmes" v-bind:p="programme" />
         </div>
