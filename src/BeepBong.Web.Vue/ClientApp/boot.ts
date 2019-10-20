@@ -7,8 +7,6 @@ Vue.use(VueRouter);
 
 const routes = [
     { path: '/', component: require('./views/home/home.vue.html').default },
-    { path: '/counter', component: require('./views/counter/counter.vue.html').default }, // To be removed
-    { path: '/fetchdata', component: require('./views/fetchdata/fetchdata.vue.html').default }, // To be removed
     
     { path: '/broadcaster', component: require('./views/broadcaster/list/list.vue.html').default }, // List of broadcaster
     { path: '/broadcaster/editor', component: require('./views/broadcaster/editor/editor.vue.html').default }, // Broadcaster Editor
