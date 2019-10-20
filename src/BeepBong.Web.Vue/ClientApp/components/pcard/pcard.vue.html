@@ -8,12 +8,12 @@
                     <p>
                         <i data-feather="calendar"></i> {{ p.airDate }}<br />
                         <i data-feather="tv"></i> {{ p.channel }}
+                        <i data-feather="music"></i><span> {{ p.trackCount }} {{ p.trackCount == 1 ? "Track" : "Tracks" }}</span>
                     </p>
                 </div>
-                <i data-feather="music"></i><span> {{ p.trackCount }} {{ p.trackCount == 1 ? "Track" : "Tracks" }}</span>
             </div>
             <div class="card-footer">
-                <div class="float-right" v-if="p.containsLibrary"><!-- Display if Library Music is found -->
+                <div class="float-right" v-if="p.containsLibrary">
                     <span class="text-left text-muted"><i data-feather="book"></i> Contains Library Music</span>
                 </div>
                 <div class="float-left">

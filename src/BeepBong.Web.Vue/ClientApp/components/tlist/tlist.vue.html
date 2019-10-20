@@ -29,8 +29,8 @@
                         </td>
                         <td>{{ track.duration }}</td>
                         <td>
-                            <router-link to="/track/1">
-                                <i data-feather="info"></i>
+                            <router-link :to="{ name: 'track-detail', params: { id: `${track.trackId}` }}">
+                                <i data-feather="info"></i> Link
                             </router-link>
                         </td>
                     </tr>

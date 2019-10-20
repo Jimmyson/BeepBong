@@ -27,7 +27,7 @@ const routes = [
     { path: '/library', component: require('./views/library/list/list.vue.html').default },
     { path: '/library/editor', component: require('./views/library/editor/editor.vue.html').default },
 
-    { path: '/track/:id', component: require('./views/track/detail/detail.vue.html').default }, // Track Detail
+    { path: '/track/:id', name: 'track-detail', component: require('./views/track/detail/detail.vue.html').default }, // Track Detail
 
     { path: '/sample/upload', component: require('./views/sample/upload/upload.vue.html').default }, // Sample Upload
     { path: '/sample/:id', component: require('./views/sample/detail/detail.vue.html').default }, // Sample Detail
