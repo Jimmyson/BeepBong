@@ -38,6 +38,15 @@ namespace BeepBong.Web.Vue.Controllers
             return await query.SingleOrDefaultAsync();
         }
 
+        // GET: api/Track/{id}/Samples
+        [HttpGet("{id}/Samples")]
+        public async Task<ActionResult<Pagination<SampleIndexViewModel>>> GetTracks(Guid id, int? pageNumber, int? pageSize)
+        {
+            var query = new SampleIndexQuery(_context).GetQuery(id);
+
+            return await Pagination<SampleIndexViewModel>.CreateAsync(query, pageNumber ?? 1, pageSize ?? 20);
+        }
+
         // POST: api/Track
         // @TODO: Return the created object
         [HttpPost]
