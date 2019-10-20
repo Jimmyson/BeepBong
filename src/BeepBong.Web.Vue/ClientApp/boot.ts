@@ -19,12 +19,12 @@ const routes = [
     { path: '/channel/:id', component: require('./views/channel/detail/detail.vue.html').default }, // Channel and Programme List
 
     { path: '/programme', component: require('./views/programme/list/list.vue.html').default }, // List of Programmes
-    { path: '/programme/editor', component: require('./views/programme/editor/editor.vue.html').default }, // Programme Editor
-    { path: '/programme/:id', component: require('./views/programme/detail/detail.vue.html').default }, // Programme and Tracklists
+    { path: '/programme/editor', name: 'programme-editor', component: require('./views/programme/editor/editor.vue.html').default }, // Programme Editor
+    { path: '/programme/:id', name: 'programme-detail', component: require('./views/programme/detail/detail.vue.html').default }, // Programme and Tracklists
 
     { path: '/tracklist', component: require('./views/tracklist/list/list.vue.html').default }, // List of Tracklists
     { path: '/tracklist/editor', component: require('./views/tracklist/editor/editor.vue.html').default }, // Tacklist Editor
-    { path: '/tracklist/:id', component: require('./views/tracklist/detail/detail.vue.html').default }, // Tracklist and Tracks
+    { path: '/tracklist/:id', name: 'tracklist-detail', component: require('./views/tracklist/detail/detail.vue.html').default }, // Tracklist and Tracks
 
     { path: '/library', component: require('./views/library/list/list.vue.html').default },
     { path: '/library/editor', component: require('./views/library/editor/editor.vue.html').default },
@@ -34,6 +34,10 @@ const routes = [
     { path: '/sample/upload', component: require('./views/sample/upload/upload.vue.html').default }, // Sample Upload
     { path: '/sample/:id', component: require('./views/sample/detail/detail.vue.html').default }, // Sample Detail
     //{ path: '/sample/:id/edit', component: require('./views/sample/edit/edit.vue.html').default }, // Sample Edit
+
+    // Reports
+    { path: '/report/orphan-tracklist', component: require('./views/reports/orphanedtl/orphanedtl.vue.html').default },
+    { path: '/report/programme-wo-tl', component: require('./views/reports/progwotl/progwotl.vue.html').default }
 ];
 
 new Vue({

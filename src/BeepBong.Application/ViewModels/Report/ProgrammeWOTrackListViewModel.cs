@@ -2,6 +2,7 @@ using System;
 
 namespace BeepBong.Application.ViewModels.Report
 {
+    [Obsolete("Use Programme Index View Model")]
     public class ProgrammeWOTrackListViewModel
     {
         public Guid ProgrammeId { get; set; }
