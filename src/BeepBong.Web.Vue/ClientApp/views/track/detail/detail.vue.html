@@ -1,15 +1,14 @@
 <template>
     <div id="track">
         <header>
-            <h3>Track</h3>
-            <span>{{ name }}</span>
-            <span>{{ description }}</span>
+            <h3>{{ track.name }}</h3>
+            <span>{{ track.description }}</span>
         </header>
 
         <div>
-            <router-link to="/sample/upload/1" >
+            <!-- <router-link to="/sample/upload/1" >
                 <i data-feather="upload-cloud"></i><span>Upload new sample</span>
-            </router-link>
+            </router-link> -->
         </div>
 
         <table class="table">
@@ -24,13 +23,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>{{ fingerprint }}</td>
-                    <td>{{ codec }}</td>
-                    <td>{{ depth }}</td>
-                    <td>{{ sampleRate }}</td>
-                    <td>{{ compression }}</td>
-                    <td>{{ duration }}</td>
+                <tr v-for="sample in samples">
+                    <td>{{ sample.fingerprint }}</td>
+                    <td>{{ sample.codec }}</td>
+                    <td>{{ sample.depth }}</td>
+                    <td>{{ sample.sampleRate }}</td>
+                    <td>{{ sample.compression }}</td>
+                    <td>{{ sample.duration }}</td>
                 </tr>
             </tbody>
         </table>
