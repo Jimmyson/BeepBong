@@ -4,30 +4,30 @@ import feather from 'feather-icons';
 import { Component } from 'vue-property-decorator';
 
 import { ChannelItem } from '../../../models/channel';
+import { Pagination } from '../../../models/pagination';
+import { listResponse } from '../../../models/listResponse';
 
 @Component({
     components: {
-        ChannelCard: require('../../../components/ccard/ccard.vue.html').default
+        ChannelCard: require('../../../components/ccard/ccard.vue.html').default,
+        PaginationItem: require('../../../components/pagination/pagination.vue.html').default
     }
 })
-export default class ChannelList extends Vue {
+export default class ChannelListView extends Vue {
+    pagination: Pagination = new Pagination;
     channels: ChannelItem[] = [];
 
-    mounted() {
+    beforeMount() {
         feather.replace();
-        this.getProgrammes();
+        this.getChannels(1);
     }
     
-    getProgrammes()
+    getChannels(num: number)
     {
-        Axios.get('/api/Channel')
-            .then(response => {
-                response.data.items.forEach((element: ChannelItem) => {
-                    this.channels.push(element);
-                });
-                // this.programmes[0].name = response.data.items[0].name;
-                // this.programmes[0].airDate = response.data.items[0].year;
-                // this.programmes[0].channelName = response.data.items[0].channel;
+        Axios.get<listResponse<ChannelItem>>('/api/Channel', { params: { pageNumber: num }})
+            .then(Response => {
+                this.channels = Response.data.items;
+                this.pagination = <Pagination>Response.data; // @TODO: Remove list from class
             })
             .catch(e =>
                 console.log(e)
@@ -36,5 +36,10 @@ export default class ChannelList extends Vue {
 
     updated() {
         feather.replace();
+    }
+
+    changePage(page: number)
+    {
+        this.getChannels(page);
     }
 }

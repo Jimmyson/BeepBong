@@ -4,28 +4,39 @@ import feather from 'feather-icons';
 import Component from 'vue-class-component';
 
 import { TracklistItem } from '../../../models/tracklist';
+import { listResponse } from '../../../models/listResponse';
+import { Pagination } from '../../../models/pagination';
 
-@Component
+@Component({
+    components: {
+        PaginationItem: require('../../../components/pagination/pagination.vue.html').default
+    }
+})
 export default class TracklistListView extends Vue {
     tracklists: TracklistItem[] = [];
+    pagination: Pagination = new Pagination;
 
     mounted()
     {
         feather.replace();
-        this.getTracklists();
+        this.getTracklists(1);
     }
 
-    getTracklists()
+    getTracklists(num: number)
     {
-        Axios.get('/api/Tracklist')
-            .then(response => {
-                response.data.items.forEach((element: TracklistItem) => {
-                    this.tracklists.push(element);
-                });
+        Axios.get<listResponse<TracklistItem>>('/api/Tracklist', { params: { pageNumber: num }})
+            .then(Response => {
+                this.tracklists = Response.data.items;
+                this.pagination = <Pagination>Response.data;
             }).catch(e => alert(e));
     }
 
     updated() {
-        feather.replace();
+        //feather.replace(); // Not Redrawing when pages change
+    }
+
+    changePage(page: number)
+    {
+        this.getTracklists(page);
     }
 }

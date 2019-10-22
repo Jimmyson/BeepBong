@@ -4,14 +4,17 @@
         <router-link to="/tracklist/editor" :exact="true">
             <i data-feather="plus"></i>Create new list
         </router-link>
+        <div>
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+        </div>
         <table class="table">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Artist</th>
                     <th>Has Library</th>
-                    <th>Track Count</th>
-                    <th>Programme Count</th>
+                    <th>Tracks</th>
+                    <th>Programmes</th>
                     <th></th>
                 </tr>
             </thead>
@@ -38,7 +41,7 @@
             </tbody>
         </table>
         <div>
-            Pagination Element
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
         </div>
     </div>
 </template>

@@ -4,11 +4,14 @@
         <router-link to="/broadcaster/editor">
             <i data-feather="plus"></i>Create new Broadcaster
         </router-link>
+        <div>
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+        </div>
         <div class="card-deck">
             <broadcaster-card v-for="broadcaster in broadcasters" v-bind:b="broadcaster"/>
         </div>
         <div>
-            Pagination Elements
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
         </div>
     </div>
 </template>

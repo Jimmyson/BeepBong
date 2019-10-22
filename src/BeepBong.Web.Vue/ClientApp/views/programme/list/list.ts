@@ -15,7 +15,7 @@ import { Pagination } from '../../../models/pagination';
 })
 export default class ProgrammeListView extends Vue {
     pagination: Pagination = new Pagination;
-    programmes: Array<ProgrammeItem> = new Array<ProgrammeItem>();
+    programmes: ProgrammeItem[] = [];
 
     beforeMount() {
         feather.replace();
@@ -24,10 +24,10 @@ export default class ProgrammeListView extends Vue {
     
     getProgrammes(num: number)
     {
-        Axios.get<listResponse<ProgrammeItem>>('/api/Programme?pageNumber='+num)
+        Axios.get<listResponse<ProgrammeItem>>('/api/Programme', { params: { pageNumber: num }})
             .then(Response => {
                 this.programmes = Response.data.items;
-                this.pagination = <Pagination>Response.data;
+                this.pagination = <Pagination>Response.data; // @TODO: Remove list from class
             })
             .catch(e =>
                 console.log(e)

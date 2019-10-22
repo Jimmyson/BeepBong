@@ -4,26 +4,39 @@ import feather from 'feather-icons';
 import { Component } from 'vue-property-decorator';
 
 import { TracklistItem } from '../../../models/tracklist'
+import { Pagination } from '../../../models/pagination';
+import { listResponse } from '../../../models/listResponse';
 
-@Component
-export default class OrpanedTracklist extends Vue {
+@Component({
+    components: {
+        PaginationItem: require('../../../components/pagination/pagination.vue.html').default
+    }
+})
+export default class OrpanedTracklistView extends Vue {
     tracklists: TracklistItem[] = []
+    pagination: Pagination = new Pagination;
 
     mounted()
     {
-        this.getTracklist()
+        this.getTracklist(1)
     }
 
-    getTracklist()
+    getTracklist(num: number)
     {
-        Axios.get('api/Report/OrphanedTrackList')
+        Axios.get<listResponse<TracklistItem>>('api/Report/OrphanedTrackList', { params: { pageNumber: num }})
             .then(Response => {
                 this.tracklists = Response.data.items;
+                this.pagination = <Pagination>Response.data;
             })
     }
 
     updated()
     {
         feather.replace();
+    }
+
+    changePage(page: number)
+    {
+        this.getTracklist(page);
     }
 }

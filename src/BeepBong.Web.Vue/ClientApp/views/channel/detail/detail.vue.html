@@ -12,11 +12,14 @@
             <i data-feather="edit"></i>Edit channel
         </router-link>
         <br />
+        <div>
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+        </div>
         <div class="card-deck" v-if="programmes">
             <programme-card v-for="programme in programmes" v-bind:p="programme"/>
         </div>
         <div>
-            Pagination Elements
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
         </div>
     </div>
 </template>

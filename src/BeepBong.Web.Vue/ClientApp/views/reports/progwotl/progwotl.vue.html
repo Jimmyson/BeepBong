@@ -1,6 +1,9 @@
 <template>
     <div id="reportProgWOTL">
         <h3>Programmes without Tracklists</h3>
+        <div>
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -24,7 +27,7 @@
             </tbody>
         </table>
         <div>
-            Pagination Element
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
         </div>
     </div>
 </template>

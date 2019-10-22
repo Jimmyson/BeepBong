@@ -10,11 +10,11 @@
         <hr />
         <div>
             <h5>Channels</h5>
+            <div>
+                <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+            </div>
             <div class="card-deck">
                 <channel-card v-if="channels" v-for="channel in channels" v-bind:c="channel" />
-            </div>
-            <div>
-                Pagination Elements
             </div>
         </div>
     </div>

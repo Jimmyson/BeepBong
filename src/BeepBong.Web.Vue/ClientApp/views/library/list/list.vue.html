@@ -5,6 +5,9 @@
         <!-- <router-link to="/library/editor" :exact="true">
             <i data-feather="plus"></i>Create new library
         </router-link> -->
+        <div>
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+        </div>
 
         <table class="table" v-if="libraries">
             <thead>
@@ -24,7 +27,9 @@
                 </tr>
             </tbody>
         </table>
-        <span>Pagination</span>
+        <div>
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+        </div>
     </div>
 </template>
 
