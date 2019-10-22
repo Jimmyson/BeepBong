@@ -4,27 +4,30 @@ import feather from 'feather-icons';
 import { Component } from 'vue-property-decorator';
 
 import { ProgrammeItem } from '../../../models/programme';
+import { listResponse } from '../../../models/listResponse';
+import { Pagination } from '../../../models/pagination';
 
 @Component({
     components: {
-        ProgrammeCard: require('../../../components/pcard/pcard.vue.html').default
+        ProgrammeCard: require('../../../components/pcard/pcard.vue.html').default,
+        PaginationItem: require('../../../components/pagination/pagination.vue.html').default
     }
 })
 export default class ProgrammeListView extends Vue {
-    programmes: ProgrammeItem[] = [];
+    pagination: Pagination = new Pagination;
+    programmes: Array<ProgrammeItem> = new Array<ProgrammeItem>();
 
-    mounted() {
+    beforeMount() {
         feather.replace();
-        this.getProgrammes();
+        this.getProgrammes(1);
     }
     
-    getProgrammes()
+    getProgrammes(num: number)
     {
-        Axios.get('/api/Programme')
-            .then(response => {
-                response.data.items.forEach((element: ProgrammeItem ) => {
-                    this.programmes.push(element);
-                });
+        Axios.get<listResponse<ProgrammeItem>>('/api/Programme?pageNumber='+num)
+            .then(Response => {
+                this.programmes = Response.data.items;
+                this.pagination = <Pagination>Response.data;
             })
             .catch(e =>
                 console.log(e)
@@ -33,5 +36,10 @@ export default class ProgrammeListView extends Vue {
     
     updated() {
         feather.replace();
+    }
+
+    changePage(page: number)
+    {
+        this.getProgrammes(page);
     }
 }

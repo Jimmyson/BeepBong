@@ -5,5 +5,5 @@ import { ProgrammeItem } from '../../models/programme';
 
 @Component
 export default class ProgrammeCard extends Vue {
-    @Model('onload', {type: ProgrammeItem}) readonly p!: ProgrammeItem
+    @Model('onload', {type: Object}) readonly p!: ProgrammeItem
 }

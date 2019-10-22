@@ -4,11 +4,14 @@
         <!-- <router-link to="/programme/editor" :exact="true">
             <i data-feather="plus"></i>Create new programme
         </router-link> -->
+        <div>
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+        </div>
         <div class="card-deck">
             <programme-card v-for="programme in programmes" v-bind:p="programme" />
         </div>
         <div>
-            Pagination Elements
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
         </div>
     </div>
 </template>
