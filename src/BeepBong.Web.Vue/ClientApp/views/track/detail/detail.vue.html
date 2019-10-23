@@ -6,9 +6,9 @@
         </header>
 
         <div>
-            <!-- <router-link to="/sample/upload/1" >
+            <router-link :to="{ name: 'sample-editor', query: { trackId: `${track.trackId }}}" >
                 <i data-feather="upload-cloud"></i><span>Upload new sample</span>
-            </router-link> -->
+            </router-link>
         </div>
 
         <table class="table" v-if="track.isLibrary">

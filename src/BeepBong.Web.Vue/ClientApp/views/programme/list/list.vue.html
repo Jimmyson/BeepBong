@@ -1,9 +1,9 @@
 <template>
     <div id="programmeList">
         <h3>Programmes</h3>
-        <!-- <router-link to="/programme/editor" :exact="true">
+        <router-link to="/programme/editor">
             <i data-feather="plus"></i>Create new programme
-        </router-link> -->
+        </router-link>
         <div>
             <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
         </div>

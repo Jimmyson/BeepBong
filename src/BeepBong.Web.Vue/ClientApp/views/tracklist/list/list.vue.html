@@ -1,7 +1,7 @@
 <template>
     <div id="tracklistList">
         <h3>Tracklists</h3>
-        <router-link to="/tracklist/editor" :exact="true">
+        <router-link to="/tracklist/editor">
             <i data-feather="plus"></i>Create new list
         </router-link>
         <div>
@@ -33,7 +33,7 @@
                     <td>{{ tracklist.trackCount }}</td>
                     <td>{{ tracklist.programmeCount }}</td>
                     <td>
-                        <router-link :to='tracklist.trackListId'>
+                        <router-link :to="tracklist.trackListId">
                             <i data-feather="info"></i> Link
                         </router-link>
                     </td>

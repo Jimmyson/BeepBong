@@ -13,7 +13,7 @@
                     <span class="text-muted"><i data-feather="flag"></i> {{ b.country }}</span>
                 </div>
                 <div class="float-left">
-                    <router-link :to="b.broadcasterId" append>
+                    <router-link :to="{ name: 'broadcaster-detail', params: { id: `${b.broadcasterId}` }}" >
                         <i data-feather="info"></i>
                     </router-link> |
                     <a>

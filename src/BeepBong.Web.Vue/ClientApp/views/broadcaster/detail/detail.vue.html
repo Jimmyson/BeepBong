@@ -4,7 +4,7 @@
             <h3>{{ broadcaster.name }}</h3>
             <i data-feather="flag"></i><span>{{ broadcaster.country }}</span>
         </header>
-        <router-link to="/broadcaster/editor?id=1">
+        <router-link :to="{ name: 'broadcaster-editor', query: { id: `${broadcaster.broadcasterId}` }}">
             <i data-feather="edit"></i>Edit Broadcaster
         </router-link>
         <hr />
