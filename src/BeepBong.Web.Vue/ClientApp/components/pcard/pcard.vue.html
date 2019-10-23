@@ -5,11 +5,11 @@
             <div class="card-body">
                 <h5 class="card-title">{{ p.name }}</h5>
                 <div class="card-text">
-                    <p>
-                        <i data-feather="calendar"></i> {{ p.airDate }}<br />
-                        <i data-feather="tv"></i> {{ p.channel }}
-                        <i data-feather="music"></i><span> {{ p.trackCount }} {{ p.trackCount == 1 ? "Track" : "Tracks" }}</span>
-                    </p>
+                    <ul class="list-unstyled">
+                        <li><i data-feather="calendar"></i> {{ p.airDate }}</li>
+                        <li><i data-feather="tv"></i> {{ p.channel }}</li>
+                        <li><i data-feather="music"></i> {{ p.trackCount }} {{ p.trackCount == 1 ? "Track" : "Tracks" }}</li>
+                    </ul>
                 </div>
             </div>
             <div class="card-footer">
