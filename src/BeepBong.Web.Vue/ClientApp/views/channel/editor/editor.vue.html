@@ -1,20 +1,40 @@
 <template>
     <div id="channelEditor">
-            <h3>Channel Editor</h3>
-        <header>
-            <input placeholder="Channel Name" />
-            <input type="date" placeholder="Channel Opened" />
-            <input type="date" placeholder="Channel Closed" />
-            <select>
-                <option>Broadcaster 1</option>
-                <option>Broadcaster 2</option>
-                <option>Broadcaster 3</option>
-                <option>Broadcaster 4</option>
-                <option>Broadcaster 5</option>
-            </select>
-        </header>
-        <button>Cancel</button>
-        <button>Submit</button>
+        <h3>Channel Editor</h3>
+        <div>
+            <div class="form-group">
+                <label for="name">Channel Name</label>
+                <input type="text"
+                    class="form-control" name="name" id="name" aria-describedby="helpId-name" placeholder="Name">
+                <small id="helpId-name" class="form-text text-muted">data</small>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <i data-feather="calendar"></i><label for="airDate">Air Date</label>
+                    <input type="date"
+                        class="form-control" name="airDate" id="airDate" aria-describedby="helpId-airDate" placeholder="airDate">
+                    <small id="helpId-airDate" class="form-text text-muted">Help text</small>
+                </div>
+                <div class="form-group col">
+                    <i data-feather="calendar"></i><label for="closed">Closed</label>
+                    <input type="date"
+                        class="form-control" name="closed" id="closed" aria-describedby="helpId-closed" placeholder="Closed">
+                    <small id="helpId-closed" class="form-text text-muted">Help text</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <i data-feather="radio"></i><label for="broadcaster">Broadcaster</label>
+                <select class="custom-select" name="broadcaster" id="broadcaster">
+                    <option selected>Select one</option>
+                    <option value="">A</option>
+                    <option value="">B</option>
+                    <option value="">C</option>
+                </select>
+            </div>
+            <hr />
+            <button type="button" class="btn btn-danger">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </div>
 </template>
 

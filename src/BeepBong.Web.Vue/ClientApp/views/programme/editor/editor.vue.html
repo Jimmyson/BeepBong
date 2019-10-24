@@ -1,39 +1,60 @@
 <template>
     <div id="programmeEditor">
         <h3>Programme Editor</h3>
-        <header>
-            <input placeholder="programme name" />
-            <select>
-                <option>Channel 1</option>
-                <option>Channel 2</option>
-                <option>Channel 3</option>
-            </select>
-            <input type="date" placeholder="Airdate" />
-        </header>
-        <br />
         <div>
-            <h3>Image Upload</h3>
-        </div>
-        <br />
-        <div>
-            <!-- Create when none is selected -->
-            <button>Create new Tracklist</button>
-            <div>Modal for Tracklist creator</div>
-            <!-- Select -->
-            <select multiple>
-                <option>Tracklist 1</option>
-                <option selected>Tracklist 2</option>
-                <option>Tracklist 3</option>
-                <option selected>Tracklist 4</option>
-            </select>
-            <ul>
-                <li>Tracklist 2</li>
-                <li>Tracklist 4</li>
-            </ul>
-        </div>
-        <div>
-            <button>Cancel</button>
-            <button>Submit</button>
+            <div class="form-group">
+                <label for="name">Programme Name</label>
+                <input type="text"
+                    class="form-control" name="name" id="name" aria-describedby="helpId-name" placeholder="Name">
+                <small id="helpId-name" class="form-text text-muted">data</small>
+            </div>
+            <div class="form-group">
+                    <i data-feather="calendar"></i><label for="airDate">Air Date</label>
+                <input type="date"
+                    class="form-control" name="airDate" id="airDate" aria-describedby="helpId-airDate" placeholder="Air Date">
+                <small id="helpId-airDate" class="form-text text-muted">Help text</small>
+            </div>
+            <div class="form-group">
+                <label for="channel">Channel</label>
+                <select class="custom-select" name="channel" id="channel">
+                    <option selected>Select one</option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                </select>
+            </div>
+            <div class="form-group">
+              <label for="image">Image</label>
+              <input type="file" class="form-control-file" name="image" id="image" placeholder="Upload an image" aria-describedby="fileHelpId-image">
+              <small id="fileHelpId-image" class="form-text text-muted">Help text</small>
+            </div>
+            <div>
+                <!-- Create when none is selected -->
+                <a>Create new Tracklist</a>
+                <div>
+                    Modal for Tracklist creator
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label for="tracklists">Tracklists</label>
+                    <select multiple class="form-control" name="tracklists" id="tracklists">
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                    </select>
+                </div>
+                <div class="col">
+                    <h5>Selected Tracklists</h5>
+                    <ul>
+                        <li>Tracklist 2</li>
+                        <li>Tracklist 4</li>
+                    </ul>
+                </div>
+            </div>
+            <hr />
+            <button type="button" class="btn btn-danger">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
 </template>

@@ -1,14 +1,40 @@
 <template>
     <div id="broadcastEditor">
         <h3>Broadcaster Editor</h3>
-        <header>
-            <input placeholder="Broadcaster Name" />
-            <input type="date" placeholder="Broadcaster Opened" />
-            <input type="date" placeholder="Broadcaster Closed" />
-            <i data-feather="flag"></i><span>Country</span>
-        </header>
-        <button>Cancel</button>
-        <button>Submit</button>
+        <div>
+            <div class="form-group">
+              <label for="name">Broadcaster Name</label>
+              <input type="text"
+                class="form-control" name="name" id="name" aria-describedby="helpId-name" placeholder="Name">
+              <small id="helpId-name" class="form-text text-muted">data</small>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <i data-feather="calendar"></i><label for="opened">Opened</label>
+                    <input type="date"
+                        class="form-control" name="opened" id="opened" aria-describedby="helpId-opened" placeholder="Opened">
+                    <small id="helpId-opened" class="form-text text-muted">Help text</small>
+                </div>
+                <div class="form-group col">
+                    <i data-feather="calendar"></i><label for="closed">Closed</label>
+                    <input type="date"
+                        class="form-control" name="closed" id="closed" aria-describedby="helpId-closed" placeholder="Closed">
+                    <small id="helpId-closed" class="form-text text-muted">Help text</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <i data-feather="flag"></i><label for="country">Country</label>
+                <select class="custom-select" name="country" id="country">
+                    <option selected>Select one</option>
+                    <option value="">A</option>
+                    <option value="">B</option>
+                    <option value="">C</option>
+                </select>
+            </div>
+            <hr />
+            <button type="button" class="btn btn-danger">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </div>
 </template>
 
