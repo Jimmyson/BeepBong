@@ -22,6 +22,7 @@ namespace BeepBong.Application.Queries
                     Name = c.Name,
                     Opened = c.Opened,
                     Closed = c.Closed,
+                    BroadcasterName = c.Broadcaster.Name,
                     ProgrammeCount = c.Programmes.Count
                 });
         }
