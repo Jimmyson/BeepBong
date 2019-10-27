@@ -1,23 +1,28 @@
 <template>
     <div id="programme">
         <header>
-            <div id="details">
-                <h3>{{ programme.name }}</h3>
-                <i data-feather="calendar"></i><span>{{ programme.airDate }}</span>
-                <!-- <i data-feather="radio"></i><span>{{ programme.broadcasterName }}</span> -->
-                <i data-feather="tv"></i><span>{{ programme.channel }}</span>
-                <!-- <i data-feather="tv"></i><span>parent Programme</span>
-                <i data-feather="tv"></i><span>child Programme</span>
-                <i data-feather="tv"></i><span>child Programme</span> -->
-            </div>
-            <div id="image">
-                <img />
-            </div>
+			<h3>{{ programme.name }}</h3>
+			<div class="row">
+				<div class="col-sm-3" id="details">
+					<router-link :to="{name: 'programme-editor', query:  { id: `${programme.programmeId}`}}">
+						<i data-feather="edit"></i>Edit Programme
+					</router-link>
+					<hr />
+					<ul class="list-unstyled">
+						<li><i data-feather="calendar"></i> {{ programme.airDate }}</li>
+						<!-- <i data-feather="radio"></i><span>{{ programme.broadcasterName }}</span> -->
+						<li><i data-feather="tv"></i> {{ programme.channelName }}</li>
+						<!-- <i data-feather="tv"></i><span>parent Programme</span>
+						<i data-feather="tv"></i><span>child Programme</span>
+						<i data-feather="tv"></i><span>child Programme</span> -->
+					</ul>
+				</div>
+				<div class="col-sm-9" id="image">
+					<img v-if="programme.imageId" class="image-fluid" :src="'/api/Image/' + `${programme.imageId}`" width="auto" height="360px"/>
+				</div>
+			</div>
         </header>
-        <router-link :to="{name: 'programme-editor', query:  { id: `${programme.programmeId}`}}">
-            <i data-feather="edit"></i>Edit Programme
-        </router-link>
-        <br />
+        <hr />
         <div v-if="programme.trackLists">
             <tracklist v-for="tracklist in programme.trackLists" v-bind:tl="tracklist"/>
         </div>

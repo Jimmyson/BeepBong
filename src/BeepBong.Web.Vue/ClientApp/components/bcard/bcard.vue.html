@@ -1,7 +1,7 @@
 <template>
     <div id="bcard">
-        <div class="card mb-4" style="min-width: 28rem;">
-            <img class="card-img-top" />
+        <div class="card mb-4" style="width: 28rem;">
+            <img v-if="b.imageId" class="card-img-top" :src="'/api/Image/' + `${b.imageId}`"/>
             <div class="card-body">
                 <h5 class="card-title">{{ b.name }}</h5>
                 <!-- <div class="card-text">

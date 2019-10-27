@@ -6,7 +6,8 @@ export class ProgrammeItem {
         this.channelId = "";
         this.channelName = "";
         this.broadcasterId = "";
-        this.broadcasterName = "";
+		this.broadcasterName = "";
+		this.imageId = "";
     }
 
     programmeId: string;
@@ -15,5 +16,6 @@ export class ProgrammeItem {
     channelId: string;
     channelName: string;
     broadcasterId: string;
-    broadcasterName: string;
+	broadcasterName: string;
+	imageId: string;
 }
