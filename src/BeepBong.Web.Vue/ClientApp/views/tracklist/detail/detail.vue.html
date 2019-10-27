@@ -1,8 +1,8 @@
 <template>
     <div id="tracklistDetail">
-        <router-link :to="{ name: 'tracklist-editor', query: { id: `${tracklist.tracklistId}` }}">
+        <router-link :to="{ name: 'tracklist-editor', query: { id: `${$route.params.id}` }}">
             <i data-feather="edit"></i>Edit list
-        </router-link> -->
+        </router-link>
         <div v-if="tracklist">
             <tracklist v-bind:tl="tracklist" />
         </div>
