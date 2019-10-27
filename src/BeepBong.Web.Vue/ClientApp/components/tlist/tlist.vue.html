@@ -16,8 +16,8 @@
                         <th>Name</th>
                         <th>Variant</th>
                         <th>Description</th>
-                        <th>Fingerprints</th>
-                        <th>Duration</th>
+                        <th v-if="!tl.library">Fingerprints</th>
+                        <th v-if="!tl.library">Duration</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -26,10 +26,10 @@
                         <td scope="row">{{ track.name }}</td>
                         <td>{{ track.variant }}</td>
                         <td>{{ track.description }}</td>
-                        <td>
+                        <td v-if="!tl.library">
                             <span v-for="f in track.fingerprints">{{ f }}<br/></span>
                         </td>
-                        <td>{{ track.duration }}</td>
+                        <td v-if="!tl.library">{{ track.duration }}</td>
                         <td>
                             <router-link :to="{ name: 'track-detail', params: { id: `${track.trackId}` }}">
                                 <i data-feather="info"></i> Link
