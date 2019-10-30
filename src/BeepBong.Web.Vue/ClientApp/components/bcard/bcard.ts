@@ -6,5 +6,5 @@ import { BroadcasterItem } from '../../models/broadcaster';
 
 @Component
 export default class ProgrammeCard extends Vue {
-    @Model('onload', {type: BroadcasterItem}) readonly b!: BroadcasterItem
+    @Model('onload', {type: Object}) readonly b!: BroadcasterItem
 }

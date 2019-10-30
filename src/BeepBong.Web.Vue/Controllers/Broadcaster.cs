@@ -1,9 +1,13 @@
 using System;
+using System.IO;
 using System.Threading.Tasks;
+using BeepBong.Application;
 using BeepBong.Application.Commands;
 using BeepBong.Application.Queries;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
+using BeepBong.Domain.Models;
+using BeepBong.Web.Vue.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -51,9 +55,20 @@ namespace BeepBong.Web.Vue.Controllers
         // POST: api/Broadcaster
         // @TODO: Return the created object
         [HttpPost]
-        public async Task<ActionResult<BroadcasterDetailViewModel>> PostBroadcaster(BroadcasterEditViewModel bvm)
+        public async Task<ActionResult<BroadcasterDetailViewModel>> PostBroadcaster([FromForm] BroadcasterUploadViewModel buvm)
         {
+			// Cast ViewModel to Model
+			BroadcasterEditViewModel bvm = new BroadcasterEditViewModel()
+			{
+				Name = buvm.Name,
+				Country = buvm.Country
+			};
+
+			// Validate Model
+
             if (new BroadcasterEditQuery(_context).Exists(bvm)) return BadRequest();
+
+			CopyImageToModel(buvm, bvm);
 
             new BroadcasterEditCommand(_context).SendCommand(bvm);
 
@@ -64,9 +79,23 @@ namespace BeepBong.Web.Vue.Controllers
 
         // PUT: api/Broadcaster/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBroadcaster(Guid id, BroadcasterEditViewModel bvm)
+        public async Task<IActionResult> PutBroadcaster(Guid id, [FromForm] BroadcasterUploadViewModel buvm)
         {
-            if (id != bvm.BroadcasterId) return BadRequest();
+            if (id != buvm.BroadcasterId) return BadRequest();
+
+			// Cast ViewModel to Model
+			BroadcasterEditViewModel bvm = new BroadcasterEditViewModel()
+			{
+                BroadcasterId = buvm.BroadcasterId,
+                Name = buvm.Name,
+                Country = buvm.Country,
+				ImageChange = buvm.ImageChange ?? false,
+                ImageId = buvm.ImageId
+			};
+
+			// Validate Model
+
+			CopyImageToModel(buvm, bvm);
 
             new BroadcasterEditCommand(_context).SendCommand(bvm);
 
@@ -85,5 +114,28 @@ namespace BeepBong.Web.Vue.Controllers
 
             return NoContent();
         }
+
+		private void CopyImageToModel(BroadcasterUploadViewModel buvm, BroadcasterEditViewModel bvm)
+		{
+			if (buvm.Image?.Length > 0)
+            {
+                using (var ms = new MemoryStream()) {
+                    buvm.Image.CopyTo(ms);
+
+                    Image i = new Image();
+
+                    using (ImageProcessing imageProc = new ImageProcessing(ms.ToArray()))
+                    {
+                        imageProc.DownscaleImage();
+                        i.Base64 = imageProc.ToBase64();
+                        i.Height = imageProc.Height;
+                        i.MimeType = imageProc.MimeType;
+                        i.Width = imageProc.Width;
+
+                        bvm.Image = i;
+                    }
+                }
+            }
+		}
     }
 }

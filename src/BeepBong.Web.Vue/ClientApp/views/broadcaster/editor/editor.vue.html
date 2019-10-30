@@ -2,13 +2,15 @@
     <div id="broadcastEditor">
         <h3>Broadcaster Editor</h3>
         <div>
+			<input type="hidden" v-model="broadcaster.broadcasterId" />
             <div class="form-group">
-              <label for="name">Broadcaster Name</label>
-              <input type="text"
-                class="form-control" name="name" id="name" aria-describedby="helpId-name" placeholder="Name">
-              <small id="helpId-name" class="form-text text-muted">data</small>
-            </div>
-            <div class="form-row">
+                <label for="name">Broadcaster Name</label>
+                <input type="text" v-model="broadcaster.name"
+                    class="form-control" name="name" id="name" aria-describedby="helpId-name" placeholder="Name">
+                <small id="helpId-name" class="form-text text-muted">data</small>
+			</div>
+			<!-- @TODO: Add Open/Close dates to Model -->
+            <!-- <div class="form-row">
                 <div class="form-group col">
                     <i data-feather="calendar"></i><label for="opened">Opened</label>
                     <input type="date"
@@ -21,19 +23,33 @@
                         class="form-control" name="closed" id="closed" aria-describedby="helpId-closed" placeholder="Closed">
                     <small id="helpId-closed" class="form-text text-muted">Help text</small>
                 </div>
-            </div>
+            </div> -->
             <div class="form-group">
-                <i data-feather="flag"></i><label for="country">Country</label>
-                <select class="custom-select" name="country" id="country">
+				<i data-feather="flag"></i><label for="country">Country</label>
+                <input type="text" v-model="broadcaster.country"
+                    class="form-control" name="country" id="country" aria-describedby="helpId-country" placeholder="Country">
+                <small id="helpId-country" class="form-text text-muted">Help text</small>
+                <!-- <select class="custom-select" name="country" id="country">
                     <option selected>Select one</option>
                     <option value="">A</option>
                     <option value="">B</option>
                     <option value="">C</option>
-                </select>
+                </select> -->
             </div>
-            <hr />
+			<hr />
+			<div class="form-group">
+				<div class="custom-file">
+					<label class="custom-file-label" for="image">{{ broadcaster.imageChange ? broadcaster.image.name : "Upload File" }}</label>
+					<input type="file" v-on:change="handleFileUpload($event.target.files)" accept="image/png, image/jpeg"
+						custom="custom-file-input" name="image" id="image" placeholder="Image" aria-describedby="fileHelpId-image" />
+				</div>
+				<small id="fileHelpId-image" class="form-text text-muted">Help Text</small>
+				<input v-on:click="clearFileUpload()" name="removeImage" id="removeImage" class="btn btn-danger" type="button" value="Remove Image" />
+			</div>
+			<img v-if="broadcaster.imageId" :src="'api/Image/' + `${broadcaster.imageId}`" width="auto" height="360px" />
+			<hr />
             <button type="button" class="btn btn-danger">Cancel</button>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-primary" v-on:click="sendBroadcaster()">Submit</button>
         </div>
     </div>
 </template>
