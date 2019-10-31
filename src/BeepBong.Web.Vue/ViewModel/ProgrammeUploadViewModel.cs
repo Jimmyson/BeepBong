@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using BeepBong.Application.Interfaces;
-using BeepBong.Domain.Models;
+using Microsoft.AspNetCore.Http;
 
-namespace BeepBong.Application.ViewModels
+namespace BeepBong.Web.Vue.ViewModel
 {
-    public class ProgrammeEditViewModel : IImageEntity
+    public class ProgrammeUploadViewModel : IImageUpload
     {
         public Guid ProgrammeId { get; set; }
         public string Name { get; set; }
@@ -14,9 +13,9 @@ namespace BeepBong.Application.ViewModels
         [DataType(DataType.Date)]
         public DateTime? AirDate { get; set; }
 
-        public Image Image { get; set; }
+        public IFormFile Image { get; set; }
         public Guid? ImageId { get; set; }
-        public bool ImageChange { get; set; }
+        public bool? ImageChange { get; set; }
         public Guid? ChannelId { get; set; }
         public List<Guid> TrackListIds { get; set; }
     }

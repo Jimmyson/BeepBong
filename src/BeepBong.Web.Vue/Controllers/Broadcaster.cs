@@ -1,12 +1,11 @@
 using System;
-using System.IO;
 using System.Threading.Tasks;
-using BeepBong.Application;
 using BeepBong.Application.Commands;
 using BeepBong.Application.Queries;
+using BeepBong.Application.Validation;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
-using BeepBong.Domain.Models;
+using BeepBong.Web.Vue.Logic;
 using BeepBong.Web.Vue.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -65,10 +64,12 @@ namespace BeepBong.Web.Vue.Controllers
 			};
 
 			// Validate Model
+			BroadcasterEditValidator validator = new BroadcasterEditValidator();
+			if (!validator.Validate(bvm).IsValid) return BadRequest();
 
             if (new BroadcasterEditQuery(_context).Exists(bvm)) return BadRequest();
 
-			CopyImageToModel(buvm, bvm);
+			FileToImageEntity.CopyImageToModel(buvm, bvm);
 
             new BroadcasterEditCommand(_context).SendCommand(bvm);
 
@@ -94,8 +95,10 @@ namespace BeepBong.Web.Vue.Controllers
 			};
 
 			// Validate Model
+			BroadcasterEditValidator validator = new BroadcasterEditValidator();
+			if (!validator.Validate(bvm).IsValid) return BadRequest();
 
-			CopyImageToModel(buvm, bvm);
+			FileToImageEntity.CopyImageToModel(buvm, bvm);
 
             new BroadcasterEditCommand(_context).SendCommand(bvm);
 
@@ -114,28 +117,5 @@ namespace BeepBong.Web.Vue.Controllers
 
             return NoContent();
         }
-
-		private void CopyImageToModel(BroadcasterUploadViewModel buvm, BroadcasterEditViewModel bvm)
-		{
-			if (buvm.Image?.Length > 0)
-            {
-                using (var ms = new MemoryStream()) {
-                    buvm.Image.CopyTo(ms);
-
-                    Image i = new Image();
-
-                    using (ImageProcessing imageProc = new ImageProcessing(ms.ToArray()))
-                    {
-                        imageProc.DownscaleImage();
-                        i.Base64 = imageProc.ToBase64();
-                        i.Height = imageProc.Height;
-                        i.MimeType = imageProc.MimeType;
-                        i.Width = imageProc.Width;
-
-                        bvm.Image = i;
-                    }
-                }
-            }
-		}
     }
 }

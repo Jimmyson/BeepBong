@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace BeepBong.Web.Vue.ViewModel
 {
-    public class BroadcasterUploadViewModel
+    public class BroadcasterUploadViewModel : IImageUpload
     {
         public Guid BroadcasterId { get; set; }
         public string Name { get; set; }

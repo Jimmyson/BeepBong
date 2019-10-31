@@ -2,8 +2,11 @@ using System;
 using System.Threading.Tasks;
 using BeepBong.Application.Commands;
 using BeepBong.Application.Queries;
+using BeepBong.Application.Validation;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
+using BeepBong.Web.Vue.Logic;
+using BeepBong.Web.Vue.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -41,9 +44,25 @@ namespace BeepBong.Web.Vue.Controllers
         // POST: api/Programme
         // @TODO: Return the created object
         [HttpPost]
-        public async Task<ActionResult<ProgrammeDetailViewModel>> PostProgramme(ProgrammeEditViewModel pvm)
+        public async Task<ActionResult<ProgrammeDetailViewModel>> PostProgramme([FromForm] ProgrammeUploadViewModel puvm)
         {
+			// Cast ViewModel to Model
+			ProgrammeEditViewModel pvm = new ProgrammeEditViewModel()
+			{
+                ProgrammeId = puvm.ProgrammeId,
+                Name = puvm.Name,
+                AirDate = puvm.AirDate,
+                ChannelId = puvm.ChannelId,
+                TrackListIds = puvm.TrackListIds
+			};
+
+			// Validate Model
+			ProgrammeEditValidator validator = new ProgrammeEditValidator();
+			if (!validator.Validate(pvm).IsValid) return BadRequest();
+
             if (new ProgrammeEditQuery(_context).Exists(pvm)) return BadRequest();
+
+			FileToImageEntity.CopyImageToModel(puvm, pvm);
 
             new ProgrammeEditCommand(_context).SendCommand(pvm);
 
@@ -54,9 +73,27 @@ namespace BeepBong.Web.Vue.Controllers
 
         // PUT: api/Programme/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProgramme(Guid id, ProgrammeEditViewModel pvm)
+        public async Task<IActionResult> PutProgramme(Guid id, [FromForm] ProgrammeUploadViewModel puvm)
         {
-            if (id != pvm.ProgrammeId) return BadRequest();
+            if (id != puvm.ProgrammeId) return BadRequest();
+
+			// Cast ViewModel to Model
+			ProgrammeEditViewModel pvm = new ProgrammeEditViewModel()
+			{
+                ProgrammeId = puvm.ProgrammeId,
+                Name = puvm.Name,
+                AirDate = puvm.AirDate,
+                ChannelId = puvm.ChannelId,
+                TrackListIds = puvm.TrackListIds,
+				ImageChange = puvm.ImageChange ?? false,
+                ImageId = puvm.ImageId
+			};
+
+			// Validate Model
+			ProgrammeEditValidator validator = new ProgrammeEditValidator();
+			if (!validator.Validate(pvm).IsValid) return BadRequest();
+
+			FileToImageEntity.CopyImageToModel(puvm, pvm);
 
             new ProgrammeEditCommand(_context).SendCommand(pvm);
 
