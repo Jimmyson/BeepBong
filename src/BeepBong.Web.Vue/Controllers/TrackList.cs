@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using BeepBong.Application.Commands;
 using BeepBong.Application.Queries;
+using BeepBong.Application.Validation;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
 using Microsoft.AspNetCore.Mvc;
@@ -43,6 +44,10 @@ namespace BeepBong.Web.Vue.Controllers
         [HttpPost]
         public async Task<ActionResult<TrackListDetailViewModel>> PostTrackList(TrackListEditViewModel tlvm)
         {
+			// Validate Model
+			TrackListEditValidator validator = new TrackListEditValidator();
+			if (!validator.Validate(tlvm).IsValid) return BadRequest();
+
             if (new TrackListEditQuery(_context).Exists(tlvm)) return BadRequest();
 
             new TrackListEditCommand(_context).SendCommand(tlvm);
@@ -57,6 +62,10 @@ namespace BeepBong.Web.Vue.Controllers
         public async Task<IActionResult> PutTrackList(Guid id, TrackListEditViewModel tlvm)
         {
             if (id != tlvm.TrackListId) return BadRequest();
+			
+			// Validate Model
+			TrackListEditValidator validator = new TrackListEditValidator();
+			if (!validator.Validate(tlvm).IsValid) return BadRequest();
 
             new TrackListEditCommand(_context).SendCommand(tlvm);
 

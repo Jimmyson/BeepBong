@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using BeepBong.Application.Commands;
 using BeepBong.Application.Queries;
+using BeepBong.Application.Validation;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
 using Microsoft.AspNetCore.Mvc;
@@ -52,6 +53,10 @@ namespace BeepBong.Web.Vue.Controllers
         [HttpPost]
         public async Task<ActionResult<TrackDetailViewModel>> PostTrack(TrackEditViewModel tvm)
         {
+			// Validate Model
+			TrackEditValidator validator = new TrackEditValidator();
+			if (!validator.Validate(tvm).IsValid) return BadRequest();
+
             if (new TrackEditQuery(_context).Exists(tvm)) return BadRequest();
 
             new TrackEditCommand(_context).SendCommand(tvm);
@@ -66,6 +71,10 @@ namespace BeepBong.Web.Vue.Controllers
         public async Task<IActionResult> PutTrack(Guid id, TrackEditViewModel tvm)
         {
             if (id != tvm.TrackId) return BadRequest();
+			
+			// Validate Model
+			TrackEditValidator validator = new TrackEditValidator();
+			if (!validator.Validate(tvm).IsValid) return BadRequest();
 
             new TrackEditCommand(_context).SendCommand(tvm);
 

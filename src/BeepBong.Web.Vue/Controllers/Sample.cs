@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using BeepBong.Application.Commands;
 using BeepBong.Application.Queries;
+using BeepBong.Application.Validation;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
 using Microsoft.AspNetCore.Mvc;
@@ -43,6 +44,10 @@ namespace BeepBong.Web.Vue.Controllers
         [HttpPost]
         public async Task<ActionResult<SampleDetailViewModel>> PostSample(SampleCreateViewModel svm)
         {
+			// Validate Model
+			SampleCreateValidator validator = new SampleCreateValidator();
+			if (!validator.Validate(svm).IsValid) return BadRequest();
+
             if (new SampleEditQuery(_context).Exists(svm)) return BadRequest();
 
             new SampleCreateCommand(_context).SendCommand(svm);
@@ -57,6 +62,10 @@ namespace BeepBong.Web.Vue.Controllers
         public async Task<IActionResult> PutSample(Guid id, SampleEditViewModel svm)
         {
             if (id != svm.SampleId) return BadRequest();
+
+			// Validate Model
+			SampleEditValidator validator = new SampleEditValidator();
+			if (!validator.Validate(svm).IsValid) return BadRequest();
 
             new SampleEditCommand(_context).SendCommand(svm);
 

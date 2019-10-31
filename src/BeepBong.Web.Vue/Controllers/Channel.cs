@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using BeepBong.Application.Commands;
 using BeepBong.Application.Queries;
+using BeepBong.Application.Validation;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
 using Microsoft.AspNetCore.Mvc;
@@ -53,6 +54,10 @@ namespace BeepBong.Web.Vue.Controllers
         [HttpPost]
         public async Task<ActionResult<ChannelDetailViewModel>> PostChannel(ChannelEditViewModel cvm)
         {
+			// Validate Model
+			ChannelEditValidator validator = new ChannelEditValidator();
+			if (!validator.Validate(cvm).IsValid) return BadRequest();
+
             if (new ChannelEditQuery(_context).Exists(cvm)) return BadRequest();
 
             new ChannelEditCommand(_context).SendCommand(cvm);
@@ -67,6 +72,10 @@ namespace BeepBong.Web.Vue.Controllers
         public async Task<IActionResult> PutChannel(Guid id, ChannelEditViewModel cvm)
         {
             if (id != cvm.ChannelId) return BadRequest();
+			
+			// Validate Model
+			ChannelEditValidator validator = new ChannelEditValidator();
+			if (!validator.Validate(cvm).IsValid) return BadRequest();
 
             new ChannelEditCommand(_context).SendCommand(cvm);
 

@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using BeepBong.Application.Commands;
 using BeepBong.Application.Queries;
+using BeepBong.Application.Validation;
 using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
@@ -44,6 +45,10 @@ namespace BeepBong.Web.Vue.Controllers
         [HttpPost]
         public async Task<ActionResult<Library>> PostLibrary(Library library)
         {
+			// Validate Model
+			LibraryEditValidator validator = new LibraryEditValidator();
+			if (!validator.Validate(library).IsValid) return BadRequest();
+
             if (new LibraryEditQuery(_context).Exists(library)) return BadRequest();
 
             new LibraryEditCommand(_context).SendCommand(library);
@@ -58,6 +63,10 @@ namespace BeepBong.Web.Vue.Controllers
         public async Task<IActionResult> PutLibrary(Guid id, Library library)
         {
             if (id != library.LibraryId) return BadRequest();
+			
+			// Validate Model
+			LibraryEditValidator validator = new LibraryEditValidator();
+			if (!validator.Validate(library).IsValid) return BadRequest();
 
             new LibraryEditCommand(_context).SendCommand(library);
 
