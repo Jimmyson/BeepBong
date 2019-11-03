@@ -48,7 +48,7 @@
 			</div>
 			<img v-if="broadcaster.imageId" :src="'api/Image/' + `${broadcaster.imageId}`" width="auto" height="360px" />
 			<hr />
-            <button type="button" class="btn btn-danger">Cancel</button>
+            <button type="button" class="btn btn-danger" @click="$router.back()">Cancel</button>
             <button type="button" class="btn btn-primary" v-on:click="sendBroadcaster()">Submit</button>
         </div>
     </div>

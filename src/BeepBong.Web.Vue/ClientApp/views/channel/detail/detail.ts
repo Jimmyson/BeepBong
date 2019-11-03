@@ -7,6 +7,7 @@ import { ChannelItem } from '../../../models/channel';
 import { ProgrammeItem } from '../../../models/programme';
 import { listResponse } from '../../../models/listResponse';
 import { Pagination } from '../../../models/pagination';
+import moment from 'moment';
 
 @Component({
     components: {
@@ -15,8 +16,8 @@ import { Pagination } from '../../../models/pagination';
     }
 })
 export default class ChannelDetail extends Vue {
-    channel: ChannelItem = new ChannelItem();
-    pagination: Pagination = new Pagination;
+    channel: ChannelItem = {} as ChannelItem;
+    pagination: Pagination = {} as Pagination;
     programmes: ProgrammeItem[] = [];
 
     mounted() {
@@ -29,10 +30,12 @@ export default class ChannelDetail extends Vue {
     {
         Axios.get<ChannelItem>('/api/Channel/' + this.$route.params.id)
             .then(Response => {
-                this.channel = Response.data;
+				this.channel = Response.data;
+				if (this.channel.opened) this.channel.opened = moment(this.channel.opened).format('dddd, D MMMM YYYY');
+				if (this.channel.closed) this.channel.closed = moment(this.channel.closed).format('dddd, D MMMM YYYY');
             })
             .catch(e =>
-                console.log(e)
+                alert(e)
             );
     }
     
@@ -47,6 +50,18 @@ export default class ChannelDetail extends Vue {
                 alert(e)
             );
     }
+	
+	deleteChannel()
+	{
+		if (confirm("Would you like to delete Channel: " + this.channel.name + "?"))
+			Axios.delete('/api/Channel/' + this.$route.params.id)
+				.then(response => {
+					this.$router.back();
+				})
+				.catch(e =>
+					console.log(e)
+				);
+	}
     
     updated() {
         feather.replace();

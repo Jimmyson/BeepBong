@@ -3,8 +3,6 @@ import Axios from 'axios';
 import feather from 'feather-icons';
 import { Component } from 'vue-property-decorator';
 
-import { BroadcasterItem } from '../../../models/broadcaster';
-
 interface BroadcasterEdit {
 	broadcasterId: string;
 	name: string;
@@ -37,19 +35,6 @@ export default class BroadcastEditor extends Vue {
 		var formData = new FormData;
 		this.objectToFormData(this.broadcaster, formData);
 
-		// for (var prop in this.broadcaster) {
-		// 	if (prop == "image") 
-		// 		formData.append('image', this.broadcaster.image, this.broadcaster.image.name);
-		// 	else if (Object.prototype.hasOwnProperty.call(this.broadcaster, prop)) {
-		// 		formData.append(prop, (<any>this.broadcaster));
-		// 	}
-		// }
-
-		// formData.append('broadcasterId', this.broadcaster.broadcasterId);
-		// formData.append('name', this.broadcaster.name);
-		// formData.append('country', this.broadcaster.country);
-		// formData.append('image', this.broadcaster.image, this.broadcaster.image.name);
-
 		if (this.$route.query.id != undefined)
 		{
 			Axios.put<BroadcasterEdit>('api/Broadcaster/' + this.$route.query.id, formData)
@@ -81,31 +66,30 @@ export default class BroadcastEditor extends Vue {
 		this.$forceUpdate();
 	}
 
+	// Move to seperate TS object
 	objectToFormData(obj: any, form: FormData, namespace?: string) {
 		var fd = form || new FormData();
 		var formKey;
 		
 		for(var property in obj) {
 			if(obj.hasOwnProperty(property)) {
-			
-			if(namespace) {
-				formKey = namespace + '[' + property + ']';
-			} else {
-				formKey = property;
-			}
-			
-			// if the property is an object, but not a File,
-			// use recursivity.
-			if (typeof obj[property] === 'object' && !(obj[property] instanceof File)) {
+				if(namespace) {
+					formKey = namespace + '[' + property + ']';
+				} else {
+					formKey = property;
+				}
 				
-				this.objectToFormData(obj[property], fd, property);
-				
-			} else {
-				
-				// if it's a string or a File object
-				fd.append(formKey, obj[property]);
-			}
-			
+				// if the property is an object, but not a File,
+				// use recursivity.
+				if (typeof obj[property] === 'object' && !(obj[property] instanceof File)) {
+					
+					this.objectToFormData(obj[property], fd, property);
+					
+				} else {
+					
+					// if it's a string or a File object
+					fd.append(formKey, obj[property]);
+				}
 			}
 		}
 		

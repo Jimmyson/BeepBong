@@ -7,11 +7,12 @@
 					<router-link :to="{ name: 'channel-editor', query: { id: `${channel.channelId}` } }">
 						<i data-feather="edit"></i>Edit channel
 					</router-link>
+					<a class="text-danger" @click="deleteChannel()"><i data-feather="trash-2"></i>Delete Channel</a>
 					<hr />
 					<ul class="list-unstyled">
-						<li><i data-feather="radio"></i> {{ channel.broadcasterName }}</li>
-						<li><i data-feather="calendar"></i> {{ channel.opened }}</li>
-						<li><i data-feather="calendar"></i> {{ channel.closed }}</li>
+						<li v-if="channel.broadcasterName"><i data-feather="radio"></i> {{ channel.broadcasterName }}</li>
+                        <li v-if="channel.opened"><i data-feather="calendar"></i> <b>Opened:</b> {{ channel.opened }}</li>
+                        <li v-if="channel.closed"><i data-feather="calendar"></i> <b>Closed:</b> {{ channel.closed }}</li>
 					</ul>
 				</div>
             </div>

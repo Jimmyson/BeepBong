@@ -6,9 +6,9 @@
                 <h5 class="card-title">{{ c.name }}</h5>
                 <div class="card-text">
                     <ul class="list-unstyled">
-                        <li><i data-feather="calendar"></i> 1/1/2001 - {{ c.opened }}</li>
-                        <li><i data-feather="calendar"></i> 31/12/2011 - {{ c.closed }}</li>
-                        <li><i data-feather="mic"></i> {{ c.programmeCount }} {{ c.programmeCount == 1 ? "Programme" : "Programmes" }}</li>
+                        <li v-if="c.opened"><i data-feather="calendar"></i> <b>Opened:</b> {{ c.opened }}</li>
+                        <li v-if="c.closed"><i data-feather="calendar"></i> <b>Closed:</b> {{ c.closed }}</li>
+                        <li v-if="c.programmeCount"><i data-feather="mic"></i> {{ c.programmeCount }} {{ c.programmeCount == 1 ? "Programme" : "Programmes" }}</li>
                     </ul>
                 </div>
             </div>

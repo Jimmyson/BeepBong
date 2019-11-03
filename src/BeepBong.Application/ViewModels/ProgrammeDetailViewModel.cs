@@ -8,18 +8,10 @@ namespace BeepBong.Application.ViewModels
         public Guid ProgrammeId { get; set; }
         public string Name { get; set; }
         public string AirDate { get; set; }
+        public Guid? ChannelId { get; set; }
         public string ChannelName { get; set; }
         public Guid? ImageId { get; set; }
-        public List<SimpleTrackList> TrackLists { get; set; }
-    }
-
-    public class SimpleTrackList
-    {
-        public Guid TrackListId { get; set; }
-        public string Name { get; set; }
-        public string Composer { get; set; }
-        public bool Library { get; set; }
-        public List<SimpleTrack> Tracks { get; set; }
+        public List<Guid> TrackListIds { get; set; }
     }
 
     public class SimpleTrack

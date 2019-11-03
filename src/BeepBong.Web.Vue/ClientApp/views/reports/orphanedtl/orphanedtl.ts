@@ -23,6 +23,8 @@ export default class OrpanedTracklistView extends Vue {
 
     getTracklist(num: number)
     {
+		this.tracklists = [];
+
         Axios.get<listResponse<TracklistItem>>('api/Report/OrphanedTrackList', { params: { pageNumber: num }})
             .then(Response => {
                 this.tracklists = Response.data.items;
@@ -32,7 +34,7 @@ export default class OrpanedTracklistView extends Vue {
 
     updated()
     {
-        feather.replace();
+		feather.replace();
     }
 
     changePage(page: number)

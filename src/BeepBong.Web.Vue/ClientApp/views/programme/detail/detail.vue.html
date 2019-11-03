@@ -7,6 +7,7 @@
 					<router-link :to="{name: 'programme-editor', query:  { id: `${programme.programmeId}`}}">
 						<i data-feather="edit"></i>Edit Programme
 					</router-link>
+					<a class="text-danger" @click="deleteProgramme()"><i data-feather="trash-2"></i>Delete Programme</a>
 					<hr />
 					<ul class="list-unstyled">
 						<li><i data-feather="calendar"></i> {{ programme.airDate }}</li>
@@ -23,8 +24,8 @@
 			</div>
         </header>
         <hr />
-        <div v-if="programme.trackLists">
-            <tracklist v-for="tracklist in programme.trackLists" v-bind:tl="tracklist"/>
+        <div v-if="tracklists">
+            <tracklist v-for="tracklist in tracklists" v-bind:tl="tracklist"/>
         </div>
     </div>
 </template>

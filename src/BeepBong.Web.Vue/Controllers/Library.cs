@@ -1,9 +1,9 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using BeepBong.Application.Commands;
 using BeepBong.Application.Queries;
 using BeepBong.Application.Validation;
-using BeepBong.Application.ViewModels;
 using BeepBong.DataAccess;
 using BeepBong.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +30,19 @@ namespace BeepBong.Web.Vue.Controllers
 
             return await Pagination<Library>.CreateAsync(query, pageNumber ?? 1, pageSize ?? 20);
         }
+
+		// GET: api/Library/IdList
+		// @TODO: Alias query off
+		[HttpGet("IdList")]
+		public async Task<ActionResult<object>> GetBroadcasterIds()
+		{
+			var ids = await _context.Libraries.Select(x => new {
+				Id = x.LibraryId,
+				Name = x.AlbumName
+			}).OrderBy(x => x.Name).ToListAsync();
+
+			return ids;
+		}
 
         // GET: api/Library/{id}
         [HttpGet("{id}")]

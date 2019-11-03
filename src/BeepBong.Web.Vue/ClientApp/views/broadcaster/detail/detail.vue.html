@@ -7,9 +7,10 @@
 					<router-link :to="{ name: 'broadcaster-editor', query: { id: `${broadcaster.broadcasterId}` }}">
 						<i data-feather="edit"></i>Edit Broadcaster
 					</router-link>
+					<a class="text-danger" @click="deleteBroadcaster()"><i data-feather="trash-2"></i>Delete Broadcaster</a>
 					<hr />
 					<ul class="list-unstyled">
-						<li><i data-feather="flag"></i> {{ broadcaster.country }}</li>
+						<li v-if="broadcaster.country"><i data-feather="flag"></i> {{ broadcaster.country }}</li>
 					</ul>
 				</div>
 				<div class="col-sm-9" id="image">

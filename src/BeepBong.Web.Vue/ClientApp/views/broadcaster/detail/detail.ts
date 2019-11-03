@@ -34,7 +34,19 @@ export default class BroadcastChannelsView extends Vue {
             .catch(e =>
                 console.log(e)
             )
-    }
+	}
+	
+	deleteBroadcaster()
+	{
+		if (confirm("Would you like to delete Broadcaster: " + this.broadcaster.name + "?"))
+			Axios.delete('/api/Broadcaster/' + this.$route.params.id)
+				.then(response => {
+					this.$router.back();
+				})
+				.catch(e =>
+					console.log(e)
+				);
+	}
 
     getChannels(num: number)
     {

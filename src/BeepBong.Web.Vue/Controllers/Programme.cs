@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using BeepBong.Application.Commands;
 using BeepBong.Application.Queries;
@@ -31,6 +32,19 @@ namespace BeepBong.Web.Vue.Controllers
 
             return await Pagination<ProgrammeIndexViewModel>.CreateAsync(query, pageNumber ?? 1, pageSize ?? 20);
         }
+
+		// GET: api/Programme/IdList
+		// @TODO: Alias query off
+		[HttpGet("IdList")]
+		public async Task<ActionResult<object>> GetBroadcasterIds()
+		{
+			var ids = await _context.Programmes.Select(x => new {
+				Id = x.ProgrammeId,
+				Name = x.Name
+			}).OrderBy(x => x.Name).ToListAsync();
+
+			return ids;
+		}
 
         // GET: api/Programme/{id}
         [HttpGet("{id}")]

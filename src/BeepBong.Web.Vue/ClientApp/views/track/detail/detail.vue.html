@@ -9,6 +9,7 @@
             <router-link :to="{ name: 'sample-editor', query: { trackId: `${track.trackId }` }}" >
                 <i data-feather="upload-cloud"></i><span>Upload new sample</span>
             </router-link>
+			<a class="text-danger" @click="deleteTrack()"><i data-feather="trash-2"></i>Delete Track</a>
 			<table class="table">
 				<thead>
 					<tr>

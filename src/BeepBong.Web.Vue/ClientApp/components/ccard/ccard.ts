@@ -6,5 +6,5 @@ import { ChannelItem } from '../../models/channel';
 
 @Component
 export default class ChannelCard extends Vue {
-    @Model('onload', {type: ChannelItem}) readonly c!: ChannelItem
+    @Model('onload', {type: Object}) readonly c!: ChannelItem
 }

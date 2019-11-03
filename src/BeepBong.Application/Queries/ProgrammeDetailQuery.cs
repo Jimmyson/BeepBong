@@ -24,23 +24,10 @@ namespace BeepBong.Application.Queries
                     ProgrammeId = p.ProgrammeId,
                     Name = p.Name,
                     AirDate = (p.AirDate.HasValue) ? p.AirDate.Value.ToShortDateString() : null,
+                    ChannelId = p.ChannelId,
                     ChannelName = (p.Channel != null) ? p.Channel.Name : null,
                     ImageId = p.ImageId,
-                    TrackLists = p.ProgrammeTrackLists.Select(ptl => ptl.TrackList).Select(tl => new SimpleTrackList()
-                    {
-                        TrackListId = tl.TrackListId,
-                        Name = tl.Name,
-                        Composer = tl.Composer,
-                        Library = tl.Library,
-                        Tracks = tl.Tracks.Select(t => new SimpleTrack()
-                        {
-                            TrackId = t.TrackId,
-                            Name = t.Name,
-                            Variant = t.Variant,
-                            Description = t.Description,
-                            SampleCount = t.Samples.Count
-                        }).ToList()
-                    }).ToList()
+                    TrackListIds = p.ProgrammeTrackLists.Select(ptl => ptl.TrackList).Select(tl => tl.TrackListId).ToList()
                 });
         }
     }

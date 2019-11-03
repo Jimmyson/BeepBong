@@ -4,7 +4,7 @@
         <div>
             <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
         </div>
-        <table class="table">
+        <table class="table" v-if="tracklists">
             <thead>
                 <tr>
                     <th>Name</th>

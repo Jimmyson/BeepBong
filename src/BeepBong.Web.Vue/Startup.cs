@@ -35,6 +35,7 @@ namespace beepbong.web.vue
             });
 
             services.AddMvc()
+				.AddJsonOptions(options => options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)
                 .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2);
         }
 

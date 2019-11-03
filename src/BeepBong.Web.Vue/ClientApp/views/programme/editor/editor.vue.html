@@ -4,31 +4,36 @@
         <div>
             <div class="form-group">
                 <label for="name">Programme Name</label>
-                <input type="text"
+                <input type="text" v-model="programme.name"
                     class="form-control" name="name" id="name" aria-describedby="helpId-name" placeholder="Name">
                 <small id="helpId-name" class="form-text text-muted">data</small>
             </div>
             <div class="form-group">
                     <i data-feather="calendar"></i><label for="airDate">Air Date</label>
-                <input type="date"
+                <input type="date" v-model="programme.airDate"
                     class="form-control" name="airDate" id="airDate" aria-describedby="helpId-airDate" placeholder="Air Date">
                 <small id="helpId-airDate" class="form-text text-muted">Help text</small>
             </div>
             <div class="form-group">
                 <label for="channel">Channel</label>
-                <select class="custom-select" name="channel" id="channel">
-                    <option selected>Select one</option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
+                <select class="custom-select" name="channel" id="channel" v-model="programme.channelId">
+                    <option disabled :value="undefined">Select one</option>
+                    <option v-for="id in channelList" :value="id.id">{{ id.name }}</option>
                 </select>
             </div>
-            <div class="form-group">
-              <label for="image">Image</label>
-              <input type="file" class="form-control-file" name="image" id="image" placeholder="Upload an image" aria-describedby="fileHelpId-image">
-              <small id="fileHelpId-image" class="form-text text-muted">Help text</small>
-            </div>
-            <div>
+            <hr />
+			<div class="form-group">
+				<div class="custom-file">
+					<label class="custom-file-label" for="image">{{ programme.imageChange ? programme.image.name : "Upload File" }}</label>
+					<input type="file" v-on:change="handleFileUpload($event.target.files)" accept="image/png, image/jpeg"
+						custom="custom-file-input" name="image" id="image" placeholder="Image" aria-describedby="fileHelpId-image" />
+				</div>
+				<small id="fileHelpId-image" class="form-text text-muted">Help Text</small>
+				<input v-on:click="clearFileUpload()" name="removeImage" id="removeImage" class="btn btn-danger" type="button" value="Remove Image" />
+			</div>
+			<img v-if="programme.imageId" :src="'api/Image/' + `${programme.imageId}`" width="auto" height="360px" />
+			<hr />
+			<div>
                 <!-- Create when none is selected -->
                 <a>Create new Tracklist</a>
                 <div>
@@ -38,23 +43,20 @@
             <div class="row">
                 <div class="form-group col">
                     <label for="tracklists">Tracklists</label>
-                    <select multiple class="form-control" name="tracklists" id="tracklists">
-                        <option></option>
-                        <option></option>
-                        <option></option>
+                    <select multiple class="form-control" name="tracklists" id="tracklists" v-model="programme.trackListIds">
+                        <option v-for="id in tracklistList" :value="id.id">{{ id.name }}</option>
                     </select>
                 </div>
                 <div class="col">
                     <h5>Selected Tracklists</h5>
                     <ul>
-                        <li>Tracklist 2</li>
-                        <li>Tracklist 4</li>
+                        <li v-for="id in tracklistLink">{{ id }}</li>
                     </ul>
                 </div>
             </div>
             <hr />
-            <button type="button" class="btn btn-danger">Cancel</button>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-danger" @click="$router.back()">Cancel</button>
+            <button type="button" class="btn btn-primary" v-on:click="sendProgramme()">Submit</button>
         </div>
     </div>
 </template>

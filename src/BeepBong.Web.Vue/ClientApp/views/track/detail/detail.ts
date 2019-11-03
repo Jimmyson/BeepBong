@@ -30,4 +30,16 @@ export default class TrackView extends Vue {
             })
             .catch(e => console.log(e));
     }
+	
+	deleteTrack()
+	{
+		if (confirm("Would you like to delete Track: " + this.track.name + "?"))
+			Axios.delete('/api/Track/' + this.$route.params.id)
+				.then(response => {
+					this.$router.back();
+				})
+				.catch(e =>
+					console.log(e)
+				);
+	}
 }

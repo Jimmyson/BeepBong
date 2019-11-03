@@ -16,7 +16,7 @@ export default class TracklistListView extends Vue {
     tracklists: TracklistItem[] = [];
     pagination: Pagination = new Pagination;
 
-    mounted()
+    beforeMount()
     {
         feather.replace();
         this.getTracklists(1);
@@ -24,6 +24,8 @@ export default class TracklistListView extends Vue {
 
     getTracklists(num: number)
     {
+		this.tracklists = [];
+
         Axios.get<listResponse<TracklistItem>>('/api/Tracklist', { params: { pageNumber: num }})
             .then(Response => {
                 this.tracklists = Response.data.items;
@@ -32,7 +34,7 @@ export default class TracklistListView extends Vue {
     }
 
     updated() {
-        //feather.replace(); // Not Redrawing when pages change
+        feather.replace(); // Not Redrawing when pages change
     }
 
     changePage(page: number)
