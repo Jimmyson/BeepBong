@@ -6,7 +6,7 @@ import { TracklistDetail } from '../../models/tracklistDetail';
 
 @Component
 export default class TracklistDetailItem extends Vue {
-    @Model('onload', {type: TracklistDetail}) readonly tl!: TracklistDetail
+    @Model('onload', {type: Object}) readonly tl!: TracklistDetail
 
     updated()
     {

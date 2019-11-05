@@ -1,3 +1,5 @@
+import { Track } from "./track";
+
 export class TracklistItem {
     constructor() {
         this.trackListId = "";
@@ -5,7 +7,8 @@ export class TracklistItem {
         this.composer = "";
         this.library = false;
         this.trackCount = 0;
-        this.programmeCount = 0;
+		this.programmeCount = 0;
+		this.tracks = [];
     }
 
     trackListId: string;
@@ -13,5 +16,6 @@ export class TracklistItem {
     composer: string;
     library: boolean;
     trackCount: number;
-    programmeCount: number;
+	programmeCount: number;
+	tracks: Track[];
 }
