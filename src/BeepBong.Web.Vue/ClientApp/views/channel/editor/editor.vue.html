@@ -1,16 +1,16 @@
 <template>
     <div id="channelEditor">
         <h3>Channel Editor</h3>
-        <div>
+        <form action="" @sumbit.prevent="sendChannel">
             <div class="form-group">
                 <label for="name">Channel Name</label>
-                <input type="text" v-model="channel.name"
+                <input type="text" v-model="channel.name" required
                     class="form-control" name="name" id="name" aria-describedby="helpId-name" placeholder="Name">
                 <small id="helpId-name" class="form-text text-muted">data</small>
             </div>
             <div class="form-row">
                 <div class="form-group col">
-                    <i data-feather="calendar"></i><label for="opened">Opned</label>
+                    <i data-feather="calendar"></i><label for="opened">Opened</label>
                     <input type="date" v-model="channel.opened"
                         class="form-control" name="opened" id="opened" aria-describedby="helpId-opened" placeholder="opened">
                     <small id="helpId-opened" class="form-text text-muted">Help text</small>
@@ -31,8 +31,8 @@
             </div>
             <hr />
             <button type="button" class="btn btn-danger" @click="$router.back()">Cancel</button>
-            <button type="submit" class="btn btn-primary" v-on:click="sendChannel()">Submit</button>
-        </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 </template>
 

@@ -1,13 +1,4 @@
-export class Library {
-    constructor()
-    {
-        this.libraryId = "";
-        this.albumName = "";
-        this.label = "";
-        this.catalog = "";
-        this.mbid = "";
-    }
-
+export interface Library {
     libraryId: string;
     albumName: string;
     label: string;

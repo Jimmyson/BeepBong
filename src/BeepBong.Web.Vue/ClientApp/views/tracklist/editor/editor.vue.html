@@ -1,11 +1,11 @@
 <template>
     <div id="tracklistEditor">
         <h3>Tracklist Editor</h3>
-        <div>
+        <form action="" @submit.prevent="sendTracklist">
             <div class="form-row">
                 <div class="form-group col">
                     <label for="name">Tracklist Name</label>
-                    <input type="text" v-model="tracklist.name"
+                    <input type="text" v-model="tracklist.name" required
                         class="form-control" aria-describedby="helpId-name" placeholder="Name">
                     <small id="helpId-name" class="form-text text-muted">Help text</small>
                 </div>
@@ -62,7 +62,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="(track, i) in tracks">
-                        <td><input type="text" class="form-control" placeholder="Track Name" v-model="track.name" /></td>
+                        <td><input type="text" required class="form-control" placeholder="Track Name" v-model="track.name" /></td>
                         <td><input type="text" class="form-control" placeholder="Track Variant" v-model="track.variant" /></td>
                         <td><input type="text" class="form-control" placeholder="Track Description" v-model="track.description" /></td>
                         <td><a @click="removeTrack(i)"><i data-feather="x"></i>Remove</a></td>
@@ -76,8 +76,8 @@
             </table>
             <hr />
             <button type="button" class="btn btn-danger" @click="$router.back()">Cancel</button>
-            <button type="submit" class="btn btn-primary" @click="sendTracklist()">Submit</button>
-		</div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+		</form>
 		
 		<!-- Bulk Editor Modal -->
 		<div v-if="$route.query.id == undefined || tracklist.tracks.length == 0" class="modal fade" id="bulkEditor" tabindex="-1" role="dialog" aria-labelledby="bulkEditorLabel" aria-hidden="true">
@@ -101,7 +101,7 @@
 		</div>
 
 		<!-- Modal to create to library -->
-		<div class="modal fade" id="libraryEdotpr" tabindex="-1" role="dialog" aria-labelledby="bulkEditorLabel" aria-hidden="true">
+		<div class="modal fade" id="libraryEditor" tabindex="-1" role="dialog" aria-labelledby="bulkEditorLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -115,7 +115,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" @click="sendTracklist()">Save changes</button>
+					<button type="button" class="btn btn-primary" @submit="alert('Not yet implemented')" data-dismiss="modal">Save changes</button>
 				</div>
 			</div>
 			</div>

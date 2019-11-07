@@ -1,13 +1,41 @@
 <template>
     <div id="libraryEditor">
         <h3>Library Editor</h3>
-        <div>
-            <input placeholder="Library Name" />
-            <input placeholder="Library Artist" />
-            <input placeholder="Library Catalog" />
-            <input placeholder="MusicBrainz ID" />
-        </div>
-        <button>Cancel</button>
-        <button>Submit</button>
+        <form action="" @submit.prevent="sendLibrary">
+            <div class="form-group">
+                <label for="albumName">Library Name</label>
+                <input type="text" v-model="library.albumName" required
+                    class="form-control" name="mbid" id="albumName" aria-describedby="helpId-albumName" placeholder="Library Name">
+                <small id="helpId-albumName" class="form-text text-muted">data</small>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="label">Label</label>
+                    <input type="text" v-model="library.label"
+                        class="form-control" name="label" id="label" aria-describedby="helpId-label" placeholder="Label">
+                    <small id="helpId-label" class="form-text text-muted">data</small>
+                </div>
+                
+                <div class="form-group col">
+                    <label for="catalog">Catalog</label>
+                    <input type="text" v-model="library.catalog"
+                        class="form-control" name="catalog" id="catalog" aria-describedby="helpId-catalog" placeholder="Catalog">
+                    <small id="helpId-catalog" class="form-text text-muted">data</small>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="mbid">MusicBrainz ID</label>
+                <input type="text" v-model="library.mbid"
+                    class="form-control" name="mbid" id="mbid" aria-describedby="helpId-mbid" placeholder="MusicBrainz Release ID">
+                <small id="helpId-mbid" class="form-text text-muted">data</small>
+            </div>
+            <hr />
+            <button type="button" class="btn btn-danger" @click="$router.back()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 </template>
+
+<script src="./editor.ts"></script>

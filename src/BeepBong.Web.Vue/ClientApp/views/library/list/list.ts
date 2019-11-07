@@ -14,12 +14,13 @@ export default class LibraryListView extends Vue {
 
     mounted()
     {
-        feather.replace();
         this.getLibraries(1);
     }
 
     getLibraries(num: number)
     {
+        this.libraries = [];
+
         Axios.get<listResponse<Library>>('api/Library', { params: { pageNumber: num }})
             .then(Response => {
                 this.libraries = Response.data.items;
@@ -28,8 +29,20 @@ export default class LibraryListView extends Vue {
             .catch(e => console.log(e));
     }
 
+    removeLibrary(id: string)
+    {
+        Axios.delete('api/Library/' + id)
+            .then(Response => alert('OK'))
+            .catch(e => alert(e));
+    }
+
     changePage(num: number)
     {
         this.getLibraries(num);
+    }
+
+    updated()
+    {
+        feather.replace();
     }
 }

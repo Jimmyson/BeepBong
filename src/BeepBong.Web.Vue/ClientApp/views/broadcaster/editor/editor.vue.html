@@ -1,11 +1,11 @@
 <template>
     <div id="broadcastEditor">
         <h3>Broadcaster Editor</h3>
-        <div>
+        <form action="" @submit.prevent="sendBroadcaster">
 			<input type="hidden" v-model="broadcaster.broadcasterId" />
             <div class="form-group">
                 <label for="name">Broadcaster Name</label>
-                <input type="text" v-model="broadcaster.name"
+                <input type="text" v-model="broadcaster.name" required
                     class="form-control" name="name" id="name" aria-describedby="helpId-name" placeholder="Name">
                 <small id="helpId-name" class="form-text text-muted">data</small>
 			</div>
@@ -49,8 +49,8 @@
 			<img v-if="broadcaster.imageId" :src="'api/Image/' + `${broadcaster.imageId}`" width="auto" height="360px" />
 			<hr />
             <button type="button" class="btn btn-danger" @click="$router.back()">Cancel</button>
-            <button type="button" class="btn btn-primary" v-on:click="sendBroadcaster()">Submit</button>
-        </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 </template>
 

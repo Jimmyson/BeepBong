@@ -1,10 +1,10 @@
 <template>
     <div id="programmeEditor">
         <h3>Programme Editor</h3>
-        <div>
+        <form action="" @submit.prevent="sendProgramme">
             <div class="form-group">
                 <label for="name">Programme Name</label>
-                <input type="text" v-model="programme.name"
+                <input type="text" v-model="programme.name" required
                     class="form-control" name="name" id="name" aria-describedby="helpId-name" placeholder="Name">
                 <small id="helpId-name" class="form-text text-muted">data</small>
             </div>
@@ -33,13 +33,13 @@
 			</div>
 			<img v-if="programme.imageId" :src="'api/Image/' + `${programme.imageId}`" width="auto" height="360px" />
 			<hr />
-			<div>
+			<!-- <div> -->
                 <!-- Create when none is selected -->
-                <a>Create new Tracklist</a>
+                <!-- <a>Create new Tracklist</a>
                 <div>
                     Modal for Tracklist creator
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="form-group col">
                     <label for="tracklists">Tracklists</label>
@@ -56,8 +56,8 @@
             </div>
             <hr />
             <button type="button" class="btn btn-danger" @click="$router.back()">Cancel</button>
-            <button type="button" class="btn btn-primary" v-on:click="sendProgramme()">Submit</button>
-        </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 </template>
 
