@@ -25,7 +25,7 @@
                     <td>{{ library.label }}</td>
                     <td>{{ library.catalog }}</td>
                     <td>
-                        <a v-if="library.mbid" :href="'https://musicbrainz.org/release/'+library.mbid">{{ library.mbid }}<i data-feather="external-link"></i></a>
+                        <a v-if="library.mbid" :href="'https://musicbrainz.org/release/'+library.mbid">{{ library.mbid }} <i data-feather="external-link"></i></a>
                     </td>
                     <td>
                         <router-link :to="{ name: 'library-editor', query: { id: `${library.libraryId}` }}">
