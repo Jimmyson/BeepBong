@@ -48,18 +48,12 @@
                     Modal for Tracklist creator
                 </div>
             </div> -->
-            <div class="row">
+            <div v-if="tracklistList.length > 0" class="row">
                 <div class="form-group col">
                     <i data-feather="music"></i> <label for="tracklists">Tracklists</label>
                     <select multiple class="form-control" name="tracklists" id="tracklists" v-model="programme.trackListIds">
                         <option v-for="id in tracklistList" :value="id.id">{{ id.name }}</option>
                     </select>
-                </div>
-                <div class="col">
-                    <h5>Selected Tracklists</h5>
-                    <ul>
-                        <li v-for="id in tracklistLink">{{ id }}</li>
-                    </ul>
                 </div>
             </div>
             <hr />

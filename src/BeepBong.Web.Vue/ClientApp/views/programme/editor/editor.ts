@@ -30,11 +30,12 @@ interface IdList {
 export default class ProgrammeEditorView extends Vue {
 	programme: ProgrammeEdit = {} as ProgrammeEdit;
 
-	channelList: IdList = {} as IdList;
-	tracklistList: IdList = {} as IdList;
+	channelList: IdList[] = [];
+	tracklistList: IdList[] = [];
 
     mounted() {
 		feather.replace();
+		this.programme.trackListIds = [];
 		this.programme.imageChange = false;
 		this.getLists();
 
@@ -54,11 +55,11 @@ export default class ProgrammeEditorView extends Vue {
 
 	getLists()
 	{
-		Axios.get<IdList>('api/Channel/IdList')
+		Axios.get<IdList[]>('api/Channel/IdList')
 			.then(Response => this.channelList = Response.data)
 			.catch(e => alert(e));
 		
-		Axios.get<IdList>('api/TrackList/IdList')
+		Axios.get<IdList[]>('api/TrackList/IdList')
 			.then(Response => this.tracklistList = Response.data)
 			.catch(e => alert(e));
 	}
