@@ -1,66 +1,91 @@
 <template>
+	<!-- @TODO: Investigate other Sample Upload and scan workflows -->
     <div id="sampleUpload">
         <h3>Sample Upload</h3>
         <div>
             <div class="form-group">
-                <label for="sampleUpload">Sample Upload</label>
-                <input type="file" class="form-control-file" name="sampleUpload" id="sampleUpload" placeholder="Select file to scan" aria-describedby="fileHelpId-sampleUpload">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text"><i data-feather="upload"></i></span>
+					</div>
+					<div class="custom-file">
+						<label class="custom-file-label" for="sampleUpload">{{ file != null ? file.name : "Select file to Scan" }}</label>
+						<!-- <input type="file" v-on:change="alert('Not yet implemented')" accept="audio/*" -->
+						<input type="file" v-on:change="handleFileUpload($event.target.files)" accept="audio/*"
+							class="custom-file-input" name="sampleUpload" id="sampleUpload" placeholder="Sample" aria-describedby="fileHelpId-sampleUpload" />
+					</div>
+				</div>
                 <small id="fileHelpId-sampleUpload" class="form-text text-muted">Help text</small>
             </div>
-            <div class="btn-group" role="group">
-                <button id="play" class="btn btn-outline-secondary"><i data-feather="play"></i></button>
-                <button id="stop" class="btn btn-outline-secondary"><i data-feather="square"></i></button>
-                <button id="delete" class="btn btn-outline-danger"><i data-feather="trash-2"></i></button>
-            </div>
-            <div class="form-group">
-              <label for="track">Track</label>
-              <select class="form-control" name="track" id="track">
-                <option></option>
-                <option></option>
-                <option></option>
-              </select>
-            </div>
-            <div>
-                <span>WAVEFORM</span>
-                <span>SPECTOGRAPH</span>
-            </div>
+			<hr />
+			<div class="form-row">
+				<div class="form-group col">
+					<label for="track">Track</label>
+					<select class="form-control" name="track" id="track">
+						<option></option>
+						<option></option>
+						<option></option>
+					</select>
+				</div>
+				<div class="form-group col-2">
+					<div class="float-right">
+						<label>Playback</label><br />
+						<div class="btn-group" role="group">
+							<button id="play" class="btn btn-outline-secondary"><i data-feather="play"></i></button>
+							<button id="stop" class="btn btn-outline-secondary"><i data-feather="square"></i></button>
+							<button id="delete" class="btn btn-outline-danger" v-on:click="clearFileUpload()"><i data-feather="trash-2"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
             <div class="row">
-                <div class="col">
+                <div class="col-3">
                     <dl>
                         <dt>Fingerprint</dt>
-                        <dd>{{ fingerprint }}</dd>
+                        <dd>{{ fileData.fingerprint ? fileData.fingerprint : "" }}</dd>
                     </dl>
                     <dl>
                         <dt>Sample Rate</dt>
-                        <dd>{{ rate }}</dd>
+                        <dd>{{ fileData.rate ? fileData.rate : "" }}</dd>
                     </dl>
                     <dl>
                         <dt>Sample Count</dt>
-                        <dd>{{ count }}</dd>
+                        <dd>{{ fileData.count ? fileData.count : "" }}</dd>
                     </dl>
                     <dl>
                         <dt>Bit Rate</dt>
-                        <dd>{{ bitRate }}</dd>
+                        <dd>{{ fileData.bitRate ? fileData.bitRate : "" }}</dd>
                     </dl>
                     <dl>
                         <dt>Bit Rate Mode</dt>
-                        <dd>{{ bitRateMode }}</dd>
+                        <dd>{{ fileData.bitRateMode ? fileData.bitRateMode : "" }}</dd>
                     </dl>
                     <dl>
                         <dt>Bit Depth</dt>
-                        <dd>{{ bitDepth }}</dd>
+                        <dd>{{ fileData.bitDepth ? fileData.bitDepth : "" }}</dd>
                     </dl>
                     <dl>
                         <dt>Codec</dt>
-                        <dd>{{ coded }}</dd>
+                        <dd>{{ fileData.codec ? fileData.codec : "" }}</dd>
                     </dl>
                     <dl>
                         <dt>Compression</dt>
-                        <dd>{{ compression }}</dd>
+                        <dd>{{ fileData.compression ? fileData.compression : "" }}</dd>
+                    </dl>
+                    <dl>
+                        <dt>Extra Data</dt>
+                        <dd>{{ fileData.notes ? fileData.notes : "" }}</dd>
                     </dl>
                 </div>
                 <div class="col">
-                    <textarea>Notes</textarea>
+						<div>
+							<span>WAVEFORM</span>
+							<span>SPECTOGRAPH</span>
+						</div>
+						<hr/>
+					<label>Notes from user:</label>
+					<br />
+                    <textarea class="form-control" v-model="inputNotes"></textarea>
                 </div>
             </div>
 
