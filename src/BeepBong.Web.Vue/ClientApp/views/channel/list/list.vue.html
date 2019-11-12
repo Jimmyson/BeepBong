@@ -8,7 +8,7 @@
         <div>
             <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
         </div>
-        <div class="card-deck">
+        <div class="card-columns">
             <channel-card v-for="channel in channels" v-bind:c="channel" />
         </div>
         <div>

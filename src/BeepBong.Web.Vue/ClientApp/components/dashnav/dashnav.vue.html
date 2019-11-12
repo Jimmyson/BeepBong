@@ -1,19 +1,12 @@
 <template>
     <!-- <div class="main-nav"> -->
         <!-- Start of sidebar -->
-        <nav class="d-md-block sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <router-link class="nav-link" to="/" :exact="true">
                             <i data-feather="home"></i>
                             <span>Home</span>
-                        </router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link class="nav-link" to="/tracklist/new">
-                            <i data-feather="music"></i>
-                            <span>Create Tracklist</span>
                         </router-link>
                     </li>
                     <li class="dropdown-divider"></li>
@@ -60,13 +53,13 @@
                             <span>Library</span>
                         </router-link>
                     </li>
-                    <li class="dropdown-divider"></li>
+                    <!-- <li class="dropdown-divider"></li>
                     <li class="nav-item">
                         <router-link class="nav-link" to="/sample/upload">
                             <i data-feather="upload-cloud"></i>
                             <span>Upload Sample</span>
                         </router-link>
-                    </li>
+                    </li> -->
                     <!-- <li class="nav-item">
                         <a class="nav-link">
                             <i data-feather="download-cloud"></i>
@@ -100,7 +93,6 @@
                     </li>
                 </ul>
             </div>
-        </nav>
     <!-- </div> -->
 </template>
 

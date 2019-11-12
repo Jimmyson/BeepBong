@@ -1,6 +1,6 @@
 <template>
-    <div id="bcard">
-        <div class="card mb-4" style="width: 28rem;">
+    <!-- <div id="bcard"> -->
+        <div class="card mb-4">
             <img v-if="b.imageId" class="card-img-top" :src="'/api/Image/' + `${b.imageId}`"/>
             <div class="card-body">
                 <h5 class="card-title">{{ b.name }}</h5>
@@ -12,7 +12,7 @@
                 <div class="float-right" v-if="b.country">
                     <span class="text-muted"><i data-feather="flag"></i> {{ b.country }}</span>
                 </div>
-                <div class="float-left">
+                <div>
                     <router-link :to="{ name: 'broadcaster-detail', params: { id: `${b.broadcasterId}` }}" >
                         <i data-feather="info"></i>
                     </router-link> <!-- |
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 </template>
 
 <script src="./bcard.ts"></script>

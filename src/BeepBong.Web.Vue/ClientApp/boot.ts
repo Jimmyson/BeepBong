@@ -29,9 +29,9 @@ const routes = [
 
     { path: '/track/:id', name: 'track-detail', component: require('./views/track/detail/detail.vue.html').default }, // Track Detail
 
-    { path: '/sample/upload', name: 'sample-editor', component: require('./views/sample/upload/upload.vue.html').default }, // Sample Upload
-    { path: '/sample/:id', component: require('./views/sample/detail/detail.vue.html').default }, // Sample Detail
-    //{ path: '/sample/:id/edit', component: require('./views/sample/edit/edit.vue.html').default }, // Sample Edit
+    // { path: '/sample/upload', name: 'sample-editor', component: require('./views/sample/upload/upload.vue.html').default }, // Sample Upload
+    // { path: '/sample/:id', component: require('./views/sample/detail/detail.vue.html').default }, // Sample Detail
+    // { path: '/sample/:id/edit', component: require('./views/sample/edit/edit.vue.html').default }, // Sample Edit
 
     // Reports
     { path: '/report/orphan-tracklist', component: require('./views/reports/orphanedtl/orphanedtl.vue.html').default },

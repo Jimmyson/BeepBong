@@ -1,6 +1,6 @@
 <template>
-    <div id="programme-card">
-        <div class="card mb-4" style="width: 21rem;">
+    <!-- <div id="programme-card"> -->
+        <div class="card mb-4">
             <img v-if="p.imageId" class="card-img-top" :src="'/api/Image/' + `${p.imageId}`" width="auto"/>
             <div class="card-body">
                 <h5 class="card-title">{{ p.name }}</h5>
@@ -16,7 +16,7 @@
                 <div class="float-right" v-if="p.containsLibrary">
                     <span class="text-left text-muted"><i data-feather="book"></i> Contains Library Music</span>
                 </div>
-                <div class="float-left">
+                <div>
                     <!-- <a><i data-feather="edit"></i></a> -->
                     <router-link :to="{ name: 'programme-detail', params: { id: `${p.programmeId}` } }">
                         <i data-feather="info"></i>
@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 </template>
 
 <script src="./pcard.ts"></script>
