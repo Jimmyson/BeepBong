@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <RootNamespace>BeepBong.SampleUpload</RootNamespace>
+    <PackageVersion>1.0</PackageVersion>
+    <Title>BeepBong.SampleUpload</Title>
+    <Copyright>Copyright © 2019</Copyright>
+    <Description>Description of BeepBong.SampleUpload</Description>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Eto.Forms" Version="2.4.1" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Update="UploadSettings.eto.cs">
+      <DependentUpon>UploadSettings.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  
+</Project>
