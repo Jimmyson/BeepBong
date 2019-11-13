@@ -3,63 +3,181 @@ using Eto.Forms;
 using Eto.Drawing;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace BeepBong.SampleUpload
 {
-    public class Item
-    {
-        public int ID { get; set; }
-        public string FileName { get; set; }
-        public object Track { get; set; }
-        public string Fingerprint { get; set; }
-        public bool Scanned { get; set; }
-        public bool Uploaded { get; set; }
-    }
-
 	partial class MainForm : Form
 	{
-		void InitializeComponent()
-		{
-			Title = "BeepBong Sample Upload";
-			ClientSize = new Size(860, 500);
-			Padding = 10;
+        // Mutable Items
+        ObservableCollection<Item> FileCollection;
+        List<ListItem> Tracklists;
+        List<ListItem> Tracks;
 
-            var list = new List<object>()
+        // Controls
+        OpenFileDialog openFileDialog = new OpenFileDialog
+        {
+            MultiSelect = true,
+            Filters = {
+                new FileFilter("Audio Files", ".mp3", ".m4a", ".wav", ".flac", ".aiff", ".aif", ".wma")
+            }
+        };
+
+        Label statusLabel = new Label { Text = "I'll tell you things", TextColor = Color.FromGrayscale(float.Parse("0.5")) };
+        Button clearListButton = new Button { Text = "Clear List", Enabled = false };
+        Button selectFileButton = new Button { Text = "Add Files..." };
+        Button scanFilesButton = new Button { Text = "Scan", Enabled = false };
+        Button uploadEntityButton = new Button { Text = "Upload", Enabled = false };
+        TextArea tracks = new TextArea { ReadOnly = true };
+
+        DropDown TracklistSelector = new DropDown
+        {
+            ItemKeyBinding = Binding.Property((ListItem i) => i.ID),
+            ItemTextBinding = Binding.Property((ListItem i) => i.Value),
+            SelectedIndex = 0
+        };
+
+        static ComboBoxCell TrackSelector = new ComboBoxCell
+        {
+            //DataStore = Tracks,
+            ComboKeyBinding = Binding.Property((ListItem i) => i.ID),
+            ComboTextBinding = Binding.Property((ListItem i) => i.Value),
+            Binding = Binding.Property<Item, object>(p => p.Track),
+        };
+
+        GridView grid = new GridView
+        {
+            //DataStore = FileCollection,
+            Columns =
             {
-                "One",
-                "Two",
-                "Three",
+                new GridColumn
+                {
+                    HeaderText = "ID",
+                    DataCell = new TextBoxCell { Binding = Binding.Property<Item, string>(p => p.ID.ToString()) }
+                },
+                new GridColumn
+                {
+                    HeaderText = "File Name",
+                    DataCell = new TextBoxCell { Binding = Binding.Property<Item, string>(p => p.FileName) },
+                    Editable = true
+                },
+                new GridColumn
+                {
+                    HeaderText = "Track",
+                    DataCell = TrackSelector,
+                    Editable = true
+                },
+                new GridColumn
+                {
+                    HeaderText = "Fingerprint",
+                    DataCell = new TextBoxCell { Binding = Binding.Property<Item, string>(p => p.Fingerprint) }
+                },
+                new GridColumn
+                {
+                    HeaderText = "Scanned",
+                    DataCell = new CheckBoxCell { Binding = Binding.Property<Item, bool?>(p => p.Scanned) }
+                },
+                new GridColumn
+                {
+                    HeaderText = "Uploaded",
+                    DataCell = new CheckBoxCell { Binding = Binding.Property<Item, bool?>(p => p.Uploaded) }
+                },
+                new GridColumn
+                {
+                    HeaderText = "Status",
+                    DataCell = new TextBoxCell { Binding = Binding.Property<Item, string>(p => p.Status) }
+                },
+            },
+        };
+
+        /// <summary>
+        /// Add files from the system to the File Collection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void HandleFiles(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog(this) == DialogResult.Ok)
+            {
+                MessageBox.Show(string.Concat(openFileDialog.Filenames));
+                foreach (var filePath in openFileDialog.Filenames)
+                {
+                    FileCollection.Add(new Item
+                    {
+                        ID = FileCollection.Count + 1,
+                        FilePath = filePath,
+                        FileName = filePath.Substring(filePath.LastIndexOf(Path.DirectorySeparatorChar) + 1)
+                    });
+                }
+            }
+        }
+
+        /// <summary>
+        /// Process audio files in the collection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void ScanFiles(object sender, EventArgs e)
+        {
+            foreach (Item i in FileCollection.Where(f => !f.Scanned).ToList())
+            {
+                // MessageBox.Show("Scanned " + i.FileName);
+                i.Scanned = true;
+                FileCollection[i.ID - 1] = i;
+                grid.ReloadData(i.ID - 1);
+            }
+        }
+
+        /// <summary>
+        /// Process files in the collection to be sent to the cloud
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void UploadFiles(object sender, EventArgs e)
+        {
+            foreach (Item i in FileCollection.Where(f => !f.Uploaded).ToList())
+            {
+                // MessageBox.Show("Uploaded " + i.FileName);
+                i.Uploaded = true;
+                FileCollection[i.ID - 1] = i;
+                grid.ReloadData(i.ID - 1);
+            }
+        }
+
+        void InitializeComponent()
+        {
+            // Instancate Collections
+            FileCollection = new ObservableCollection<Item>();
+            grid.DataStore = FileCollection;
+
+            Tracklists = UrlProcessing.FetchTracklists().Select(tl => new ListItem() { ID = tl.Key.ToString(), Value = tl.Value }).ToList();
+            TracklistSelector.DataStore = Tracklists;
+
+            // Bind Actions
+            clearListButton.Click += (sender, e) => FileCollection.Clear();
+            selectFileButton.Click += HandleFiles;
+            scanFilesButton.Click += ScanFiles;
+            uploadEntityButton.Click += UploadFiles;
+
+            TracklistSelector.DropDownClosed += (sender, e) =>
+            {
+                Tracks = UrlProcessing.FetchTracks(TracklistSelector.SelectedKey);
+                tracks.Text = string.Concat(Tracks.Select(t => t.Value + Environment.NewLine).ToList());
+
+                TrackSelector.DataStore = Tracks;
             };
 
-            var collection = new ObservableCollection<Item>();
-            collection.Add(new Item
+            FileCollection.CollectionChanged += (sender, e) =>
             {
-                ID = 1,
-                FileName = "Sample_Audio_320k.mp3",
-                Track = "Two",
-                Fingerprint = "hfjhfdfjnvds",
-                Scanned = true,
-                Uploaded = false
-            });
-            collection.Add(new Item
-            {
-                ID = 2,
-                FileName = "Sample_Audio_320k.mp3",
-                Track = "Two",
-                Fingerprint = "hfjhfdfjnvds",
-                Scanned = true,
-                Uploaded = false
-            });
-            collection.Add(new Item
-            {
-                ID = 3,
-                FileName = "Sample_Audio_320k.mp3",
-                Track = "Two",
-                Fingerprint = "hfjhfdfjnvds",
-                Scanned = true,
-                Uploaded = false
-            });
+                clearListButton.Enabled = (FileCollection.Count > 0);
+                scanFilesButton.Enabled = (FileCollection.Count != 0);
+                uploadEntityButton.Enabled = (FileCollection.Any(item => item.Scanned && item.Track != null));
+            };
+
+            Title = "BeepBong Sample Upload";
+			ClientSize = new Size(860, 500);
+			Padding = 10;
 
             Content = new TableLayout()
             {
@@ -92,13 +210,11 @@ namespace BeepBong.SampleUpload
                                                 new StackLayoutItem
                                                 {
                                                     Expand = true,
-                                                    Control = new DropDown
-                                                    {
-                                                    }
+                                                    Control = TracklistSelector
                                                 }
                                             }
                                         },
-                                        new ListBox()
+                                        tracks
                                     }
                                 }
                             },
@@ -118,70 +234,23 @@ namespace BeepBong.SampleUpload
                                             VerticalContentAlignment = VerticalAlignment.Center,
                                             Items =
                                             {
-                                                new Button
-                                                {
-                                                    Text = "File"
-                                                },
-                                                new Button
-                                                {
-                                                    Text = "Folder"
-                                                },
+                                                selectFileButton,
+                                                // new Button
+                                                // {
+                                                //     Text = "Folder"
+                                                // },
                                                 new StackLayoutItem
                                                 {
                                                     Expand = true
                                                 },
-                                                new Button
-                                                {
-                                                    Text = "Clear List"
-                                                }
+                                                clearListButton
                                             }
                                         },
                                         new TableRow
                                         {
                                             ScaleHeight = true,
                                             Cells = {
-                                                new GridView
-                                                {
-                                                    DataStore = collection,
-                                                    Columns =
-                                                    {
-                                                        new GridColumn
-                                                        {
-                                                            HeaderText = "ID",
-                                                            DataCell = new TextBoxCell { Binding = Binding.Property<Item, string>(p => p.ID.ToString()) }
-                                                        },
-                                                        new GridColumn
-                                                        {
-                                                            HeaderText = "File Name",
-                                                            DataCell = new TextBoxCell { Binding = Binding.Property<Item, string>(p => p.FileName) },
-                                                            Editable = true
-                                                        },
-                                                        new GridColumn
-                                                        {
-                                                            HeaderText = "Track",
-                                                            DataCell = new ComboBoxCell {
-                                                                DataStore = list,
-                                                                Binding = Binding.Property<Item, object>(r => r.Track)
-                                                            },
-                                                            Editable = true
-                                                        },
-                                                        new GridColumn
-                                                        {
-                                                            HeaderText = "Fingerprint",
-                                                            DataCell = new TextBoxCell { Binding = Binding.Property<Item, string>(p => p.Fingerprint) }
-                                                        },
-                                                        new GridColumn
-                                                        {
-                                                            HeaderText = "Scanned",
-                                                            DataCell = new CheckBoxCell { Binding = Binding.Property<Item, bool?>(p => p.Scanned) }
-                                                        },
-                                                        new GridColumn
-                                                        {
-                                                            HeaderText = "Uploaded",
-                                                            DataCell = new CheckBoxCell { Binding = Binding.Property<Item, bool?>(p => p.Uploaded) }
-                                                        },
-                                                    },
-                                                }
+                                                grid
                                             }
                                         },
                                         new StackLayout
@@ -191,23 +260,13 @@ namespace BeepBong.SampleUpload
                                             Spacing = 5,
                                             Items =
                                             {
-                                                new Label
-                                                {
-                                                    Text = "I tell you things",
-                                                    TextColor = Color.FromGrayscale(float.Parse("0.5")),
-                                                },
+                                                statusLabel,
                                                 new StackLayoutItem
                                                 {
                                                     Expand = true
                                                 },
-                                                new Button
-                                                {
-                                                    Text = "Scan"
-                                                },
-                                                new Button
-                                                {
-                                                    Text = "Upload"
-                                                }
+                                                scanFilesButton,
+                                                uploadEntityButton
                                             }
                                         },
                                     }
