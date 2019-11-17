@@ -9,7 +9,7 @@ namespace BeepBong.SampleUpload.Desktop
 		[STAThread]
 		static void Main(string[] args)
 		{
-			new Application(Eto.Platform.Detect).Run(new MainForm());
+			new Eto.Forms.Application(Eto.Platform.Detect).Run(new MainForm());
 		}
 	}
 }

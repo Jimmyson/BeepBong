@@ -5,6 +5,8 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using BeepBong.Application.ViewModels;
 
 namespace BeepBong.SampleUpload
 {
@@ -29,7 +31,7 @@ namespace BeepBong.SampleUpload
         Button selectFileButton = new Button { Text = "Add Files..." };
         Button scanFilesButton = new Button { Text = "Scan", Enabled = false };
         Button uploadEntityButton = new Button { Text = "Upload", Enabled = false };
-        TextArea tracks = new TextArea { ReadOnly = true };
+        TextArea tracks = new TextArea { ReadOnly = true, Wrap = false };
 
         DropDown TracklistSelector = new DropDown
         {
@@ -118,15 +120,41 @@ namespace BeepBong.SampleUpload
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void ScanFiles(object sender, EventArgs e)
+        async Task ScanFilesAsync(object sender, EventArgs e)
         {
+            grid.Enabled = false;
+
             foreach (Item i in FileCollection.Where(f => !f.Scanned).ToList())
             {
-                // MessageBox.Show("Scanned " + i.FileName);
-                i.Scanned = true;
+                string hash = null;
+                SampleCreateViewModel model = null;
+
+                await Task.Run(() =>
+                {
+                    // MessageBox.Show("Scanned " + i.FileName);
+                    hash = AudioProcessing.ProcessFile(i.FilePath);
+                    model = AudioProcessing.CreateSample(i.FilePath);
+                });
+
+                if (hash != null)
+                {
+                    model.Fingerprint = hash;
+
+                    i.Scanned = true;
+
+                    i.Fingerprint = hash;
+                    i.Sample = model;
+                }
+                else
+                {
+                    i.Status = "Unable to process the file.";
+                }
+
                 FileCollection[i.ID - 1] = i;
                 grid.ReloadData(i.ID - 1);
             }
+
+            grid.Enabled = true;
         }
 
         /// <summary>
@@ -134,15 +162,29 @@ namespace BeepBong.SampleUpload
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void UploadFiles(object sender, EventArgs e)
+        async Task UploadFilesAsync(object sender, EventArgs e)
         {
-            foreach (Item i in FileCollection.Where(f => !f.Uploaded).ToList())
+            grid.Enabled = false;
+
+            foreach (Item i in FileCollection.Where(f => !f.Uploaded && f.Scanned && f.Track != null && f.Sample != null).ToList())
             {
-                // MessageBox.Show("Uploaded " + i.FileName);
-                i.Uploaded = true;
+                bool uploadSuccess = false;
+
+                await Task.Run(() =>
+                {
+                    i.Sample.TrackId = Guid.Parse(i.Track);
+                    //MessageBox.Show("Uploading " + i.FileName);
+                    uploadSuccess = UrlProcessing.SendSample(i.Sample);
+                });
+
+                i.Status = (uploadSuccess ? "Sample Successfully Uploaded" : "Unable to send the sample");
+
+                i.Uploaded = uploadSuccess;
                 FileCollection[i.ID - 1] = i;
                 grid.ReloadData(i.ID - 1);
             }
+
+            grid.Enabled = true;
         }
 
         void InitializeComponent()
@@ -151,27 +193,35 @@ namespace BeepBong.SampleUpload
             FileCollection = new ObservableCollection<Item>();
             grid.DataStore = FileCollection;
 
-            Tracklists = UrlProcessing.FetchTracklists().Select(tl => new ListItem() { ID = tl.Key.ToString(), Value = tl.Value }).ToList();
+            Tracklists = UrlProcessing.FetchTracklists();
             TracklistSelector.DataStore = Tracklists;
 
             // Bind Actions
             clearListButton.Click += (sender, e) => FileCollection.Clear();
             selectFileButton.Click += HandleFiles;
-            scanFilesButton.Click += ScanFiles;
-            uploadEntityButton.Click += UploadFiles;
+            scanFilesButton.Click += (sender, e) => ScanFilesAsync(sender, e).ConfigureAwait(false); ;
+            uploadEntityButton.Click += (sender, e) => UploadFilesAsync(sender, e).ConfigureAwait(false);
 
             TracklistSelector.DropDownClosed += (sender, e) =>
             {
-                Tracks = UrlProcessing.FetchTracks(TracklistSelector.SelectedKey);
-                tracks.Text = string.Concat(Tracks.Select(t => t.Value + Environment.NewLine).ToList());
+                if (TracklistSelector.SelectedKey != Guid.Empty.ToString())
+                {
+                    Tracks = UrlProcessing.FetchTracks(TracklistSelector.SelectedKey);
+                    tracks.Text = string.Concat(Tracks.Select(t => t.Value + Environment.NewLine).ToList());
 
-                TrackSelector.DataStore = Tracks;
+                    TrackSelector.DataStore = Tracks;
+                }
             };
 
             FileCollection.CollectionChanged += (sender, e) =>
             {
                 clearListButton.Enabled = (FileCollection.Count > 0);
                 scanFilesButton.Enabled = (FileCollection.Count != 0);
+                uploadEntityButton.Enabled = (FileCollection.Any(item => item.Scanned && item.Track != null));
+            };
+
+            grid.CellEdited += (sender, e) =>
+            {
                 uploadEntityButton.Enabled = (FileCollection.Any(item => item.Scanned && item.Track != null));
             };
 
@@ -219,7 +269,6 @@ namespace BeepBong.SampleUpload
                                 }
                             },
                             // RIGHT PANEL
-                            
                             new Panel
                             {
                                 Content = new TableLayout()
@@ -260,6 +309,10 @@ namespace BeepBong.SampleUpload
                                             Spacing = 5,
                                             Items =
                                             {
+                                                new Spinner
+                                                {
+                                                    Enabled = true
+                                                },
                                                 statusLabel,
                                                 new StackLayoutItem
                                                 {
@@ -281,8 +334,8 @@ namespace BeepBong.SampleUpload
 			var clickMe = new Command { MenuText = "Click Me!", ToolBarText = "Click Me!" };
 			clickMe.Executed += (sender, e) => MessageBox.Show(this, "I was clicked!");
 
-			var quitCommand = new Command { MenuText = "Quit", Shortcut = Application.Instance.CommonModifier | Keys.Q };
-			quitCommand.Executed += (sender, e) => Application.Instance.Quit();
+			var quitCommand = new Command { MenuText = "Quit", Shortcut = Eto.Forms.Application.Instance.CommonModifier | Keys.Q };
+			quitCommand.Executed += (sender, e) => Eto.Forms.Application.Instance.Quit();
 
 			var aboutCommand = new Command { MenuText = "About..." };
 			aboutCommand.Executed += (sender, e) => new AboutDialog().ShowDialog(this);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BeepBong.Application.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,6 +15,7 @@ namespace BeepBong.SampleUpload
         public bool Scanned { get; set; }
         public bool Uploaded { get; set; }
         public string Status { get; set; }
+        public SampleCreateViewModel Sample { get; set; }
     }
 
     public class ListItem

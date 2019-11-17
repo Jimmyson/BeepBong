@@ -1,129 +1,113 @@
-﻿using Newtonsoft.Json;
+﻿using BeepBong.Application.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
 
 namespace BeepBong.SampleUpload
 {
     public static class UrlProcessing
     {
-        private static async Task<string> FetchItemAsync(string url)
+        private static string FetchItem(string url)
         {
             HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(new Uri(url));
+            try
+            {
+                HttpResponseMessage response = client.GetAsync(new Uri(url)).Result;
 
-            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                response.EnsureSuccessStatusCode();
+                string responseBody = response.Content.ReadAsStringAsync().Result;
 
-            return responseBody;
+                return responseBody;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                client.Dispose();
+            }
         }
 
-        private static async Task<string> PostSample(string url, object sample) // Object to Sample
+        private static string PostSample(string url, object sample) // Object to Sample
         {
             HttpClient client = new HttpClient();
 
-            StringContent request = new StringContent(JsonConvert.SerializeObject(sample));
-            request.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            try
+            {
+                StringContent request = new StringContent(JsonConvert.SerializeObject(sample));
+                request.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            HttpResponseMessage response = await client.PostAsync(new Uri(url), request);
+                HttpResponseMessage response = client.PostAsync(new Uri(url), request).Result;
 
-            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                response.EnsureSuccessStatusCode();
+                string responseBody = response.Content.ReadAsStringAsync().Result;
 
-            return responseBody;
+                return responseBody;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                client.Dispose();
+            }
         }
 
         public class Tracklist {
-            public Guid trackListId;
+            public string id;
             public string name;
         }
 
-        public static Dictionary<Guid, string> FetchTracklists()
+        public static List<ListItem> FetchTracklists()
         {
 
-            //var data = FetchItem("http://localhost:5001/api/Tracklists/IdList");
+            var data = FetchItem("http://localhost:54026/api/Tracklist/IdList");
 
-            //var list = JsonConvert.DeserializeObject<List<Tracklist>>(data);
+            var tls = JsonConvert.DeserializeObject<List<Tracklist>>(data);
 
-            var list = new List<Tracklist>()
+            var list = new List<ListItem>()
             {
-                new Tracklist{
-                    trackListId = Guid.Empty,
-                    name = "Select a Item"
-                },
-                new Tracklist
+                new ListItem()
                 {
-                    trackListId = Guid.NewGuid(),
-                    name = "fdfkld"
-                },
-                new Tracklist
-                {
-                    trackListId = Guid.NewGuid(),
-                    name = "fdfkld"
-                },
-                new Tracklist
-                {
-                    trackListId = Guid.NewGuid(),
-                    name = "fdfkld"
-                },
-                new Tracklist
-                {
-                    trackListId = Guid.NewGuid(),
-                    name = "fdfkld"
-                },
-                new Tracklist
-                {
-                    trackListId = Guid.NewGuid(),
-                    name = "fdfkld"
-                },
+                    ID = Guid.Empty.ToString(),
+                    Value = "Select a Tracklist..."
+                }
             };
 
-            return list.ToDictionary(d => d.trackListId, d => d.name);
+            list.AddRange(tls.Select(t => new ListItem() { ID = t.id, Value = t.name }).ToList());
+
+            return list;
         }
 
         public static List<ListItem> FetchTracks(string TracklistId)
         {
-            return new List<ListItem>()
+            var data = FetchItem("http://localhost:54026/api/Tracklist/" + TracklistId);
+
+            var tl = JsonConvert.DeserializeObject<TrackListDetailViewModel>(data);
+
+            var list = tl.Tracks.Select(t => new ListItem() { ID = t.TrackId.ToString(), Value = t.Name }).ToList();
+
+            return list;
+        }
+
+        public static bool SendSample(SampleCreateViewModel sample)
+        {
+            try
             {
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-                new ListItem() { ID = "hjsdskd", Value = "kjdksjdjdsd" },
-            };
+                PostSample("http://localhost:54026/api/Sample", sample);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }

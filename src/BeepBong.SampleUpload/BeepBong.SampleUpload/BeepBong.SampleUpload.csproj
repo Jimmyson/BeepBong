@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>BeepBong.SampleUpload</RootNamespace>
     <PackageVersion>1.0</PackageVersion>
     <Title>BeepBong.SampleUpload</Title>
@@ -10,14 +10,27 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <PackageReference Include="AcoustID.NET" Version="1.3.3" />
     <PackageReference Include="Eto.Forms" Version="2.4.1" />
+    <PackageReference Include="Javi.MediaInfo" Version="1.0.9" />
+    <PackageReference Include="NAudio" Version="1.9.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\BeepBong.Application\BeepBong.Application.csproj" />
   </ItemGroup>
   
   <ItemGroup>
     <Compile Update="UploadSettings.eto.cs">
       <DependentUpon>UploadSettings.cs</DependentUpon>
     </Compile>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="lib\MediaInfo.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   
 </Project>
