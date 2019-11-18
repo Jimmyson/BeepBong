@@ -5,7 +5,9 @@ using BeepBong.Application.Queries.Report;
 using BeepBong.Application.ViewModels;
 using BeepBong.Application.ViewModels.Report;
 using BeepBong.DataAccess;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace BeepBong.Web.Vue.Controllers
@@ -46,6 +48,39 @@ namespace BeepBong.Web.Vue.Controllers
             var query = new ProgrammeWOTrackListQuery(_context).GetQuery(null);
 
             return await Pagination<ProgrammeIndexViewModel>.CreateAsync(query, pageNumber ?? 1, pageSize ?? 20);
+        }
+
+        [HttpGet("teapot")]
+        public IActionResult GetTheTeapot()
+        {
+            return new TeapotObjectResult("A very good afternoon from BBC2, where it's time to... Put the kettle on.");
+        }
+    }
+
+    /// <summary>
+    /// Cheecky teatop for the British!
+    /// </summary>
+    [DefaultStatusCode(DefaultStatusCode)]
+    public class TeapotResult : StatusCodeResult
+    {
+        private const int DefaultStatusCode = StatusCodes.Status418ImATeapot;
+
+        public TeapotResult() : base(DefaultStatusCode)
+        {
+        }
+    }
+
+    /// <summary>
+    /// Cheecky teatop for the British with a special message!
+    /// </summary>
+    [DefaultStatusCode(DefaultStatusCode)]
+    public class TeapotObjectResult : ObjectResult
+    {
+        private const int DefaultStatusCode = StatusCodes.Status418ImATeapot;
+
+        public TeapotObjectResult(object error) : base(error)
+        {
+			StatusCode = DefaultStatusCode;
         }
     }
 }

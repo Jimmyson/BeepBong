@@ -14,8 +14,18 @@ namespace BeepBong.SampleUpload
 	{
         // Mutable Items
         ObservableCollection<Item> FileCollection;
-        List<ListItem> Tracklists;
+        List<ListItem> Tracklists = new List<ListItem>()
+        {
+            new ListItem()
+            {
+                ID = null,
+                Value = "No Lists found.."
+            }
+        };
+
         List<ListItem> Tracks;
+
+        public IConfig Config;
 
         // Controls
         OpenFileDialog openFileDialog = new OpenFileDialog
@@ -32,6 +42,8 @@ namespace BeepBong.SampleUpload
         Button scanFilesButton = new Button { Text = "Scan", Enabled = false };
         Button uploadEntityButton = new Button { Text = "Upload", Enabled = false };
         TextArea tracks = new TextArea { ReadOnly = true, Wrap = false };
+
+        Button listReloadButton = new Button { Text = "Reload" };
 
         DropDown TracklistSelector = new DropDown
         {
@@ -174,7 +186,7 @@ namespace BeepBong.SampleUpload
                 {
                     i.Sample.TrackId = Guid.Parse(i.Track);
                     //MessageBox.Show("Uploading " + i.FileName);
-                    uploadSuccess = UrlProcessing.SendSample(i.Sample);
+                    uploadSuccess = UrlProcessing.SendSample(Config.GetURL(), i.Sample, Config.GetAPI());
                 });
 
                 i.Status = (uploadSuccess ? "Sample Successfully Uploaded" : "Unable to send the sample");
@@ -193,8 +205,18 @@ namespace BeepBong.SampleUpload
             FileCollection = new ObservableCollection<Item>();
             grid.DataStore = FileCollection;
 
-            Tracklists = UrlProcessing.FetchTracklists();
+            if (Config != null)
+            {
+                Tracklists = UrlProcessing.FetchTracklists(Config.GetURL());
+                TracklistSelector.Enabled = true;
+            }
+            else
+            {
+                TracklistSelector.Enabled = false;
+            }
+
             TracklistSelector.DataStore = Tracklists;
+            TracklistSelector.SelectedIndex = 0;
 
             // Bind Actions
             clearListButton.Click += (sender, e) => FileCollection.Clear();
@@ -202,11 +224,26 @@ namespace BeepBong.SampleUpload
             scanFilesButton.Click += (sender, e) => ScanFilesAsync(sender, e).ConfigureAwait(false); ;
             uploadEntityButton.Click += (sender, e) => UploadFilesAsync(sender, e).ConfigureAwait(false);
 
+            listReloadButton.Click += (sender, e) =>
+            {
+                if (Config.GetURL() != null)
+                {
+                    Tracklists = UrlProcessing.FetchTracklists(Config.GetURL());
+                    TracklistSelector.DataStore = Tracklists;
+                    TracklistSelector.SelectedIndex = 0;
+                    TracklistSelector.Enabled = true;
+                }
+                else
+                {
+                    TracklistSelector.Enabled = false;
+                }
+            };
+
             TracklistSelector.DropDownClosed += (sender, e) =>
             {
-                if (TracklistSelector.SelectedKey != Guid.Empty.ToString())
+                if (TracklistSelector.SelectedKey != null && TracklistSelector.SelectedKey != Guid.Empty.ToString())
                 {
-                    Tracks = UrlProcessing.FetchTracks(TracklistSelector.SelectedKey);
+                    Tracks = UrlProcessing.FetchTracks(Config.GetURL(), TracklistSelector.SelectedKey);
                     tracks.Text = string.Concat(Tracks.Select(t => t.Value + Environment.NewLine).ToList());
 
                     TrackSelector.DataStore = Tracks;
@@ -261,7 +298,8 @@ namespace BeepBong.SampleUpload
                                                 {
                                                     Expand = true,
                                                     Control = TracklistSelector
-                                                }
+                                                },
+                                                listReloadButton
                                             }
                                         },
                                         tracks
@@ -341,7 +379,12 @@ namespace BeepBong.SampleUpload
 			aboutCommand.Executed += (sender, e) => new AboutDialog().ShowDialog(this);
 
             var preferenceCommand = new Command();
-            preferenceCommand.Executed += (sender, e) => new UploadSettings().ShowModal();
+            preferenceCommand.Executed += (sender, e) => {
+                new UploadSettings()
+                {
+                    Config = (Config as IConfig)
+                }.ShowModal();
+            };
 
 			// create menu
 			Menu = new MenuBar

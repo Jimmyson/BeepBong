@@ -6,6 +6,8 @@ namespace BeepBong.SampleUpload
 {
 	partial class UploadSettings : Dialog
 	{
+        public IConfig Config;
+
 		void InitializeComponent()
 		{
 			Title = "BeepBong Settings";
@@ -13,6 +15,42 @@ namespace BeepBong.SampleUpload
 			Padding = 10;
             Location = new Point(600, 400);
             Resizable = false;
+
+            // Input
+            var URLInput = new TextBox { PlaceholderText = "Where do I look?", Text = Config?.GetURL() ?? "" };
+            var SaveURLButton = new Button { Text = "Test" };
+            SaveURLButton.Click += (sender, e) =>
+            {
+                var url = URLInput.Text;
+
+                if (UrlProcessing.TeaTime(url))
+                {
+                    Config.SetURL(url);
+                    MessageBox.Show("A very good afternoon from BBC2, where it's time to... Put the kettle on.", MessageBoxType.Information); //https://www.youtube.com/watch?v=SNbLkVl-xNY
+                }
+                else
+                {
+                    MessageBox.Show("Unable to poll URL. Check that you can access the site.", MessageBoxType.Warning);
+                }
+            };
+
+
+            var APIInput = new PasswordBox { Text = Config?.GetAPI() };
+            var SaveAPIButton = new Button { Text = "Save" };
+            SaveURLButton.Click += (sender, e) =>
+            {
+                var key = APIInput.Text;
+
+                // if (UrlProcessing.TeaTime(key))
+                // {
+                //     Config.SetAPI(key);
+                //     MessageBox.Show("A very good afternoon from BBC2, where it's time to... Put the kettle on.", MessageBoxType.Information); //https://www.youtube.com/watch?v=SNbLkVl-xNY
+                // }
+                // else
+                // {
+                //     MessageBox.Show("Unable to poll URL. Check that you can access the site.", MessageBoxType.Warning);
+                // }
+            };
 
             // Commands
             var closeCommand = new Command();
@@ -44,11 +82,11 @@ namespace BeepBong.SampleUpload
                                             new TableCell
                                             {
                                                 ScaleWidth = true,
-                                                Control = new TextBox { PlaceholderText = "Where do I look?" }
+                                                Control = URLInput
                                             },
                                             new TableCell
                                             {
-                                                Control = new Button { Text = "Test" }
+                                                Control = SaveURLButton
                                             }
                                         }
                                     },
@@ -62,11 +100,11 @@ namespace BeepBong.SampleUpload
                                             new TableCell
                                             {
                                                 ScaleWidth = true,
-                                                Control = new PasswordBox()
+                                                Control = APIInput
                                             },
                                             new TableCell
                                             {
-                                                Control = new Button { Text = "Save" }
+                                                Control = SaveAPIButton
                                             }
                                         }
                                     }

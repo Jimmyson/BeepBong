@@ -18,7 +18,7 @@ namespace BeepBong.SampleUpload
                 HttpResponseMessage response = client.GetAsync(new Uri(url)).Result;
 
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                response.EnsureSuccessStatusCode();
+                //response.EnsureSuccessStatusCode();
                 string responseBody = response.Content.ReadAsStringAsync().Result;
 
                 return responseBody;
@@ -33,7 +33,7 @@ namespace BeepBong.SampleUpload
             }
         }
 
-        private static string PostSample(string url, object sample) // Object to Sample
+        private static string PostSample(string url, object sample, string key) // Object to Sample
         {
             HttpClient client = new HttpClient();
 
@@ -65,10 +65,10 @@ namespace BeepBong.SampleUpload
             public string name;
         }
 
-        public static List<ListItem> FetchTracklists()
+        public static List<ListItem> FetchTracklists(string url)
         {
-
-            var data = FetchItem("http://localhost:54026/api/Tracklist/IdList");
+            url = url.TrimEnd('/');
+            var data = FetchItem($"{url}/api/Tracklist/IdList");
 
             var tls = JsonConvert.DeserializeObject<List<Tracklist>>(data);
 
@@ -86,9 +86,10 @@ namespace BeepBong.SampleUpload
             return list;
         }
 
-        public static List<ListItem> FetchTracks(string TracklistId)
+        public static List<ListItem> FetchTracks(string url, string TracklistId)
         {
-            var data = FetchItem("http://localhost:54026/api/Tracklist/" + TracklistId);
+            url = url.TrimEnd('/');
+            var data = FetchItem($"{url}/api/Tracklist/" + TracklistId);
 
             var tl = JsonConvert.DeserializeObject<TrackListDetailViewModel>(data);
 
@@ -97,17 +98,25 @@ namespace BeepBong.SampleUpload
             return list;
         }
 
-        public static bool SendSample(SampleCreateViewModel sample)
+        public static bool SendSample(string url, SampleCreateViewModel sample, string key)
         {
+            url = url.TrimEnd('/');
             try
             {
-                PostSample("http://localhost:54026/api/Sample", sample);
+                PostSample($"{url}/api/Sample", sample, key);
                 return true;
             }
             catch (Exception e)
             {
                 return false;
             }
+        }
+
+        public static bool TeaTime(string url)
+        {
+            url = url.TrimEnd('/');
+            var data = FetchItem($"{url}/api/report/teapot");
+            return (data != null);
         }
     }
 }
