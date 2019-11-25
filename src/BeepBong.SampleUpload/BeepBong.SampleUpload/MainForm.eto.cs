@@ -25,7 +25,7 @@ namespace BeepBong.SampleUpload
 
         List<ListItem> Tracks;
 
-        public IConfig Config;
+        protected IConfig Config;
 
         // Controls
         OpenFileDialog openFileDialog = new OpenFileDialog
@@ -205,7 +205,7 @@ namespace BeepBong.SampleUpload
             FileCollection = new ObservableCollection<Item>();
             grid.DataStore = FileCollection;
 
-            if (Config != null)
+            if (Config.IsConfigSetup())
             {
                 Tracklists = UrlProcessing.FetchTracklists(Config.GetURL());
                 TracklistSelector.Enabled = true;
@@ -369,8 +369,8 @@ namespace BeepBong.SampleUpload
             };
 
 			// create a few commands that can be used for the menu and toolbar
-			var clickMe = new Command { MenuText = "Click Me!", ToolBarText = "Click Me!" };
-			clickMe.Executed += (sender, e) => MessageBox.Show(this, "I was clicked!");
+			//var clickMe = new Command { MenuText = "Click Me!", ToolBarText = "Click Me!" };
+			//clickMe.Executed += (sender, e) => MessageBox.Show(this, "I was clicked!");
 
 			var quitCommand = new Command { MenuText = "Quit", Shortcut = Eto.Forms.Application.Instance.CommonModifier | Keys.Q };
 			quitCommand.Executed += (sender, e) => Eto.Forms.Application.Instance.Quit();
@@ -380,10 +380,7 @@ namespace BeepBong.SampleUpload
 
             var preferenceCommand = new Command();
             preferenceCommand.Executed += (sender, e) => {
-                new UploadSettings()
-                {
-                    Config = (Config as IConfig)
-                }.ShowModal();
+                new UploadSettings(Config).ShowModal();
             };
 
 			// create menu
@@ -392,7 +389,7 @@ namespace BeepBong.SampleUpload
 				Items =
 				{
 					// File submenu
-					new ButtonMenuItem { Text = "&File", Items = { clickMe } },
+					//new ButtonMenuItem { Text = "&File", Items = { clickMe } },
 					// new ButtonMenuItem { Text = "&Edit", Items = { /* commands/items */ } },
 					// new ButtonMenuItem { Text = "&View", Items = { /* commands/items */ } },
 				},

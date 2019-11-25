@@ -6,8 +6,9 @@ namespace BeepBong.SampleUpload
 {
 	public partial class MainForm : Form
 	{
-		public MainForm()
+		public MainForm(IConfig config)
 		{
+            Config = config;
 			InitializeComponent();
 		}
 	}

@@ -14,5 +14,6 @@ namespace BeepBong.SampleUpload
     {
         string GetURL();
         string GetAPI();
+        bool IsConfigSetup();
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Configuration;
+﻿using System.Collections;
+using System.Configuration;
+using System.Linq;
 
 namespace BeepBong.SampleUpload.Desktop
 {
@@ -17,12 +19,35 @@ namespace BeepBong.SampleUpload.Desktop
 
         public void SetAPI(string key)
         {
-            ConfigurationManager.AppSettings.Set("APIKey", key);
+            SetConfigValue("APIKey", key);
         }
 
         public void SetURL(string url)
         {
-            ConfigurationManager.AppSettings.Set("URL", url);
+            SetConfigValue("URL", url);
+        }
+
+        public bool IsConfigSetup()
+        {
+            return ConfigurationManager.AppSettings.HasKeys() && ConfigurationManager.AppSettings.AllKeys.Contains("URL");
+        }
+
+        private void SetConfigValue(string key, string value)
+        {
+            var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var settings = configFile.AppSettings.Settings;
+
+            if (settings[key] == null)
+            {
+                settings.Add(key, value);
+            }
+            else
+            {
+                settings[key].Value = value;
+            }
+
+            configFile.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
         }
     }
 }

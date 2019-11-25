@@ -6,8 +6,9 @@ namespace BeepBong.SampleUpload
 {
 	public partial class UploadSettings : Dialog
 	{
-		public UploadSettings()
+		public UploadSettings(IConfig config)
 		{
+            Config = config;
 			InitializeComponent();
 		}
 	}

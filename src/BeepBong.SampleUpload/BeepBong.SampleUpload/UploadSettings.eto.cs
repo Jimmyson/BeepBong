@@ -6,7 +6,7 @@ namespace BeepBong.SampleUpload
 {
 	partial class UploadSettings : Dialog
 	{
-        public IConfig Config;
+        protected IConfig Config;
 
 		void InitializeComponent()
 		{
@@ -17,7 +17,7 @@ namespace BeepBong.SampleUpload
             Resizable = false;
 
             // Input
-            var URLInput = new TextBox { PlaceholderText = "Where do I look?", Text = Config?.GetURL() ?? "" };
+            var URLInput = new TextBox { PlaceholderText = "Where do I look?", Text = Config.GetURL() ?? "" };
             var SaveURLButton = new Button { Text = "Test" };
             SaveURLButton.Click += (sender, e) =>
             {
@@ -34,9 +34,8 @@ namespace BeepBong.SampleUpload
                 }
             };
 
-
-            var APIInput = new PasswordBox { Text = Config?.GetAPI() };
-            var SaveAPIButton = new Button { Text = "Save" };
+            var APIInput = new PasswordBox { Text = Config.GetAPI(), Enabled = false };
+            var SaveAPIButton = new Button { Text = "Save", Enabled = false };
             SaveURLButton.Click += (sender, e) =>
             {
                 var key = APIInput.Text;

@@ -116,7 +116,8 @@ namespace BeepBong.SampleUpload
         {
             url = url.TrimEnd('/');
             var data = FetchItem($"{url}/api/report/teapot");
-            return (data != null);
+
+            return data != null;
         }
     }
 }

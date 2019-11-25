@@ -9,10 +9,7 @@ namespace BeepBong.SampleUpload.Desktop
 		[STAThread]
 		static void Main(string[] args)
 		{
-			new Eto.Forms.Application(Eto.Platform.Detect).Run(new MainForm()
-            {
-                Config = new ClientConfig()
-            });
+			new Eto.Forms.Application(Eto.Platform.Detect).Run(new MainForm(new ClientConfig()));
 		}
 	}
 }
