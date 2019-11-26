@@ -81,7 +81,7 @@ namespace BeepBong.Web.Vue.Controllers
 			BroadcasterEditValidator validator = new BroadcasterEditValidator();
 			if (!validator.Validate(bvm).IsValid) return BadRequest();
 
-            if (new BroadcasterEditQuery(_context).Exists(bvm)) return BadRequest();
+            if (new BroadcasterEditQuery(_context).Exists(bvm)) return Conflict();
 
 			FileToImageEntity.CopyImageToModel(buvm, bvm);
 

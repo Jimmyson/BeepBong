@@ -74,7 +74,7 @@ namespace BeepBong.Web.Vue.Controllers
 			ProgrammeEditValidator validator = new ProgrammeEditValidator();
 			if (!validator.Validate(pvm).IsValid) return BadRequest();
 
-            if (new ProgrammeEditQuery(_context).Exists(pvm)) return BadRequest();
+            if (new ProgrammeEditQuery(_context).Exists(pvm)) return Conflict();
 
 			FileToImageEntity.CopyImageToModel(puvm, pvm);
 

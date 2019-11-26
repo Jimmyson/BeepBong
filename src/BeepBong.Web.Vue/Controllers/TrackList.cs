@@ -71,7 +71,7 @@ namespace BeepBong.Web.Vue.Controllers
 			TrackListEditValidator validator = new TrackListEditValidator();
 			if (!validator.Validate(tlvm).IsValid) return BadRequest();
 
-            if (new TrackListEditQuery(_context).Exists(tlvm)) return BadRequest();
+            if (new TrackListEditQuery(_context).Exists(tlvm)) return Conflict();
 
             new TrackListEditCommand(_context).SendCommand(tlvm);
 

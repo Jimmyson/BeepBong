@@ -72,7 +72,7 @@ namespace BeepBong.Web.Vue.Controllers
 			ChannelEditValidator validator = new ChannelEditValidator();
 			if (!validator.Validate(cvm).IsValid) return BadRequest();
 
-            if (new ChannelEditQuery(_context).Exists(cvm)) return BadRequest();
+            if (new ChannelEditQuery(_context).Exists(cvm)) return Conflict();
 
             new ChannelEditCommand(_context).SendCommand(cvm);
 
