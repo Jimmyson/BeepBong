@@ -18,7 +18,7 @@ namespace BeepBong.SampleUpload
                 HttpResponseMessage response = client.GetAsync(new Uri(url)).Result;
 
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                //response.EnsureSuccessStatusCode();
+                response.EnsureSuccessStatusCode();
                 string responseBody = response.Content.ReadAsStringAsync().Result;
 
                 return responseBody;

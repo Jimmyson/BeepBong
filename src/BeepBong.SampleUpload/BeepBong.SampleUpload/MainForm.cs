@@ -8,8 +8,9 @@ namespace BeepBong.SampleUpload
 	{
 		public MainForm(IConfig config)
 		{
-            Config = config;
-			InitializeComponent();
+            di = new DataInteraction(config);
+
+            InitializeComponent();
 		}
 	}
 }

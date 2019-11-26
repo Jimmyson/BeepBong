@@ -1,31 +1,15 @@
 using System;
 using Eto.Forms;
 using Eto.Drawing;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using BeepBong.Application.ViewModels;
 
 namespace BeepBong.SampleUpload
 {
 	partial class MainForm : Form
 	{
         // Mutable Items
-        ObservableCollection<Item> FileCollection;
-        List<ListItem> Tracklists = new List<ListItem>()
-        {
-            new ListItem()
-            {
-                ID = null,
-                Value = "No Lists found.."
-            }
-        };
-
-        List<ListItem> Tracks;
-
-        protected IConfig Config;
+        private DataInteraction di;
 
         // Controls
         OpenFileDialog openFileDialog = new OpenFileDialog
@@ -114,16 +98,7 @@ namespace BeepBong.SampleUpload
         {
             if (openFileDialog.ShowDialog(this) == DialogResult.Ok)
             {
-                MessageBox.Show(string.Concat(openFileDialog.Filenames));
-                foreach (var filePath in openFileDialog.Filenames)
-                {
-                    FileCollection.Add(new Item
-                    {
-                        ID = FileCollection.Count + 1,
-                        FilePath = filePath,
-                        FileName = filePath.Substring(filePath.LastIndexOf(Path.DirectorySeparatorChar) + 1)
-                    });
-                }
+                di.AddFileToCollection(openFileDialog.Filenames);
             }
         }
 
@@ -136,33 +111,9 @@ namespace BeepBong.SampleUpload
         {
             grid.Enabled = false;
 
-            foreach (Item i in FileCollection.Where(f => !f.Scanned).ToList())
+            foreach (Item i in di.FileCollection.Where(f => !f.Scanned).ToList())
             {
-                string hash = null;
-                SampleCreateViewModel model = null;
-
-                await Task.Run(() =>
-                {
-                    // MessageBox.Show("Scanned " + i.FileName);
-                    hash = AudioProcessing.ProcessFile(i.FilePath);
-                    model = AudioProcessing.CreateSample(i.FilePath);
-                });
-
-                if (hash != null)
-                {
-                    model.Fingerprint = hash;
-
-                    i.Scanned = true;
-
-                    i.Fingerprint = hash;
-                    i.Sample = model;
-                }
-                else
-                {
-                    i.Status = "Unable to process the file.";
-                }
-
-                FileCollection[i.ID - 1] = i;
+                di.ScanFile(i);
                 grid.ReloadData(i.ID - 1);
             }
 
@@ -178,21 +129,9 @@ namespace BeepBong.SampleUpload
         {
             grid.Enabled = false;
 
-            foreach (Item i in FileCollection.Where(f => !f.Uploaded && f.Scanned && f.Track != null && f.Sample != null).ToList())
+            foreach (Item i in di.FileCollection.Where(f => !f.Uploaded && f.Scanned && f.Track != null && f.Sample != null).ToList())
             {
-                bool uploadSuccess = false;
-
-                await Task.Run(() =>
-                {
-                    i.Sample.TrackId = Guid.Parse(i.Track);
-                    //MessageBox.Show("Uploading " + i.FileName);
-                    uploadSuccess = UrlProcessing.SendSample(Config.GetURL(), i.Sample, Config.GetAPI());
-                });
-
-                i.Status = (uploadSuccess ? "Sample Successfully Uploaded" : "Unable to send the sample");
-
-                i.Uploaded = uploadSuccess;
-                FileCollection[i.ID - 1] = i;
+                di.UploadSample(i);
                 grid.ReloadData(i.ID - 1);
             }
 
@@ -202,12 +141,11 @@ namespace BeepBong.SampleUpload
         void InitializeComponent()
         {
             // Instancate Collections
-            FileCollection = new ObservableCollection<Item>();
-            grid.DataStore = FileCollection;
+            grid.DataStore = di.FileCollection;
 
-            if (Config.IsConfigSetup())
+            if (di.Config.IsConfigSetup())
             {
-                Tracklists = UrlProcessing.FetchTracklists(Config.GetURL());
+                di.GetTracklists();
                 TracklistSelector.Enabled = true;
             }
             else
@@ -215,21 +153,21 @@ namespace BeepBong.SampleUpload
                 TracklistSelector.Enabled = false;
             }
 
-            TracklistSelector.DataStore = Tracklists;
+            TracklistSelector.DataStore = di.Tracklists;
             TracklistSelector.SelectedIndex = 0;
 
             // Bind Actions
-            clearListButton.Click += (sender, e) => FileCollection.Clear();
+            clearListButton.Click += (sender, e) => di.FileCollection.Clear();
             selectFileButton.Click += HandleFiles;
             scanFilesButton.Click += (sender, e) => ScanFilesAsync(sender, e).ConfigureAwait(false); ;
             uploadEntityButton.Click += (sender, e) => UploadFilesAsync(sender, e).ConfigureAwait(false);
 
             listReloadButton.Click += (sender, e) =>
             {
-                if (Config.GetURL() != null)
+                if (di.Config.GetURL() != null)
                 {
-                    Tracklists = UrlProcessing.FetchTracklists(Config.GetURL());
-                    TracklistSelector.DataStore = Tracklists;
+                    di.GetTracklists();
+                    TracklistSelector.DataStore = di.Tracklists;
                     TracklistSelector.SelectedIndex = 0;
                     TracklistSelector.Enabled = true;
                 }
@@ -243,23 +181,23 @@ namespace BeepBong.SampleUpload
             {
                 if (TracklistSelector.SelectedKey != null && TracklistSelector.SelectedKey != Guid.Empty.ToString())
                 {
-                    Tracks = UrlProcessing.FetchTracks(Config.GetURL(), TracklistSelector.SelectedKey);
-                    tracks.Text = string.Concat(Tracks.Select(t => t.Value + Environment.NewLine).ToList());
+                    di.GetTracks(TracklistSelector.SelectedKey);
+                    tracks.Text = string.Concat(di.Tracks.Select(t => t.Value + Environment.NewLine).ToList());
 
-                    TrackSelector.DataStore = Tracks;
+                    TrackSelector.DataStore = di.Tracks;
                 }
             };
 
-            FileCollection.CollectionChanged += (sender, e) =>
+            di.FileCollection.CollectionChanged += (sender, e) =>
             {
-                clearListButton.Enabled = (FileCollection.Count > 0);
-                scanFilesButton.Enabled = (FileCollection.Count != 0);
-                uploadEntityButton.Enabled = (FileCollection.Any(item => item.Scanned && item.Track != null));
+                clearListButton.Enabled = (di.FileCollection.Count > 0);
+                scanFilesButton.Enabled = (di.FileCollection.Count != 0);
+                uploadEntityButton.Enabled = (di.FileCollection.Any(item => item.Scanned && item.Track != null));
             };
 
             grid.CellEdited += (sender, e) =>
             {
-                uploadEntityButton.Enabled = (FileCollection.Any(item => item.Scanned && item.Track != null));
+                uploadEntityButton.Enabled = (di.FileCollection.Any(item => item.Scanned && item.Track != null));
             };
 
             Title = "BeepBong Sample Upload";
@@ -380,7 +318,7 @@ namespace BeepBong.SampleUpload
 
             var preferenceCommand = new Command();
             preferenceCommand.Executed += (sender, e) => {
-                new UploadSettings(Config).ShowModal();
+                new UploadSettings(di.Config).ShowModal();
             };
 
 			// create menu
