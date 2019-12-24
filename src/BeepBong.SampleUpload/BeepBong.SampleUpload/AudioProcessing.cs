@@ -74,14 +74,24 @@ namespace BeepBong.SampleUpload
 
             AudioFileReader nAudio = new AudioFileReader(filePath);
 
+            string bitDepth = null;
+
+            foreach (string detail in mediaInfo.Information)
+            {
+                if (detail.Contains("Bit depth"))
+                {
+                    bitDepth = detail.Substring(detail.IndexOf(':') + 1).Trim();
+                }
+            }
+
             SampleCreateViewModel sample = new SampleCreateViewModel
             {
                 SampleRate = mediaInfo.Audio[0].SamplingRate.ToString(),
-                SampleCount = "0",
+                SampleCount = "Unknown",
                 AudioChannelCount = mediaInfo.Audio[0].Channels.ToString(),
                 BitRate = mediaInfo.Audio[0].BitRate.ToString(),
                 Codec = mediaInfo.Audio[0].Format,
-                BitDepth = "0"
+                BitDepth = bitDepth ?? "Unknown"
             };
 
             BitRateModeEnum bitRateMode;

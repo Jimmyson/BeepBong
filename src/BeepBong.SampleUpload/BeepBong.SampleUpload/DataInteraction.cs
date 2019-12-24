@@ -67,14 +67,11 @@ namespace BeepBong.SampleUpload
 
         public void UploadSample(Item i)
         {
-            bool uploadSuccess = false;
-            
             i.Sample.TrackId = Guid.Parse(i.Track);
-            uploadSuccess = UrlProcessing.SendSample(Config.GetURL(), i.Sample, Config.GetAPI());
 
-            i.Status = (uploadSuccess ? "Sample Successfully Uploaded" : "Unable to send the sample");
+            i.Uploaded = UrlProcessing.SendSample(Config.GetURL(), i.Sample, Config.GetAPI(), out string statusMessage);
+            i.Status = statusMessage;
 
-            i.Uploaded = uploadSuccess;
             FileCollection[i.ID - 1] = i;
         }
 

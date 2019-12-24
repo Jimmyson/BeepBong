@@ -19,8 +19,7 @@ namespace BeepBong.SampleUpload
                 new FileFilter("Audio Files", ".mp3", ".m4a", ".wav", ".flac", ".aiff", ".aif", ".wma")
             }
         };
-
-        Label statusLabel = new Label { Text = "I'll tell you things", TextColor = Color.FromGrayscale(float.Parse("0.5")) };
+        
         Button clearListButton = new Button { Text = "Clear List", Enabled = false };
         Button selectFileButton = new Button { Text = "Add Files..." };
         Button scanFilesButton = new Button { Text = "Scan", Enabled = false };
@@ -285,11 +284,6 @@ namespace BeepBong.SampleUpload
                                             Spacing = 5,
                                             Items =
                                             {
-                                                new Spinner
-                                                {
-                                                    Enabled = true
-                                                },
-                                                statusLabel,
                                                 new StackLayoutItem
                                                 {
                                                     Expand = true

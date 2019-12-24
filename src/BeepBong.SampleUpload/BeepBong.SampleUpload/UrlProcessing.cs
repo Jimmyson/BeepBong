@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
@@ -13,18 +14,23 @@ namespace BeepBong.SampleUpload
         private static string FetchItem(string url)
         {
             HttpClient client = new HttpClient();
+            string responseBody = null;
+
             try
             {
                 HttpResponseMessage response = client.GetAsync(new Uri(url)).Result;
 
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                responseBody = response.Content.ReadAsStringAsync().Result;
                 response.EnsureSuccessStatusCode();
-                string responseBody = response.Content.ReadAsStringAsync().Result;
 
                 return responseBody;
             }
             catch (Exception e)
             {
+                if (responseBody != null && responseBody == "I'm a teapot") // Save the teapot from an accidental shatter...
+                    return responseBody;
+
                 throw e;
             }
             finally
@@ -33,7 +39,7 @@ namespace BeepBong.SampleUpload
             }
         }
 
-        private static string PostSample(string url, object sample, string key) // Object to Sample
+        private static HttpStatusCode PostSample(string url, object sample, string key) // Object to Sample
         {
             HttpClient client = new HttpClient();
 
@@ -45,10 +51,7 @@ namespace BeepBong.SampleUpload
                 HttpResponseMessage response = client.PostAsync(new Uri(url), request).Result;
 
                 response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                response.EnsureSuccessStatusCode();
-                string responseBody = response.Content.ReadAsStringAsync().Result;
-
-                return responseBody;
+                return response.StatusCode;
             }
             catch (Exception e)
             {
@@ -98,16 +101,38 @@ namespace BeepBong.SampleUpload
             return list;
         }
 
-        public static bool SendSample(string url, SampleCreateViewModel sample, string key)
+        public static bool SendSample(string url, SampleCreateViewModel sample, string key, out string statusResponse)
         {
             url = url.TrimEnd('/');
             try
             {
-                PostSample($"{url}/api/Sample", sample, key);
-                return true;
+                HttpStatusCode code = PostSample($"{url}/api/Sample", sample, key);
+
+                switch (code)
+                {
+                    case HttpStatusCode.OK:
+                    case HttpStatusCode.Created:
+                    case HttpStatusCode.Accepted:
+                    case HttpStatusCode.NoContent:
+                    case HttpStatusCode.Found:
+                        statusResponse = "Sample Successfully Uploaded";
+                        return true;
+
+                    // Error Codes to handle
+                    case HttpStatusCode.BadRequest:
+                        statusResponse = "Unable to process the sample";
+                        return false;
+                    case HttpStatusCode.Unauthorized:
+                        statusResponse = "You do not have access";
+                        return false;
+                }
+
+                statusResponse = "Something happened that wasn't expected: HTTP Code: " + code;
+                return false;
             }
             catch (Exception e)
             {
+                statusResponse = "Unable to send the sample to the server";
                 return false;
             }
         }
