@@ -62,7 +62,7 @@ namespace BeepBong.Web.Vue.Controllers
 			LibraryEditValidator validator = new LibraryEditValidator();
 			if (!validator.Validate(library).IsValid) return BadRequest();
 
-            if (new LibraryEditQuery(_context).Exists(library)) return BadRequest();
+            if (new LibraryEditQuery(_context).Exists(library)) return Conflict();
 
             new LibraryEditCommand(_context).SendCommand(library);
 

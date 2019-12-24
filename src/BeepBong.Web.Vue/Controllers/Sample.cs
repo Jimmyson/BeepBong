@@ -48,7 +48,7 @@ namespace BeepBong.Web.Vue.Controllers
 			SampleCreateValidator validator = new SampleCreateValidator();
 			if (!validator.Validate(svm).IsValid) return BadRequest();
 
-            if (new SampleEditQuery(_context).Exists(svm)) return BadRequest();
+            if (new SampleEditQuery(_context).Exists(svm)) return Conflict();
 
             new SampleCreateCommand(_context).SendCommand(svm);
 

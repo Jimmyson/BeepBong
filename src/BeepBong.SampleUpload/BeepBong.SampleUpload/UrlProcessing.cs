@@ -125,14 +125,17 @@ namespace BeepBong.SampleUpload
                     case HttpStatusCode.Unauthorized:
                         statusResponse = "You do not have access";
                         return false;
+                    case HttpStatusCode.Conflict:
+                        statusResponse = "Record already exists";
+                        return false;
                 }
 
-                statusResponse = "Something happened that wasn't expected: HTTP Code: " + code;
+                statusResponse = "Something happened that wasn't expected. HTTP Code: " + code;
                 return false;
             }
             catch (Exception e)
             {
-                statusResponse = "Unable to send the sample to the server";
+                statusResponse = "Unable to send the sample to the server. " + e.Message;
                 return false;
             }
         }
