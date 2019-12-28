@@ -1,0 +1,46 @@
+<template>
+    <div id="reportOrphan">
+        <h3>Orphaned Tracklists</h3>
+        <div>
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+        </div>
+        <table class="table" v-if="tracklists">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Artist</th>
+                    <th>Has Library</th>
+                    <th>Track Count</th>
+                    <th>Programme Count</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="tracklist in tracklists">
+                    <td>{{ tracklist.name }}</td>
+                    <td>{{ tracklist.composer }}</td>
+                    <td>
+                        <div v-if="tracklist.library">
+                            <i data-feather="check"></i> True
+                        </div>
+                        <div v-else>
+                            <i data-feather="x"></i> False
+                        </div>
+                    </td>
+                    <td>{{ tracklist.trackCount }}</td>
+                    <td>{{ tracklist.programmeCount }}</td>
+                    <td>
+                        <router-link :to="{ name: 'tracklist-detail', params: { id: `${tracklist.trackListId}` }}">
+                            <i data-feather="info"></i> Link
+                        </router-link>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div v-if="tracklists.length > 0">
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+        </div>
+    </div>
+</template>
+
+<script src="./orphanedtl.ts"></script>

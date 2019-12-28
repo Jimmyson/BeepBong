@@ -1,0 +1,39 @@
+<template>
+    <div id="channelEditor">
+        <h3>Channel Editor</h3>
+        <form action="" @sumbit.prevent="sendChannel">
+            <div class="form-group">
+                <label for="name">Channel Name</label>
+                <input type="text" v-model="channel.name" required
+                    class="form-control" name="name" id="name" aria-describedby="helpId-name" placeholder="Name">
+                <small id="helpId-name" class="form-text text-muted">data</small>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <i data-feather="calendar"></i><label for="opened">Opened</label>
+                    <input type="date" v-model="channel.opened"
+                        class="form-control" name="opened" id="opened" aria-describedby="helpId-opened" placeholder="opened">
+                    <small id="helpId-opened" class="form-text text-muted">Help text</small>
+                </div>
+                <div class="form-group col">
+                    <i data-feather="calendar"></i><label for="closed">Closed</label>
+                    <input type="date" v-model="channel.closed"
+                        class="form-control" name="closed" id="closed" aria-describedby="helpId-closed" placeholder="Closed">
+                    <small id="helpId-closed" class="form-text text-muted">Help text</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <i data-feather="radio"></i><label for="broadcaster">Broadcaster</label>
+                <select class="custom-select" v-model="channel.broadcasterId" name="broadcaster" id="broadcaster">
+                    <option disabled :value="undefined">Select one</option>
+                    <option v-for="broadcaster in broadcasterList" :value="broadcaster.id">{{ broadcaster.name }}</option>
+                </select>
+            </div>
+            <hr />
+            <button type="button" class="btn btn-danger" @click="$router.back()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</template>
+
+<script src="./editor.ts"></script>

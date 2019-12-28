@@ -1,0 +1,20 @@
+<template>
+    <div id="programmeList">
+        <h3>Programmes</h3>
+        <router-link to="/programme/editor">
+            <i data-feather="plus"></i>Create new programme
+		</router-link>
+		<hr />
+        <div>
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+        </div>
+        <div class="card-columns">
+            <programme-card v-for="programme in programmes" v-bind:p="programme" />
+        </div>
+        <div>
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+        </div>
+    </div>
+</template>
+
+<script src="./list.ts"></script>

@@ -27,7 +27,7 @@ namespace BeepBong.Application.Queries
                 .Select(p => new ProgrammeIndexViewModel() {
                     ProgrammeId = p.ProgrammeId,
                     Name = p.Name,
-                    Year = (p.AirDate.HasValue) ? p.AirDate.Value.Year.ToString() : null,
+                    AirDate = (p.AirDate.HasValue) ? p.AirDate.Value.ToLongDateString() : null,
                     Channel = (p.Channel != null) ? p.Channel.Name : null,
                     ImageId = p.ImageId,
                     ContainsLibrary = p.ProgrammeTrackLists.Any(ptl => ptl.TrackList.Library),

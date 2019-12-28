@@ -9,6 +9,6 @@ namespace BeepBong.Application.ViewModels
         public string Name { get; set; }
         public string Country { get; set; }
         public Guid? ImageId { get; set; }
-        public List<string> ChannelNames { get; set; }
+        public List<Guid> ChannelList { get; set; }
     }
 }

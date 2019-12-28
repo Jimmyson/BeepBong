@@ -8,22 +8,44 @@
 			"name": "BeepBong Seed Data",
 			"type": "coreclr",
 			"request": "launch",
-			"preLaunchTask": "build",
-			"program": "${workspaceFolder}/src/BeepBong.App.Xml/bin/Debug/nercoreapp2.2/BeepBong.App.XmlSeed",
+			"preLaunchTask": "build seed",
+			"program": "${workspaceFolder}/src/BeepBong.App.XmlSeed/bin/Debug/netcoreapp2.2/BeepBong.App.XmlSeed.dll",
 			"args": ["import","${workspaceFolder}/src/BeepBong.App.XmlSeed/dataSeed.xml"],
-			"cwd": "${workspaceFolder}/src/Beepong.App.XmlSeed",
+			"cwd": "${workspaceFolder}/src/BeepBong.App.XmlSeed",
 			"stopAtEntry": false,
 			"console": "internalConsole"
 		},
         {
-            "name": ".NET Core Launch (web)",
+            "name": ".NET Core Launch Razor (web)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build razor web",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/src/BeepBong.Web/bin/Debug/netcoreapp2.2/BeepBong.Web.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/BeepBong.Web",
+            "stopAtEntry": false,
+            // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"                
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+			}
+        },
+        {
+            "name": ".NET Core Launch Vue (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build vue web",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/src/BeepBong.Web.Vue/bin/Debug/netcoreapp2.2/BeepBong.Web.Vue.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/BeepBong.Web.Vue",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {

@@ -8,8 +8,8 @@ namespace BeepBong.Application.Validation
         public ChannelEditValidator()
         {
             RuleFor(c => c.Name).NotNull().NotEmpty().NoURLInString();
-            RuleFor(c => c.Commencement).LessThan(c => c.Closed).When(c => c.Closed != null);
-            RuleFor(c => c.Closed).GreaterThan(c => c.Commencement);
+            RuleFor(c => c.Opened).LessThan(c => c.Closed).When(c => c.Closed != null);
+            RuleFor(c => c.Closed).GreaterThan(c => c.Opened);
         }
     }
 }

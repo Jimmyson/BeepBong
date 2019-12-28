@@ -1,0 +1,45 @@
+<template>
+    <div id="tList">
+        <h5>{{ tl.name }}</h5>
+        <div>
+            <i data-feather="music"></i>
+            <i data-feather="user"></i> {{ tl.composer }}
+            <span v-if="tl.library">
+                <i data-feather="book"></i> Library Music
+            </span>
+        </div>
+        <div id="list" v-if="tl.tracks.length > 0">
+            <hr />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Variant</th>
+                        <th>Description</th>
+                        <th v-if="!tl.library">Fingerprints</th>
+                        <th v-if="!tl.library">Duration</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="track in tl.tracks">
+                        <td scope="row">{{ track.name }}</td>
+                        <td>{{ track.variant }}</td>
+                        <td>{{ track.description }}</td>
+                        <td v-if="!tl.library">
+                            <span v-for="f in track.fingerprints">{{ f }}<br/></span>
+                        </td>
+                        <td v-if="!tl.library">{{ track.duration }}</td>
+                        <td>
+                            <router-link :to="{ name: 'track-detail', params: { id: `${track.trackId}` }}">
+                                <i data-feather="info"></i> Link
+                            </router-link>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>
+
+<script src="./tlist.ts"></script>

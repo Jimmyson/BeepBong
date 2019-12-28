@@ -19,8 +19,9 @@ namespace BeepBong.Application.Queries
                 .Select(c => new ChannelDetailViewModel() {
                     ChannelId = c.ChannelId,
                     Name = c.Name,
-                    Commencement = c.Commencement,
+                    Opened = c.Opened,
                     Closed = c.Closed,
+                    BroadcasterId = c.Broadcaster.BroadcasterId,
                     BroadcasterName = c.Broadcaster.Name,
                     Programmes = c.Programmes.Select(p => new SimpleProgramme() {
                         ProgrammeId = p.ProgrammeId,

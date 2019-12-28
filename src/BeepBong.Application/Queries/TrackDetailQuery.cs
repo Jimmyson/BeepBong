@@ -22,20 +22,7 @@ namespace BeepBong.Application.Queries
                     Variant = t.Variant,
                     Description = t.Description,
                     TrackListId = t.TrackListId,
-                    Samples = t.Samples.Select(s => new SimpleSample()
-                    {
-                        SampleId = s.SampleId,
-                        Duration = s.Duration,
-                        SampleRate = (s.SampleRate/1000).ToString() + " kHz",
-                        AudioChannelCount = s.AudioChannelCount,
-                        BitRate = (s.BitRate/1000).ToString() + " kbps",
-                        BitRateMode = s.BitRateMode.ToString(),
-                        BitDepth = s.BitDepth + " bits",
-                        Codec = s.Codec,
-                        Compression = s.Compression.ToString(),
-                        FingerprintShort = s.Fingerprint.Substring(0,6),
-                        OtherAttributes = s.OtherAttributes
-                    }).ToList()
+                    InLibrary = t.TrackList.Library
                 });
         }
     }

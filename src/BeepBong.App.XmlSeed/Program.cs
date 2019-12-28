@@ -17,7 +17,7 @@ namespace BeepBong.App.XmlSeed
             bool export = false;
 
             options = new DbContextOptionsBuilder<BeepBongContext>()
-                .UseSqlite("Data Source=../BeepBong.Web/BeepBong.db")
+                .UseSqlite("Data Source=../BeepBong.Web.Vue/BeepBong.db")
                 .Options;
 
             if (args.Length < 2) {

@@ -1,0 +1,49 @@
+<template>
+    <div id="tracklistList">
+        <h3>Tracklists</h3>
+        <router-link to="/tracklist/editor">
+            <i data-feather="plus"></i>Create new list
+        </router-link>
+        <div>
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Artist</th>
+                    <th>Has Library</th>
+                    <th>Tracks</th>
+                    <th>Programmes</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="tracklist in tracklists">
+                    <td>{{ tracklist.name }}</td>
+                    <td>{{ tracklist.composer }}</td>
+                    <td>
+                        <div v-if="tracklist.library">
+                            <i data-feather="check"></i> True
+                        </div>
+                        <div v-else>
+                            <i data-feather="x"></i> False
+                        </div>
+                    </td>
+                    <td>{{ tracklist.trackCount }}</td>
+                    <td>{{ tracklist.programmeCount }}</td>
+                    <td>
+                        <router-link :to="tracklist.trackListId">
+                            <i data-feather="info"></i> Link
+                        </router-link>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div v-if="tracklists.length > 0">
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+        </div>
+    </div>
+</template>
+
+<script src="./list.ts"></script>

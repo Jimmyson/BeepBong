@@ -1,0 +1,18 @@
+<template>
+    <div id="tracklistDetail">
+        <router-link :to="{ name: 'tracklist-editor', query: { id: `${$route.params.id}` }}">
+            <i data-feather="edit"></i>Edit list
+        </router-link>
+		<a class="text-danger" @click="deleteTracklist()"><i data-feather="trash-2"></i>Delete List</a>
+        <div v-if="tracklist">
+            <tracklist v-bind:tl="tracklist" />
+        </div>
+        <hr />
+        <h5>Associated Programmes</h5>
+        <div class="card-columns">
+            <programme-card v-for="programme in programmes" v-bind:p="programme" />
+        </div>
+    </div>
+</template>
+
+<script src="./detail.ts"></script>

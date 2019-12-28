@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using BeepBong.Application.Interfaces;
 using BeepBong.Domain.Models;
 
 namespace BeepBong.Application.ViewModels
 {
-    public class ProgrammeEditViewModel
+    public class ProgrammeEditViewModel : IImageEntity
     {
         public Guid ProgrammeId { get; set; }
         public string Name { get; set; }

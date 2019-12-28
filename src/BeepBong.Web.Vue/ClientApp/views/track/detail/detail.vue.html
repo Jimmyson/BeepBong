@@ -1,0 +1,42 @@
+<template>
+    <div id="track">
+        <header>
+            <h3>{{ track.name }}</h3>
+            <span>{{ track.description }}</span>
+        </header>
+
+        <div v-if="track.isLibrary">
+            <router-link :to="{ name: 'sample-editor', query: { trackId: `${track.trackId }` }}" >
+                <i data-feather="upload-cloud"></i><span>Upload new sample</span>
+            </router-link>
+			<a class="text-danger" @click="deleteTrack()"><i data-feather="trash-2"></i>Delete Track</a>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Fingerprint</th>
+						<th>Codec</th>
+						<th>Depth</th>
+						<th>Sample Rate</th>
+						<th>Compression</th>
+						<th>Duration</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="sample in samples">
+						<td>{{ sample.fingerprint }}</td>
+						<td>{{ sample.codec }}</td>
+						<td>{{ sample.depth }}</td>
+						<td>{{ sample.sampleRate }}</td>
+						<td>{{ sample.compression }}</td>
+						<td>{{ sample.duration }}</td>
+					</tr>
+				</tbody>
+			</table>
+        </div>
+        <div v-else>
+            <span class="text-muted">This is a Library track. Samples will not be recorded or tracked.</span>
+        </div>
+    </div>
+</template>
+
+<script src="./detail.ts"></script>

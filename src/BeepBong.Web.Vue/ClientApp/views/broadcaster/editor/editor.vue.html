@@ -1,0 +1,65 @@
+<template>
+    <div id="broadcastEditor">
+        <h3>Broadcaster Editor</h3>
+        <form action="" @submit.prevent="sendBroadcaster">
+			<input type="hidden" v-model="broadcaster.broadcasterId" />
+			<div class="form-row">
+				<div class="form-group col">
+					<label for="name">Broadcaster Name</label>
+					<input type="text" v-model="broadcaster.name" required
+						class="form-control" name="name" id="name" aria-describedby="helpId-name" placeholder="Name">
+					<small id="helpId-name" class="form-text text-muted">data</small>
+				</div>
+				<div class="form-group col">
+					<i data-feather="flag"></i> <label for="country">Country</label>
+					<input type="text" v-model="broadcaster.country"
+						class="form-control" name="country" id="country" aria-describedby="helpId-country" placeholder="Country">
+					<small id="helpId-country" class="form-text text-muted">Help text</small>
+					<!-- <select class="custom-select" name="country" id="country">
+						<option selected>Select one</option>
+						<option value="">A</option>
+						<option value="">B</option>
+						<option value="">C</option>
+					</select> -->
+				</div>
+			</div>
+			<!-- @TODO: Add Open/Close dates to Model -->
+			<!-- <div class="form-row">
+				<div class="form-group col">
+					<i data-feather="calendar"></i><label for="opened">Opened</label>
+					<input type="date"
+						class="form-control" name="opened" id="opened" aria-describedby="helpId-opened" placeholder="Opened">
+					<small id="helpId-opened" class="form-text text-muted">Help text</small>
+				</div>
+				<div class="form-group col">
+					<i data-feather="calendar"></i><label for="closed">Closed</label>
+					<input type="date"
+						class="form-control" name="closed" id="closed" aria-describedby="helpId-closed" placeholder="Closed">
+					<small id="helpId-closed" class="form-text text-muted">Help text</small>
+				</div>
+			</div> -->
+			<hr />
+			<div class="form-group">
+				<i data-feather="image"></i> <label for="image">Broadcaster Image</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text"><i data-feather="upload-cloud"></i></span>
+					</div>
+					<div class="custom-file">
+						<label class="custom-file-label" for="image">{{ broadcaster.imageChange ? broadcaster.image.name : "Upload an image" }}</label>
+						<input type="file" v-on:change="handleFileUpload($event.target.files)" accept="image/png, image/jpeg"
+							class="custom-file-input" name="image" id="image" placeholder="Image" aria-describedby="fileHelpId-image" />
+					</div>
+				</div>
+				<small id="fileHelpId-image" class="form-text text-muted">Help Text</small>
+				<input v-on:click="clearFileUpload()" name="removeImage" id="removeImage" class="btn btn-danger" type="button" value="Remove Image" />
+			</div>
+			<img v-if="broadcaster.imageId" :src="'api/Image/' + `${broadcaster.imageId}`" width="auto" height="360px" />
+			<hr />
+            <button type="button" class="btn btn-danger" @click="$router.back()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</template>
+
+<script src="./editor.ts"></script>

@@ -25,6 +25,14 @@ namespace BeepBong.Application.Commands
                 Library = viewModel.Library
             };
 
+			List<TrackEditViewModel> tracks = viewModel.Tracks?.Select(t => new TrackEditViewModel() {
+				TrackId = t.TrackId,
+				Name = t.Name,
+				Variant = t.Variant,
+				Description = t.Description,
+				TrackListId = viewModel.TrackListId
+			}).ToList();
+
             List<ProgrammeTrackList> programmeLists = (viewModel.Programmes != null) ?
                 viewModel.Programmes.Select(p => new ProgrammeTrackList()
                 {
@@ -36,6 +44,22 @@ namespace BeepBong.Application.Commands
 
             // Attach Entites
             _context.Attach(TrackList).State = (isNew) ? EntityState.Added : EntityState.Modified;
+
+			// Remove Tracks
+			List<Track> existingTracks = _context.Tracks.Where(t => t.TrackListId == viewModel.TrackListId).ToList();
+
+			foreach (var track in existingTracks)
+			{
+				if (!tracks.Select(t => t.TrackId).Contains(track.TrackId))
+				{
+					// Delete Track
+					_context.Attach(track).State = EntityState.Deleted;
+				}
+			}
+
+			// Update Remaining Tracks
+			var trackEditCommand = new TrackEditCommand(_context);
+			tracks.ForEach(t => trackEditCommand.SendCommand(t));
 
             // Update Programme Relationship
             List<ProgrammeTrackList> existingPtl = _context.ProgrammeTrackLists.Where(ptl => ptl.TrackListId == viewModel.TrackListId).ToList();

@@ -1,0 +1,126 @@
+<template>
+    <div id="tracklistEditor">
+        <h3>Tracklist Editor</h3>
+        <form action="" @submit.prevent="sendTracklist">
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="name">Tracklist Name</label>
+                    <input type="text" v-model="tracklist.name" required
+                        class="form-control" aria-describedby="helpId-name" placeholder="Name">
+                    <small id="helpId-name" class="form-text text-muted">Help text</small>
+                </div>
+                <div class="form-group col">
+                    <label for="composer">Composer</label>
+                    <input type="text" v-model="tracklist.composer"
+                        class="form-control" name="composer" id="composer" aria-describedby="helpId-composer" placeholder="Composer Name">
+                    <small id="helpId-composer" class="form-text text-muted">Help text</small>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-2">
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" v-model="tracklist.library"
+							class="custom-control-input" name="library" id="library" aria-describedby="helpId-library">
+						<label class="custom-control-label" for="library">Library</label>
+						<small id="helpId-library" class="form-text text-muted">Help text</small>
+					</div>
+				</div>
+                <!-- Library Selector -->
+                <!-- <div class="form-group col-8" v-if="tracklist.library">
+                    <label for="library">Library</label>
+                    <select class="custom-select" name="library" id="library" v-model="tracklist.libraryId">
+                        <option disabled :value="undefined">Select one</option>
+						<option v-for="id in libraryList" :value="id.id">{{ id.name }}</option>
+                    </select>
+				</div>
+				<div class="col-2">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#libraryEditor" @click="parseTracks()">
+						Create new Library
+					</button>
+                	<div>Modal</div>
+				</div> -->
+            </div>
+			<hr />
+			<div>
+				<h4 class="float-left">Tracks</h4>
+				<div class="float-right">
+					<!-- Button trigger modal -->
+					<button v-if="$route.query.id == undefined || tracklist.tracks.length == 0" type="button" class="btn btn-primary" data-toggle="modal" data-target="#bulkEditor" @click="parseTracks()">
+						Bulk Track Writer
+					</button>
+					<small v-if="tracklist.tracks.length > 0" class="text-muted">Removing tracks from the list will remove any associated Samples.</small>
+				</div>
+			</div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Variant</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(track, i) in tracks">
+                        <td><input type="text" required class="form-control" placeholder="Track Name" v-model="track.name" /></td>
+                        <td><input type="text" class="form-control" placeholder="Track Variant" v-model="track.variant" /></td>
+                        <td><input type="text" class="form-control" placeholder="Track Description" v-model="track.description" /></td>
+                        <td><a @click="removeTrack(i)"><i data-feather="x"></i>Remove</a></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-center"><a @click="addTrack()"><i data-feather="plus"></i>Add Row</a></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <hr />
+            <button type="button" class="btn btn-danger" @click="$router.back()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+		
+		<!-- Bulk Editor Modal -->
+		<div v-if="$route.query.id == undefined || tracklist.tracks.length == 0" class="modal fade" id="bulkEditor" tabindex="-1" role="dialog" aria-labelledby="bulkEditorLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="bulkEditorLabel">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<textarea v-model="bulkWriter" class="form-control" name="trackWriter" id="trackWriter" rows="3"></textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" v-on:click="parseBulk()" data-dismiss="modal">Save changes</button>
+				</div>
+			</div>
+			</div>
+		</div>
+
+		<!-- Modal to create to library -->
+		<div class="modal fade" id="libraryEditor" tabindex="-1" role="dialog" aria-labelledby="bulkEditorLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="bulkEditorLabel">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<span>Library Editor goes here!</span>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" @submit="alert('Not yet implemented')" data-dismiss="modal">Save changes</button>
+				</div>
+			</div>
+			</div>
+		</div>
+    </div>
+</template>
+
+<script src="./editor.ts"></script>

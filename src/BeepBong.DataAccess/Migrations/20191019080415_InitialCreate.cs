@@ -108,7 +108,7 @@ namespace BeepBong.DataAccess.Migrations
                 {
                     ChannelId = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    Commencement = table.Column<DateTime>(nullable: true),
+                    Opened = table.Column<DateTime>(nullable: true),
                     Closed = table.Column<DateTime>(nullable: true),
                     BroadcasterId = table.Column<Guid>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),

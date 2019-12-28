@@ -1,0 +1,31 @@
+<template>
+    <!-- <div id="programme-card"> -->
+        <div class="card mb-4">
+            <img v-if="p.imageId" class="card-img-top" :src="'/api/Image/' + `${p.imageId}`" width="auto"/>
+            <div class="card-body">
+                <h5 class="card-title">{{ p.name }}</h5>
+                <div class="card-text">
+                    <ul class="list-unstyled">
+                        <li><i data-feather="calendar"></i> {{ p.airDate }}</li>
+                        <li><i data-feather="tv"></i> {{ p.channel }}</li>
+                        <li><i data-feather="music"></i> {{ p.trackCount }} {{ p.trackCount == 1 ? "Track" : "Tracks" }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="float-right" v-if="p.containsLibrary">
+                    <span class="text-left text-muted"><i data-feather="book"></i> Contains Library Music</span>
+                </div>
+                <div>
+                    <!-- <a><i data-feather="edit"></i></a> -->
+                    <router-link :to="{ name: 'programme-detail', params: { id: `${p.programmeId}` } }">
+                        <i data-feather="info"></i>
+                    </router-link>
+                    <!-- <a><i data-feather="trash-2"></i></a> -->
+                </div>
+            </div>
+        </div>
+    <!-- </div> -->
+</template>
+
+<script src="./pcard.ts"></script>

@@ -1,0 +1,99 @@
+<template>
+    <!-- <div class="main-nav"> -->
+        <!-- Start of sidebar -->
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/" :exact="true">
+                            <i data-feather="home"></i>
+                            <span>Home</span>
+                        </router-link>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link">
+                            <i data-feather="flag"></i>
+                            <span>Country</span>
+                        </a>
+                    </li> -->
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/broadcaster">
+                            <i data-feather="radio"></i>
+                            <span>Broadcaster</span>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/channel">
+                            <i data-feather="tv"></i>
+                            <span>Channel</span>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/programme" :exact="true">
+                            <i data-feather="mic"></i>
+                            <span>Programme</span>
+                        </router-link>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/tracklist/" :exact="true">
+                            <i data-feather="music"></i>
+                            <span>Tracklist</span>
+                        </router-link>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link">
+                            <i data-feather="user"></i>
+                            <span>Artist</span>
+                        </a>
+                    </li> -->
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/library">
+                            <i data-feather="book"></i>
+                            <span>Library</span>
+                        </router-link>
+                    </li>
+                    <!-- <li class="dropdown-divider"></li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/sample/upload">
+                            <i data-feather="upload-cloud"></i>
+                            <span>Upload Sample</span>
+                        </router-link>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link">
+                            <i data-feather="download-cloud"></i>
+                            <span>Export Data</span>
+                        </a>
+                    </li> -->
+                </ul>
+                <hr />
+                <h5 class="pl-3">Reports</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/report/programme-wo-tl">
+                            <i data-feather="file-text"></i>
+                            <span class="text-wrap">Programmes w/o Tracklist</span>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/report/orphan-tracklist">
+                            <i data-feather="file-text"></i>
+                            <span>Orphaned Tracklists</span>
+                        </router-link>
+                    </li>
+                </ul>
+                <hr />
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://github.com/Jimmyson/BeepBong" target="_blank">
+                            <i data-feather="github"></i>
+                            <span class="text-wrap">Github</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+    <!-- </div> -->
+</template>
+
+<style src="./dashnav.css" />

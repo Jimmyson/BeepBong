@@ -1,0 +1,20 @@
+<template>
+    <div id="channelList">
+        <h3>Channel</h3>
+        <router-link to="/channel/editor">
+            <i data-feather="plus"></i>Create new Channel
+        </router-link>
+        <hr />
+        <div>
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+        </div>
+        <div class="card-columns">
+            <channel-card v-for="channel in channels" v-bind:c="channel" />
+        </div>
+        <div>
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+        </div>
+    </div>
+</template>
+
+<script src="./list.ts"></script>

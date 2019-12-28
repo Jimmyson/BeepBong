@@ -1,0 +1,42 @@
+<template>
+    <div class="main-nav">
+        <div class="navbar navbar-inverse">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">beepbong.web.vue</a>
+            </div>
+            <div class="clearfix"></div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <router-link to="/" :exact="true">
+                            <i data-feather="home"></i> Home
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/counter">
+                            <i data-feather="pen-tool"></i> Counter
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/fetchdata">
+                            <i data-feather="list"></i> Fetch data
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/programme">
+                            <i data-feather="tv"></i> Programme
+                        </router-link>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
+
+<style src="./navmenu.css" />

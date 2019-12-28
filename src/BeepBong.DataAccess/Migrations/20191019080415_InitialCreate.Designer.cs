@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeepBong.DataAccess.Migrations
 {
     [DbContext(typeof(BeepBongContext))]
-    [Migration("20190529110225_InitialCreate")]
+    [Migration("20191019080415_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
             modelBuilder.Entity("BeepBong.Domain.Models.Broadcaster", b =>
                 {
@@ -49,13 +49,13 @@ namespace BeepBong.DataAccess.Migrations
 
                     b.Property<DateTime?>("Closed");
 
-                    b.Property<DateTime?>("Commencement");
-
                     b.Property<DateTime>("Created");
 
                     b.Property<DateTime?>("LastModified");
 
                     b.Property<string>("Name");
+
+                    b.Property<DateTime?>("Opened");
 
                     b.HasKey("ChannelId");
 

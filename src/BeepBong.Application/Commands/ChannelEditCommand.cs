@@ -19,7 +19,7 @@ namespace BeepBong.Application.Commands
             {
                 ChannelId = viewModel.ChannelId,
                 Name = viewModel.Name,
-                Commencement = viewModel.Commencement,
+                Opened = viewModel.Opened,
                 Closed = viewModel.Closed,
                 BroadcasterId = viewModel.BroadcasterId
             };

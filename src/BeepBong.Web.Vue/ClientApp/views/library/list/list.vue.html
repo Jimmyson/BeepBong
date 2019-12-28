@@ -1,0 +1,47 @@
+<template>
+    <div id="libraryList">
+        <h3>Library</h3>
+
+        <router-link to="/library/editor">
+            <i data-feather="plus"></i>Create new library
+        </router-link>
+        <div>
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+		</div>
+		<hr />
+        <table class="table" v-if="libraries">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Label</th>
+                    <th>Catalog</th>
+                    <th>MBID</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="library in libraries">
+                    <td>{{ library.albumName }}</td>
+                    <td>{{ library.label }}</td>
+                    <td>{{ library.catalog }}</td>
+                    <td>
+                        <a v-if="library.mbid" :href="'https://musicbrainz.org/release/'+library.mbid">{{ library.mbid }} <i data-feather="external-link"></i></a>
+                    </td>
+                    <td>
+                        <router-link :to="{ name: 'library-editor', query: { id: `${library.libraryId}` }}">
+                            <i data-feather="edit"></i> Edit
+                        </router-link> | 
+                        <a class="text-danger" @click="removeLibrary(library.libraryId)">
+                            <i data-feather="trash-2"></i> Remove
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <pagination-item v-bind:pg="pagination" @changePage="changePage"/>
+        </div>
+    </div>
+</template>
+
+<script src="./list.ts"></script>

@@ -1,0 +1,66 @@
+<template>
+    <div id="programmeEditor">
+        <h3>Programme Editor</h3>
+        <form action="" @submit.prevent="sendProgramme">
+            <div class="form-group">
+                <label for="name">Programme Name</label>
+                <input type="text" v-model="programme.name" required
+                    class="form-control" name="name" id="name" aria-describedby="helpId-name" placeholder="Name">
+                <small id="helpId-name" class="form-text text-muted">data</small>
+			</div>
+			<div class="form-row">
+				<div class="form-group col">
+					<i data-feather="calendar"></i> <label for="airDate">Air Date</label>
+					<input type="date" v-model="programme.airDate"
+						class="form-control" name="airDate" id="airDate" aria-describedby="helpId-airDate" placeholder="Air Date">
+					<small id="helpId-airDate" class="form-text text-muted">Help text</small>
+				</div>
+				<div class="form-group col">
+					<i data-feather="tv"></i> <label for="channel">Channel</label>
+					<select class="custom-select" name="channel" id="channel" v-model="programme.channelId">
+						<option disabled :value="undefined">Select one</option>
+						<option v-for="id in channelList" :value="id.id">{{ id.name }}</option>
+					</select>
+				</div>
+			</div>
+            <hr />
+			<div class="form-group">
+				<i data-feather="image"></i> <label for="image">Programme Image</label>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text"><i data-feather="upload-cloud"></i></span>
+					</div>
+					<div class="custom-file">
+						<label class="custom-file-label" for="image">{{ programme.imageChange ? programme.image.name : "Upload File" }}</label>
+						<input type="file" v-on:change="handleFileUpload($event.target.files)" accept="image/png, image/jpeg"
+							class="custom-file-input" name="image" id="image" placeholder="Image" aria-describedby="fileHelpId-image" />
+					</div>
+				</div>
+				<small id="fileHelpId-image" class="form-text text-muted">Help Text</small>
+				<input v-on:click="clearFileUpload()" name="removeImage" id="removeImage" class="btn btn-danger" type="button" value="Remove Image" />
+			</div>
+			<img v-if="programme.imageId" :src="'api/Image/' + `${programme.imageId}`" width="auto" height="360px" />
+			<hr />
+			<!-- <div> -->
+                <!-- Create when none is selected -->
+                <!-- <a>Create new Tracklist</a>
+                <div>
+                    Modal for Tracklist creator
+                </div>
+            </div> -->
+            <div v-if="tracklistList.length > 0" class="row">
+                <div class="form-group col">
+                    <i data-feather="music"></i> <label for="tracklists">Tracklists</label>
+                    <select multiple class="form-control" name="tracklists" id="tracklists" v-model="programme.trackListIds">
+                        <option v-for="id in tracklistList" :value="id.id">{{ id.name }}</option>
+                    </select>
+                </div>
+            </div>
+            <hr />
+            <button type="button" class="btn btn-danger" @click="$router.back()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</template>
+
+<script src="./editor.ts"></script>

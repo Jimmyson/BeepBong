@@ -21,13 +21,6 @@ namespace BeepBong.Application.Queries
                     Name = b.Name,
                     Country = b.Country,
                     ImageId = b.ImageId,
-                    ChannelList = b.Channels.Select(c => new SimpleChannel() {
-                        ChannelId = c.ChannelId,
-                        Name = c.Name,
-                        Commencement = c.Commencement,
-                        Closed = c.Closed,
-                        ProgrammeCount = c.Programmes.Count
-                    }).ToList()
                 });
         }
     }

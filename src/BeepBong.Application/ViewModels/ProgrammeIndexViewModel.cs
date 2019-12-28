@@ -6,7 +6,7 @@ namespace BeepBong.Application.ViewModels
     {
         public Guid ProgrammeId { get; set; }
         public string Name { get; set; }
-        public string Year { get; set; }
+        public string AirDate { get; set; }
         public string Channel { get; set; }
         public Guid? ImageId { get; set; }
         public bool ContainsLibrary { get; set; }

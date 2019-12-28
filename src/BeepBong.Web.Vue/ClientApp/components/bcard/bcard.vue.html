@@ -1,0 +1,28 @@
+<template>
+    <!-- <div id="bcard"> -->
+        <div class="card mb-4">
+            <img v-if="b.imageId" class="card-img-top" :src="'/api/Image/' + `${b.imageId}`"/>
+            <div class="card-body">
+                <h5 class="card-title">{{ b.name }}</h5>
+                <!-- <div class="card-text">
+                    Details
+                </div> -->
+            </div>
+            <div class="card-footer">
+                <div class="float-right" v-if="b.country">
+                    <span class="text-muted"><i data-feather="flag"></i> {{ b.country }}</span>
+                </div>
+                <div>
+                    <router-link :to="{ name: 'broadcaster-detail', params: { id: `${b.broadcasterId}` }}" >
+                        <i data-feather="info"></i>
+                    </router-link> <!-- |
+                    <a>
+                        <i data-feather="trash-2"></i>
+                    </a> -->
+                </div>
+            </div>
+        </div>
+    <!-- </div> -->
+</template>
+
+<script src="./bcard.ts"></script>
