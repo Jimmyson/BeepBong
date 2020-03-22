@@ -87,7 +87,7 @@ namespace BeepBong.SampleUpload
             SampleCreateViewModel sample = new SampleCreateViewModel
             {
                 SampleRate = mediaInfo.Audio[0].SamplingRate.ToString(),
-                SampleCount = "Unknown",
+                SampleCount = "Unknown", // Current MediaInfo wrapper is unable to retrieve value. Only provides "Duration".
                 AudioChannelCount = mediaInfo.Audio[0].Channels.ToString(),
                 BitRate = mediaInfo.Audio[0].BitRate.ToString(),
                 Codec = mediaInfo.Audio[0].Format,

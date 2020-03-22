@@ -119,14 +119,15 @@ namespace BeepBong.SampleUpload
                         return true;
 
                     // Error Codes to handle
+                    case HttpStatusCode.Conflict:
+                        statusResponse = "Record already exists";
+                        return true; // No need to reupload if system already has record
+
                     case HttpStatusCode.BadRequest:
                         statusResponse = "Unable to process the sample";
                         return false;
                     case HttpStatusCode.Unauthorized:
                         statusResponse = "You do not have access";
-                        return false;
-                    case HttpStatusCode.Conflict:
-                        statusResponse = "Record already exists";
                         return false;
                 }
 
