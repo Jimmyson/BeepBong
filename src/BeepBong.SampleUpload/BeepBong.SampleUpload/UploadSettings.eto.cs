@@ -8,48 +8,19 @@ namespace BeepBong.SampleUpload
 	{
         protected IConfig Config;
 
-		void InitializeComponent()
+        TextBox URLInput = new TextBox { PlaceholderText = "Where do I look?" };
+        Button SaveURLButton = new Button { Text = "Test" };
+
+        PasswordBox APIInput = new PasswordBox { Enabled = false };
+        Button SaveAPIButton = new Button { Text = "Save", Enabled = false };
+
+        void InitializeComponent()
 		{
 			Title = "BeepBong Settings";
 			ClientSize = new Size(480, 140);
 			Padding = 10;
             Location = new Point(600, 400);
             Resizable = false;
-
-            // Input
-            var URLInput = new TextBox { PlaceholderText = "Where do I look?", Text = Config.GetURL() ?? "" };
-            var SaveURLButton = new Button { Text = "Test" };
-            SaveURLButton.Click += (sender, e) =>
-            {
-                var url = URLInput.Text;
-
-                if (UrlProcessing.TeaTime(url))
-                {
-                    Config.SetURL(url);
-                    MessageBox.Show("A very good afternoon from BBC2, where it's time to... Put the kettle on.", MessageBoxType.Information); //https://www.youtube.com/watch?v=SNbLkVl-xNY
-                }
-                else
-                {
-                    MessageBox.Show("Unable to poll URL. Check that you can access the site.", MessageBoxType.Warning);
-                }
-            };
-
-            var APIInput = new PasswordBox { Text = Config.GetAPI(), Enabled = false };
-            var SaveAPIButton = new Button { Text = "Save", Enabled = false };
-            SaveURLButton.Click += (sender, e) =>
-            {
-                var key = APIInput.Text;
-
-                // if (UrlProcessing.TeaTime(key))
-                // {
-                //     Config.SetAPI(key);
-                //     MessageBox.Show("A very good afternoon from BBC2, where it's time to... Put the kettle on.", MessageBoxType.Information); //https://www.youtube.com/watch?v=SNbLkVl-xNY
-                // }
-                // else
-                // {
-                //     MessageBox.Show("Unable to poll URL. Check that you can access the site.", MessageBoxType.Warning);
-                // }
-            };
 
             // Commands
             var closeCommand = new Command();
