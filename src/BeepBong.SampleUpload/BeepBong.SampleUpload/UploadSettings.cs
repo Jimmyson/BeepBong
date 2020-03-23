@@ -28,6 +28,21 @@ namespace BeepBong.SampleUpload
                     MessageBox.Show("Unable to poll URL. Check that you can access the site.", MessageBoxType.Warning);
                 }
             };
+
+            SaveAPIButton.Click += (sender, e) =>
+            {
+                var key = APIInput.Text;
+
+                // if (UrlProcessing.TeaTime(key))
+                // {
+                //     Config.SetAPI(key);
+                //     MessageBox.Show("A very good afternoon from BBC2, where it's time to... Put the kettle on.", MessageBoxType.Information); //https://www.youtube.com/watch?v=SNbLkVl-xNY
+                // }
+                // else
+                // {
+                //     MessageBox.Show("Unable to poll URL. Check that you can access the site.", MessageBoxType.Warning);
+                // }
+            };
         }
 	}
 }
