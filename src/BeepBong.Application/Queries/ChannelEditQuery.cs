@@ -6,7 +6,7 @@ using BeepBong.DataAccess;
 
 namespace BeepBong.Application.Queries
 {
-    public class ChannelEditQuery : IQuery<ChannelEditViewModel>
+    public class ChannelEditQuery : IQuery<ChannelEditViewModel>, IExists<ChannelEditViewModel>
     {
         private readonly BeepBongContext _context;
 

@@ -6,7 +6,7 @@ using BeepBong.DataAccess;
 
 namespace BeepBong.Application.Queries
 {
-    public class SampleEditQuery : IQuery<SampleEditViewModel>
+    public class SampleEditQuery : IQuery<SampleEditViewModel>, IExists<SampleCreateViewModel>
     {
         private readonly BeepBongContext _context;
 

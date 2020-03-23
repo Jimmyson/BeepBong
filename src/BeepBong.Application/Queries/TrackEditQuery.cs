@@ -6,7 +6,7 @@ using BeepBong.DataAccess;
 
 namespace BeepBong.Application.Queries
 {
-    public class TrackEditQuery : IQuery<TrackEditViewModel>
+    public class TrackEditQuery : IQuery<TrackEditViewModel>, IExists<TrackEditViewModel>
     {
         private readonly BeepBongContext _context;
 

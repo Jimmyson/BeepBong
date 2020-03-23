@@ -6,7 +6,7 @@ using BeepBong.Domain.Models;
 
 namespace BeepBong.Application.Queries
 {
-    public class LibraryEditQuery : IQuery<Library>
+    public class LibraryEditQuery : IQuery<Library>, IExists<Library>
     {
         private readonly BeepBongContext _context;
 
