@@ -72,7 +72,7 @@ namespace BeepBong.SampleUpload
             MediaInfo mediaInfo = new MediaInfo(@".\lib\MediaInfo.dll");
             mediaInfo.ReadMediaInformation(filePath);
 
-            AudioFileReader nAudio = new AudioFileReader(filePath);
+            //AudioFileReader nAudio = new AudioFileReader(filePath);
 
             string bitDepth = null;
 

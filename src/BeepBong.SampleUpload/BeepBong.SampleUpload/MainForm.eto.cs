@@ -6,18 +6,19 @@ using System.Linq;
 namespace BeepBong.SampleUpload
 {
 	partial class MainForm : Form
-	{
+    {
+        static string[] supportedExtensions = { ".mp3", ".m4a", ".wav", ".flac", ".aiff", ".aif", ".wma" };
+
         // Controls
         OpenFileDialog openFileDialog = new OpenFileDialog
         {
             MultiSelect = true,
-            Filters = {
-                new FileFilter("Audio Files", ".mp3", ".m4a", ".wav", ".flac", ".aiff", ".aif", ".wma")
-            }
+            Filters = { new FileFilter("Audio Files", supportedExtensions) }
         };
-        
+
         Button clearListButton = new Button { Text = "Clear List", Enabled = false };
         Button selectFileButton = new Button { Text = "Add Files..." };
+        Button selectFolderButton = new Button { Text = "Folder" };
         Button scanFilesButton = new Button { Text = "Scan", Enabled = false };
         Button uploadEntityButton = new Button { Text = "Upload", Enabled = false };
         TextArea tracks = new TextArea { ReadOnly = true, Wrap = false };
@@ -148,10 +149,7 @@ namespace BeepBong.SampleUpload
                                             Items =
                                             {
                                                 selectFileButton,
-                                                // new Button
-                                                // {
-                                                //     Text = "Folder"
-                                                // },
+                                                selectFolderButton,
                                                 new StackLayoutItem
                                                 {
                                                     Expand = true

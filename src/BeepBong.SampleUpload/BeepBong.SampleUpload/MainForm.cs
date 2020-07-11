@@ -3,6 +3,7 @@ using Eto.Forms;
 using Eto.Drawing;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace BeepBong.SampleUpload
 {
@@ -19,6 +20,7 @@ namespace BeepBong.SampleUpload
 
             // Bind Actions
             selectFileButton.Click += HandleFiles;
+            selectFolderButton.Click += HandleFolder;
             scanFilesButton.Click += (sender, e) => ScanFilesAsync(sender, e).ConfigureAwait(false); ;
             uploadEntityButton.Click += (sender, e) => UploadFilesAsync(sender, e).ConfigureAwait(false);
 
@@ -85,6 +87,27 @@ namespace BeepBong.SampleUpload
             if (openFileDialog.ShowDialog(this) == DialogResult.Ok)
             {
                 di.AddFileToCollection(openFileDialog.Filenames);
+            }
+        }
+
+        void HandleFolder(object sender, EventArgs e)
+        {
+            var dialog = new SelectFolderDialog();
+
+            if (dialog.ShowDialog(this) == DialogResult.Ok)
+            {
+                var files = System.IO.Directory.GetFiles(dialog.Directory);
+                ICollection<string> supportedFiles = new List<string>();
+
+                foreach (var file in files)
+                {
+                    if (supportedExtensions.Any(file.EndsWith))
+                    {
+                        supportedFiles.Add(file);
+                    }
+                }
+
+                di.AddFileToCollection(supportedFiles);
             }
         }
 
