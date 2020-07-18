@@ -25,7 +25,7 @@ namespace BeepBong.Application
         {
             EmptyDictionary();
 
-            //@TODO: Implement Image Processing to send DataURI to EF Entitys
+            //@TODO: Implement Image Processing to send DataURI to EF Entities
 
             // Broadcasters, Channels and Programmes
             XElement broadcasting = xml.Element("BeepBongCollection").Element("Broadcasting");
@@ -39,6 +39,13 @@ namespace BeepBong.Application
                     b = CreateBroadcasterEntity(broadcaster.Attributes());
                 }
 
+                // Query for existing
+                using (var context = new BeepBongContext(options))
+                {
+                    var item = context.Broadcasters.Where(x => x.Name == b.Name && x.Country == b.Country).First();
+                    if (item != null) b = item;
+                }
+
                 if (broadcaster.HasElements)
                 {
                     foreach (var channel in broadcaster.Elements("Channel"))
@@ -50,6 +57,13 @@ namespace BeepBong.Application
                             c = CreateChannelEntity(channel.Attributes());
                         }
 
+                        // Query for existing
+                        using (var context = new BeepBongContext(options))
+                        {
+                            var item = context.Channels.Where(x => x.Name == c.Name && x.Opened == c.Opened).First();
+                            if (item != null) c = item;
+                        }
+
                         if (channel.HasElements)
                         {
                             // Create Programme
@@ -59,6 +73,14 @@ namespace BeepBong.Application
                                 if (programme.HasAttributes)
                                 {
                                     p = CreateProgrammeEntity(programme.Attributes());
+
+                                    // Query for existing
+                                    using (var context = new BeepBongContext(options))
+                                    {
+                                        var item = context.Programmes.Where(x => x.Name == p.Name && x.AirDate == p.AirDate).First();
+                                        if (item != null) p = item;
+                                    }
+
                                     if (programme.Attribute("ref") != null)
                                     {
                                         Guid id = Guid.NewGuid();
@@ -122,6 +144,13 @@ namespace BeepBong.Application
                     }
                 }
 
+                // Query for existing
+                using (var context = new BeepBongContext(options))
+                {
+                    var item = context.TrackLists.Where(x => x.Name == tl.Name && x.Composer == tl.Composer).First();
+                    if (item != null) tl = item;
+                }
+
                 if (trackList.HasElements)
                 {
                     foreach (var track in trackList.Elements("Track"))
@@ -133,12 +162,26 @@ namespace BeepBong.Application
                             t = CreateTrackEntity(track.Attributes());
                         }
 
+                        // Query for existing
+                        using (var context = new BeepBongContext(options))
+                        {
+                            var item = context.Tracks.Where(x => x.Name == t.Name && x.Samples == t.Samples && x.Description == t.Description && x.Variant == t.Variant).First();
+                            if (item != null) t = item;
+                        }
+
                         if (track.HasElements)
                         {
                             // Create Samples
                             foreach (var sample in track.Elements("Sample"))
                             {
                                 Sample s = CreateSampleEntity(sample.Attributes());
+
+                                // Query for existing
+                                using (var context = new BeepBongContext(options))
+                                {
+                                    var item = context.Samples.Where(x => x.AudioChannelCount == s.AudioChannelCount && x.BitRate == s.BitRate && x.BitRateMode == s.BitRateMode && x.SampleCount == s.SampleCount && x.Notes == s.Notes).First();
+                                    if (item != null) s = item;
+                                }
 
                                 // Add Sample to Track
                                 t.Samples.Add(s);
@@ -173,6 +216,13 @@ namespace BeepBong.Application
                 if (library.HasAttributes)
                 {
                     l = CreateLibraryEntity(library.Attributes());
+                }
+
+                // Query for existing
+                using (var context = new BeepBongContext(options))
+                {
+                    var item = context.Libraries.Where(x => x.AlbumName == l.AlbumName && x.Catalog == l.Catalog && x.MBID == l.MBID && x.Label == l.Label).First();
+                    if (item != null) l = item;
                 }
 
                 using (var context = new BeepBongContext(options)) {
