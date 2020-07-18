@@ -6,6 +6,7 @@ import { Component } from 'vue-property-decorator';
 import { ProgrammeItem } from '../../../models/programme'
 import { Pagination } from '../../../models/pagination';
 import { listResponse } from '../../../models/listResponse';
+import moment from 'moment';
 
 @Component({
     components: {
@@ -27,6 +28,9 @@ export default class OrpanedTracklist extends Vue {
             .then(Response => {
                 this.programmes = Response.data.items;
                 this.pagination = <Pagination>Response.data;
+                this.programmes.forEach((item) => {
+                    if (item.airDate) item.airDate = moment(item.airDate).format('dddd, D MMMM YYYY');
+                })
             })
     }
 

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Axios from 'axios';
 import feather from 'feather-icons';
+import moment from 'moment';
 import { Component } from 'vue-property-decorator';
 
 import { ProgrammeItem } from '../../../models/programme';
@@ -28,6 +29,9 @@ export default class ProgrammeListView extends Vue {
             .then(Response => {
                 this.programmes = Response.data.items;
                 this.pagination = <Pagination>Response.data; // @TODO: Remove list from class
+                this.programmes.forEach((item) => {
+                    if (item.airDate) item.airDate = moment(item.airDate).format('dddd, D MMMM YYYY');
+                })
             })
             .catch(e =>
                 console.log(e)
